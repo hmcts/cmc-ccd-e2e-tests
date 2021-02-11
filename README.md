@@ -1,2 +1,2 @@
 # cmc-ccd-e2e-tests
-CMC - CCD Service Integration End to End Tests
+CMC - CCD Service End to End Tests
