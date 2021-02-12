@@ -43,10 +43,4 @@ withNightlyPipeline("nodejs", product, component) {
     after('fullFunctionalTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
-
-    /*
-    after('crossBrowserTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-    }
-    */ 
 }
