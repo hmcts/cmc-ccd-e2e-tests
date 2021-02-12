@@ -43,7 +43,7 @@ const setupConfig = {
     'output': `${process.cwd()}/${testConfig.TestOutputDir}`,
     'helpers': {
         WebDriver: {
-            url: testConfig.TestBackOfficeUrl,
+            url: testConfig.TestEndToEndUrl,
             browser,
             smartWait,
             waitForTimeout,
