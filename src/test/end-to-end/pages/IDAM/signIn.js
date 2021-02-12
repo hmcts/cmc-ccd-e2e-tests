@@ -29,5 +29,6 @@ module.exports = async function (userType, isAlreadyAtSignOnPage) {
     default:
     }
 
+    await I.runAccessibilityTest();
     await I.waitForNavigationToComplete('input[type="submit"]');
 };
