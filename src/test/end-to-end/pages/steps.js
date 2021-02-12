@@ -7,4 +7,4 @@ module.exports = function () {
     return actor({
         authenticateWithIdamIfAvailable: steps.IDAM.signIn,
     });
-}
+};
