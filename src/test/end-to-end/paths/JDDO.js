@@ -5,7 +5,7 @@ const testConfig = require('../../config');
 
 Feature('JDDO').retry(testConfig.TestRetryFeatures);
 
-Scenario('JDDO', async function (I) {
+Scenario('JDDO', async ({I}) => {
     await I.authenticateWithIdamIfAvailable(ccdUserType.JUDGE, false);
 }).tag('@crossbrowser')
     .retry(testConfig.TestRetryScenarios);
