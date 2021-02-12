@@ -4,6 +4,18 @@ const Helper = codecept_helper;
 
 class WebDriverHelper extends Helper {
 
+    async waitForNavigationToComplete(locator, webDriverWait=3) {
+        const helper = this.helpers.WebDriver;
+
+        if (locator) {
+            // must be a button to click
+            await helper.waitForClickable(locator, testConfig.TestTimeToWaitForText);
+            await helper.click(locator);
+        }
+
+        await helper.wait(webDriverWait);
+    }
+
     async runAccessibilityTest() {
         //Ignore this for web driver
         await Promise.resolve();
