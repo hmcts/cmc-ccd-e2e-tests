@@ -11,6 +11,7 @@ module.exports = async function (nextStepName) {
     let eventSummaryPrefix = nextStepName;
 
     await I.waitForText(nextStepName, testConfig.TestTimeToWaitForText);
+    await I.runAccessibilityTest();
 
     eventSummaryPrefix = eventSummaryPrefix.replace(/\s+/g, '_').toLowerCase() + '_';
 
