@@ -5,6 +5,8 @@ const steps = requireDirectory(module);
 
 module.exports = function () {
     return actor({
-        authenticateWithIdamIfAvailable: steps.IDAM.signIn,
+        authenticateWithIdam: steps.IDAM.signIn,
+        chooseNextStep: steps.nextStep.nextStep,
+        enterEventSummary: steps.eventSummary.eventSummary
     });
 };

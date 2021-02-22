@@ -7,12 +7,41 @@ module.exports = {
     TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
     TestTimeToWaitForText: parseInt(process.env.BO_E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 60),
     TestAutoDelayEnabled: process.env.E2E_AUTO_DELAY_ENABLED === 'true',
-    TestEnvCWUser: process.env.CW_USER_EMAIL,
-    TestEnvCWPassword: process.env.CW_USER_PASSWORD,
-    TestEnvLAUser: process.env.LA_USER_EMAIL,
-    TestEnvLAPassword: process.env.LA_USER_PASSWORD,
-    TestEnvJudgeUser: process.env.JUDGE_USER_EMAIL,
-    TestEnvJudgePassword: process.env.JUDGE_USER_PASSWORD,
     TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
-    TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true'
+    TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
+    LegalAdvisorUser: {
+        password: process.env.LA_USER_PASSWORD,
+        email: process.env.LA_USER_EMAIL
+    },
+    CaseWorkerUser: {
+        password: process.env.CW_USER_PASSWORD,
+        email: process.env.CW_USER_EMAIL
+    },
+    JudgeUser: {
+        password: process.env.JUDGE_USER_PASSWORD,
+        email: process.env.JUDGE_USER_EMAIL
+    },
+    legalrep: {
+        password: process.env.JUDGE_USER_PASSWORD,
+        email: 'civilmoneyclaims+legal@gmail.com'
+    },
+    citizenUser: {
+        password: 'Password12',
+        email: 'testcmcccdendtoend@mailinator.com'
+    },
+    url: {
+        authProviderApi: process.env.SERVICE_AUTH_PROVIDER_API_BASE_URL || 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal',
+        ccdDataStore: process.env.CCD_DATA_STORE_URL || 'http://ccd-data-store-api-aat.service.core-compute-aat.internal',
+        dmStore: process.env.DM_STORE_URL || 'http://dm-store-aat.service.core-compute-aat.internal',
+        idamApi: process.env.IDAM_API_URL || 'https://idam-api.aat.platform.hmcts.net'
+    },
+    definition: {
+        jurisdiction: 'CMC',
+        caseType: 'MoneyClaimCase'
+    },
+    s2s: {
+        microservice: 'divorce_ccd_submission',
+        secret: 'DWYML5ONMS7KG44R'
+    },
+    proxyServer: process.env.PROXY_SERVER || 'proxyout.reform.hmcts.net:8080'
 };

@@ -4,7 +4,12 @@ properties([
         pipelineTriggers([cron('00 21 * * *')]),
         parameters([
                 string(name: 'ENVIRONMENT', defaultValue: 'aat', description: 'Environment to test'),
-                string(name: 'CCDUI_URL_TO_TEST', defaultValue: 'https://www-ccd.aat.platform.hmcts.net/', description: 'The URL you want to run cmc end to end tests against'),
+                string(name: 'CCDUI_URL_TO_TEST', defaultValue: 'https://www-ccd.aat.platform.hmcts.net/', description: 'The URL you want to run cmc end to end tests against')
+                string(name: 'IDAM_API_URL', defaultValue: 'https://idam-api.aat.platform.hmcts.net', description: 'The URL of idam api'),
+                string(name: 'DM_STORE_URL', defaultValue: 'http://dm-store-aat.service.core-compute-aat.internal', description: 'The URL of dm store'),
+                string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
+                string(name: 'CCD_DATA_STORE_URL', defaultValue: 'http://ccd-data-store-api-aat.service.core-compute-aat.internal', description: 'The URL of ccd data store'),
+                string(name: 'PROXY_SERVER', defaultValue: 'proxyout.reform.hmcts.net:8080', description: 'The proxy server to use'),
         ])
 ])
 
@@ -35,6 +40,11 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withNightlyPipeline("nodejs", product, component) {
     env.TEST_E2E_URL = params.CCDUI_URL_TO_TEST
+    env.DM_STORE_URL=params.DM_STORE_URL
+    env.IDAM_API_URL=params.IDAM_API_URL
+    env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
+    env.PROXY_SERVER = params.PROXY_SERVER
+    env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
     loadVaultSecrets(secrets)
     enableFullFunctionalTest(90)
     

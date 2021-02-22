@@ -1,11 +1,11 @@
 'use strict';
 
 const testConfig = require('src/test/config.js');
-const {ccdUserType} = require('../../common/userTypes');
+const {ccdUserType} = require('../../common/Constants');
 
 module.exports = async function (userType, isAlreadyAtSignOnPage) {
-
     const I = this;
+    let user = '';
 
     if (!isAlreadyAtSignOnPage) {
         await I.amOnLoadedPage('/');
@@ -15,20 +15,19 @@ module.exports = async function (userType, isAlreadyAtSignOnPage) {
 
     switch (userType) {
     case ccdUserType.JUDGE:
-        await I.fillField('#username', testConfig.TestEnvCWUser);
-        await I.fillField('#password', testConfig.TestEnvCWPassword);
+        user = testConfig.JudgeUser;
         break;
     case ccdUserType.LA:
-        await I.fillField('#username', testConfig.TestEnvLAUser);
-        await I.fillField('#password', testConfig.TestEnvLAPassword);
+        user = testConfig.LegalAdvisorUser;
         break;
     case ccdUserType.CASEWORKER:
-        await I.fillField('#username', testConfig.TestEnvJudgeUser);
-        await I.fillField('#password', testConfig.TestEnvJudgePassword);
+        user = testConfig.CaseWorkerUser;
         break;
     default:
     }
 
-    await I.runAccessibilityTest();
+    await I.fillField('#username', user.email);
+    await I.fillField('#password', user.password);
+
     await I.waitForNavigationToComplete('input[type="submit"]');
 };

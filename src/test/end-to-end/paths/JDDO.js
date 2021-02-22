@@ -1,11 +1,11 @@
 'use strict';
 
-const {ccdUserType} = require('../common/userTypes');
+const {ccdUserType} = require('../common/Constants');
 const testConfig = require('../../config');
 
 Feature('JDDO').retry(testConfig.TestRetryFeatures);
 
 Scenario('JDDO', async ({I}) => {
-    await I.authenticateWithIdamIfAvailable(ccdUserType.JUDGE, false);
+    await I.authenticateWithIdam(ccdUserType.JUDGE, false);
 }).tag('@crossbrowser')
     .retry(testConfig.TestRetryScenarios);
