@@ -17,7 +17,11 @@ const caseEventId = {
 const caseEventName = {
     LIFT_STAY: 'Lift Stay',
     PROVIDE_DIRECTIONS: 'Provide Directions',
-    GENERATE_ORDER: 'Generate Order'
+    GENERATE_ORDER: 'Generate Order',
+    REVIEW_ORDER: 'Review Order',
+    ACTION_REVIEW_COMMENTS: 'Action review comments',
+    APPROVE_DIRECTIONS_ORDER: 'Approve direction\'s order',
+    DRAW_DIRECTIONS_ORDER: 'Draw directions order'
 };
 
 module.exports = {

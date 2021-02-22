@@ -7,6 +7,14 @@ module.exports = function () {
     return actor({
         authenticateWithIdam: steps.IDAM.signIn,
         chooseNextStep: steps.nextStep.nextStep,
-        enterEventSummary: steps.eventSummary.eventSummary
+        enterEventSummary: steps.eventSummary.eventSummary,
+        enterGenerateOrderPage1: steps.generateOrder.page1,
+        enterGenerateOrderPage2: steps.generateOrder.page2,
+        enterReviewOrderPage1: steps.reviewOrder.page1,
+        enterActionReviewCommentsPage1: steps.actionReviewComments.page1,
+        enterActionReviewCommentsPage2: steps.actionReviewComments.page2,
+        enterApproveDirectionOrderPage1: steps.approveDirectionOrder.page1,
+        enterApproveDirectionOrderPage2: steps.approveDirectionOrder.page2,
+        enterDrawDirectionsOrderPage1: steps.drawDirectionsOrder.page1
     });
 };

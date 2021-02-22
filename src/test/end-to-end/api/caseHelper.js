@@ -29,10 +29,44 @@ async function updateJudgeEvent(I, eventName, caseId) {
     await I.enterEventSummary(eventName);
 }
 
-async function updateLAEvent(I, eventName, caseId) {
+async function updateLAEvent(I, eventName, caseData, caseId) {
     await I.authenticateWithIdam(ccdUserType.LA);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
+    await I.enterGenerateOrderPage1();
+    await I.enterGenerateOrderPage2(caseData.previousServiceCaseReference);
+    await I.enterEventSummary(eventName);
+}
+
+async function reviewOrder(I, eventName, caseData, caseId) {
+    await I.authenticateWithIdam(ccdUserType.JUDGE);
+    await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
+    await I.chooseNextStep(eventName);
+    await I.enterReviewOrderPage1(caseData.previousServiceCaseReference);
+    await I.enterEventSummary(eventName);
+}
+
+async function actionReviewComments(I, eventName, caseData, caseId) {
+    await I.authenticateWithIdam(ccdUserType.LA);
+    await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
+    await I.chooseNextStep(eventName);
+    await I.enterActionReviewCommentsPage1();
+    await I.enterActionReviewCommentsPage2(caseData.previousServiceCaseReference);
+    await I.enterEventSummary(eventName);
+}
+
+async function approveAndDrawDirectionOrder(I, caseData, caseId) {
+    let eventName = caseEventName.APPROVE_DIRECTIONS_ORDER;
+    await I.authenticateWithIdam(ccdUserType.JUDGE);
+    await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
+    await I.chooseNextStep(eventName);
+    await I.enterApproveDirectionOrderPage1(caseData.previousServiceCaseReference);
+    await I.enterApproveDirectionOrderPage2();
+
+    eventName = caseEventName.DRAW_DIRECTIONS_ORDER;
+    await I.chooseNextStep(eventName);
+    await I.enterDrawDirectionsOrderPage1(caseData.previousServiceCaseReference);
+    await I.enterEventSummary(eventName);
 }
 
 async function setUpApiAuthToken(user) {
@@ -70,5 +104,8 @@ module.exports = {
     updateLAEvent,
     getNextClaimNumber,
     setUpApiAuthToken,
+    reviewOrder,
+    actionReviewComments,
+    approveAndDrawDirectionOrder,
     signOut
 };
