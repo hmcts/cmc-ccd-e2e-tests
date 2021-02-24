@@ -15,6 +15,10 @@ module.exports = function () {
         enterActionReviewCommentsPage2: steps.actionReviewComments.page2,
         enterApproveDirectionOrderPage1: steps.approveDirectionOrder.page1,
         enterApproveDirectionOrderPage2: steps.approveDirectionOrder.page2,
-        enterDrawDirectionsOrderPage1: steps.drawDirectionsOrder.page1
+        enterDrawDirectionsOrderPage1: steps.drawDirectionsOrder.page1,
+        enterJudgeDrawDirectionsOrderPage1: steps.judgeDrawDirectionOrder.page1,
+        enterJudgeDrawDirectionsOrderPage2: steps.judgeDrawDirectionOrder.page2,
+        enterJudgeDrawDirectionsOrderPage3: steps.judgeDrawDirectionOrder.page3,
+        enterJudgeDrawDirectionsOrderPage4: steps.judgeDrawDirectionOrder.page4
     });
 };

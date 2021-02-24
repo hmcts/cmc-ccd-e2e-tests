@@ -55,18 +55,32 @@ async function actionReviewComments(I, eventName, caseData, caseId) {
     await I.enterEventSummary(eventName);
 }
 
-async function approveAndDrawDirectionOrder(I, caseData, caseId) {
-    let eventName = caseEventName.APPROVE_DIRECTIONS_ORDER;
+async function approveDirectionOrder(I, caseData, caseId) {
+    const eventName = caseEventName.APPROVE_DIRECTIONS_ORDER;
     await I.authenticateWithIdam(ccdUserType.JUDGE);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterApproveDirectionOrderPage1(caseData.previousServiceCaseReference);
     await I.enterApproveDirectionOrderPage2();
+}
 
-    eventName = caseEventName.DRAW_DIRECTIONS_ORDER;
+async function drawDirectionOrder(I, caseData, caseId) {
+    const eventName = caseEventName.DRAW_DIRECTIONS_ORDER;
+    await I.authenticateWithIdam(ccdUserType.LA);
+    await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterDrawDirectionsOrderPage1(caseData.previousServiceCaseReference);
     await I.enterEventSummary(eventName);
+}
+
+async function JudgeDrawDirectionOrder(I, caseData, caseId) {
+    const eventName = caseEventName.JUDGE_DRAW_DIRECTIONS_ORDER;
+    await I.authenticateWithIdam(ccdUserType.JUDGE);
+    await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
+    await I.chooseNextStep(eventName);
+    await I.enterJudgeDrawDirectionsOrderPage1();
+    await I.enterJudgeDrawDirectionsOrderPage2();
+    await I.enterJudgeDrawDirectionsOrderPage3(caseData.previousServiceCaseReference);
 }
 
 async function setUpApiAuthToken(user) {
@@ -106,6 +120,8 @@ module.exports = {
     setUpApiAuthToken,
     reviewOrder,
     actionReviewComments,
-    approveAndDrawDirectionOrder,
+    approveDirectionOrder,
+    drawDirectionOrder,
+    JudgeDrawDirectionOrder,
     signOut
 };

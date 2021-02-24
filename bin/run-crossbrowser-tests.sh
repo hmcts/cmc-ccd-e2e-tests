@@ -2,7 +2,7 @@
 set -ex
 
 export TESTS_FOR_CROSS_BROWSER='true'
-export RETRY_SCENARIOS=0
+export RETRY_SCENARIOS=2
 export SMART_WAIT=60000
 export WAIT_FOR_TIMEOUT=60000
 export E2E_OUTPUT_DIR='./functional-output/crossbrowser'

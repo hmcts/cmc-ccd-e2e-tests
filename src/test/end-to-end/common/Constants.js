@@ -21,7 +21,8 @@ const caseEventName = {
     REVIEW_ORDER: 'Review Order',
     ACTION_REVIEW_COMMENTS: 'Action review comments',
     APPROVE_DIRECTIONS_ORDER: 'Approve direction\'s order',
-    DRAW_DIRECTIONS_ORDER: 'Draw directions order'
+    DRAW_DIRECTIONS_ORDER: 'Draw directions order',
+    JUDGE_DRAW_DIRECTIONS_ORDER: 'Draw directions order - Judge'
 };
 
 module.exports = {

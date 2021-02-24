@@ -7,9 +7,9 @@ const {caseEventId, caseEventName} = require('../common/Constants');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-Feature('Generate Order').retry(testConfig.TestRetryFeatures);
+Feature('Draw Direction Order by LA').retry(testConfig.TestRetryFeatures);
 
-Scenario('Create case and draw Directions Order', async ({I}) => {
+Scenario('Generate Order flow - claim amount < 500', async ({I}) => {
     await caseHelper.setUpApiAuthToken(testConfig.citizenUser);
 
     logger.info({message: 'Creating a case in ccd with given json'});
@@ -36,8 +36,12 @@ Scenario('Create case and draw Directions Order', async ({I}) => {
     await caseHelper.signOut(I);
     logger.info({message: 'LA has updated the event ACTION_REVIEW_COMMENTS on ', caseId});
 
-    await caseHelper.approveAndDrawDirectionOrder(I, updatedCaseJson, caseId);
+    await caseHelper.approveDirectionOrder(I, updatedCaseJson, caseId);
     await caseHelper.signOut(I);
-    logger.info({message: 'LA has updated the event APPROVE AND DRAW DIRECTION ORDER on ', caseId});
+    logger.info({message: 'Judge has updated the event APPROVE DIRECTION ORDER on ', caseId});
+
+    await caseHelper.drawDirectionOrder(I, updatedCaseJson, caseId);
+    await caseHelper.signOut(I);
+    logger.info({message: 'LA has updated the event DRAW DIRECTION ORDER on ', caseId});
 }).tag('@crossbrowser')
     .retry(testConfig.TestRetryScenarios);

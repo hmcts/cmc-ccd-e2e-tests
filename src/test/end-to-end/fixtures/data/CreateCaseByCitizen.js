@@ -56,18 +56,109 @@ module.exports = {
                 'responseMethod': 'DIGITAL',
                 'responseDefence': 'xzcvzcxv',
                 'claimantResponse': {
+                    'submittedOn': '2020-02-22T17:56:37.527',
                     'freeMediationOption': 'NO',
                     'claimantResponseType': 'REJECTION',
                     'directionsQuestionnaire': {
                         'hearingLoop': 'NO',
-                        'selfWitness': 'NO',
-                        'disabledAccess': 'NO',
-                        'expertRequired': 'NO',
-                        'hearingLocation': 'Central London County Court',
-                        'languageInterpreted': 'None',
-                        'otherSupportRequired': 'None',
+                        'selfWitness': 'YES',
+                        'expertReports': [
+                            {
+                                'id': '9cb4a3a5-6666-4422-967b-99654b829f18',
+                                'value': {
+                                    'expertName': 'expert rpt1-claimant',
+                                    'expertReportDate': '2019-08-13'
+                                }
+                            },
+                            {
+                                'id': 'ace4a26c-9028-456f-ae33-321605e912c6',
+                                'value': {
+                                    'expertName': 'Expert rpt2-claimant',
+                                    'expertReportDate': '2019-09-13'
+                                }
+                            }
+                        ],
+                        'disabledAccess': 'YES',
+                        'expertRequired': 'YES',
+                        'hearingLocation': 'Birmingham',
+                        'unavailableDates': [
+                            {
+                                'id': '8b95a43e-d057-4a62-9891-dcc92710111c',
+                                'value': '2020-03-06'
+                            },
+                            {
+                                'id': '7305ebbe-bf00-4b70-8050-e0f4c8a5fa2f',
+                                'value': '2020-03-10'
+                            },
+                            {
+                                'id': 'a495ec14-027f-4e4b-b928-39889dea2769',
+                                'value': '2020-03-17'
+                            },
+                            {
+                                'id': '4e8eb082-ea39-488e-80b6-b4e31b0f22b4',
+                                'value': '2020-03-27'
+                            },
+                            {
+                                'id': '4ae1329f-2dbd-44d1-a7d7-0b061dc42c5b',
+                                'value': '2020-03-30'
+                            },
+                            {
+                                'id': '08d17900-ee8c-41db-b7be-5e2adf4bdbda',
+                                'value': '2020-03-31'
+                            },
+                            {
+                                'id': '3f4f1439-90b9-4b20-94c9-7bb45a5458b7',
+                                'value': '2020-04-02'
+                            },
+                            {
+                                'id': '291ede54-6edb-4fdc-b0cc-84070ed987bc',
+                                'value': '2020-04-06'
+                            },
+                            {
+                                'id': '62430b47-53d2-488d-ad52-a2f1ddd215c2',
+                                'value': '2020-04-08'
+                            },
+                            {
+                                'id': 'd3deb98e-97c6-49a5-a74a-ecac10feb858',
+                                'value': '2020-04-15'
+                            },
+                            {
+                                'id': 'a0084a1d-3bb4-4b72-843c-e30fda238dcb',
+                                'value': '2020-04-20'
+                            },
+                            {
+                                'id': 'e172983c-045c-4f89-a645-26e8126451c4',
+                                'value': '2020-04-21'
+                            },
+                            {
+                                'id': 'fb00c834-cd0a-460d-b587-5efae40f6ec6',
+                                'value': '2020-04-22'
+                            },
+                            {
+                                'id': '16fe22bf-b472-472a-b790-739aa905cb47',
+                                'value': '2020-04-24'
+                            },
+                            {
+                                'id': '7d3cc528-4b6a-47bb-8ac5-5722e42c48ee',
+                                'value': '2020-04-27'
+                            },
+                            {
+                                'id': 'e3d4b5c3-8b8c-4824-8eb8-d0aba8e74e0a',
+                                'value': '2020-04-28'
+                            },
+                            {
+                                'id': '90bb70af-2eb3-4549-b52f-65ed8eaa3a9f',
+                                'value': '2020-04-29'
+                            },
+                            {
+                                'id': '05736697-60b6-4eee-ac3a-0234c82def99',
+                                'value': '2020-04-30'
+                            }
+                        ],
+                        'languageInterpreted': 'welsh',
                         'hearingLocationOption': 'SUGGESTED_COURT',
-                        'signLanguageInterpreted': 'None'
+                        'numberOfOtherWitnesses': 99,
+                        'signLanguageInterpreted': 'Sign Language Alphabets'
                     }
                 },
                 'responseDeadline': '2021-03-01',
@@ -95,17 +186,7 @@ module.exports = {
                         'AddressLine3': 'Middle Road'
                     }
                 },
-                'directionsQuestionnaire': {
-                    'hearingLoop': 'NO',
-                    'selfWitness': 'NO',
-                    'disabledAccess': 'NO',
-                    'expertRequired': 'NO',
-                    'hearingLocation': 'Central London County Court',
-                    'languageInterpreted': 'None',
-                    'otherSupportRequired': 'None',
-                    'hearingLocationOption': 'SUGGESTED_COURT',
-                    'signLanguageInterpreted': 'None'
-                },
+
                 'claimantProvidedPartyName': 'Mrs. Mary Richards',
                 'defendantPaymentIntention': {
                     'paymentDate': '2021-11-01',
