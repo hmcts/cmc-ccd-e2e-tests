@@ -2,7 +2,7 @@
 
 const testConfig = require('../../config');
 const caseHelper = require('../api/caseHelper');
-const createCitizenCaseJson = require('../fixtures/data/CraeteCaseByCitizenForJDDO');
+const createCitizenCaseJson = require('../fixtures/data/CreateCaseByCitizenForJDDO');
 const {caseEventId} = require('../common/Constants');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
