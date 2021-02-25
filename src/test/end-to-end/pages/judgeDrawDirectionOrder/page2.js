@@ -42,6 +42,9 @@ module.exports = async function () {
     await I.fillField('#eyewitnessUploadDeadline-day', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_day);
     await I.fillField('#eyewitnessUploadDeadline-month', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_month);
     await I.fillField('#eyewitnessUploadDeadline-year', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_year);
+    
+    await I.click(`#grantExpertReportPermission-${judgeDrawDirectionOrderConfig.page2_grant_expertpermission_Yes}`);
+    await I.fillField('#expertReportInstruction', judgeDrawDirectionOrderConfig.page2_expert_instruction);
 
     await I.click(judgeDrawDirectionOrderConfig.addNewDirectionButton);
     await I.waitForVisible('#otherDirections_0_extraOrderDirection');

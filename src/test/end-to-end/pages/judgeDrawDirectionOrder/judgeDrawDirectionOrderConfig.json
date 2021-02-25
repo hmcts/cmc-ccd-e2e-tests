@@ -16,8 +16,9 @@
 
   "page2_additionalOrder_claimant": "Claimant",
 
-  "page2_grant_expertpermission_Yes": "grantExpertReportPermission-Yes",
-  "page2_grant_expertpermission_No": "grantExpertReportPermission-No",
+  "page2_grant_expertpermission_Yes": "Yes",
+  "page2_grant_expertpermission_No": "No",
+  "page2_expert_instruction": "EXpert will be provided as requested",
 
   "page2_extraDirection": "Other direction",
   "page2_claimantInfo": "Can you provide more clarity",
