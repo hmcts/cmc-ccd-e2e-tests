@@ -305,34 +305,34 @@ module.exports = {
             }
         },
         {
-           "id":"a47a3c08-767b-44b6-a612-b7e723da51ad",
-           "value":{
-              "size":18800,
-              "createdBy":"OCMC",
-              "documentLink":{
-                 "document_url":"http://dm-store-aat.service.core-compute-aat.internal/documents/8b9721d9-3af2-4a45-873e-b73197cc87f2",
-                 "document_filename":"408MC992-claim-response.pdf",
-                 "document_binary_url":"http://dm-store-aat.service.core-compute-aat.internal/documents/8b9721d9-3af2-4a45-873e-b73197cc87f2/binary"
-              },
-              "documentName":"408MC992-claim-response.pdf",
-              "documentType":"DEFENDANT_RESPONSE_RECEIPT",
-              "createdDatetime":"2021-02-08T16:31:47.158157"
-           }
+            'id': 'a47a3c08-767b-44b6-a612-b7e723da51ad',
+            'value': {
+                'size': 18800,
+                'createdBy': 'OCMC',
+                'documentLink': {
+                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/8b9721d9-3af2-4a45-873e-b73197cc87f2',
+                    'document_filename': '408MC992-claim-response.pdf',
+                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/8b9721d9-3af2-4a45-873e-b73197cc87f2/binary'
+                },
+                'documentName': '408MC992-claim-response.pdf',
+                'documentType': 'DEFENDANT_RESPONSE_RECEIPT',
+                'createdDatetime': '2021-02-08T16:31:47.158157'
+            }
         },
         {
-           "id":"44cc06ee-5afb-4c34-bd3e-5342fac22877",
-           "value":{
-              "size":11321,
-              "createdBy":"OCMC",
-              "documentLink":{
-                 "document_url":"http://dm-store-aat.service.core-compute-aat.internal/documents/35f1ffe5-315c-4a29-8a53-38eac8aad4b9",
-                 "document_filename":"408MC992-claimant-hearing-questions.pdf",
-                 "document_binary_url":"http://dm-store-aat.service.core-compute-aat.internal/documents/35f1ffe5-315c-4a29-8a53-38eac8aad4b9/binary"
-              },
-              "documentName":"408MC992-claimant-hearing-questions.pdf",
-              "documentType":"CLAIMANT_DIRECTIONS_QUESTIONNAIRE",
-              "createdDatetime":"2021-02-08T16:33:00.528906"
-           }
+            'id': '44cc06ee-5afb-4c34-bd3e-5342fac22877',
+            'value': {
+                'size': 11321,
+                'createdBy': 'OCMC',
+                'documentLink': {
+                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/35f1ffe5-315c-4a29-8a53-38eac8aad4b9',
+                    'document_filename': '408MC992-claimant-hearing-questions.pdf',
+                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/35f1ffe5-315c-4a29-8a53-38eac8aad4b9/binary'
+                },
+                'documentName': '408MC992-claimant-hearing-questions.pdf',
+                'documentType': 'CLAIMANT_DIRECTIONS_QUESTIONNAIRE',
+                'createdDatetime': '2021-02-08T16:33:00.528906'
+            }
         }
     ],
     'paymentAmount': '6000',
