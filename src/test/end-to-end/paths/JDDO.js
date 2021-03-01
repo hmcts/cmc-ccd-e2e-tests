@@ -2,14 +2,31 @@
 
 const testConfig = require('../../config');
 const caseHelper = require('../api/caseHelper');
-const createCitizenCaseJson = require('../fixtures/data/CreateCaseByCitizenForJDDO');
 const {caseEventId} = require('../common/Constants');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-Feature('Judge Draw Direction Order').retry(testConfig.TestRetryFeatures);
+Feature('Judge Draw Direction Order (JDDO - claim amount > 500)').retry(testConfig.TestRetryFeatures);
 
-Scenario('Create case and JDDO - claim amount > 500', async ({I}) => {
+Scenario('Full Defence → Dispute All → Reject mediation by Defendant → Decide to proceed is Yes (claimant)', async ({I}) => {
+    const createCitizenCaseJson = require('../fixtures/data/JDDODisputeAllBothRejectMediation');
+    await runFeatureTestSteps(I, createCitizenCaseJson);
+}).tag('@crossbrowser')
+    .retry(testConfig.TestRetryScenarios);
+
+Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Reject mediation by claimant', async ({I}) => {
+    const createCitizenCaseJson = require('../fixtures/data/JDDODisputeAllDefendantAcceptAndClaimantRejectMediation');
+    await runFeatureTestSteps(I, createCitizenCaseJson);
+}).tag('@crossbrowser')
+    .retry(testConfig.TestRetryScenarios);
+
+Scenario('Part Admit → Pay Immediately/Pay by set date/Instalment. → Claimant Reject partial amount → Claimant & Defendant agree for mediation', async ({I}) => {
+    const createCitizenCaseJson = require('../fixtures/data/JDDOPartAdmit');
+    await runFeatureTestSteps(I, createCitizenCaseJson);
+}).tag('@crossbrowser')
+    .retry(testConfig.TestRetryScenarios);
+
+async function runFeatureTestSteps(I, createCitizenCaseJson) {
     await caseHelper.setUpApiAuthToken(testConfig.citizenUser);
 
     logger.info({message: 'Creating a case in ccd with given json'});
@@ -25,5 +42,4 @@ Scenario('Create case and JDDO - claim amount > 500', async ({I}) => {
     await caseHelper.JudgeDrawDirectionOrder(I, updatedCaseJson, caseId);
     await caseHelper.signOut(I);
     logger.info({message: 'Judge has updated the event JUDGE DRAW DIRECTION ORDER on ', caseId});
-}).tag('@crossbrowser')
-    .retry(testConfig.TestRetryScenarios);
+}
