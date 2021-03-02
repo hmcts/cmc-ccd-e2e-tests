@@ -6,15 +6,10 @@ const {caseEventName} = require('../common/Constants');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-Feature('Mediation Successful)').retry(testConfig.TestRetryFeatures);
+Feature('Mediation Successful').retry(testConfig.TestRetryFeatures);
 
 Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Accept mediation by claimant', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullDefence');
-    await runFeatureTestSteps(I, createCitizenCaseJson);
-}).retry(testConfig.TestRetryScenarios);
-
-Scenario('Full Admission', async ({I}) => {
-    const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullAdmission');
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
 
