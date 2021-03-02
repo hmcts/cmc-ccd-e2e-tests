@@ -315,6 +315,7 @@ module.exports = {
         "actor": true,
         "Feature": true,
         "Scenario": true,
+        "xScenario": true,
         "codecept_helper": true
     }
 };

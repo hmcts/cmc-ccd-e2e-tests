@@ -17,14 +17,12 @@ Scenario('Full Defence → Dispute All → Reject mediation by Defendant → Dec
 Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Reject mediation by claimant', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/JDDODisputeAllDefendantAcceptAndClaimantRejectMediation');
     await runFeatureTestSteps(I, createCitizenCaseJson);
-}).tag('@crossbrowser')
-    .retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 Scenario('Part Admit → Pay Immediately/Pay by set date/Instalment. → Claimant Reject partial amount → Claimant & Defendant agree for mediation', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/JDDOPartAdmit');
     await runFeatureTestSteps(I, createCitizenCaseJson);
-}).tag('@crossbrowser')
-    .retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 async function runFeatureTestSteps(I, createCitizenCaseJson) {
     await caseHelper.setUpApiAuthToken(testConfig.citizenUser);
@@ -37,9 +35,8 @@ async function runFeatureTestSteps(I, createCitizenCaseJson) {
 
     await caseHelper.updateApiEvent(caseEventId.CLAIMANT_REJECTS, updatedCaseJson, caseId);
     await caseHelper.updateApiEvent(caseEventId.ASSIGN_FOR_JUDGE_DIRECTIONS, updatedCaseJson, caseId);
-    logger.info({message: 'Case is updated to Ready for direction - judge: ', caseId});
+    logger.info({message: 'Case is updated to READY FOR DIRECTIONS - JUDGE: ', caseId});
 
     await caseHelper.JudgeDrawDirectionOrder(I, updatedCaseJson, caseId);
     await caseHelper.signOut(I);
-    logger.info({message: 'Judge has updated the event JUDGE DRAW DIRECTION ORDER on ', caseId});
 }

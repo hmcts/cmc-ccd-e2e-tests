@@ -19,6 +19,9 @@ module.exports = function () {
         enterJudgeDrawDirectionsOrderPage1: steps.judgeDrawDirectionOrder.page1,
         enterJudgeDrawDirectionsOrderPage2: steps.judgeDrawDirectionOrder.page2,
         enterJudgeDrawDirectionsOrderPage3: steps.judgeDrawDirectionOrder.page3,
-        enterJudgeDrawDirectionsOrderPage4: steps.judgeDrawDirectionOrder.page4
+        enterJudgeDrawDirectionsOrderPage4: steps.judgeDrawDirectionOrder.page4,
+        enterMediationSuccessPage1: steps.mediationSuccessful.page1,
+        enterMediationSuccessPage2: steps.mediationSuccessful.page2,
+        enterMediationFailurePage1: steps.mediationUnsuccessful.page1
     });
 };

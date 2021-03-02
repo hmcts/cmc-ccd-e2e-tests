@@ -83,6 +83,21 @@ async function JudgeDrawDirectionOrder(I, caseData, caseId) {
     await I.enterJudgeDrawDirectionsOrderPage3(caseData.previousServiceCaseReference);
 }
 
+async function updateMediationSuccessful(I) {
+    const eventName = caseEventName.MEDIATION_SUCCESSFUL;
+    await I.chooseNextStep(eventName);
+    await I.enterMediationSuccessPage1();
+    await I.enterMediationSuccessPage2();
+    await I.enterEventSummary(eventName);
+}
+
+async function updateMediationUnsuccessful(I) {
+    const eventName = caseEventName.MEDIATION_FAILED;
+    await I.chooseNextStep(eventName);
+    await I.enterMediationFailurePage1();
+    await I.enterEventSummary(eventName);
+}
+
 async function setUpApiAuthToken(user) {
     await apiRequest.setupTokens(user);
 }
@@ -123,5 +138,7 @@ module.exports = {
     approveDirectionOrder,
     drawDirectionOrder,
     JudgeDrawDirectionOrder,
+    updateMediationSuccessful,
+    updateMediationUnsuccessful,
     signOut
 };

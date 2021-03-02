@@ -22,7 +22,10 @@ const caseEventName = {
     ACTION_REVIEW_COMMENTS: 'Action review comments',
     APPROVE_DIRECTIONS_ORDER: 'Approve direction\'s order',
     DRAW_DIRECTIONS_ORDER: 'Draw directions order',
-    JUDGE_DRAW_DIRECTIONS_ORDER: 'Draw directions order - Judge'
+    JUDGE_DRAW_DIRECTIONS_ORDER: 'Draw directions order - Judge',
+    REFERRED_MEDIATION: 'Mediation pending',
+    MEDIATION_SUCCESSFUL: 'Mediation successful',
+    MEDIATION_FAILED: 'Mediation unsuccessful',
 };
 
 module.exports = {

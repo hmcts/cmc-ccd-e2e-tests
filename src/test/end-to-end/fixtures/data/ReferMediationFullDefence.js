@@ -43,7 +43,6 @@ module.exports = {
             }
         }
     ],
-    'externalId': '770cb59b-032f-4f91-8d43-94bb003f1b25',
     'respondents': [
         {
             'id': '95a43a5a-b03b-424d-805e-40b4af4cd46b',
@@ -92,7 +91,7 @@ module.exports = {
                     }
                 },
                 'responseDeadline': '2021-03-29',
-                'responseDefenceType': 'ALREADY_PAID',
+                'responseDefenceType': 'DISPUTE',
                 'responseSubmittedOn': '2021-02-24T09:32:02.185826',
                 'claimantProvidedDetail': {
                     'type': 'INDIVIDUAL',
