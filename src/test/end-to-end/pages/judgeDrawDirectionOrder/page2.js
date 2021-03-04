@@ -57,6 +57,14 @@ module.exports = async function () {
     await I.fillField('#otherDirections_0_sendBy-month', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_month);
     await I.fillField('#otherDirections_0_sendBy-year', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_year);
 
+    const isSafariBrowser = await I.isSafariBrowser();
+
+    if (isSafariBrowser) {
+        await I.waitForClickable('#hearingCourt', testConfig.TestTimeToWaitForText);
+        await I.wait(5);
+    } else {
+        await I.waitForElement('#hearingCourt', testConfig.TestTimeToWaitForText);
+    }
     await I.selectOption('#hearingCourt', judgeDrawDirectionOrderConfig.page2_hearingCourt);
     await I.selectOption('#estimatedHearingDuration', judgeDrawDirectionOrderConfig.page2_hearingDuration);
     await I.waitForNavigationToComplete(commonConfig.continueButton);

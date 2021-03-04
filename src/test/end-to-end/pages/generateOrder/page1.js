@@ -6,7 +6,14 @@ const commonConfig = require('../common/commonConfig');
 
 module.exports = async function () {
     const I = this;
-    await I.waitForElement('#hearingCourt', testConfig.TestTimeToWaitForText);
+    const isSafariBrowser = await I.isSafariBrowser();
+
+    if (isSafariBrowser) {
+        await I.waitForClickable('#hearingCourt', testConfig.TestTimeToWaitForText);
+        await I.wait(5);
+    } else {
+        await I.waitForElement('#hearingCourt', testConfig.TestTimeToWaitForText);
+    }
     await I.selectOption('#hearingCourt', generateOrderConfig.page1_hearingCourt);
     await I.selectOption('#estimatedHearingDuration', generateOrderConfig.page1_hearingDuration);
     await I.waitForNavigationToComplete(commonConfig.continueButton);

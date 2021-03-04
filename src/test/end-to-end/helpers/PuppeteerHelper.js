@@ -37,6 +37,12 @@ class PuppeteerHelper extends Helper {
         }
     }
 
+    async isSafariBrowser() {
+        await Promise.resolve(() => {
+            return false;
+        });
+    }
+
     async runAccessibilityTest() {
         if (!testConfig.TestForAccessibility) {
             return;

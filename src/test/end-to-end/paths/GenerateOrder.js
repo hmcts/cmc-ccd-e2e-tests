@@ -19,6 +19,11 @@ Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Dec
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
 
+Scenario('Full Defence → States Paid → Defendant said already Paid/part Paid → Claimant said not paid->Reject mediation by Claimant & Defendant', async ({I}) => {
+    const createCitizenCaseJson = require('../fixtures/data/GenerateOrderFullDefenceStatesPaid');
+    await runFeatureTestSteps(I, createCitizenCaseJson);
+}).retry(testConfig.TestRetryScenarios);
+
 Scenario('Part Admit → Pay Immediately/Pay by set date/Instalment. → Claimant Reject partial amount → Claimant & Defendant agree for mediation', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/GenerateOrderPartAdmit');
     await runFeatureTestSteps(I, createCitizenCaseJson);

@@ -22,6 +22,12 @@ class WebDriverHelper extends Helper {
         await Promise.resolve();
     }
 
+    async isSafariBrowser() {
+        const browserName = await this.helpers.WebDriver.config.browser;
+
+        return browserName === 'safari';
+    }
+
     async clickTab(tabTitle) {
         const helper = this.helpers.WebDriver;
         const tabXPath = `//div[text()='${tabTitle}']`;
