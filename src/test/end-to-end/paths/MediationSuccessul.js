@@ -9,7 +9,12 @@ const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 Feature('Mediation Successful').retry(testConfig.TestRetryFeatures);
 
 Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Accept mediation by claimant', async ({I}) => {
-    const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullDefence');
+    const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullDefenceDisputeAll');
+    await runFeatureTestSteps(I, createCitizenCaseJson);
+}).retry(testConfig.TestRetryScenarios);
+
+Scenario('Full Defence → States Paid', async ({I}) => {
+    const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullDefenceStatesPaid');
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
 
