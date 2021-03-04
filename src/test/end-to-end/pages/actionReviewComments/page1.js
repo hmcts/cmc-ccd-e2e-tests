@@ -10,6 +10,7 @@ module.exports = async function () {
 
     if (isSafariBrowser) {
         await I.waitForClickable('#hearingCourt', testConfig.TestTimeToWaitForText);
+        await I.waitForClickable('#estimatedHearingDuration', testConfig.TestTimeToWaitForText);
         await I.wait(5);
     } else {
         await I.waitForElement('#hearingCourt', testConfig.TestTimeToWaitForText);
