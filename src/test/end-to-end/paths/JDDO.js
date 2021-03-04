@@ -8,13 +8,13 @@ const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 Feature('Judge Draw Direction Order (JDDO - claim amount > 500)').retry(testConfig.TestRetryFeatures);
 
-xScenario('Full Defence → Dispute All → Reject mediation by Defendant → Decide to proceed is Yes (claimant)', async ({I}) => {
+Scenario('Full Defence → Dispute All → Reject mediation by Defendant → Decide to proceed is Yes (claimant)', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/JDDODisputeAllBothRejectMediation');
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).tag('@crossbrowser')
     .retry(testConfig.TestRetryScenarios);
 
-xScenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Reject mediation by claimant', async ({I}) => {
+Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Reject mediation by claimant', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/JDDODisputeAllDefendantAcceptAndClaimantRejectMediation');
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
@@ -24,7 +24,7 @@ Scenario('Full Defence → States Paid → Defendant said already Paid/part Paid
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
 
-xScenario('Part Admit → Pay Immediately/Pay by set date/Instalment. → Claimant Reject partial amount → Claimant & Defendant agree for mediation', async ({I}) => {
+Scenario('Part Admit → Pay Immediately/Pay by set date/Instalment. → Claimant Reject partial amount → Claimant & Defendant agree for mediation', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/JDDOPartAdmit');
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
