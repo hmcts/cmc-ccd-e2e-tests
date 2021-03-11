@@ -1,7 +1,7 @@
 'use strict';
 
 const testConfig = require('../../config');
-const caseHelper = require('../api/caseHelper');
+const caseHelper = require('../ccdApi/caseHelper');
 const {caseEventName} = require('../common/Constants');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
