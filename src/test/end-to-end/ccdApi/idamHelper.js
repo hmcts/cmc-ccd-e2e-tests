@@ -22,5 +22,12 @@ module.exports = {
             })
             .then(response => response.json())
             .then(data => data.uid);
+    },
+
+    getPin: async (letterHolderId) => {
+        return await restHelper.retriedRequest(
+            `${idamUrl}/testing-support/accounts/pin/${letterHolderId}`,
+            {}, null, 'GET')
+            .then(response => response.text());
     }
 };

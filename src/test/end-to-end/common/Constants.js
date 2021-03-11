@@ -1,7 +1,8 @@
-const ccdUserType = {
+const userType = {
     JUDGE: 'Judge',
     LA: 'Legal Advisor',
-    CASEWORKER: 'Caseworker'
+    CASEWORKER: 'Caseworker',
+    CITIZEN: 'Citizen'
 };
 
 const caseEventId = {
@@ -29,7 +30,7 @@ const caseEventName = {
 };
 
 module.exports = {
-    ccdUserType,
+    userType,
     caseEventId,
     caseEventName
 };

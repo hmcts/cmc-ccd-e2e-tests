@@ -3,7 +3,7 @@ const apiRequest = require('./apiRequest.js');
 const initiateClaimPaymentCitizenJson = require('../fixtures/data/InitiateClaimPaymentCitizen');
 const {v4: uuidv4} = require('uuid');
 
-const {ccdUserType, caseEventId, caseEventName} = require('../common/Constants');
+const {userType, caseEventId, caseEventName} = require('../common/Constants');
 
 async function initateCaseByCitizen() {
     initiateClaimPaymentCitizenJson.externalId = uuidv4();
@@ -16,21 +16,21 @@ async function updateApiEvent(eventName, json, caseId) {
 }
 
 async function updateCaseworkerEvent(I, eventName, caseId) {
-    await I.authenticateWithIdam(ccdUserType.CASEWORKER);
+    await I.authenticateWithIdam(userType.CASEWORKER);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterEventSummary(eventName);
 }
 
 async function updateJudgeEvent(I, eventName, caseId) {
-    await I.authenticateWithIdam(ccdUserType.JUDGE);
+    await I.authenticateWithIdam(userType.JUDGE);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterEventSummary(eventName);
 }
 
 async function updateLAEvent(I, eventName, caseData, caseId) {
-    await I.authenticateWithIdam(ccdUserType.LA);
+    await I.authenticateWithIdam(userType.LA);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterGenerateOrderPage1();
@@ -39,7 +39,7 @@ async function updateLAEvent(I, eventName, caseData, caseId) {
 }
 
 async function reviewOrder(I, eventName, caseData, caseId) {
-    await I.authenticateWithIdam(ccdUserType.JUDGE);
+    await I.authenticateWithIdam(userType.JUDGE);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterReviewOrderPage1(caseData.previousServiceCaseReference);
@@ -47,7 +47,7 @@ async function reviewOrder(I, eventName, caseData, caseId) {
 }
 
 async function actionReviewComments(I, eventName, caseData, caseId) {
-    await I.authenticateWithIdam(ccdUserType.LA);
+    await I.authenticateWithIdam(userType.LA);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterActionReviewCommentsPage1();
@@ -57,7 +57,7 @@ async function actionReviewComments(I, eventName, caseData, caseId) {
 
 async function approveDirectionOrder(I, caseData, caseId) {
     const eventName = caseEventName.APPROVE_DIRECTIONS_ORDER;
-    await I.authenticateWithIdam(ccdUserType.JUDGE);
+    await I.authenticateWithIdam(userType.JUDGE);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterApproveDirectionOrderPage1(caseData.previousServiceCaseReference);
@@ -66,7 +66,7 @@ async function approveDirectionOrder(I, caseData, caseId) {
 
 async function drawDirectionOrder(I, caseData, caseId) {
     const eventName = caseEventName.DRAW_DIRECTIONS_ORDER;
-    await I.authenticateWithIdam(ccdUserType.LA);
+    await I.authenticateWithIdam(userType.LA);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterDrawDirectionsOrderPage1(caseData.previousServiceCaseReference);
@@ -75,7 +75,7 @@ async function drawDirectionOrder(I, caseData, caseId) {
 
 async function JudgeDrawDirectionOrder(I, caseData, caseId) {
     const eventName = caseEventName.JUDGE_DRAW_DIRECTIONS_ORDER;
-    await I.authenticateWithIdam(ccdUserType.JUDGE);
+    await I.authenticateWithIdam(userType.JUDGE);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     await I.enterJudgeDrawDirectionsOrderPage1();

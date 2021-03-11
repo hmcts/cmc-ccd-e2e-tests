@@ -264,7 +264,7 @@ module.exports = {
             "error",
             "as-needed"
         ],
-        "require-await": "error",
+        "require-await": "off",
         "require-jsdoc": "off",
         "rest-spread-spacing": "error",
         "semi": [

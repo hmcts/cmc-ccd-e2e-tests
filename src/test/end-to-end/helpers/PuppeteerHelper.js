@@ -52,5 +52,9 @@ class PuppeteerHelper extends Helper {
 
         runAccessibility(url, page);
     }
+
+    async amOnCitizenAppPage (path) {
+        await this.helpers[helperName].amOnPage(`${testConfig.TestFrontEndUrl}${path}`);
+    }
 }
 module.exports = PuppeteerHelper;

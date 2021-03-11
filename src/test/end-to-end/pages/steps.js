@@ -22,6 +22,21 @@ module.exports = function () {
         enterJudgeDrawDirectionsOrderPage4: steps.judgeDrawDirectionOrder.page4,
         enterMediationSuccessPage1: steps.mediationSuccessful.page1,
         enterMediationSuccessPage2: steps.mediationSuccessful.page2,
-        enterMediationFailurePage1: steps.mediationUnsuccessful.page1
+        enterMediationFailurePage1: steps.mediationUnsuccessful.page1,
+        enterPaymentDetails: steps.payment.paymentDetails,
+        confirmPayment: steps.payment.paymentConfirm,
+        extractClaimRef: steps.payment.ClaimantClaimConfirmedPage,
+        createClaim: steps.claimant.createClaim,
+        linkDefendant: steps.defendant.linkDefendant,
+        confirmDefendantDetails: steps.defendant.confirmYourDetails,
+        defendantExtraTimeNeeded: steps.defendant.moreTimeNeeded,
+        chooseDefendantResponse: steps.defendant.chooseResponse,
+        decideHowToPay: steps.defendant.decideHowToPay,
+        shareDefendantFinancialDetails: steps.defendant.shareYourFinancialDetails,
+        submitDefendantResponse: steps.defendant.submitResponse,
+        viewDefendantResponse: steps.claimant.viewDefendantResponse,
+        acceptOrRejectResponse: steps.claimant.acceptOrRejectResponse,
+        checkAndSumbitResponse: steps.claimant.checkAndSumbitResponse,
+        requestCCJ: steps.claimant.requestCCJ
     });
 };
