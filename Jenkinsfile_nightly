@@ -26,6 +26,8 @@ def secrets = [
     secret('cmc-la-password', 'LA_USER_PASSWORD'),
     secret('cmc-judge-username', 'JUDGE_USER_EMAIL'),
     secret('cmc-judge-password', 'JUDGE_USER_PASSWORD'),
+    secret('citizen-username', 'CITIZEN_USER_EMAIL'),
+    secret('citizen-password', 'CITIZEN_USER_PASSWORD')
   ]
 ]
 

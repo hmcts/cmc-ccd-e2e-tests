@@ -1,4 +1,4 @@
-module.exports = async function(response) {
+module.exports = async function() {
     const I = this;
     await I.waitInUrl('response/task-list');
     await I.click('Decide how you’ll pay');

@@ -1,5 +1,6 @@
 module.exports = {
     TestEndToEndUrl: process.env.TEST_E2E_URL || 'https://www-ccd.aat.platform.hmcts.net/',
+    TestFrontEndUrl: process.env.TEST_FRONT_END_URL || 'https://moneyclaims.aat.platform.hmcts.net//',
     TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
     TestRetryFeatures: process.env.RETRY_FEATURES || 0,
     TestRetryScenarios: process.env.RETRY_SCENARIOS || 2,
@@ -26,14 +27,15 @@ module.exports = {
         email: 'civilmoneyclaims+legal@gmail.com'
     },
     citizenUser: {
-        password: 'Password12',
-        email: 'testcmcccdendtoend@mailinator.com'
+        password: process.env.CITIZEN_USER_PASSWORD,
+        email: process.env.CITIZEN_USER_EMAIL,
     },
     url: {
         authProviderApi: process.env.SERVICE_AUTH_PROVIDER_API_BASE_URL || 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal',
         ccdDataStore: process.env.CCD_DATA_STORE_URL || 'http://ccd-data-store-api-aat.service.core-compute-aat.internal',
         dmStore: process.env.DM_STORE_URL || 'http://dm-store-aat.service.core-compute-aat.internal',
-        idamApi: process.env.IDAM_API_URL || 'https://idam-api.aat.platform.hmcts.net'
+        idamApi: process.env.IDAM_API_URL || 'https://idam-api.aat.platform.hmcts.net',
+        claimStore: process.env.CLAIM_STORE_URL || 'http://cmc-claim-store-aat.service.core-compute-aat.internal'
     },
     definition: {
         jurisdiction: 'CMC',

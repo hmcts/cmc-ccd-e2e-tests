@@ -55,7 +55,7 @@ Scenario('Create CCJ flow', async ({I}) => {
 
     //Respond to claim
     await I.chooseDefendantResponse('FULL_ADMISSION');
-    await I.decideHowToPay('');
+    await I.decideHowToPay();
     await I.shareDefendantFinancialDetails();
 
     //Submit
