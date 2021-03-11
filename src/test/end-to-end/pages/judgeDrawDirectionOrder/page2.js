@@ -8,6 +8,7 @@ module.exports = async function () {
     const I = this;
     await I.waitForElement('#directionList', testConfig.TestTimeToWaitForText);
 
+    await I.runAccessibilityTest();
     await I.seeCheckboxIsChecked(`#directionList-${judgeDrawDirectionOrderConfig.page2_directionList_docs}`);
     await I.seeCheckboxIsChecked(`#directionList-${judgeDrawDirectionOrderConfig.page2_directionList_witness}`);
 

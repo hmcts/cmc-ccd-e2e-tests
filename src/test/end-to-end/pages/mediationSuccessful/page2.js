@@ -8,6 +8,7 @@ module.exports = async function () {
     const I = this;
     await I.waitInUrl('SuccessfulMediation2', testConfig.TestTimeToWaitForText);
 
+    await I.runAccessibilityTest();
     await I.click(mediationConfig.page2_addNewButton);
     await I.waitForElement('#staffUploadedDocuments', testConfig.TestTimeToWaitForText);
     await I.waitForElement('#staffUploadedDocuments_0_0');

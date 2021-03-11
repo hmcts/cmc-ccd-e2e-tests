@@ -9,6 +9,7 @@ module.exports = async function () {
     await I.waitInUrl('FailedMediation1', testConfig.TestTimeToWaitForText);
     await I.waitForElement('#respondents', testConfig.TestTimeToWaitForText);
 
+    await I.runAccessibilityTest();
     await I.fillField('#respondents_0_mediationFailedReason', mediationConfig.page1_mediationFailedReason);
     await I.waitForNavigationToComplete(commonConfig.continueButton);
 };

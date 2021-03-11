@@ -10,6 +10,7 @@ module.exports = async function (claimNumber) {
         await I.wait(5);
     }
     await I.waitInUrl('ReviewOrder1', testConfig.TestTimeToWaitForText);
+    await I.runAccessibilityTest();
     const linkXPath = `//a[contains(text(), '${claimNumber}-Legal-Adviser-Directions-Order.pdf')]`;
     await I.waitForClickable(linkXPath, testConfig.TestTimeToWaitForText);
     await I.selectOption('#assignedTo', reviewOrderConfig.page1_assignedTo);

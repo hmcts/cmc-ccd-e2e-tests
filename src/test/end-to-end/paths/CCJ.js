@@ -3,6 +3,8 @@ const {userType} = require('../common/Constants');
 const apiRequest = require('../claimStoreApi/apiRequest.js');
 const idamHelper = require('../ccdApi/idamHelper');
 
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
+
 Feature('Create CCJ flow)').retry(testConfig.TestRetryFeatures);
 
 let pinValue;
@@ -19,6 +21,8 @@ Scenario('Create CCJ flow', async ({I}) => {
     claim = await apiRequest.retrieveByReferenceNumber(claimRef);
     const caseId = claim.ccdCaseId;
     const externalId = claim.externalId;
+
+    logger.info({message: 'Claimant created a case with id: ', caseId});
 
     //login as caseworker and verify created event
     await I.authenticateWithIdam(userType.CASEWORKER);

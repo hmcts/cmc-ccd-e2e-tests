@@ -15,6 +15,7 @@ module.exports = async function () {
     } else {
         await I.waitForElement('#hearingCourt', testConfig.TestTimeToWaitForText);
     }
+    await I.runAccessibilityTest();
     await I.selectOption('#hearingCourt', actionReviewCommentsConfig.page1_hearingCourt);
     await I.selectOption('#estimatedHearingDuration', actionReviewCommentsConfig.page1_hearingDuration);
     await I.waitForNavigationToComplete(commonConfig.continueButton);
