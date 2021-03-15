@@ -27,7 +27,9 @@ def secrets = [
     secret('cmc-judge-username', 'JUDGE_USER_EMAIL'),
     secret('cmc-judge-password', 'JUDGE_USER_PASSWORD'),
     secret('citizen-username', 'CITIZEN_USER_EMAIL'),
-    secret('citizen-password', 'CITIZEN_USER_PASSWORD')
+    secret('citizen-password', 'CITIZEN_USER_PASSWORD'),
+    secret('s2s-microservicekey-cmc', 'S2S_MICROSERVICE_KEY_CMC'),
+    secret('cmc-s2s-secret', 'S2S_MICROSERVICE_KEY_PWD')
   ]
 ]
 

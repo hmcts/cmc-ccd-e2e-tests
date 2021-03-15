@@ -22,10 +22,6 @@ module.exports = {
         password: process.env.JUDGE_USER_PASSWORD,
         email: process.env.JUDGE_USER_EMAIL
     },
-    legalrep: {
-        password: process.env.JUDGE_USER_PASSWORD,
-        email: 'civilmoneyclaims+legal@gmail.com'
-    },
     citizenUser: {
         password: process.env.CITIZEN_USER_PASSWORD,
         email: process.env.CITIZEN_USER_EMAIL,
@@ -42,8 +38,8 @@ module.exports = {
         caseType: 'MoneyClaimCase'
     },
     s2s: {
-        microservice: 'divorce_ccd_submission',
-        secret: 'DWYML5ONMS7KG44R'
+        microservice: process.env.S2S_MICROSERVICE_KEY_CMC,
+        secret: process.env.S2S_MICROSERVICE_KEY_PWD,
     },
     proxyServer: process.env.PROXY_SERVER || 'proxyout.reform.hmcts.net:8080'
 };
