@@ -1,6 +1,6 @@
 # cmc-ccd-e2e-tests
 CMC - CCD Service End to End Tests
-Tests ccd events and End to End flow from CMC to CCD
+-- Tests ccd events and End to End flow from CMC to CCD
 
 ## Getting Started
 
