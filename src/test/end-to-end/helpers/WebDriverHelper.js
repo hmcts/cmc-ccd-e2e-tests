@@ -48,6 +48,10 @@ class WebDriverHelper extends Helper {
             )(el)[0].click();
         }, selector);
     }
+
+    async amOnCitizenAppPage (path) {
+        await this.helpers.WebDriver.amOnPage(`${testConfig.TestFrontEndUrl}${path}`);
+    }
 }
 
 module.exports = WebDriverHelper;
