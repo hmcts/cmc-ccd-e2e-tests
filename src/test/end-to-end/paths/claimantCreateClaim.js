@@ -14,5 +14,4 @@ Scenario('Create Claimant flow', async ({I}) => {
     const claimRef = await I.createClaim();
     logger.info({message: 'Claimant has created a claim with reference..', claimRef});
     await I.click('Sign out');
-}).tag('@crossbrowser')
-    .retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
