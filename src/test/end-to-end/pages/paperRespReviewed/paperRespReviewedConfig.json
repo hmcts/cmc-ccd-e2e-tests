@@ -1,0 +1,4 @@
+{
+  "page1_addNewScannedDocsButton": "div#scannedDocuments > div > button[type=\"button\"]",
+  "page1_staffUploadDocField": "input[id='scannedDocuments_0_url']"
+}

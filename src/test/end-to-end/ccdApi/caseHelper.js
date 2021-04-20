@@ -98,6 +98,41 @@ async function updateMediationUnsuccessful(I) {
     await I.enterEventSummary(eventName);
 }
 
+async function issuePaperDefenceForms(I) {
+    const eventName = caseEventName.ISSUE_PAPER_DEFENCE_FORMS;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function paperResponseReviewed(I) {
+    const eventName = caseEventName.PAPER_RESP_REVIEWED;
+    await I.chooseNextStep(eventName);
+    await I.enterPaperRespReviewPage1();
+    await I.enterPaperRespReviewPage2();
+    await I.enterEventSummary(eventName);
+}
+
+async function reviewOcon9xEvent(I) {
+    const eventName = caseEventName.REVIEW_OCON9X_RESP;
+    await I.chooseNextStep(eventName);
+    await I.enterReviewOcon9xPage1();
+    await I.enterEventSummary(eventName);
+}
+
+async function paperRespAdmission(I) {
+    const eventName = caseEventName.PAPER_RESP_ADMISSIOON;
+    await I.chooseNextStep(eventName);
+    await I.enterPaperRespAdmissionPage1();
+    await I.enterEventSummary(eventName);
+}
+
+async function paperRespDefence(I) {
+    const eventName = caseEventName.PAPER_RESP_DEFENCE;
+    await I.chooseNextStep(eventName);
+    await I.enterPaperRespDefencePage1();
+    await I.enterEventSummary(eventName);
+}
+
 async function setUpApiAuthToken(user) {
     await apiRequest.setupTokens(user);
 }
@@ -140,5 +175,10 @@ module.exports = {
     JudgeDrawDirectionOrder,
     updateMediationSuccessful,
     updateMediationUnsuccessful,
+    issuePaperDefenceForms,
+    paperResponseReviewed,
+    reviewOcon9xEvent,
+    paperRespAdmission,
+    paperRespDefence,
     signOut
 };

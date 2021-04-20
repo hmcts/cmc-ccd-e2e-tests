@@ -41,5 +41,12 @@ module.exports = {
         microservice: process.env.S2S_MICROSERVICE_KEY_CMC,
         secret: process.env.S2S_MICROSERVICE_KEY_PWD,
     },
-    proxyServer: process.env.PROXY_SERVER || 'proxyout.reform.hmcts.net:8080'
+    featureToggles: {
+        enabled: true,
+        launchDarklyKey: process.env.LAUNCHDARKLY_KEY || 'sdk-c732c882-b5df-4e9b-9ec1-679836b93907',
+        flags: {
+            oconenhancements: 'ocon-enhancements',
+            enhancedMediation: 'enhanced-mediation-journey'
+        }
+    }
 };
