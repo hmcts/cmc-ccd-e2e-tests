@@ -27,6 +27,11 @@ const caseEventName = {
     REFERRED_MEDIATION: 'Mediation pending',
     MEDIATION_SUCCESSFUL: 'Mediation successful',
     MEDIATION_FAILED: 'Mediation unsuccessful',
+    ISSUE_PAPER_DEFENCE_FORMS: 'Issue paper defence forms',
+    PAPER_RESP_REVIEWED: 'Paper response reviewed',
+    REVIEW_OCON9X_RESP: 'Review OCON9x paper response',
+    PAPER_RESP_ADMISSIOON: 'Paper Response - Admission',
+    PAPER_RESP_DEFENCE: 'Paper Response - Defence'
 };
 
 module.exports = {

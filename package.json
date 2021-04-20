@@ -27,6 +27,7 @@
     "axios": "^0.21.1",
     "codeceptjs": "^3.0.5",
     "eslint": "4.18.2 ",
+    "launchdarkly-node-server-sdk": "^5.13.1",
     "@hmcts/nodejs-logging": "^3.0.2",
     "infinite-sequence-generator": "^1.1.0",
     "mocha": "^5.2.0",
