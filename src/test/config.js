@@ -42,7 +42,7 @@ module.exports = {
         secret: process.env.S2S_MICROSERVICE_KEY_PWD,
     },
     featureToggles: {
-        enabled: true,
+        enabled: process.env.LD_ENABLED || true,
         launchDarklyKey: process.env.LAUNCHDARKLY_KEY || 'sdk-c732c882-b5df-4e9b-9ec1-679836b93907',
         flags: {
             oconenhancements: 'ocon-enhancements',
