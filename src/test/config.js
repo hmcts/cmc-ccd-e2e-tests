@@ -48,5 +48,6 @@ module.exports = {
             oconenhancements: 'ocon-enhancements',
             enhancedMediation: 'enhanced-mediation-journey'
         }
-    }
+    },
+    env: process.env.TEST_ENV || 'local'
 };

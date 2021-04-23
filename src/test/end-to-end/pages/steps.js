@@ -43,6 +43,9 @@ module.exports = function () {
         viewDefendantResponse: steps.claimant.viewDefendantResponse,
         acceptOrRejectResponse: steps.claimant.acceptOrRejectResponse,
         checkAndSumbitResponse: steps.claimant.checkAndSumbitResponse,
-        requestCCJ: steps.claimant.requestCCJ
+        requestCCJ: steps.claimant.requestCCJ,
+        moneyOweAndDisagreement: steps.defendant.moneyOweAndDisagreement,
+        selectMediationOptions: steps.defendant.selectMediationOptions,
+        hearingDetails: steps.defendant.hearingDetails
     });
 };

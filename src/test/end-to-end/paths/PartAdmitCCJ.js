@@ -5,12 +5,12 @@ const idamHelper = require('../ccdApi/idamHelper');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-Feature('Create CCJ flow)').retry(testConfig.TestRetryFeatures);
+Feature('Part Admission - CCJ').retry(testConfig.TestRetryFeatures);
 
 let pinValue;
 let claim;
 
-Scenario('Create CCJ flow', async ({I}) => {
+Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) => {
 
     //claimant steps
     await I.amOnCitizenAppPage('');
@@ -23,14 +23,6 @@ Scenario('Create CCJ flow', async ({I}) => {
     const externalId = claim.externalId;
 
     logger.info({message: 'Claimant created a case with id: ', caseId});
-
-    //login as caseworker and verify created event
-    await I.authenticateWithIdam(userType.CASEWORKER);
-    await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.see('Claim created by citizen');
-    await I.see('Claim submitted');
-    await I.dontSee('Admitted All');
-    await I.click('#sign-out');
 
     if (typeof claim.letterHolderId === 'undefined') {
         claim = await apiRequest.retrieveByReferenceNumber(claimRef);
@@ -45,7 +37,9 @@ Scenario('Create CCJ flow', async ({I}) => {
     await I.waitInUrl('first-contact/claim-summary');
     await I.click('Respond to claim');
 
+    await I.wait(10);
     await I.click('Sign in to your account.');
+    await I.wait(5);
     await I.authenticateWithIdam(userType.CITIZEN, true);
 
     await I.waitInUrl('/dashboard');
@@ -58,20 +52,15 @@ Scenario('Create CCJ flow', async ({I}) => {
     await I.defendantExtraTimeNeeded('no');
 
     //Respond to claim
-    await I.chooseDefendantResponse('FULL_ADMISSION');
-    await I.decideHowToPay();
+    await I.chooseDefendantResponse('PART_ADMISSION');
+    await I.moneyOweAndDisagreement('specificDate');
     await I.shareDefendantFinancialDetails();
+    await I.selectMediationOptions('yes');
+    await I.hearingDetails();
 
     //Submit
-    await I.submitDefendantResponse();
+    await I.submitDefendantResponse('PART_ADMISSION');
     await I.click('Sign out');
-    await I.wait(5);
-
-    //login as caseworker and verify created event
-    await I.authenticateWithIdam(userType.CASEWORKER);
-    await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.see('Admitted All');
-    await I.click('#sign-out');
     await I.wait(5);
 
     //Claimant response
@@ -79,11 +68,11 @@ Scenario('Create CCJ flow', async ({I}) => {
     await I.authenticateWithIdam(userType.CITIZEN, true);
 
     await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
-    await I.click('View and respond to the offer');
+    await I.click('View and respond');
 
     //How they responded
-    await I.viewDefendantResponse();
-    await I.acceptOrRejectResponse();
+    await I.viewDefendantResponse('PART_ADMISSION');
+    await I.acceptOrRejectResponse('ccj', 'PART_ADMISSION');
     await I.requestCCJ();
 
     await I.checkAndSumbitResponse();
@@ -96,5 +85,4 @@ Scenario('Create CCJ flow', async ({I}) => {
     await I.see('CCJ requested');
     await I.see('CCJ upload');
     await I.click('#sign-out');
-
 }).retry(testConfig.TestRetryScenarios);

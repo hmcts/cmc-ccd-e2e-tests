@@ -48,6 +48,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.IDAM_API_URL=params.IDAM_API_URL
     env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
     env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
+    env.TEST_ENV = params.ENVIRONMENT
     loadVaultSecrets(secrets)
     enableFullFunctionalTest(90)
     
