@@ -46,6 +46,11 @@ module.exports = function () {
         requestCCJ: steps.claimant.requestCCJ,
         moneyOweAndDisagreement: steps.defendant.moneyOweAndDisagreement,
         selectMediationOptions: steps.defendant.selectMediationOptions,
-        hearingDetails: steps.defendant.hearingDetails
+        hearingDetails: steps.defendant.hearingDetails,
+        enterBreathingSpacePage1: steps.breathingSpace.enter_page1,
+        enterBreathingSpacePage2: steps.breathingSpace.enter_page2,
+        liftBreathingSpacePage1: steps.breathingSpace.lift_page1,
+        liftBreathingSpacePage2: steps.breathingSpace.lift_page2,
+        enterBreathingSpaceOnlinePage: steps.breathingSpace.enter_online_page
     });
 };

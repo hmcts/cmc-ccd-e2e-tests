@@ -159,6 +159,38 @@ async function createOpenCase(I, createCitizenCaseJson) {
     return createCitizenCaseJson;
 }
 
+async function enterBreathingSpace(I) {
+    const eventName = caseEventName.ENTER_BREATHING_SPACE;
+    await I.chooseNextStep(eventName);
+    await I.enterBreathingSpacePage1();
+    await I.enterBreathingSpacePage2();
+    await I.enterEventSummary(eventName);
+}
+
+async function liftBreathingSpace(I) {
+    const eventName = caseEventName.LIFT_BREATHING_SPACE;
+    await I.chooseNextStep(eventName);
+    await I.liftBreathingSpacePage1();
+    await I.liftBreathingSpacePage2();
+    await I.enterEventSummary(eventName);
+}
+
+async function handedToCCBC(I) {
+    const eventName = caseEventName.CASE_HANDED_TO_CCBC;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function enterBreathingSpaceOnline(I) {
+    await I.enterBreathingSpaceOnlinePage();
+}
+
+async function enterBreathingSpaceError(I) {
+    const eventName = caseEventName.ENTER_BREATHING_SPACE;
+    await I.chooseNextStep(eventName);
+    await I.see('The callback data failed validation');
+}
+
 module.exports = {
     initateCaseByCitizen,
     createOpenCase,
@@ -180,5 +212,10 @@ module.exports = {
     reviewOcon9xEvent,
     paperRespAdmission,
     paperRespDefence,
+    enterBreathingSpace,
+    liftBreathingSpace,
+    handedToCCBC,
+    enterBreathingSpaceOnline,
+    enterBreathingSpaceError,
     signOut
 };
