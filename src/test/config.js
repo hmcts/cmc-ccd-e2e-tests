@@ -46,7 +46,8 @@ module.exports = {
         launchDarklyKey: process.env.LAUNCHDARKLY_KEY || 'sdk-c732c882-b5df-4e9b-9ec1-679836b93907',
         flags: {
             oconenhancements: 'ocon-enhancements',
-            enhancedMediation: 'enhanced-mediation-journey'
+            enhancedMediation: 'enhanced-mediation-journey',
+            breathingSpace: 'breathing-space’'
         }
     },
     env: process.env.TEST_ENV || 'local'
