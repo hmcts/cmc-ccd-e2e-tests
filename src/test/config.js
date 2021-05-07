@@ -47,7 +47,7 @@ module.exports = {
         flags: {
             oconenhancements: 'ocon-enhancements',
             enhancedMediation: 'enhanced-mediation-journey',
-            breathingSpace: 'breathing-space’'
+            breathingSpace: 'breathing-space'
         }
     },
     env: process.env.TEST_ENV || 'local'
