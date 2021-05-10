@@ -31,7 +31,10 @@ const caseEventName = {
     PAPER_RESP_REVIEWED: 'Paper response reviewed',
     REVIEW_OCON9X_RESP: 'Review OCON9x paper response',
     PAPER_RESP_ADMISSIOON: 'Paper Response - Admission',
-    PAPER_RESP_DEFENCE: 'Paper Response - Defence'
+    PAPER_RESP_DEFENCE: 'Paper Response - Defence',
+    ENTER_BREATHING_SPACE: 'Enter Breathing Space',
+    LIFT_BREATHING_SPACE: 'Lift Breathing Space',
+    CASE_HANDED_TO_CCBC: 'Case handed to CCBC'
 };
 
 module.exports = {
