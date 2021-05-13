@@ -8,11 +8,11 @@ module.exports = async function(optForMediation) {
         await I.click('Continue');
 
         await I.waitInUrl('mediation/can-we-use');
-        await I.click('#freeMediationOptionNO'); 
+        await I.click('#freeMediationOptionNO');
         await I.fillField('#mediationPhoneNumber', '0788788788');
         await I.click('Save and continue');
     } else {
-        await I.click(`I do not agree to free mediation`);
+        await I.click('I do not agree to free mediation');
 
         await I.waitInUrl('mediation/mediation-disagreement');
         await I.click('//input[@id="optionno"]');
@@ -20,13 +20,14 @@ module.exports = async function(optForMediation) {
         await I.waitInUrl('/i-dont-want-free-mediation');
         await I.click('Skip this section');
     }
-  /*  if (optForMediation === 'yes') {
+
+    /*  if (optForMediation === 'yes') {
 
         await I.waitInUrl('mediation/free-mediation');
         await I.click('input[type="submit"]');
         await I.waitInUrl('mediation/how-mediation-works');
         await I.click('Continue');
-        
+
         await I.waitInUrl('mediation/will-you-try-mediation');
         await I.click('#optionyes');
         await I.click('Save and continue');
