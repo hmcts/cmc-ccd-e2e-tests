@@ -19,8 +19,7 @@ module.exports = async function(optForMediation) {
         await I.click('Save and continue');
         await I.waitInUrl('/i-dont-want-free-mediation');
         await I.click('Skip this section');
-    } 
-
+    }
   /*  if (optForMediation === 'yes') {
 
         await I.waitInUrl('mediation/free-mediation');
@@ -49,9 +48,4 @@ module.exports = async function(optForMediation) {
         await I.click('#optionno');
         await I.click('Save and continue');
     }   */
-
-
-
-
-
 };
