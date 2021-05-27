@@ -33,9 +33,5 @@ module.exports = async function (givenUserType, isAlreadyAtSignOnPage = false) {
     await I.fillField('#password', user.password);
 
     await I.waitForNavigationToComplete('input[type="submit"]');
-    if (userType.CITIZEN === givenUserType) {
-        await I.waitForText('Sign out');
-    } else {
-        await I.waitForElement('#sign-out');
-    }
+    await I.wait(3);
 };

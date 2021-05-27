@@ -1,6 +1,10 @@
 const supportedBrowsers = require('../crossbrowser/supportedBrowsers.js');
-
 const testConfig = require('../config');
+const idamUserHelper = require('./helpers/IdamUserHelper');
+
+const citizenUser = `civilmoneyclaimsclaimant${require('randomstring').generate(7)
+    .toLowerCase()}@gmail.com`;
+const testPassword = 'genericPassword123';
 
 const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
 const smartWait = parseInt(process.env.SMART_WAIT) || 30000;
@@ -39,6 +43,12 @@ function getBrowserConfig(browserGroup) {
 }
 
 const setupConfig = {
+    async bootstrapAll() {
+        await idamUserHelper.createAUser(citizenUser, testPassword);
+    },
+    async teardownAll() {
+        await idamUserHelper.deleteUser(citizenUser, testPassword);
+    },
     'tests': testConfig.TestPathToRun,
     'output': `${process.cwd()}/${testConfig.TestOutputDir}`,
     'helpers': {

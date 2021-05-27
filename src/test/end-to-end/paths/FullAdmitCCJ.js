@@ -33,6 +33,7 @@ Scenario('Full Admission', async ({I}) => {
     await I.click('#sign-out');
 
     if (typeof claim.letterHolderId === 'undefined') {
+        await I.wait(5);
         claim = await apiRequest.retrieveByReferenceNumber(claimRef);
     }
 

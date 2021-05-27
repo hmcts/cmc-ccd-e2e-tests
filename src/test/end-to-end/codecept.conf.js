@@ -1,6 +1,17 @@
 const testConfig = require('src/test/config.js');
+const idamUserHelper = require('./helpers/IdamUserHelper');
+
+const citizenUser = `civilmoneyclaimsclaimant${require('randomstring').generate(7)
+    .toLowerCase()}@gmail.com`;
+const testPassword = 'genericPassword123';
 
 exports.config = {
+    async bootstrapAll() {
+        await idamUserHelper.createAUser(citizenUser, testPassword);
+    },
+    async teardownAll() {
+        await idamUserHelper.deleteUser(citizenUser, testPassword);
+    },
     'tests': testConfig.TestPathToRun,
     'output': testConfig.TestOutputDir,
     'helpers': {

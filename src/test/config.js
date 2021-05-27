@@ -23,8 +23,8 @@ module.exports = {
         email: process.env.JUDGE_USER_EMAIL
     },
     citizenUser: {
-        password: process.env.CITIZEN_USER_PASSWORD,
-        email: process.env.CITIZEN_USER_EMAIL,
+        password: process.env.USER_PASSWORD,
+        email: process.env.USER_EMAIL,
     },
     url: {
         authProviderApi: process.env.SERVICE_AUTH_PROVIDER_API_BASE_URL || 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal',
@@ -50,5 +50,6 @@ module.exports = {
             breathingSpace: 'breathing-space'
         }
     },
-    env: process.env.TEST_ENV || 'local'
+    env: process.env.TEST_ENV || 'local',
+    proxy: ''
 };

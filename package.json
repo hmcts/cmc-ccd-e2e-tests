@@ -24,6 +24,7 @@
     "require-directory": "^2.1.1"
   },
   "devDependencies": {
+    "@hmcts/div-idam-test-harness": "^1.6.0",
     "axios": "^0.21.1",
     "codeceptjs": "^3.0.5",
     "eslint": "4.18.2 ",
@@ -36,6 +37,8 @@
     "mocha-multi": "^1.1.3",
     "mochawesome": "^4.0.1",
     "puppeteer": "^5.4.1",
+    "randomstring": "^1.1.5",
+    "sinon": "^5.0.7",
     "totp-generator": "^0.0.7",
     "webdriverio": "^6.11.3",
     "uuid": "^8.3.2"

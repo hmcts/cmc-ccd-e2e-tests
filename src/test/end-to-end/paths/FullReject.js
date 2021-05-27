@@ -25,6 +25,7 @@ Scenario('full reject flow', async ({I}) => {
     logger.info({message: 'createClaim created a case with id: ', claimRef, caseId});
 
     if (typeof claim.letterHolderId === 'undefined') {
+        await I.wait(5);
         claim = await apiRequest.retrieveByReferenceNumber(claimRef);
     }
 

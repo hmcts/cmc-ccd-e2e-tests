@@ -25,6 +25,7 @@ Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) =
     logger.info({message: 'Claimant created a case with id: ', caseId});
 
     if (typeof claim.letterHolderId === 'undefined') {
+        await I.wait(5);
         claim = await apiRequest.retrieveByReferenceNumber(claimRef);
     }
 
