@@ -143,7 +143,7 @@ function getNextClaimNumber() {
 }
 
 async function signOut(I) {
-    await I.click('#sign-out');
+    await I.click('Sign out');
     await I.waitForElement('#username');
 }
 
