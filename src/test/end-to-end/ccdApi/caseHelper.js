@@ -154,8 +154,7 @@ async function createOpenCase(I, createCitizenCaseJson) {
     createCitizenCaseJson.previousServiceCaseReference = getNextClaimNumber();
 
     await updateApiEvent(caseEventId.STAY_CLAIM, createCitizenCaseJson, createCitizenCaseJson.id);
-    await updateCaseworkerEvent(I, caseEventName.LIFT_STAY, createCitizenCaseJson.id);
-    await signOut(I);
+    await updateApiEvent(caseEventId.LIFT_STAY, createCitizenCaseJson, createCitizenCaseJson.id);
     return createCitizenCaseJson;
 }
 
