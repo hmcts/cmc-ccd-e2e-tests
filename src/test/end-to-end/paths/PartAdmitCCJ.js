@@ -11,10 +11,8 @@ let pinValue;
 let claim;
 
 Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) => {
-  const caseId = '1623071785364320';
-  const claimRef = '443MC249';
     //claimant steps
-   /* await I.amOnCitizenAppPage('');
+    await I.amOnCitizenAppPage('');
     await I.authenticateWithIdam(userType.CITIZEN, true);
     const claimRef = await I.createClaim();
     await I.click('Sign out');
@@ -84,26 +82,28 @@ Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) =
     await I.requestCCJ();
 
     await I.checkAndSumbitResponse();
-    await I.waitInUrl('claimant-response/confirmation');*/
+    await I.waitInUrl('claimant-response/confirmation');
 
     //login as caseworker and verify created event
     await I.authenticateWithIdam(userType.CASEWORKER);
-   // await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-   // await I.waitForText('Claimant accepted');
-   // await I.see('CCJ requested');
-   // await I.see('CCJ upload');
+    await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
+    // await I.waitForText('Claimant accepted');
+    // await I.see('CCJ requested');
+    // await I.see('CCJ upload');
 
     logger.info('Verifying court filter functionality for case : ', caseId);
     await I.waitForText('Case list');
+    await I.wait(5);
     await I.click('Case list');
+    await I.waitForText('Case type');
+    await I.retry(3).selectOption('#wb-case-type', 'Money Claim Case');
+
     await I.waitForText('Reset');
-    await I.click('Reset');
-    await I.wait(10);
-    await I.fillField("#\[CASE_REFERENCE\]", caseId);
+    await I.waitForElement('#previousServiceCaseReference');
+    await I.fillField('#previousServiceCaseReference', claimRef);
     await I.retry(3).selectOption('#preferredDQPilotCourt', 'Central London County Court');
-
-    await I.waitForText(claimRef);
-
+    await I.click('Apply');
+    await I.waitForText(caseId);
     await I.click('Sign out');
 
 }).retry(testConfig.TestRetryScenarios);

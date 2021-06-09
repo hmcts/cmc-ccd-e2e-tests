@@ -13,7 +13,7 @@ module.exports = async function(type = 'ccj', admitType = '', jddo = 'no') {
             await I.click('#admittedyes');
             await I.click('Save and continue');
             await I.waitInUrl('claimant-response/task-list');
-        } 
+        }
         await I.click('Accept or reject their repayment plan');
         await I.waitInUrl('claimant-response/accept-payment-method');
         await I.click('//input[@id="acceptyes"]');
@@ -21,10 +21,10 @@ module.exports = async function(type = 'ccj', admitType = '', jddo = 'no') {
 
         await I.waitInUrl('claimant-response/task-list');
         await I.click('Choose how to formalise repayment');
-        await I.waitInUrl('claimant-response/choose-how-to-proceed');  
-        if (type === 'signAgreement') { 
+        await I.waitInUrl('claimant-response/choose-how-to-proceed');
+        if (type === 'signAgreement') {
             await I.click('//input[@id="optionsignSettlementAgreement"]');
-        } else if (type === 'ccj'){
+        } else if (type === 'ccj') {
             await I.click('//input[@id="optionrequestCCJ"]');
         }
         await I.click('Save and continue');

@@ -17,10 +17,9 @@ Scenario('Create CCJ flow', async ({I}) => {
     await I.authenticateWithIdam(userType.CITIZEN, true);
     const claimRef = await I.createClaimantWithGivenAmount('600');
     await I.click('Sign out');
-    console.log('claimref is..', claimRef);
-   
+    logger.info('claimref is..', claimRef);
 
-   claim = await apiRequest.retrieveByReferenceNumber(claimRef);
+    claim = await apiRequest.retrieveByReferenceNumber(claimRef);
     const caseId = claim.ccdCaseId;
     const externalId = claim.externalId;
 
@@ -60,13 +59,12 @@ Scenario('Create CCJ flow', async ({I}) => {
     await I.moneyOweAndDisagreement('specificDate');
     await I.shareDefendantFinancialDetails();
     await I.selectMediationOptions('yes');
-    await I.hearingDetails(); 
+    await I.hearingDetails();
 
     //Submit
     await I.submitDefendantResponse('PART_ADMISSION');
     await I.click('Sign out');
     await I.wait(5);
-
 
     //Claimant response
     await I.amOnCitizenAppPage('');
@@ -80,10 +78,9 @@ Scenario('Create CCJ flow', async ({I}) => {
     await I.acceptOrRejectResponse('', 'PART_ADMISSION', 'yes');
 
     await I.selectMediationOptions('no');
-    await I.hearingDetails('INDIVIDUAL', 'yes'); 
+    await I.hearingDetails('INDIVIDUAL', 'yes');
 
     await I.checkAndSumbitResponse('yes');
     await I.waitInUrl('claimant-response/confirmation');
-
 
 }).retry(testConfig.TestRetryScenarios);

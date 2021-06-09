@@ -8,7 +8,7 @@ module.exports = async function(amount = '500') {
     await I.waitInUrl('claim/check-and-send');
 
     await I.amOnCitizenAppPage('claim/amount');
-    await I.fillField(`//input[@id="rows[0][amount]"]`, amount);
+    await I.fillField('//input[@id="rows[0][amount]"]', amount);
     await I.click('Save and continue');
 
     await I.waitInUrl('claim/interest');
