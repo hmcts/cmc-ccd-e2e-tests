@@ -5,9 +5,7 @@ const commonConfig = require('../common/commonConfig');
 
 module.exports = async function (claimNumber) {
     const I = this;
-    if (testConfig.TestForCrossBrowser) {
-        await I.wait(5);
-    }
+    await I.wait(5);
     await I.waitInUrl('DrawOrder1', testConfig.TestTimeToWaitForText);
     await I.runAccessibilityTest();
     const linkXPath = `//a[contains(text(), '${claimNumber}-Legal-Adviser-Directions-Order.pdf')]`;
