@@ -1,10 +1,10 @@
-module.exports = async function(type = 'INDIVIDUAL') {
+module.exports = async function(type = 'INDIVIDUAL', claimantUser = 'no') {
     const I = this;
     await I.waitInUrl('response/task-list');
     await I.click('Give us details in case there’s a hearing');
     await I.waitInUrl('directions-questionnaire/support-required');
     await I.click('Save and continue');
-    if (type === 'LIMITED COMPANY' || type === 'ORG' || type === 'SOLE TRADER') {
+    if (claimantUser === 'yes' || type === 'LIMITED COMPANY' || type === 'ORG' || type === 'SOLE TRADER') {
         await I.waitInUrl('directions-questionnaire/hearing-exceptional-circumstances');
         await I.click('#exceptionalCircumstancesyes');
         await I.fillField('#reason', 'I am far from this place');

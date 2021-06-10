@@ -11,7 +11,6 @@ let pinValue;
 let claim;
 
 Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) => {
-
     //claimant steps
     await I.amOnCitizenAppPage('');
     await I.authenticateWithIdam(userType.CITIZEN, true);
@@ -66,8 +65,8 @@ Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) =
 
     await I.authenticateWithIdam(userType.CASEWORKER);
     await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.see('Admitted Part');
-    await I.click('#sign-out');
+    await I.waitForText('Admitted Part');
+    await I.click('Sign out');
     await I.wait(5);
 
     //Claimant response
@@ -88,8 +87,23 @@ Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) =
     //login as caseworker and verify created event
     await I.authenticateWithIdam(userType.CASEWORKER);
     await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.see('Claimant accepted');
-    await I.see('CCJ requested');
-    await I.see('CCJ upload');
-    await I.click('#sign-out');
+    // await I.waitForText('Claimant accepted');
+    // await I.see('CCJ requested');
+    // await I.see('CCJ upload');
+
+    logger.info('Verifying court filter functionality for case : ', caseId);
+    await I.waitForText('Case list');
+    await I.wait(5);
+    await I.click('Case list');
+    await I.waitForText('Case type');
+    await I.retry(3).selectOption('#wb-case-type', 'Money Claim Case');
+
+    await I.waitForText('Reset');
+    await I.waitForElement('#previousServiceCaseReference');
+    await I.fillField('#previousServiceCaseReference', claimRef);
+    await I.retry(3).selectOption('#preferredDQPilotCourt', 'Central London County Court');
+    await I.click('Apply');
+    await I.waitForText(caseId);
+    await I.click('Sign out');
+
 }).retry(testConfig.TestRetryScenarios);

@@ -32,6 +32,7 @@ module.exports = function () {
         confirmPayment: steps.payment.paymentConfirm,
         extractClaimRef: steps.payment.ClaimantClaimConfirmedPage,
         createClaim: steps.claimant.createClaim,
+        createClaimantWithGivenAmount: steps.claimant.createClaimantWithGivenAmount,
         createClaimDefendantAsOrg: steps.claimant.createClaimDefendantAsOrg,
         linkDefendant: steps.defendant.linkDefendant,
         confirmDefendantDetails: steps.defendant.confirmYourDetails,

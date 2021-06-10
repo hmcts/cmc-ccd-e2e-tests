@@ -7,6 +7,7 @@ const commonConfig = require('../common/commonConfig');
 module.exports = async function () {
     const I = this;
     const isSafariBrowser = await I.isSafariBrowser();
+    await I.wait(5);
 
     if (isSafariBrowser) {
         await I.waitForClickable('#hearingCourt', testConfig.TestTimeToWaitForText);

@@ -17,11 +17,11 @@ exports.config = {
     'helpers': {
         'Puppeteer': {
             'url': testConfig.TestEndToEndUrl,
-            'waitForTimeout': 60000,
-            'getPageTimeout': 60000,
+            'waitForTimeout': 90000,
+            'getPageTimeout': 90000,
             // 'waitForAction': 1,
             'show': testConfig.TestShowBrowserWindow,
-            'waitForNavigation': ['domcontentloaded', 'networkidle0'],
+            'waitForNavigation': ['domcontentloaded'],
             'chrome': {
                 'ignoreHTTPSErrors': true,
                 'ignore-certificate-errors': true,

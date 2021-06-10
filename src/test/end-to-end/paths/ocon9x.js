@@ -32,7 +32,7 @@ Scenario('Claimant create a case --> Caseworker submit ocon9x event and paper re
         //login as caseworker and verify created event
         await I.authenticateWithIdam(userType.CASEWORKER);
         await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-        await I.see('Claim created by citizen');
+        await I.waitForText('Claim created by citizen');
         await I.see('Claim submitted');
         await I.dontSee('Admitted All');
 
@@ -59,7 +59,7 @@ Scenario('Claimant create a case --> Caseworker submit ocon9x event and paper re
         //login as caseworker and verify created event
         await I.authenticateWithIdam(userType.CASEWORKER);
         await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-        await I.see('Claim created by citizen');
+        await I.waitForText('Claim created by citizen');
         await I.see('Claim submitted');
         await I.dontSee('Admitted All');
 

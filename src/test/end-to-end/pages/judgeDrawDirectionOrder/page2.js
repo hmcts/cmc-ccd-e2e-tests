@@ -29,8 +29,8 @@ module.exports = async function () {
     await I.waitForVisible('#eyewitnessUploadDeadline');
 
     await I.click(judgeDrawDirectionOrderConfig.addNewExtraDocUploadListButton);
-    await I.waitForElement('#extraDocUploadList_0');
-    await I.fillField('#extraDocUploadList_0', 'Extra doc upload please');
+    await I.waitForElement('#extraDocUploadList_value');
+    await I.fillField('#extraDocUploadList_value', 'Extra doc upload please');
 
     await I.click(`#docUploadForParty-${judgeDrawDirectionOrderConfig.page2_defendant}`);
 

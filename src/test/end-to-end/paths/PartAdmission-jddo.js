@@ -5,24 +5,25 @@ const idamHelper = require('../ccdApi/idamHelper');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-Feature('Full reject flow').retry(testConfig.TestRetryFeatures);
+Feature('Create CCJ flow)').retry(testConfig.TestRetryFeatures);
 
 let pinValue;
 let claim;
 
-Scenario('full reject flow', async ({I}) => {
+Scenario('Create CCJ flow', async ({I}) => {
 
     //claimant steps
     await I.amOnCitizenAppPage('');
     await I.authenticateWithIdam(userType.CITIZEN, true);
-    const claimRef = await I.createClaim();
+    const claimRef = await I.createClaimantWithGivenAmount('600');
     await I.click('Sign out');
+    logger.info('claimref is..', claimRef);
 
     claim = await apiRequest.retrieveByReferenceNumber(claimRef);
     const caseId = claim.ccdCaseId;
     const externalId = claim.externalId;
 
-    logger.info({message: 'createClaim created a case with id: ', claimRef, caseId});
+    logger.info({message: 'Claimant created a case with id: ', caseId});
 
     if (typeof claim.letterHolderId === 'undefined') {
         await I.wait(5);
@@ -46,25 +47,40 @@ Scenario('full reject flow', async ({I}) => {
     await I.waitInUrl('/dashboard');
     await I.see(claimRef);
     await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
+    await I.wait(10);
     await I.click('Respond to claim');
 
     //Prepare your response
     await I.confirmDefendantDetails();
     await I.defendantExtraTimeNeeded('no');
-    await I.chooseDefendantResponse('DEFENCE');
+
+    //Respond to claim
+    await I.chooseDefendantResponse('PART_ADMISSION');
+    await I.moneyOweAndDisagreement('specificDate');
+    await I.shareDefendantFinancialDetails();
     await I.selectMediationOptions('yes');
     await I.hearingDetails();
 
     //Submit
-    await I.submitDefendantResponse('DEFENCE');
+    await I.submitDefendantResponse('PART_ADMISSION');
     await I.click('Sign out');
     await I.wait(5);
 
-    //login as caseworker and verify created event
-    await I.authenticateWithIdam(userType.CASEWORKER);
-    await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.waitForText('Disputed all');
-    await I.click('Sign out');
-    await I.wait(5);
+    //Claimant response
+    await I.amOnCitizenAppPage('');
+    await I.authenticateWithIdam(userType.CITIZEN, true);
+
+    await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
+    await I.click('View and respond');
+
+    //How they responded
+    await I.viewDefendantResponse('PART_ADMISSION');
+    await I.acceptOrRejectResponse('', 'PART_ADMISSION', 'yes');
+
+    await I.selectMediationOptions('no');
+    await I.hearingDetails('INDIVIDUAL', 'yes');
+
+    await I.checkAndSumbitResponse('yes');
+    await I.waitInUrl('claimant-response/confirmation');
 
 }).retry(testConfig.TestRetryScenarios);

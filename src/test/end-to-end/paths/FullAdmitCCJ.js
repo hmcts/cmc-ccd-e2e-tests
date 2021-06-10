@@ -27,10 +27,10 @@ Scenario('Full Admission', async ({I}) => {
     //login as caseworker and verify created event
     await I.authenticateWithIdam(userType.CASEWORKER);
     await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.see('Claim created by citizen');
+    await I.waitForText('Claim created by citizen');
     await I.see('Claim submitted');
     await I.dontSee('Admitted All');
-    await I.click('#sign-out');
+    await I.click('Sign out');
 
     if (typeof claim.letterHolderId === 'undefined') {
         await I.wait(5);
@@ -71,8 +71,8 @@ Scenario('Full Admission', async ({I}) => {
     //login as caseworker and verify created event
     await I.authenticateWithIdam(userType.CASEWORKER);
     await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.see('Admitted All');
-    await I.click('#sign-out');
+    await I.waitForText('Admitted All');
+    await I.click('Sign out');
     await I.wait(5);
 
     //Claimant response
@@ -93,9 +93,9 @@ Scenario('Full Admission', async ({I}) => {
     //login as caseworker and verify created event
     await I.authenticateWithIdam(userType.CASEWORKER);
     await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.see('Claimant accepted');
+    await I.waitForText('Claimant accepted');
     await I.see('CCJ requested');
     await I.see('CCJ upload');
-    await I.click('#sign-out');
+    await I.click('Sign out');
 
 }).retry(testConfig.TestRetryScenarios);
