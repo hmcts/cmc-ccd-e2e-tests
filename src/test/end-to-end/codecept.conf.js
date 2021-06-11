@@ -3,7 +3,7 @@ const idamUserHelper = require('./helpers/IdamUserHelper');
 
 const citizenUser = `civilmoneyclaimsclaimant${require('randomstring').generate(7)
     .toLowerCase()}@gmail.com`;
-const testPassword = 'genericPassword123';
+const testPassword = 'Password12';
 
 exports.config = {
     async bootstrapAll() {
@@ -57,10 +57,14 @@ exports.config = {
         'autoDelay': {
             'enabled': testConfig.TestAutoDelayEnabled
         },
-        screenshotOnFail: {
-            enabled: true,
-            fullPageScreenshots: 'true'
-        }
+        'screenshotOnFail': {
+            'enabled': true,
+            'fullPageScreenshots': true
+        },
+        'retryFailedStep': {
+            'enabled': true,
+            'retries': 1
+        },
     },
     'multiple': {
         'parallel': {

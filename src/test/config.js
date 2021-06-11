@@ -6,7 +6,7 @@ module.exports = {
     TestRetryScenarios: process.env.RETRY_SCENARIOS || 2,
     TestPathToRun: process.env.E2E_TEST_PATH || './paths/**/*.js',
     TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
-    TestTimeToWaitForText: parseInt(process.env.E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 90),
+    TestTimeToWaitForText: parseInt(process.env.E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 120),
     TestAutoDelayEnabled: process.env.E2E_AUTO_DELAY_ENABLED === 'true',
     TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
     TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
