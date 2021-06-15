@@ -8,12 +8,12 @@ const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 Feature('Draw Direction Order by LA (Generate Order flow - claim amount < 500)').retry(testConfig.TestRetryFeatures);
 
-xScenario('Full Defence → Dispute All → Reject mediation by Defendant → Decide to proceed is Yes (claimant)', async ({I}) => {
+Scenario('Full Defence → Dispute All → Reject mediation by Defendant → Decide to proceed is Yes (claimant)', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/GenerateOrdeDisputeAllBothRejectMediation');
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
 
-Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Reject mediation by claimant', async ({I}) => {
+xScenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Reject mediation by claimant', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/GenerateOrdeDisputeAllDefendantAcceptAndClaimantRejectMediation');
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
