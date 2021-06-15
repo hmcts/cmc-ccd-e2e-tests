@@ -74,9 +74,15 @@ exports.config = {
     },
     'mocha': {
         'reporterOptions': {
-            'reportDir': testConfig.TestOutputDir,
-            'reportName': 'index',
-            'inlineAssets': true
+            mochawesome: {
+                stdout: testConfig.TestOutputDir + '/console.log',
+                options: {
+                    reportDir: testConfig.TestOutputDir,
+                    reportName: 'index',
+                    reportTitle: 'Functional Test results',
+                    inlineAssets: true
+                }
+            }
         }
     },
     'name': 'CMC Codecept Tests'
