@@ -79,7 +79,7 @@ async function JudgeDrawDirectionOrder(I, caseData, caseId) {
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
     //Need to reload the page as xui is not loading the page properly
-    await I.amOnPage(`/cases/case-details/` + caseId + '/trigger/DrawJudgesOrder/DrawJudgesOrder1');
+    await I.amOnPage('/cases/case-details/' + caseId + '/trigger/DrawJudgesOrder/DrawJudgesOrder1');
     await I.enterJudgeDrawDirectionsOrderPage1();
     await I.enterJudgeDrawDirectionsOrderPage2();
     await I.enterJudgeDrawDirectionsOrderPage3(caseData.previousServiceCaseReference);
