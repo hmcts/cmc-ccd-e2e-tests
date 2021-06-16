@@ -70,6 +70,6 @@ module.exports = async function () {
     await I.selectOption('#hearingCourt', judgeDrawDirectionOrderConfig.page2_hearingCourt);
     await I.selectOption('#estimatedHearingDuration', judgeDrawDirectionOrderConfig.page2_hearingDuration);
     await I.scrollTo(commonConfig.continueButton);
-    await I.waitForEnabled(commonConfig.continueButton);
+    await I.waitForEnabled(commonConfig.continueButton, testConfig.TestTimeToWaitForText || 60);
     await I.waitForNavigationToComplete(commonConfig.continueButton);
 };
