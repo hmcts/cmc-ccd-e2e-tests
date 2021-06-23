@@ -189,7 +189,8 @@ async function enterBreathingSpaceOnline(I) {
 async function enterBreathingSpaceError(I) {
     const eventName = caseEventName.ENTER_BREATHING_SPACE;
     await I.chooseNextStep(eventName);
-    await I.see('The callback data failed validation');
+    await I.see('Unable to proceed because there are one or more callback Errors or Warnings');
+    await I.see('This Event cannot be triggered since the claim is no longer part of the online civil money claims journey');
 }
 
 module.exports = {
