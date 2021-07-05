@@ -38,7 +38,7 @@ Scenario('Claimant create a case --> Caseworker submit ocon9x event and paper re
 
         //OCON events
         await caseHelper.issuePaperDefenceForms(I);
-        await caseHelper.paperResponseReviewed(I);
+        await caseHelper.paperResponseReviewed(I, 'OCON9x (Paper response (All))');
         await caseHelper.reviewOcon9xEvent(I);
         await caseHelper.paperRespAdmission(I);
     }
@@ -65,7 +65,7 @@ Scenario('Claimant create a case --> Caseworker submit ocon9x event and paper re
 
         //OCON events
         await caseHelper.issuePaperDefenceForms(I);
-        await caseHelper.paperResponseReviewed(I);
+        await caseHelper.paperResponseReviewed(I, 'OCON9x (Paper response (All))');
         await caseHelper.reviewOcon9xEvent(I);
         await caseHelper.paperRespDefence(I);
     }

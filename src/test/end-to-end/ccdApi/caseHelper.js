@@ -106,10 +106,10 @@ async function issuePaperDefenceForms(I) {
     await I.enterEventSummary(eventName);
 }
 
-async function paperResponseReviewed(I) {
+async function paperResponseReviewed(I, formType = 'OCON9x (Paper response (All))', docSubmissionFieldEnabled = false) {
     const eventName = caseEventName.PAPER_RESP_REVIEWED;
     await I.chooseNextStep(eventName);
-    await I.enterPaperRespReviewPage1();
+    await I.enterPaperRespReviewPage1(formType, docSubmissionFieldEnabled);
     await I.enterPaperRespReviewPage2();
     await I.enterEventSummary(eventName);
 }
