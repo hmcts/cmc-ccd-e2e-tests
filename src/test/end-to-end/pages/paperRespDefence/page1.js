@@ -12,7 +12,7 @@ module.exports = async function () {
 
     await I.click('#defenceType-DISPUTE');
 
-    await I.click('#respondents_0_responseFreeMediationOption-Yes');
+    await I.click('#respondents_0_responseFreeMediationOption_Yes');
 
     await I.wait(2);
     await I.waitForNavigationToComplete(commonConfig.continueButton);
