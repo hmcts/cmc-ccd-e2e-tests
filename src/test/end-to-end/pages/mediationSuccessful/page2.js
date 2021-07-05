@@ -16,13 +16,13 @@ module.exports = async function () {
     await I.attachFile(mediationConfig.page2_staffUploadDocField, 'fixtures/data/fileupload.txt');
     await I.fillField('#staffUploadedDocuments_0_documentName', mediationConfig.page2_docName);
 
-    await I.fillField('#staffUploadedDocuments_0_receivedDatetime-day', mediationConfig.page2_settlementReached_day);
-    await I.fillField('#staffUploadedDocuments_0_receivedDatetime-month', mediationConfig.page2_settlementReached_month);
-    await I.fillField('#staffUploadedDocuments_0_receivedDatetime-year', mediationConfig.page2_settlementReached_year);
+    await I.fillField('#receivedDatetime-day', mediationConfig.page2_settlementReached_day);
+    await I.fillField('#receivedDatetime-month', mediationConfig.page2_settlementReached_month);
+    await I.fillField('#receivedDatetime-year', mediationConfig.page2_settlementReached_year);
 
-    await I.fillField('#staffUploadedDocuments_0_receivedDatetime-hour', mediationConfig.page2_settlementReached_hour);
-    await I.fillField('#staffUploadedDocuments_0_receivedDatetime-minute', mediationConfig.page2_settlementReached_minute);
-    await I.fillField('#staffUploadedDocuments_0_receivedDatetime-second', mediationConfig.page2_settlementReached_second);
+    await I.fillField('#receivedDatetime-hour', mediationConfig.page2_settlementReached_hour);
+    await I.fillField('#receivedDatetime-minute', mediationConfig.page2_settlementReached_minute);
+    await I.fillField('#receivedDatetime-second', mediationConfig.page2_settlementReached_second);
 
     await I.selectOption('#staffUploadedDocuments_0_documentType', mediationConfig.page2_documentType);
 

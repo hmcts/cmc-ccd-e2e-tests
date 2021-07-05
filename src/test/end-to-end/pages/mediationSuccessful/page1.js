@@ -10,9 +10,9 @@ module.exports = async function () {
     await I.waitForElement('#respondents', testConfig.TestTimeToWaitForText);
 
     await I.runAccessibilityTest();
-    await I.fillField('#respondents_0_mediationSettlementReachedAt-day', mediationConfig.page1_settlementReached_day);
-    await I.fillField('#respondents_0_mediationSettlementReachedAt-month', mediationConfig.page1_settlementReached_month);
-    await I.fillField('#respondents_0_mediationSettlementReachedAt-year', mediationConfig.page1_settlementReached_year);
+    await I.fillField('#mediationSettlementReachedAt-day', mediationConfig.page1_settlementReached_day);
+    await I.fillField('#mediationSettlementReachedAt-month', mediationConfig.page1_settlementReached_month);
+    await I.fillField('#mediationSettlementReachedAt-year', mediationConfig.page1_settlementReached_year);
 
     await I.waitForNavigationToComplete(commonConfig.continueButton);
 };
