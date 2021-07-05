@@ -54,9 +54,9 @@ module.exports = async function () {
     await I.selectOption('#otherDirections_0_forParty', judgeDrawDirectionOrderConfig.page2_additionalOrder_claimant);
     await I.fillField('#otherDirections_0_directionComment', judgeDrawDirectionOrderConfig.page2_claimantInfo);
 
-    await I.fillField('#otherDirections_0_sendBy-day', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_day);
-    await I.fillField('#otherDirections_0_sendBy-month', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_month);
-    await I.fillField('#otherDirections_0_sendBy-year', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_year);
+    await I.fillField('#sendBy-day', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_day);
+    await I.fillField('#sendBy-month', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_month);
+    await I.fillField('#sendBy-year', judgeDrawDirectionOrderConfig.page2_docUploadDeadline_year);
 
     const isSafariBrowser = await I.isSafariBrowser();
 
