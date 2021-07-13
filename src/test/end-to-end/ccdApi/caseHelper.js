@@ -193,6 +193,72 @@ async function enterBreathingSpaceError(I) {
     await I.see('This Event cannot be triggered since the claim is no longer part of the online civil money claims journey');
 }
 
+async function changeContactDetails(I, userType = '') {
+    const eventName = caseEventName.CHANGE_CONTACT_DETAILS;
+    await I.chooseNextStep(eventName);
+    await I.changeContactDetailsPage1(userType);
+    await I.changeContactDetailsPage2();
+    await I.enterEventSummary(eventName);
+}
+
+async function resetPin(I) {
+    const eventName = caseEventName.RESET_PIN;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function resendRPA(I) {
+    const eventName = caseEventName.RESEND_RPA;
+    await I.chooseNextStep(eventName);
+    await I.waitForElement('#RPAEventType');
+    await I.selectOption('#RPAEventType', 'Claim');
+    await I.click('Continue');
+    await I.enterEventSummary(eventName);
+}
+
+async function attachViaBulkScan(I) {
+    const eventName = caseEventName.ATTACH_VIA_BULK_SCAN;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function addClaimNotets(I) {
+    const eventName = caseEventName.CLAIM_NOTES;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function linkLetterHolderId(I) {
+    const eventName = caseEventName.LINK_LETTER_HOLDER_ID;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function moveClaimToWaitngToBeTransferred(I) {
+    const eventName = caseEventName.WAITING_TO_BE_TRANSFERRED;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function supportUpdateEvent(I) {
+    const eventName = caseEventName.SUPPORT_UPDATE;
+    await I.chooseNextStep(eventName);
+    await I.enterEventSummary(eventName);
+}
+
+async function transferCase(I) {
+    const eventName = caseEventName.TRANSFER_CASE;
+    await I.chooseNextStep(eventName);
+    await I.waitForElement('#transferContent_transferCourtName');
+    await I.fillField('#transferContent_transferCourtName', 'Slough court');
+    await I.fillField('#transferContent_transferCourtAddress_transferCourtAddress_postcodeInput', 'SL11GF');
+    await I.click('Find address');
+    await I.wait(5);
+    await I.retry(10).selectOption('#transferContent_transferCourtAddress_transferCourtAddress_addressList', ' Flat 1, Skyline 292-298, High Street, Slough ');
+    await I.click('#transferContent_transferReason-ENFORCEMENT');
+    await I.click('Continue');
+}
+
 module.exports = {
     initateCaseByCitizen,
     createOpenCase,
@@ -219,5 +285,14 @@ module.exports = {
     handedToCCBC,
     enterBreathingSpaceOnline,
     enterBreathingSpaceError,
+    addClaimNotets,
+    resendRPA,
+    attachViaBulkScan,
+    resetPin,
+    moveClaimToWaitngToBeTransferred,
+    linkLetterHolderId,
+    supportUpdateEvent,
+    changeContactDetails,
+    transferCase,
     signOut
 };

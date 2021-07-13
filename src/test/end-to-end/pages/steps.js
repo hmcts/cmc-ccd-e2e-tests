@@ -36,6 +36,8 @@ module.exports = function () {
         createClaimDefendantAsOrg: steps.claimant.createClaimDefendantAsOrg,
         linkDefendant: steps.defendant.linkDefendant,
         confirmDefendantDetails: steps.defendant.confirmYourDetails,
+        changeContactDetailsPage1: steps.changeContactDetails.page1,
+        changeContactDetailsPage2: steps.changeContactDetails.page2,
         defendantExtraTimeNeeded: steps.defendant.moreTimeNeeded,
         chooseDefendantResponse: steps.defendant.chooseResponse,
         decideHowToPay: steps.defendant.decideHowToPay,

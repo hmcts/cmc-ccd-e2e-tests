@@ -34,7 +34,16 @@ const caseEventName = {
     PAPER_RESP_DEFENCE: 'Paper Response - Defence',
     ENTER_BREATHING_SPACE: 'Enter Breathing Space',
     LIFT_BREATHING_SPACE: 'Lift Breathing Space',
-    CASE_HANDED_TO_CCBC: 'Case handed to CCBC'
+    CASE_HANDED_TO_CCBC: 'Case handed to CCBC',
+    CHANGE_CONTACT_DETAILS: 'Change contact details',
+    RESET_PIN: 'Reset Pin',
+    RESEND_RPA: 'Resend RPA',
+    CLAIM_NOTES: 'Claim notes',
+    ATTACH_VIA_BULK_SCAN: 'Attached via bulk scan',
+    LINK_LETTER_HOLDER_ID: 'Link letter holder',
+    TRANSFER_CASE: 'Transfer case',
+    WAITING_TO_BE_TRANSFERRED: 'Waiting to be transferred',
+    SUPPORT_UPDATE: 'Support update'
 };
 
 module.exports = {
