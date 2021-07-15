@@ -1,10 +1,10 @@
 const testConfig = require('../../../config');
 
-module.exports = async function(type = '', defendantType = '') {
+module.exports = async function(type = '', defendantType = 'INDIVIDUAL') {
     const I = this;
     await I.waitInUrl('response/task-list');
     await I.click('Check and submit your response');
-    if (testConfig.env === 'aat') {
+    if (testConfig.env === 'aat' && defendantType === 'INDIVIDUAL') {
         await I.waitInUrl('start-page');
         await I.click('I don\'t want to answer these questions');
     }

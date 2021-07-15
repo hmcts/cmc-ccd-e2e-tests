@@ -5,12 +5,12 @@ const idamHelper = require('../ccdApi/idamHelper');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
-Feature('Part Admission - CCJ').retry(testConfig.TestRetryFeatures);
+Feature('Part Admission Paid none will pay by set date').retry(testConfig.TestRetryFeatures);
 
 let pinValue;
 let claim;
 
-Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) => {
+Scenario('Part Admission Paid none will pay by set date', async ({I}) => {
     //claimant steps
     await I.amOnCitizenAppPage('');
     await I.authenticateWithIdam(userType.CITIZEN, true);
