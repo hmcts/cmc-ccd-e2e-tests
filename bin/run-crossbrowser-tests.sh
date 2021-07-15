@@ -18,5 +18,6 @@ then
     echo EXIT_STATUS: $EXIT_STATUS
 else
     # Compatible with Jenkins parallel crossbrowser pipeline
-    yarn test-crossbrowser-e2e
+    yarn test-crossbrowser-e2e || EXIT_STATUS=$?
+    echo EXIT_STATUS: $EXIT_STATUS
 fi
