@@ -50,7 +50,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
     env.TEST_ENV = params.ENVIRONMENT
     loadVaultSecrets(secrets)
-    enableFullFunctionalTest(90)
+    enableFullFunctionalTest(120)
     
     enableCrossBrowserTest(['chrome', 'firefox', 'safari', 'microsoft'])
     
