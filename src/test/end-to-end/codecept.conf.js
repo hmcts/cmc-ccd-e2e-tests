@@ -63,13 +63,13 @@ exports.config = {
         },
         'retryFailedStep': {
             'enabled': true,
-            'retries': 1
+            'retries': 2
         },
     },
     'multiple': {
         'parallel': {
             // Splits tests into 2 chunks
-            'chunks': 3
+            'chunks': 2
         }
     },
     'mocha': {
