@@ -199,68 +199,7 @@ module.exports = {
     'totalAmount': '10000',
     'interestType': 'NO_INTEREST',
     'paymentFeeId': '224831',
-    'caseDocuments': [
-        {
-            'id': 'ba246cfe-e8c1-461b-9042-c4a590ef109d',
-            'value': {
-                'size': 79917,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/69c829b5-772d-46ac-8079-11f23a467298',
-                    'document_filename': '416MC378-claim-form.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/69c829b5-772d-46ac-8079-11f23a467298/binary'
-                },
-                'documentName': '416MC378-claim-form.pdf',
-                'documentType': 'SEALED_CLAIM',
-                'createdDatetime': '2021-03-02T10:39:26.900214'
-            }
-        },
-        {
-            'id': '1295526b-37bc-45ce-8703-012346383255',
-            'value': {
-                'size': 73129,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/a5f197b0-bd46-4bcb-8a4b-e5b4f123ebc6',
-                    'document_filename': '416MC378-claim-form-claimant-copy.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/a5f197b0-bd46-4bcb-8a4b-e5b4f123ebc6/binary'
-                },
-                'documentName': '416MC378-claim-form-claimant-copy.pdf',
-                'documentType': 'CLAIM_ISSUE_RECEIPT',
-                'createdDatetime': '2021-03-02T10:39:27.233627'
-            }
-        },
-        {
-            'id': '94e4f887-4981-4df6-af86-45eae8b1b1fd',
-            'value': {
-                'size': 15121,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/cd691967-43aa-478b-8a43-d2a4417dfe9e',
-                    'document_filename': '416MC378-claim-response.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/cd691967-43aa-478b-8a43-d2a4417dfe9e/binary'
-                },
-                'documentName': '416MC378-claim-response.pdf',
-                'documentType': 'DEFENDANT_RESPONSE_RECEIPT',
-                'createdDatetime': '2021-03-02T10:45:26.333806'
-            }
-        },
-        {
-            'id': 'ba177dd1-62b0-466f-88eb-2f09ecb8e39d',
-            'value': {
-                'size': 14854,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/09574e81-7c9f-4d1c-a531-8cdd223b006c',
-                    'document_filename': '416MC378-ccj-request-admissions.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/09574e81-7c9f-4d1c-a531-8cdd223b006c/binary'
-                },
-                'documentName': '416MC378-ccj-request-admissions.pdf',
-                'documentType': 'CCJ_REQUEST',
-                'createdDatetime': '2021-03-02T10:59:42.766353'
-            }
-        }
-    ],
+    'caseDocuments': [],
     'paymentAmount': '2500',
     'paymentStatus': 'Success',
     'paymentNextUrl': 'https://www.payments.service.gov.uk/secure/67f60d34-1848-4cd5-8e9e-f4472c1156c4',

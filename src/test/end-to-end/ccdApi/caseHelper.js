@@ -259,6 +259,33 @@ async function transferCase(I) {
     await I.click('Continue');
 }
 
+async function updatedHWFNumber (I, hwfRefNum) {
+    const eventName = caseEventName.UPDATED_HWF_NUM;
+    await I.chooseNextStep(eventName);
+    await I.waitInUrl('UpdateHWFNumber/UpdateHWFNumber1');
+    await I.fillField('#helpWithFeesNumber', hwfRefNum);
+    await I.click('Continue');
+    await I.enterEventSummary(eventName);
+}
+
+async function invalidHWFNumber(I) {
+    const eventName = caseEventName.INVALID_HWF_REF;
+    await I.chooseNextStep(eventName);
+    await I.waitInUrl('InvalidHWFReference/InvalidHWFReference1');
+    await I.click('Continue');
+    await I.enterEventSummary(eventName);
+}
+
+async function noRemissionHwf(I) {
+    const eventName = caseEventName.NO_REMISSION_HWF;
+    await I.chooseNextStep(eventName);
+    await I.waitInUrl('NoRemissionHWF/NoRemissionHWF1');
+    await I.selectOption('#hwfFeeDetailsSummary', 'Does not qualify for Help with Fees assistance');
+    await I.fillField('#hwfMandatoryDetails', 'Remission cannot be provided');
+    await I.click('Continue');
+    await I.enterEventSummary(eventName);
+}
+
 module.exports = {
     initateCaseByCitizen,
     createOpenCase,
@@ -294,5 +321,8 @@ module.exports = {
     supportUpdateEvent,
     changeContactDetails,
     transferCase,
+    updatedHWFNumber,
+    invalidHWFNumber,
+    noRemissionHwf,
     signOut
 };

@@ -143,68 +143,7 @@ module.exports = {
     'totalAmount': '81000',
     'interestType': 'NO_INTEREST',
     'paymentFeeId': '227043',
-    'caseDocuments': [
-        {
-            'id': '50e22bdb-a524-421d-bd1b-a62647c86991',
-            'value': {
-                'size': 80005,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/40f93f3d-44fe-4c72-a4a6-88fcd436dc39',
-                    'document_filename': '417MC514-claim-form.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/40f93f3d-44fe-4c72-a4a6-88fcd436dc39/binary'
-                },
-                'documentName': '417MC514-claim-form.pdf',
-                'documentType': 'SEALED_CLAIM',
-                'createdDatetime': '2021-03-04T15:53:16.412745'
-            }
-        },
-        {
-            'id': '71f79c18-54a9-4451-aa7a-23a12e41b315',
-            'value': {
-                'size': 73218,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/6d8ba149-b362-4a40-8b0a-0c7417b6ec26',
-                    'document_filename': '417MC514-claim-form-claimant-copy.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/6d8ba149-b362-4a40-8b0a-0c7417b6ec26/binary'
-                },
-                'documentName': '417MC514-claim-form-claimant-copy.pdf',
-                'documentType': 'CLAIM_ISSUE_RECEIPT',
-                'createdDatetime': '2021-03-04T15:53:16.721799'
-            }
-        },
-        {
-            'id': '897a1555-52ee-4fb3-b47c-346d3542d5c0',
-            'value': {
-                'size': 19268,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/8582928b-91f9-4701-a6ab-6df522022859',
-                    'document_filename': '417MC514-claim-response.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/8582928b-91f9-4701-a6ab-6df522022859/binary'
-                },
-                'documentName': '417MC514-claim-response.pdf',
-                'documentType': 'DEFENDANT_RESPONSE_RECEIPT',
-                'createdDatetime': '2021-03-04T15:57:04.48253'
-            }
-        },
-        {
-            'id': '4f48668b-9be9-4951-a87e-a078a370aab2',
-            'value': {
-                'size': 11242,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/70470190-452a-433b-899a-3b98801e64a8',
-                    'document_filename': '417MC514-claimant-hearing-questions.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/70470190-452a-433b-899a-3b98801e64a8/binary'
-                },
-                'documentName': '417MC514-claimant-hearing-questions.pdf',
-                'documentType': 'CLAIMANT_DIRECTIONS_QUESTIONNAIRE',
-                'createdDatetime': '2021-03-04T15:58:16.413185'
-            }
-        }
-    ],
+    'caseDocuments': [],
     'paymentAmount': '6000',
     'paymentStatus': 'Success',
     'paymentNextUrl': 'https://www.payments.service.gov.uk/secure/eebb4ec5-e9e2-4bce-95a6-8d6280d701fe',

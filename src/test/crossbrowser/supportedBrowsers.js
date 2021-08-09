@@ -9,7 +9,9 @@ const supportedBrowsers = {
             browserVersion: 'latest',
             'sauce:options': {
                 name: 'CMC CCD E2E Tests - XUI: IE11',
-                screenResolution: '1400x1050'
+                screenResolution: '1400x1050',
+                extendedDebugging: true,
+                capturePerformance: true
             }
         },
         edge_win_latest: {
@@ -17,7 +19,9 @@ const supportedBrowsers = {
             platformName: LATEST_WINDOWS,
             browserVersion: 'latest',
             'sauce:options': {
-                name: 'CMC CCD E2E Tests - XUI: Edge_Win10'
+                name: 'CMC CCD E2E Tests - XUI: Edge_Win10',
+                extendedDebugging: true,
+                capturePerformance: true
             }
         }
     },
@@ -29,7 +33,9 @@ const supportedBrowsers = {
             'sauce:options': {
                 name: 'CMC CCD E2E Tests - XUI: MAC_SAFARI',
                 seleniumVersion: '3.141.59',
-                screenResolution: '1400x1050'
+                screenResolution: '1400x1050',
+                extendedDebugging: true,
+                capturePerformance: true
             }
         }
     },
@@ -39,7 +45,9 @@ const supportedBrowsers = {
             platformName: LATEST_WINDOWS,
             browserVersion: 'latest',
             'sauce:options': {
-                name: 'CMC CCD E2E Tests - XUI: WIN_CHROME_LATEST'
+                name: 'CMC CCD E2E Tests - XUI: WIN_CHROME_LATEST',
+                extendedDebugging: true,
+                capturePerformance: true
             }
         },
         chrome_mac_latest: {
@@ -47,7 +55,9 @@ const supportedBrowsers = {
             platformName: LATEST_MAC,
             browserVersion: 'latest',
             'sauce:options': {
-                name: 'CMC CCD E2E Tests - XUI: MAC_CHROME_LATEST'
+                name: 'CMC CCD E2E Tests - XUI: MAC_CHROME_LATEST',
+                extendedDebugging: true,
+                capturePerformance: true
             }
         }
     },
@@ -57,7 +67,9 @@ const supportedBrowsers = {
             platformName: LATEST_WINDOWS,
             browserVersion: 'latest',
             'sauce:options': {
-                name: 'CMC CCD E2E Tests - XUI: WIN_FIREFOX_LATEST'
+                name: 'CMC CCD E2E Tests - XUI: WIN_FIREFOX_LATEST',
+                extendedDebugging: true,
+                capturePerformance: true
             }
         },
         firefox_mac_latest: {
@@ -65,7 +77,9 @@ const supportedBrowsers = {
             platformName: LATEST_MAC,
             browserVersion: 'latest',
             'sauce:options': {
-                name: 'CMC CCD E2E Tests - XUI: MAC_FIREFOX_LATEST'
+                name: 'CMC CCD E2E Tests - XUI: MAC_FIREFOX_LATEST',
+                extendedDebugging: true,
+                capturePerformance: true
             }
         }
     }

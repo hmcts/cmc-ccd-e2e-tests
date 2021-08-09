@@ -153,68 +153,7 @@ module.exports = {
     'totalAmount': '10550',
     'interestRate': 8,
     'interestType': 'STANDARD',
-    'caseDocuments': [
-        {
-            'id': 'e1808c19-ee7f-4c5b-b57c-ac46135aa2cb',
-            'value': {
-                'size': 81406,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/28fbbe2f-b7d2-4cb3-93b7-92b771c0415f',
-                    'document_filename': '408MC516-claim-form.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/28fbbe2f-b7d2-4cb3-93b7-92b771c0415f/binary'
-                },
-                'documentName': '408MC516-claim-form.pdf',
-                'documentType': 'SEALED_CLAIM',
-                'createdDatetime': '2021-02-05T05:49:15.558566'
-            }
-        },
-        {
-            'id': '337ba8c6-61e1-4bbd-ab5c-3764fbd94485',
-            'value': {
-                'size': 73894,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/d4ec973f-51bf-4c28-8a7c-45c450d175ee',
-                    'document_filename': '408MC516-claim-form-claimant-copy.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/d4ec973f-51bf-4c28-8a7c-45c450d175ee/binary'
-                },
-                'documentName': '408MC516-claim-form-claimant-copy.pdf',
-                'documentType': 'CLAIM_ISSUE_RECEIPT',
-                'createdDatetime': '2021-02-05T05:49:15.822462'
-            }
-        },
-        {
-            'id': '1ef3ab5a-76a5-4e31-a938-9997e74caad4',
-            'value': {
-                'size': 19921,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/a8512fcd-545e-4ab0-ac88-d0082ab9a670',
-                    'document_filename': '408MC516-claim-response.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/a8512fcd-545e-4ab0-ac88-d0082ab9a670/binary'
-                },
-                'documentName': '408MC516-claim-response.pdf',
-                'documentType': 'DEFENDANT_RESPONSE_RECEIPT',
-                'createdDatetime': '2021-02-05T05:50:35.911269'
-            }
-        },
-        {
-            'id': 'cebe7aba-1adc-4884-8152-3d8eb0c799b4',
-            'value': {
-                'size': 11515,
-                'createdBy': 'OCMC',
-                'documentLink': {
-                    'document_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/f91d0294-94dc-465c-a0e1-2eaa543ec5ef',
-                    'document_filename': '408MC516-claimant-hearing-questions.pdf',
-                    'document_binary_url': 'http://dm-store-aat.service.core-compute-aat.internal/documents/f91d0294-94dc-465c-a0e1-2eaa543ec5ef/binary'
-                },
-                'documentName': '408MC516-claimant-hearing-questions.pdf',
-                'documentType': 'CLAIMANT_DIRECTIONS_QUESTIONNAIRE',
-                'createdDatetime': '2021-02-05T05:51:40.983355'
-            }
-        }
-    ],
+    'caseDocuments': [],
     'paymentAmount': '250000',
     'paymentStatus': 'Success',
     'submitterEmail': 'civilmoneyclaims+claimant-moneyclaims-210205@gmail.com',

@@ -43,7 +43,15 @@ const caseEventName = {
     LINK_LETTER_HOLDER_ID: 'Link letter holder',
     TRANSFER_CASE: 'Transfer case',
     WAITING_TO_BE_TRANSFERRED: 'Waiting to be transferred',
-    SUPPORT_UPDATE: 'Support update'
+    SUPPORT_UPDATE: 'Support update',
+    UPDATED_HWF_NUM: 'Updated HwF Number',
+    NO_REMISSION_HWF: 'No remission HwF',
+    INVALID_HWF_REF: 'Invalid HwF Reference',
+    FULL_REMISSION_HWF: 'Full remission HwF- granted',
+    PART_REMISSION_HWF: 'Part remission HwF-granted',
+    MORE_INFO_HWF_REQD: 'More Information Required HwF',
+    ISSUEE_HWF_CLAIM: 'Issue Help With Fees Claim'
+
 };
 
 module.exports = {
