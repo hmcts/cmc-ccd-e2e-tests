@@ -5,7 +5,7 @@ properties([
         parameters([
                 string(name: 'ENVIRONMENT', defaultValue: 'aat', description: 'Environment to test'),
                 string(name: 'ExUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net/', description: 'The exui URL you want to run cmc end to end tests against'),
-                string(name: 'CMC_URL_TO_TEST', defaultValue: 'https://moneyclaims.demo.platform.hmcts.net/', description: 'The cmc citizen frontend URL you want to run cmc end to end tests against'),
+                string(name: 'CMC_URL_TO_TEST', defaultValue: 'https://moneyclaims.aat.platform.hmcts.net/', description: 'The cmc citizen frontend URL you want to run cmc end to end tests against'),
                 string(name: 'IDAM_API_URL', defaultValue: 'https://idam-api.aat.platform.hmcts.net', description: 'The URL of idam api'),
                 string(name: 'DM_STORE_URL', defaultValue: 'http://dm-store-aat.service.core-compute-aat.internal', description: 'The URL of dm store'),
                 string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
