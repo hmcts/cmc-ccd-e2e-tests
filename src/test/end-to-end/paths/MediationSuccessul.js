@@ -13,16 +13,6 @@ Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Dec
     await runFeatureTestSteps(I, createCitizenCaseJson);
 }).retry(testConfig.TestRetryScenarios);
 
-xScenario('Full Defence → States Paid', async ({I}) => {
-    const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullDefenceStatesPaid');
-    await runFeatureTestSteps(I, createCitizenCaseJson);
-}).retry(testConfig.TestRetryScenarios);
-
-xScenario('Part Admission', async ({I}) => {
-    const createCitizenCaseJson = require('../fixtures/data/ReferMediationPartAdmit');
-    await runFeatureTestSteps(I, createCitizenCaseJson);
-}).retry(testConfig.TestRetryScenarios);
-
 async function runFeatureTestSteps(I, createCitizenCaseJson) {
     await caseHelper.setUpApiAuthToken(testConfig.citizenUser);
 
