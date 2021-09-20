@@ -18,6 +18,7 @@ async function updateApiEvent(eventName, json, caseId) {
 async function updateCaseworkerEvent(I, eventName, caseId) {
     await I.authenticateWithIdam(userType.CASEWORKER);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
+    await I.wait(10);
     await I.chooseNextStep(eventName);
     await I.enterEventSummary(eventName);
 }

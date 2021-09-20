@@ -47,7 +47,7 @@ exports.config = {
             require: './helpers/JSWait.js'
         },
         'Mochawesome': {
-            uniqueScreenshotNames: 'true'
+            uniqueScreenshotNames: true
         }
     },
     'include': {

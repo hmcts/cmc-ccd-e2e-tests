@@ -1,6 +1,6 @@
 module.exports = {
     TestEndToEndUrl: process.env.TEST_E2E_URL || 'https://manage-case.aat.platform.hmcts.net/',
-    TestFrontEndUrl: process.env.TEST_FRONT_END_URL || 'https://moneyclaims.aat.platform.hmcts.net//',
+    TestFrontEndUrl: process.env.TEST_FRONT_END_URL || 'https://moneyclaims.demo.platform.hmcts.net//',
     TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
     TestRetryFeatures: process.env.RETRY_FEATURES || 0,
     TestRetryScenarios: process.env.RETRY_SCENARIOS || 2,
@@ -23,8 +23,8 @@ module.exports = {
         email: process.env.JUDGE_USER_EMAIL
     },
     citizenUser: {
-        password: process.env.USER_PASSWORD,
-        email: process.env.USER_EMAIL,
+        password: 'Password13',
+        email: 'cmcclaimantdemo23@gmail.com',
     },
     url: {
         authProviderApi: process.env.SERVICE_AUTH_PROVIDER_API_BASE_URL || 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal',
