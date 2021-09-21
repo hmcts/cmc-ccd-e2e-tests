@@ -21,7 +21,7 @@ String component = "ccd-e2e-tests"
 
 def secrets = [
   'cmc-aat': [
-    secret('cmc-caseworker-username', 'CW_USER_EMAIL'),
+    secret('cmc-caseworker-test-username', 'CW_USER_EMAIL'),
     secret('cmc-caseworker-password', 'CW_USER_PASSWORD'),
     secret('cmc-la-username', 'LA_USER_EMAIL'),
     secret('cmc-la-password', 'LA_USER_PASSWORD'),
@@ -56,13 +56,13 @@ withNightlyPipeline("nodejs", product, component) {
     loadVaultSecrets(secrets)
     enableFullFunctionalTest(120)
     
-    enableCrossBrowserTest(['chrome', 'firefox', 'safari', 'microsoft'])
+   // enableCrossBrowserTest(['chrome', 'firefox', 'safari', 'microsoft'])
     
     after('fullFunctionalTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 
-    after('crossBrowserTest') {
+   /* after('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-    }
+    }*/
 }
