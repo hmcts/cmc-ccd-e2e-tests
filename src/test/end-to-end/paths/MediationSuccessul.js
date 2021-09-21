@@ -11,8 +11,7 @@ Feature('Mediation Successful').retry(testConfig.TestRetryFeatures);
 Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Accept mediation by claimant', async ({I}) => {
     const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullDefenceDisputeAll');
     await runFeatureTestSteps(I, createCitizenCaseJson);
-}).tag('@crossbrowser')
-    .retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 async function runFeatureTestSteps(I, createCitizenCaseJson) {
     await caseHelper.setUpApiAuthToken(testConfig.citizenUser);
