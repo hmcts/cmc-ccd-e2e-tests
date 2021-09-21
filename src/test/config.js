@@ -1,6 +1,6 @@
 module.exports = {
     TestEndToEndUrl: process.env.TEST_E2E_URL || 'https://manage-case.aat.platform.hmcts.net/',
-    TestFrontEndUrl: process.env.TEST_FRONT_END_URL || 'https://moneyclaims.aat.platform.hmcts.net//',
+    TestFrontEndUrl: process.env.TEST_FRONT_END_URL || 'https://moneyclaims.aat.platform.hmcts.net/',
     TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
     TestRetryFeatures: process.env.RETRY_FEATURES || 0,
     TestRetryScenarios: process.env.RETRY_SCENARIOS || 2,

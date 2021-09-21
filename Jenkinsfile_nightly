@@ -9,7 +9,8 @@ properties([
                 string(name: 'IDAM_API_URL', defaultValue: 'https://idam-api.aat.platform.hmcts.net', description: 'The URL of idam api'),
                 string(name: 'DM_STORE_URL', defaultValue: 'http://dm-store-aat.service.core-compute-aat.internal', description: 'The URL of dm store'),
                 string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
-                string(name: 'CCD_DATA_STORE_URL', defaultValue: 'http://ccd-data-store-api-aat.service.core-compute-aat.internal', description: 'The URL of ccd data store')
+                string(name: 'CCD_DATA_STORE_URL', defaultValue: 'http://ccd-data-store-api-aat.service.core-compute-aat.internal', description: 'The URL of ccd data store'),
+                string(name: 'CLAIM_STORE_URL', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Claim store url')
         ])
 ])
 
@@ -20,7 +21,7 @@ String component = "ccd-e2e-tests"
 
 def secrets = [
   'cmc-aat': [
-    secret('cmc-caseworker-username', 'CW_USER_EMAIL'),
+    secret('cmc-caseworker-test-username', 'CW_USER_EMAIL'),
     secret('cmc-caseworker-password', 'CW_USER_PASSWORD'),
     secret('cmc-la-username', 'LA_USER_EMAIL'),
     secret('cmc-la-password', 'LA_USER_PASSWORD'),
@@ -50,6 +51,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.IDAM_API_URL=params.IDAM_API_URL
     env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
     env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
+    env.CLAIM_STORE_URL = params.CLAIM_STORE_URL
     env.TEST_ENV = params.ENVIRONMENT
     loadVaultSecrets(secrets)
     enableFullFunctionalTest(120)
