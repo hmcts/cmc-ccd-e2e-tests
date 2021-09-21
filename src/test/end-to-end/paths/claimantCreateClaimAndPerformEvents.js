@@ -36,4 +36,5 @@ Scenario('Create Claimant flow then events claim notes, change contact details, 
     await caseHelper.attachViaBulkScan(I);
     await caseHelper.supportUpdateEvent(I);
     await caseHelper.transferCase(I);
-}).retry(testConfig.TestRetryScenarios);
+}).tag('@crossbrowser')
+    .retry(testConfig.TestRetryScenarios);
