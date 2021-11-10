@@ -2,7 +2,7 @@ const config = require('../../config.js');
 const apiRequest = require('./apiRequest.js');
 const initiateClaimPaymentCitizenJson = require('../fixtures/data/InitiateClaimPaymentCitizen');
 const {v4: uuidv4} = require('uuid');
-
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const {userType, caseEventId, caseEventName} = require('../common/Constants');
 
 async function initateCaseByCitizen() {
@@ -74,7 +74,9 @@ async function drawDirectionOrder(I, caseData, caseId) {
 }
 
 async function JudgeDrawDirectionOrder(I, caseData, caseId) {
+    logger.info({message: 'Inside JudgeDrawDirectionOrder'});
     const eventName = caseEventName.JUDGE_DRAW_DIRECTIONS_ORDER;
+    logger.info({message: 'Inside JudgeDrawDirectionOrder'});
     await I.authenticateWithIdam(userType.JUDGE);
     await I.amOnPage(`/case/${config.definition.jurisdiction}/${config.definition.caseType}/` + caseId);
     await I.chooseNextStep(eventName);
@@ -113,6 +115,13 @@ async function paperResponseReviewed(I, formType = 'OCON9x (Paper response (All)
     await I.enterPaperRespReviewPage2();
     await I.enterEventSummary(eventName);
 }
+async function manageDocumentsEventTriggered(I, formType = 'Other', docSubmissionFieldEnabled = false) {
+    const eventName = caseEventName.MANAGE_DOCUMENTS;
+    await I.chooseNextStep(eventName);
+    await I.enterManageDocumentsEventTriggered(formType, docSubmissionFieldEnabled);
+    await I.enterEventSummary(eventName);
+}
+
 
 async function reviewOcon9xEvent(I) {
     const eventName = caseEventName.REVIEW_OCON9X_RESP;
@@ -136,7 +145,9 @@ async function paperRespDefence(I) {
 }
 
 async function setUpApiAuthToken(user) {
+    logger.info({message: 'Before setUpApiAuthToken'});
     await apiRequest.setupTokens(user);
+    logger.info({message: 'After setUpApiAuthToken'});
 }
 
 function getNextClaimNumber() {
@@ -304,6 +315,7 @@ module.exports = {
     updateMediationUnsuccessful,
     issuePaperDefenceForms,
     paperResponseReviewed,
+    manageDocumentsEventTriggered,
     reviewOcon9xEvent,
     paperRespAdmission,
     paperRespDefence,
