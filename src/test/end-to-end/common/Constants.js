@@ -25,6 +25,7 @@ const caseEventName = {
     DRAW_DIRECTIONS_ORDER: 'Draw directions order',
     JUDGE_DRAW_DIRECTIONS_ORDER: 'Draw directions order - Judge',
     REFERRED_MEDIATION: 'Mediation pending',
+    MANAGE_DOCUMENTS: "Manage Documents",
     MEDIATION_SUCCESSFUL: 'Mediation successful',
     MEDIATION_FAILED: 'Mediation unsuccessful',
     ISSUE_PAPER_DEFENCE_FORMS: 'Issue paper defence forms',
