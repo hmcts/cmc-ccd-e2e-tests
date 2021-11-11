@@ -14,7 +14,7 @@ module.exports = async function (formType = 'Other', docSubmissionFieldEnabled =
     await I.click(manageDocumentsConfig.page1_addNewScannedDocsButton);
 
     await I.waitForElement('#staffUploadedDocuments_0_documentName', testConfig.TestTimeToWaitForText);
-    await I.fillField('#staffUploadedDocuments_0_documentName', 'Jisha');
+    await I.fillField('#staffUploadedDocuments_0_documentName', formType);
     await I.selectOption('#staffUploadedDocuments_0_documentType', formType);
     await I.attachFile(manageDocumentsConfig.page1_staffUploadDocField, 'fixtures/data/test.pdf');
     await I.wait(5);
