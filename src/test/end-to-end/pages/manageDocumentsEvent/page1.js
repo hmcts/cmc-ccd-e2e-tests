@@ -7,7 +7,6 @@ const commonConfig = require('../common/commonConfig');
 module.exports = async function (formType = 'Other') {
     const I = this;
     await I.waitInUrl('ManageDocuments/ManageDocuments1', testConfig.TestTimeToWaitForText);
-    
     await I.waitForElement('#staffUploadedDocuments', testConfig.TestTimeToWaitForText);
     await I.click(manageDocumentsConfig.page1_addNewScannedDocsButton);
 
