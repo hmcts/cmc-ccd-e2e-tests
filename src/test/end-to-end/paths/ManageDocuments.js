@@ -25,7 +25,6 @@ Scenario('Claimant create a case --> Caseworker submit Manage Document Other', a
     await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
     await I.waitForText('Claim created by citizen');
     await I.see('Claim submitted');
-    logger.info({message: 'Calling manageDocumentsEventTriggered ', claimRef});
     await caseHelper.manageDocumentsEventTriggered(I, 'Other');
 }).retry(testConfig.TestRetryScenarios);
 
@@ -45,6 +44,5 @@ Scenario('Claimant create a case --> Caseworker submit manage Document Correspon
     await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
     await I.waitForText('Claim created by citizen');
     await I.see('Claim submitted');
-    logger.info({message: 'Calling manageDocumentsEventTriggered ', claimRef});
     await caseHelper.manageDocumentsEventTriggered(I, 'Correspondence');
 }).retry(testConfig.TestRetryScenarios);
