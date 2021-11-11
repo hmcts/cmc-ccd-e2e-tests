@@ -4,7 +4,7 @@ const testConfig = require('../../../config');
 const manageDocumentsConfig = require('./manageDocumentsConfig');
 const commonConfig = require('../common/commonConfig');
 
-module.exports = async function (formType = 'Other', docSubmissionFieldEnabled = false) {
+module.exports = async function (formType = 'Other') {
     const I = this;
     await I.waitInUrl('ManageDocuments/ManageDocuments1', testConfig.TestTimeToWaitForText);
     
