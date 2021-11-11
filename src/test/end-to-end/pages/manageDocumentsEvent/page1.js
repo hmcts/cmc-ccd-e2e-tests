@@ -3,11 +3,9 @@
 const testConfig = require('../../../config');
 const manageDocumentsConfig = require('./manageDocumentsConfig');
 const commonConfig = require('../common/commonConfig');
-const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 module.exports = async function (formType = 'Other', docSubmissionFieldEnabled = false) {
     const I = this;
-    logger.info({message: 'Inside ManagedDocument'});
     await I.waitInUrl('ManageDocuments/ManageDocuments1', testConfig.TestTimeToWaitForText);
     
     await I.waitForElement('#staffUploadedDocuments', testConfig.TestTimeToWaitForText);
