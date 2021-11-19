@@ -286,6 +286,13 @@ async function noRemissionHwf(I) {
     await I.enterEventSummary(eventName);
 }
 
+async function manageDocumentsEventTriggered(I, formType = 'Other', docSubmissionFieldEnabled = false) {
+    const eventName = caseEventName.MANAGE_DOCUMENTS;
+    await I.chooseNextStep(eventName);
+    await I.enterManageDocumentsEventTriggered(formType, docSubmissionFieldEnabled);
+    await I.enterEventSummary(eventName);
+}
+
 module.exports = {
     initateCaseByCitizen,
     createOpenCase,
@@ -304,6 +311,7 @@ module.exports = {
     updateMediationUnsuccessful,
     issuePaperDefenceForms,
     paperResponseReviewed,
+    manageDocumentsEventTriggered,
     reviewOcon9xEvent,
     paperRespAdmission,
     paperRespDefence,
