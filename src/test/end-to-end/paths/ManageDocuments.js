@@ -67,4 +67,4 @@ async function runFeatureTestSteps(I, createCitizenCaseJson) {
 
     await caseHelper.manageDocumentsEventTriggered(I, 'Mediation agreement');
     await caseHelper.signOut(I);
-}  
+}
