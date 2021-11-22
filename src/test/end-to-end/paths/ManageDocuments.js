@@ -6,6 +6,7 @@ const {userType} = require('../common/Constants');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const testConfig = require('src/test/config.js');
+const {caseEventName} = require('../common/Constants');
 
 Feature('ManageDocuments functionality').retry(testConfig.TestRetryFeatures);
 
@@ -46,3 +47,24 @@ Scenario('Claimant create a case --> Caseworker submit manage Document Correspon
     await I.see('Claim submitted');
     await caseHelper.manageDocumentsEventTriggered(I, 'Correspondence');
 }).retry(testConfig.TestRetryScenarios);
+
+Scenario('Full Defence → Dispute All → Accept mediation by Defendant → Decide to proceed is Yes (claimant)→ Accept mediation by claimant → ManageDocument Event triggered for Mediation Agreement ', async ({I}) => {
+    const createCitizenCaseJson = require('../fixtures/data/ReferMediationFullDefenceDisputeAll');
+    await runFeatureTestSteps(I, createCitizenCaseJson);
+}).retry(testConfig.TestRetryScenarios);
+
+async function runFeatureTestSteps(I, createCitizenCaseJson) {
+    await caseHelper.setUpApiAuthToken(testConfig.citizenUser);
+
+    logger.info({message: 'Creating a case in ccd with given json'});
+    const updatedCaseJson = await caseHelper.createOpenCase(I, createCitizenCaseJson);
+    const caseId = updatedCaseJson.id;
+
+    logger.info({message: 'Created a case in ccd with id: ', caseId});
+
+    await caseHelper.updateCaseworkerEvent(I, caseEventName.REFERRED_MEDIATION, caseId);
+    logger.info({message: 'Case status changed to REFFERED_MEDIATION for ', caseId});
+
+    await caseHelper.manageDocumentsEventTriggered(I, 'Mediation agreement');
+    await caseHelper.signOut(I);
+}  
