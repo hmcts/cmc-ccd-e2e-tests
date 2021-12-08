@@ -12,7 +12,9 @@ module.exports = async function() {
     await I.click('Save and continue');
 
     await I.waitInUrl('claim/claimant-sole-trader-details');
-    await I.fillField('#name', 'Mrs sole trader claimant');
+    await I.fillField('#title', 'Mrs');
+    await I.fillField('#firstName', 'J');
+    await I.fillField('#lastName', 'Neel');
     await I.fillField('#businessName', 'Trading businessname');
     await I.fillField('//input[@id="address[postcodeLookup]"]', 'SL6 2PU');
     await I.click('Find address');
