@@ -30,7 +30,6 @@ async function fillClaimDetails(hwfReference = '') {
     await I.click('Save and continue');
 
     await I.waitInUrl('claim/claimant-dob');
-    await I.click('Save and continue');
 
     await I.fillField('//input[@id="date[day]"]', 2);
     await I.fillField('//input[@id="date[month]"]', 9);
@@ -79,7 +78,7 @@ async function fillClaimDetails(hwfReference = '') {
         await I.click('#declaredno');
     } else {
         await I.click('#declaredyes');
-        await I.fillField('#helpWithFeesNumber"]', hwfReference);
+        await I.fillField('#helpWithFeesNumber', hwfReference);
     }
 
     await I.click('Save and continue');
