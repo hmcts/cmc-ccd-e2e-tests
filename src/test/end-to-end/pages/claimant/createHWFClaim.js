@@ -18,7 +18,9 @@ async function fillClaimDetails(hwfReference = '') {
     await I.click('Save and continue');
 
     await I.waitInUrl('claim/claimant-individual-details');
-    await I.fillField('#name', 'Mrs invidual  claimant');
+    await I.fillField('#title', 'Mrs');
+    await I.fillField('#firstName', 'invidual');
+    await I.fillField('#lastName', 'claimant');
     await I.fillField('//input[@id="address[postcodeLookup]"]', 'SL6 2PU');
     await I.click('Find address');
     await I.wait(2);
@@ -33,6 +35,7 @@ async function fillClaimDetails(hwfReference = '') {
     await I.fillField('//input[@id="date[day]"]', 2);
     await I.fillField('//input[@id="date[month]"]', 9);
     await I.fillField('//input[@id="date[year]"]', 1990);
+    await I.click('Save and continue');
 
     await I.waitInUrl('claim/claimant-phone');
     await I.click('Save and continue');
