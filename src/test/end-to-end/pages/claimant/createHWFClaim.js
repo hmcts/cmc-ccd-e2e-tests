@@ -154,7 +154,7 @@ async function createClaimWithHwfOptions(hwf = 'yes', insistHwfAfterReadingInfo 
             await I.click('Save and continue');
             await I.waitInUrl('eligibility/apply-for-help-with-fees');
             await I.see('Apply for Help with Fees (opens in a new window)');
-            await I.click('Save and continue');
+            await I.click('Save and Continue');
             await I.waitInUrl('eligibility/help-with-fees-reference');
             if (hwfReference === '') {
                 await I.click('input[id=helpWithFeesReferenceno]');
