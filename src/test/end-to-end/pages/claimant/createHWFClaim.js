@@ -95,6 +95,7 @@ async function fillClaimDetails(hwfReference = '') {
     await I.fillField('//textarea[@id="rows[0][description]"]', 'he came and broke the door');
     await I.click('Save and continue');
     await I.waitInUrl('claim/evidence');
+    await I.see('List your evidence');
     await I.click('Save and continue');
 
     if (testConfig.env === 'aat') {
