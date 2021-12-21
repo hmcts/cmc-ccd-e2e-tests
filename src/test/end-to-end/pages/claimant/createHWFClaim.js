@@ -118,7 +118,7 @@ async function createClaimWithHwfOptions(hwf = 'yes', insistHwfAfterReadingInfo 
     await I.amOnCitizenAppPage('/eligibility');
     await I.click('Continue');
     await I.waitInUrl('eligibility/claim-value');
-    await I.click('input[id=claimValue-UNDER_10000]');
+    await I.click('input[id=claimValueUNDER_10000]');
     await I.click('Save and continue');
     await I.waitInUrl('eligibility/single-defendant');
     await I.click('input[id=singleDefendantno]');
