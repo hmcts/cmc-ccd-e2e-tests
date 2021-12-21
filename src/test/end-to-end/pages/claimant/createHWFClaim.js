@@ -88,12 +88,11 @@ async function fillClaimDetails(hwfReference = '') {
 
     await I.click('Claim details');
     await I.waitInUrl('claim/reason');
-    await I.click('Save and continue');
     await I.fillField('#reason', 'broken door reason');
     await I.click('Save and continue');
     await I.waitInUrl('claim/timeline');
     await I.fillField('//input[@id="rows[0][date]"]', '22/11/2020');
-    await I.fillField('//input[@id="rows[0][description]"]', 'he came and broke the door');
+    await I.fillField('//textarea[@id="rows[0][description]"]', 'he came and broke the door');
     await I.click('Save and continue');
     await I.waitInUrl('claim/evidence');
     await I.click('Save and continue');
