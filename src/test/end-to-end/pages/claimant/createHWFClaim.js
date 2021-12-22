@@ -38,8 +38,8 @@ async function fillClaimDetails(hwfReference = '') {
 
     await I.waitInUrl('claim/claimant-phone');
     await I.click('Save and continue');
-    await I.waitInUrl('claim/task-list');
-    await I.click('Their details');
+    await I.waitInUrl('claim/task-list');	
+    await I.click('Their details');	
     await I.waitInUrl('claim/defendant-party-type-selection');
     await I.click('//input[@id="typeindividual"]');
     await I.click('Save and continue');
