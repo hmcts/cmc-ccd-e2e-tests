@@ -101,6 +101,7 @@ async function fillClaimDetails(hwfReference = '') {
         await I.click('I don\'t want to answer these questions');
     }
 
+    await I.waitInUrl('claim/task-list');
     await I.click('Check and submit your claim');
     await I.waitInUrl('claim/check-and-send');
     await I.see('Help With Fees reference number');
