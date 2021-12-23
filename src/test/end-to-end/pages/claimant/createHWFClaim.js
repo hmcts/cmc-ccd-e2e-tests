@@ -38,8 +38,10 @@ async function fillClaimDetails(hwfReference = '') {
 
     await I.waitInUrl('claim/claimant-phone');
     await I.click('Save and continue');
-    await I.waitInUrl('claim/task-list');	
-    await I.click('Their details');	
+    await I.waitInUrl('claim/task-list');
+    await I.click('Their details');
+
+    await I.click('Their details');
     await I.waitInUrl('claim/defendant-party-type-selection');
     await I.click('//input[@id="typeindividual"]');
     await I.click('Save and continue');
@@ -93,7 +95,6 @@ async function fillClaimDetails(hwfReference = '') {
     await I.fillField('//textarea[@id="rows[0][description]"]', 'he came and broke the door');
     await I.click('Save and continue');
     await I.waitInUrl('claim/evidence');
-    await I.see('List your evidence');
     await I.click('Save and continue');
 
     if (testConfig.env === 'aat') {
