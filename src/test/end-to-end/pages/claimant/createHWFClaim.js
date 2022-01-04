@@ -106,6 +106,7 @@ async function fillClaimDetails(hwfReference = '') {
     await I.waitInUrl('claim/check-and-send');
     await I.see('Help With Fees reference number');
     await I.click('#signedtrue');
+    await I.click('Submit claim');
     if (hwfReference === '') {
         await I.click('Submit and continue to payment (£35)');
         await I.waitInUrl('card_details');
