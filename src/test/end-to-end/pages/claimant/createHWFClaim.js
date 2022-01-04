@@ -18,7 +18,9 @@ async function fillClaimDetails(hwfReference = '') {
     await I.click('Save and continue');
 
     await I.waitInUrl('claim/claimant-individual-details');
-    await I.fillField('#name', 'Mrs invidual  claimant');
+    await I.fillField('#title', 'Mrs');
+    await I.fillField('#firstName', 'invidual');
+    await I.fillField('#lastName', 'claimant');
     await I.fillField('//input[@id="address[postcodeLookup]"]', 'SL6 2PU');
     await I.click('Find address');
     await I.wait(2);
@@ -28,18 +30,17 @@ async function fillClaimDetails(hwfReference = '') {
     await I.click('Save and continue');
 
     await I.waitInUrl('claim/claimant-dob');
-    await I.click('Save and continue');
 
     await I.fillField('//input[@id="date[day]"]', 2);
     await I.fillField('//input[@id="date[month]"]', 9);
     await I.fillField('//input[@id="date[year]"]', 1990);
+    await I.click('Save and continue');
 
     await I.waitInUrl('claim/claimant-phone');
     await I.click('Save and continue');
     await I.waitInUrl('claim/task-list');
     await I.click('Their details');
 
-    await I.click('Their details');
     await I.waitInUrl('claim/defendant-party-type-selection');
     await I.click('//input[@id="typeindividual"]');
     await I.click('Save and continue');
@@ -76,7 +77,7 @@ async function fillClaimDetails(hwfReference = '') {
         await I.click('#declaredno');
     } else {
         await I.click('#declaredyes');
-        await I.fillField('#helpWithFeesNumber"]', hwfReference);
+        await I.fillField('#helpWithFeesNumber', hwfReference);
     }
 
     await I.click('Save and continue');
@@ -86,12 +87,11 @@ async function fillClaimDetails(hwfReference = '') {
 
     await I.click('Claim details');
     await I.waitInUrl('claim/reason');
-    await I.click('Save and continue');
     await I.fillField('#reason', 'broken door reason');
     await I.click('Save and continue');
     await I.waitInUrl('claim/timeline');
     await I.fillField('//input[@id="rows[0][date]"]', '22/11/2020');
-    await I.fillField('//input[@id="rows[0][description]"]', 'he came and broke the door');
+    await I.fillField('//textarea[@id="rows[0][description]"]', 'he came and broke the door');
     await I.click('Save and continue');
     await I.waitInUrl('claim/evidence');
     await I.click('Save and continue');
@@ -101,10 +101,12 @@ async function fillClaimDetails(hwfReference = '') {
         await I.click('I don\'t want to answer these questions');
     }
 
+    await I.waitInUrl('claim/task-list');
     await I.click('Check and submit your claim');
     await I.waitInUrl('claim/check-and-send');
     await I.see('Help With Fees reference number');
     await I.click('#signedtrue');
+    await I.click('Submit claim');
     if (hwfReference === '') {
         await I.click('Submit and continue to payment (£35)');
         await I.waitInUrl('card_details');
@@ -118,7 +120,7 @@ async function createClaimWithHwfOptions(hwf = 'yes', insistHwfAfterReadingInfo 
     await I.amOnCitizenAppPage('/eligibility');
     await I.click('Continue');
     await I.waitInUrl('eligibility/claim-value');
-    await I.click('input[id=claimValue-UNDER_10000]');
+    await I.click('input[id=claimValueUNDER_10000]');
     await I.click('Save and continue');
     await I.waitInUrl('eligibility/single-defendant');
     await I.click('input[id=singleDefendantno]');
@@ -154,7 +156,7 @@ async function createClaimWithHwfOptions(hwf = 'yes', insistHwfAfterReadingInfo 
             await I.click('Save and continue');
             await I.waitInUrl('eligibility/apply-for-help-with-fees');
             await I.see('Apply for Help with Fees (opens in a new window)');
-            await I.click('Save and continue');
+            await I.click('Save and Continue');
             await I.waitInUrl('eligibility/help-with-fees-reference');
             if (hwfReference === '') {
                 await I.click('input[id=helpWithFeesReferenceno]');
