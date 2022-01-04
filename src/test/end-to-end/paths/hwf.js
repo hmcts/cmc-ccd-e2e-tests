@@ -8,7 +8,7 @@ const testConfig = require('src/test/config.js');
 
 Feature('HWF functionality').retry(testConfig.TestRetryFeatures);
 
-xScenario('Claimant create a hwf case --> Caseworker submit updated - skip it untill we release hwf', async ({I}) => {
+Scenario('Claimant create a hwf case --> Caseworker submit updated', async ({I}) => {
     await I.amOnCitizenAppPage('');
     await I.authenticateWithIdam(userType.CITIZEN, true);
     const caseId = await I.createClaimWithHwfOptions();
