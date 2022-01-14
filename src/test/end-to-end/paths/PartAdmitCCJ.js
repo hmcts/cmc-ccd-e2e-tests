@@ -100,9 +100,11 @@ Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) =
 
     await I.waitForText('Reset');
     await I.waitForElement('#previousServiceCaseReference');
+    await I.wait(5);
     await I.fillField('#previousServiceCaseReference', claimRef);
     await I.retry(3).selectOption('#preferredDQPilotCourt', 'Central London County Court');
     await I.click('Apply');
+    await I.wait(5);
     await I.waitForText(caseId);
     await I.click('Sign out');
 
