@@ -117,7 +117,7 @@ async function fillClaimDetails(hwfReference = '') {
 
 async function createClaimWithHwfOptions(hwf = 'yes', insistHwfAfterReadingInfo = 'yes', hwfReference = 'HWF-123-456') {
     const I = this;
-    await I.amOnCitizenAppPage('/eligibility');
+    await I.amOnCitizenAppPage('eligibility');
     await I.click('Continue');
     await I.waitInUrl('eligibility/claim-value');
     await I.click('input[id=claimValueUNDER_10000]');
