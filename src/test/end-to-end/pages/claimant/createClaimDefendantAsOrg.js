@@ -32,8 +32,10 @@ module.exports = async function() {
     await I.click('#signedtrue');
     await I.waitForNavigationToComplete(commonConfig.submitAndPay);
 
+    await I.wait(5);
     await I.waitInUrl('card_details');
     await I.enterPaymentDetails();
+    await I.wait(5);
     await I.confirmPayment();
 
     await I.waitInUrl('/confirmation');

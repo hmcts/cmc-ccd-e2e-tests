@@ -14,6 +14,7 @@ module.exports = async function() {
     await I.confirmPayment();
 
     await I.waitInUrl('/confirmation');
+    await I.wait(5);
     const claimRef = await I.extractClaimRef();
     return claimRef;
 };

@@ -4,7 +4,7 @@ const Helper = codecept_helper;
 const helperName = 'Puppeteer';
 const testConfig = require('src/test/config.js');
 
-const {runAccessibility} = require('./accessibility/runner');
+const { runAccessibility } = require('./accessibility/runner');
 
 class PuppeteerHelper extends Helper {
 
@@ -12,12 +12,13 @@ class PuppeteerHelper extends Helper {
         const page = this.helpers[helperName].page;
         const promises = [];
 
-        promises.push(page.waitForNavigation({timeout: 1200000, waitUntil: ['domcontentloaded']})); // The promise resolves after navigation has finished
+        promises.push(page.waitForNavigation({ timeout: 1200000, waitUntil: ['domcontentloaded'] })); // The promise resolves after navigation has finished
 
         if (locator) {
             promises.push(page.click(locator));
         }
         await Promise.all(promises);
+        await helper.page.waitForTimeout(3000);
     }
 
     async clickTab(tabTitle) {
@@ -48,12 +49,12 @@ class PuppeteerHelper extends Helper {
             return;
         }
         const url = await this.helpers[helperName].grabCurrentUrl();
-        const {page} = await this.helpers[helperName];
+        const { page } = await this.helpers[helperName];
 
         runAccessibility(url, page);
     }
 
-    async amOnCitizenAppPage (path) {
+    async amOnCitizenAppPage(path) {
         await this.helpers[helperName].amOnPage(`${testConfig.TestFrontEndUrl}${path}`);
     }
 }

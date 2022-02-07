@@ -4,7 +4,7 @@ const testConfig = require('../../../config');
 const changeContactDetailsConfig = require('./changeContactDetailsConfig');
 const commonConfig = require('../common/commonConfig');
 
-module.exports = async function (userType = '') {
+module.exports = async function(userType = '') {
     const I = this;
 
     await I.waitForElement('#contactChangeParty', testConfig.TestTimeToWaitForText);
@@ -13,6 +13,7 @@ module.exports = async function (userType = '') {
     if (userType === 'Defendant') {
         await I.click('#contactChangeParty-DEFENDANT');
         await I.fillField('#respondents_0_partyDetail_emailAddress', changeContactDetailsConfig.page1_email);
+        await I.wait(2);
         await I.click('I can\'t enter a UK postcode');
         await I.fillField('#respondents_0_partyDetail_primaryAddress__detailAddressLine1', changeContactDetailsConfig.page1_address);
         await I.fillField('#respondents_0_partyDetail_primaryAddress__detailPostCode', changeContactDetailsConfig.page1_postcode);
