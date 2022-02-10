@@ -3,17 +3,6 @@ const LATEST_WINDOWS = 'Windows 10';
 
 const supportedBrowsers = {
     microsoft: {
-        ie11_win: {
-            browserName: 'internet explorer',
-            platformName: LATEST_WINDOWS,
-            browserVersion: 'latest',
-            'sauce:options': {
-                name: 'CMC CCD E2E Tests - XUI: IE11',
-                screenResolution: '1400x1050',
-                extendedDebugging: true,
-                capturePerformance: true
-            }
-        },
         edge_win_latest: {
             browserName: 'MicrosoftEdge',
             platformName: LATEST_WINDOWS,
