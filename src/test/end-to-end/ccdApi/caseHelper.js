@@ -4,6 +4,7 @@ const initiateClaimPaymentCitizenJson = require('../fixtures/data/InitiateClaimP
 const {v4: uuidv4} = require('uuid');
 
 const {userType, caseEventId, caseEventName} = require('../common/Constants');
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 async function initateCaseByCitizen() {
     initiateClaimPaymentCitizenJson.externalId = uuidv4();
@@ -86,11 +87,14 @@ async function JudgeDrawDirectionOrder(I, caseData, caseId) {
 }
 
 async function updateMediationSuccessful(I) {
+    logger.info({message: 'Inside updateMediationSuccessful'});
     const eventName = caseEventName.MEDIATION_SUCCESSFUL;
     await I.chooseNextStep(eventName);
     await I.enterMediationSuccessPage1();
     await I.enterMediationSuccessPage2();
+    logger.info({message: 'After enterMediationSuccessPage2'});
     await I.enterEventSummary(eventName);
+    logger.info({message: 'Exiting updateMediationSuccessful'});
 }
 
 async function updateMediationUnsuccessful(I) {
