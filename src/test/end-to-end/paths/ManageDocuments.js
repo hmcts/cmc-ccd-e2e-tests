@@ -9,7 +9,7 @@ const testConfig = require('src/test/config.js');
 
 Feature('ManageDocuments functionality').retry(testConfig.TestRetryFeatures);
 
-Scenario('Claimant create a case --> Caseworker submit Manage Document Other', async ({I}) => {
+xScenario('Claimant create a case --> Caseworker submit Manage Document Other', async ({I}) => {
     await I.amOnCitizenAppPage('');
     await I.authenticateWithIdam(userType.CITIZEN, true);
     const claimRef = await I.createClaimDefendantAsOrg();
@@ -28,7 +28,7 @@ Scenario('Claimant create a case --> Caseworker submit Manage Document Other', a
     await caseHelper.manageDocumentsEventTriggered(I, 'Other');
 }).retry(testConfig.TestRetryScenarios);
 
-Scenario('Claimant create a case --> Caseworker submit manage Document Correspondance', async ({I}) => {
+xScenario('Claimant create a case --> Caseworker submit manage Document Correspondance', async ({I}) => {
     await I.amOnCitizenAppPage('');
     await I.authenticateWithIdam(userType.CITIZEN, true);
     const claimRef = await I.createClaimDefendantAsOrg();
