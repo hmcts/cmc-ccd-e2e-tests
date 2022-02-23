@@ -1,8 +1,10 @@
 const commonConfig = require('../common/commonConfig');
+const testConfig = require('../../../config');
 
 module.exports = async function(amount = '500') {
     const I = this;
     await I.amOnCitizenAppPage('testing-support/create-claim-draft');
+    await I.waitForText('Create Claim Draft', testConfig.TestTimeToWaitForText);
     await I.waitForNavigationToComplete(commonConfig.createDraftClaim);
 
     await I.waitInUrl('claim/check-and-send');
