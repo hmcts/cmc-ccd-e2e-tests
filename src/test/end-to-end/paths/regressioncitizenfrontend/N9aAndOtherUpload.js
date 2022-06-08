@@ -1,8 +1,8 @@
 'use strict';
 
-const caseHelper = require('../ccdApi/caseHelper');
-const apiRequest = require('../claimStoreApi/apiRequest.js');
-const {userType} = require('../common/Constants');
+const caseHelper = require('../../ccdApi/caseHelper');
+const apiRequest = require('../../claimStoreApi/apiRequest.js');
+const {userType} = require('../../common/Constants');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const testConfig = require('src/test/config.js');

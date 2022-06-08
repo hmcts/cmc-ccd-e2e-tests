@@ -4,7 +4,7 @@ module.exports = {
     TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
     TestRetryFeatures: process.env.RETRY_FEATURES || 0,
     TestRetryScenarios: process.env.RETRY_SCENARIOS || 2,
-    TestPathToRun: process.env.E2E_TEST_PATH || './paths/**/*.js',
+    TestPathToRun: process.env.E2E_TEST_PATH || './paths/*.js',
     TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output',
     TestTimeToWaitForText: parseInt(process.env.E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 120),
     TestAutoDelayEnabled: process.env.E2E_AUTO_DELAY_ENABLED === 'true',
@@ -51,5 +51,6 @@ module.exports = {
         }
     },
     env: process.env.TEST_ENV || 'local',
+    runFullSuite: process.env.RUN_FULL_REGRESSION_SUITE || 'NO',
     proxy: ''
 };

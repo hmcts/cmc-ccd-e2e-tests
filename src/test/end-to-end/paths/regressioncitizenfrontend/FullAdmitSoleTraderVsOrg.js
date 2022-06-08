@@ -1,7 +1,7 @@
-const testConfig = require('../../config');
-const {userType} = require('../common/Constants');
-const apiRequest = require('../claimStoreApi/apiRequest.js');
-const idamHelper = require('../ccdApi/idamHelper');
+const testConfig = require('../../../config');
+const {userType} = require('../../common/Constants');
+const apiRequest = require('../../claimStoreApi/apiRequest.js');
+const idamHelper = require('../../ccdApi/idamHelper');
 
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 

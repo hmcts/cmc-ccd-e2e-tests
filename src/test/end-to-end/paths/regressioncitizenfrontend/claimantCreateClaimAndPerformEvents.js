@@ -1,9 +1,9 @@
 'use strict';
 
-const testConfig = require('../../config');
-const caseHelper = require('../ccdApi/caseHelper');
-const apiRequest = require('../claimStoreApi/apiRequest.js');
-const {userType} = require('../common/Constants');
+const testConfig = require('../../../config');
+const caseHelper = require('../../ccdApi/caseHelper');
+const apiRequest = require('../../claimStoreApi/apiRequest.js');
+const {userType} = require('../../common/Constants');
 
 Feature('Create claim flow)');
 
