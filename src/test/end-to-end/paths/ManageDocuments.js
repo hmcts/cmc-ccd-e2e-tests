@@ -7,7 +7,7 @@ const {userType} = require('../common/Constants');
 const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 const testConfig = require('src/test/config.js');
 
-Feature('ManageDocuments functionality @testing').retry(testConfig.TestRetryFeatures);
+Feature('ManageDocuments functionality').retry(testConfig.TestRetryFeatures);
 
 Scenario('Claimant create a case --> Caseworker submit Manage Document Other', async ({I}) => {
     await I.amOnCitizenAppPage('');
