@@ -2,6 +2,9 @@ module.exports = async function(type = 'INDIVIDUAL', claimantUser = 'no') {
     const I = this;
     await I.waitInUrl('response/task-list');
     await I.click('Give us details in case there’s a hearing');
+    await I.waitInUrl('directions-questionnaire/determination-without-hearing-questions');
+    await I.click('#determinationWithoutHearingQuestionsyes');
+    await I.click('Save and continue');
     await I.waitInUrl('directions-questionnaire/support-required');
     await I.click('Save and continue');
     if (claimantUser === 'yes' || type === 'LIMITED COMPANY' || type === 'ORG' || type === 'SOLE TRADER') {
@@ -19,6 +22,10 @@ module.exports = async function(type = 'INDIVIDUAL', claimantUser = 'no') {
     await I.click('Save and continue');
     await I.waitInUrl('directions-questionnaire/other-witnesses');
     await I.click('#otherWitnessesno');
+    await I.click('Save and continue');
+    await I.waitInUrl('directions-questionnaire/vulnerability-questions');
+    await I.click('#vulnerabilityQuestionsyes');
+    await I.fillField('#vulnerabilityDetails', 'Describing vulnerability questions yes');
     await I.click('Save and continue');
     await I.waitInUrl('directions-questionnaire/hearing-dates');
     await I.click('#hasUnavailableDatesfalse');
