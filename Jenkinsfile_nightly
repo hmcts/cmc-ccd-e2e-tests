@@ -60,11 +60,11 @@ withNightlyPipeline("nodejs", product, component) {
     
     enableCrossBrowserTest()
     
-    after('fullFunctionalTest') {
+    afterAlways('fullFunctionalTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 
-    after('crossBrowserTest') {
+    afterAlways('crossBrowserTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 }
