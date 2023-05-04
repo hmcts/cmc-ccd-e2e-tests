@@ -49,12 +49,8 @@
     "sinon":  "^15.0.4",
     "circular-json":  "^0.5.9",
     "jssha":  "^3.3.0",
-    "@types/puppeteer": "^7.0.4",
-    "request-promise-native": "^1.0.9",
-    "request": "^2.88.2",
-    "move-file": "3.1.0",
-    "puppeteer": "^20.1.0",
-    "har-validator": "^5.1.5"
+    "@npmcli/fs": "3.1.0",
+    "puppeteer": "^20.1.0"
   },
   "license": "MIT",
   "bugs": {
