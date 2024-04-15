@@ -1,0 +1,1 @@
+var replacejsoncontent = {"appName":"Manage cases","passCount":0,"failCount":0,"tests":[]}
