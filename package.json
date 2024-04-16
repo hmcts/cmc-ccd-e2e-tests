@@ -10,7 +10,7 @@
     "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run-multiple parallel -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
     "test:fullfunctional": "./bin/run-e2e-tests.sh",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c src/test/end-to-end/saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
-    "test:crossbrowser": "./bin/run-crossbrowser-tests.sh"
+    "test:crossbrowser": "BROWSER_GROUP=firefox ./bin/run-crossbrowser-tests.sh"
   },
   "repository": {
     "type": "git",
