@@ -18,6 +18,7 @@ properties([
 
 String product = "cmc"
 String component = "ccd-e2e-tests"
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 def secrets = [
   'cmc-aat': [
