@@ -39,7 +39,7 @@
     "puppeteer": "^5.4.1",
     "randomstring": "^1.1.5",
     "sinon": "^5.0.7",
-    "totp-generator": "^0.0.7",
+    "totp-generator": "^0.0.14",
     "webdriverio": "^6.11.3",
     "uuid": "^8.3.2"
   },
