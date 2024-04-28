@@ -2206,9 +2206,7 @@ launchdarkly-eventsource@1.4.0:
     original "^1.0.0"
 
 launchdarkly-node-server-sdk@^5.13.1:
-  version "5.14.3"
-  resolved "https://registry.yarnpkg.com/launchdarkly-node-server-sdk/-/launchdarkly-node-server-sdk-5.14.3.tgz#ac099043ceecd5102c140d8d6dce15457bbc2f4e"
-  integrity sha512-VU8g3tssepP7l87GURdjzepHFF9PGnG6l7jQyQQs9Yw6v5R270S0XjE67r0w+v8v+SmZ4pjVOCSuYDJPQ04fPQ==
+  version "5.14.6"
   dependencies:
     "@types/redis" "^2.8.18"
     async "^3.1.0"
