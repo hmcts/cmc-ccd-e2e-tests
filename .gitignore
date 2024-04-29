@@ -1,3 +1,11 @@
+# Playwright
+/playwright/test-results/
+/playwright/test-results/
+/playwright/playwright/.cache/
+/playwright/fixtures/.citizen-users/
+/playwright/fixtures/.cookies/
+
+
 # Logs
 logs
 *.log
