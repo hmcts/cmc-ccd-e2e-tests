@@ -20,7 +20,6 @@ export default defineConfig({
     trace: "on-first-retry",
     launchOptions: {
       slowMo: !process.env.CI ? 500 : undefined,
-      
     }
   },
   projects: [
