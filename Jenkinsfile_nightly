@@ -28,8 +28,7 @@ def secrets = [
     secret('cmc-la-password', 'LA_USER_PASSWORD'),
     secret('cmc-judge-username', 'JUDGE_USER_EMAIL'),
     secret('cmc-judge-password', 'JUDGE_USER_PASSWORD'),
-    secret('citizen-username', 'CITIZEN_USER_EMAIL'),
-    secret('citizen-password', 'CITIZEN_USER_PASSWORD'),
+    secret('smoke-test-user-password', 'SMOKE_TEST_USER_PASSWORD'),
     secret('s2s-microservicekey-cmc', 'S2S_MICROSERVICE_KEY_CMC'),
     secret('cmc-s2s-secret', 'S2S_MICROSERVICE_KEY_PWD'),
     secret('launchDarkly-sdk-key', 'LAUNCHDARKLY_KEY')
@@ -46,8 +45,8 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 withNightlyPipeline("nodejs", product, component) {
-    env.TEST_E2E_URL = params.ExUI_URL_TO_TEST
-    env.TEST_FRONT_END_URL = params.CMC_URL_TO_TEST
+    env.EXUI_URL = params.ExUI_URL_TO_TEST
+    env.CITIZEN_APP_URL = params.CMC_URL_TO_TEST
     env.DM_STORE_URL=params.DM_STORE_URL
     env.IDAM_API_URL=params.IDAM_API_URL
     env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
@@ -61,7 +60,15 @@ withNightlyPipeline("nodejs", product, component) {
     enableCrossBrowserTest()
     
     afterAlways('fullFunctionalTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+        publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Full Functional Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
     }
 
     afterAlways('crossBrowserTest') {
