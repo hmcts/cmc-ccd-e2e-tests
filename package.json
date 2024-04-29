@@ -7,10 +7,11 @@
   },
   "scripts": {
     "lint": "NODE_PATH=. eslint .",
+    "test:full-functional": "npx playwright test --project full-functional", 
     "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run-multiple parallel -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
     "test:fullfunctional": "./bin/run-e2e-tests.sh",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c src/test/end-to-end/saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
-    "test:crossbrowser": "./bin/run-crossbrowser-tests.sh"
+    "test:crossbrowser": "BROWSER_GROUP=firefox ./bin/run-crossbrowser-tests.sh"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,17 @@
   ],
   "dependencies": {
     "html_codesniffer": "^2.5.1",
-    "require-directory": "^2.1.1"
+    "require-directory": "^2.1.1",
+    "axios": "^1.6.0",
+    "playwright-core": "^1.43.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "dependency-check": "^4.1.0",
+    "node-cache": "^5.1.2",
+    "@axe-core/playwright": "^4.9.0"
   },
   "devDependencies": {
     "@hmcts/div-idam-test-harness": "^1.6.0",
-    "axios": "^1.6.0",
     "codeceptjs": "^3.0.5",
     "eslint": "4.18.2 ",
     "launchdarkly-node-server-sdk": "^5.13.1",
@@ -41,7 +48,13 @@
     "sinon": "^5.0.7",
     "totp-generator": "^0.0.7",
     "webdriverio": "^6.11.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "@playwright/test": "^1.43.0",
+    "@types/node": "^20.12.7",
+    "urlencode": "^1.1.0"
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
   },
   "license": "MIT",
   "bugs": {
