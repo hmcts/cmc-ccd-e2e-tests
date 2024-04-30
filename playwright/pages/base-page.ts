@@ -14,12 +14,14 @@ export default abstract class BasePage {
     this.page = page;
   }
 
+  abstract verifyContent(): Promise<void>
+
   protected async clickSubmit() {
-    await this.clickBySelector(selectors.submitButton);
+    await this.clickBySelector(buttons.submit.selector);
   }
 
   protected async clickContinue() {
-    await this.page.getByRole('button', {name: 'Continue'}).click();
+    await this.page.getByRole('button', {name: buttons.continue.title}).click();
   }
 
   protected async clickBySelector(selector: string) {
@@ -64,16 +66,24 @@ export default abstract class BasePage {
     await expect(this.page).toHaveURL(new RegExp(`${endpoint}$`));
   }
 
+  protected async expectHeadingToBeVisible(text: string) {
+    await expect(this.page.locator('h1', {hasText: text})).toBeVisible();
+  }
+
+  protected async expectSubHeadingToBeVisible(text: string) {
+    await expect(this.page.locator('h2', {hasText: text})).toBeVisible();
+  }
+
   protected async expectTextToBeVisible(text: string) {
     await expect(this.page.getByText(text)).toBeVisible();
   }
 
-  protected async expectInputToBeVisible(label: string) {
+  protected async expectLabelToBeVisible(label: string) {
     await expect(this.page.getByLabel(label)).toBeVisible();
   } 
 
   protected async fill(selector: string, input: string) {
-    await this.page.fill(selector, input, {});
+    await this.page.fill(selector, input);
   }
 
   protected async getCookies(): Promise<Cookie[]> {

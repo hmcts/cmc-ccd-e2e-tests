@@ -1,28 +1,24 @@
-import urls from '../../../config/urls';
-import User from '../../../models/User';
-import BasePage from '../../base-page';
-import loginPageContent from './login-page-content';
+import urls from "../../../config/urls";
+import User from "../../../models/User";
+import BasePage from "../../base-page";
+import {heading, inputs} from "./login-page-content";
 
-const selectors = {
-  emailInput: '#username',
-  passwordInput: '#password',
-};
 
 export default class LoginPage extends BasePage {
 
   async verifyContent() {
     await super.runAccessibilityTests();
-    await super.expectTextToBeVisible(loginPageContent.heading);
-    await super.expectInputToBeVisible(loginPageContent.email_input_label);
-    await super.expectInputToBeVisible(loginPageContent.password_input_label);
+    await super.expectHeadingToBeVisible(heading);
+    await super.expectLabelToBeVisible(inputs.email.label);
+    await super.expectLabelToBeVisible(inputs.password.label);
   }
 
   private async login(
     {email, password},
   ) {
     console.log(`Authenticating user with email ${email} by Idam`);
-    await super.fill(selectors.emailInput, email);
-    await super.fill(selectors.passwordInput, password);
+    await super.fill(inputs.email.selector, email);
+    await super.fill(inputs.password.selector, password);
     await super.clickSubmit();
   }
 

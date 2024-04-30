@@ -7,6 +7,10 @@ const selectors = {
 
 export default class ExuiCookiesBanner extends BasePage {
   
+  async verifyContent(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
   async acceptCookies() {
     await super.clickBySelector(selectors.accept);
   }

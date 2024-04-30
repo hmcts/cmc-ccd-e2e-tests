@@ -1,6 +1,5 @@
-const navBarContent = {
-  heading: 'Money Claims',
-  signOutLink: 'Sign out',
-};
+export const heading = 'Money Claims';
 
-export default navBarContent;
+export const links = {
+  signOut: 'Sign out'
+};

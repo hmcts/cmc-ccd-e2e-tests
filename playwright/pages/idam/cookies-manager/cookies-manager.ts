@@ -4,6 +4,9 @@ import User from '../../../models/User';
 import BasePage from '../../base-page';
 
 export default class CookiesManager extends BasePage {
+  async verifyContent(): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
 
   async saveCookies(filePath = '') {
     const cookies = await super.getCookies();
