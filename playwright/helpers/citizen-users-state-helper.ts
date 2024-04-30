@@ -10,7 +10,7 @@ export default class CitizenUserStateHelper {
   private static generateCitizenUser = (userType: UserType): User => {
     return {
       email: `${userType}citizen-${Math.random().toString(36).slice(2, 9).toLowerCase()}@gmail.com`,
-      password: process.env.SMOKE_TEST_USER_PASSWORD || "Password12",
+      password: process.env.SMOKE_TEST_USER_PASSWORD,
       role: UserRole.CITIZEN,
       type: userType,
       cookiesPath: `playwright/fixtures/.cookies/${userType}.json`
