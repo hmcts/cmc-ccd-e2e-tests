@@ -1,5 +1,5 @@
-import BasePage from "../../../base-page";
-import {heading, subHeadings, checkboxes} from "./check-your-answers-content";
+import BasePage from '../../../base-page';
+import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 
 export default class CheckYourAnswersPage extends BasePage{
 

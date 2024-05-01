@@ -2,10 +2,7 @@ import { Locator, Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { expect } from '@playwright/test';
 import { config } from '../config/config';
-
-const selectors = {
-  submitButton: 'input[type=submit]',
-};
+import { buttons } from './common-content';
 
 export default abstract class BasePage {
   private page: Page;

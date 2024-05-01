@@ -12,6 +12,6 @@ export const subHeadings = {
 export const checkboxes = {
   signedTrue: {
     label: 'I believe that the facts stated in this claim are true.',
-    selector: '#signedtrue'
-  }
-}
+    selector: '#signedtrue',
+  },
+};

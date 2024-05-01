@@ -9,5 +9,5 @@ export const tableHeadings = {
   expiryDate: 'Expiry date',
   nameOnCard: 'Name on card',
   billingAddress: 'Billing address',
-  confirmationEmail: 'Confirmation email'
-}
+  confirmationEmail: 'Confirmation email',
+};

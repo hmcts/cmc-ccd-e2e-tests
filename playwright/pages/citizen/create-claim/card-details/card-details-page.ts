@@ -1,7 +1,6 @@
-import users from "../../../../config/users";
-import BasePage from "../../../base-page";
-import {heading, subHeadings,inputs, dropdowns} from "./card-details-content";
-
+import users from '../../../../config/users';
+import BasePage from '../../../base-page';
+import {heading, subHeadings,inputs, dropdowns} from './card-details-content';
 
 export default class CardDetailsPage extends BasePage{
   async verifyContent() {

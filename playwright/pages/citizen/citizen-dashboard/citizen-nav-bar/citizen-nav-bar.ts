@@ -1,9 +1,9 @@
-import BasePage from "../../../base-page"
-import {links} from "./citizen-nav-bar-content";
+import BasePage from '../../../base-page';
+import {links} from './citizen-nav-bar-content';
 
 export default class CitizenNavBar extends BasePage {
   async verifyContent(): Promise<void> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
   
   async clickSignOut() {

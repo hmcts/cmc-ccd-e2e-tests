@@ -1,14 +1,14 @@
 export const buttons = {
   continue: {
     title: 'Continue',
-    selector: ''
+    selector: '',
   },
   saveAndContinue: {
     title: 'Save and Continue',
-    selector: ''
+    selector: '',
   },
   submit: {
     title: '',
     selector: 'input[type=submit]',
-  }
+  },
 };

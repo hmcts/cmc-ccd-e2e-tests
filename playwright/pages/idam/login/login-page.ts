@@ -1,8 +1,7 @@
-import urls from "../../../config/urls";
-import User from "../../../models/User";
-import BasePage from "../../base-page";
-import {heading, inputs} from "./login-page-content";
-
+import urls from '../../../config/urls';
+import User from '../../../models/User';
+import BasePage from '../../base-page';
+import {heading, inputs} from './login-page-content';
 
 export default class LoginPage extends BasePage {
 

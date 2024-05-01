@@ -1,4 +1,4 @@
-import BasePage from '../../../base-page'
+import BasePage from '../../../base-page';
 import { buttons } from './citizen-cookies-banner-content';
 
 export default class CitizenCookiesBanner extends BasePage {

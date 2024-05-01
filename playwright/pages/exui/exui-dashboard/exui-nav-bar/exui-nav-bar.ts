@@ -1,10 +1,10 @@
-import BasePage from "../../../base-page"
-import { links } from "./exui-nav-bar-content";
+import BasePage from '../../../base-page';
+import { links } from './exui-nav-bar-content';
 
 export default class ExuiNavBar extends BasePage {
   
   async verifyContent(): Promise<void> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
   
   async clickSignOut() {

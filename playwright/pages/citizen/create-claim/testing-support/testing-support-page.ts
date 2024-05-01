@@ -1,5 +1,5 @@
-import BasePage from "../../../base-page";
-import {heading, links} from "./testing-support-content";
+import BasePage from '../../../base-page';
+import {heading, links} from './testing-support-content';
 
 export default class TestingSupportPage extends BasePage{
   

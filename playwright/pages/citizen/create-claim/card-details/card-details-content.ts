@@ -11,7 +11,7 @@ export const dropdowns = {
     label: 'Country or territory',
     selector: '',
   },
-}
+};
 
 export const inputs = {
   cardNumber: {
@@ -24,11 +24,11 @@ export const inputs = {
   },
   expiryMonth: {
     label: 'Month',
-    selector: '#expiry-month'
+    selector: '#expiry-month',
   },
   expiryYear: {
     label: 'Year',
-    selector: '#expiry-year'
+    selector: '#expiry-year',
   },
   nameOnCard: {
     label: 'Name on card',
@@ -57,5 +57,5 @@ export const inputs = {
   confirmationEmail: {
     label: 'Email',
     selector: '#email',
-  }
+  },
 };

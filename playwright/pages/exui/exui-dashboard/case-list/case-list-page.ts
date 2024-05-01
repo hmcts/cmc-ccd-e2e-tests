@@ -4,7 +4,7 @@ import BasePage from '../../../base-page';
 export default class CaseListPage extends BasePage {
   
   async verifyContent(): Promise<void> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
   
   async openCaseList() {
