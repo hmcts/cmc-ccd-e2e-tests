@@ -1,5 +1,5 @@
-import BasePage from "../../../base-page"
-import navBarContent from "./citizen-nav-bar-content";
+import BasePage from '../../../base-page';
+import navBarContent from './citizen-nav-bar-content';
 
 const selectors = {
   moneyClaimsNavBar: '#global-header',

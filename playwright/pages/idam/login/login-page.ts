@@ -1,11 +1,11 @@
-import urls from "../../../config/urls";
-import User from "../../../models/User";
-import BasePage from "../../base-page";
-import loginPageContent from "./login-page-content";
+import urls from '../../../config/urls';
+import User from '../../../models/User';
+import BasePage from '../../base-page';
+import loginPageContent from './login-page-content';
 
 const selectors = {
-  emailInput: "#username",
-  passwordInput: "#password",
+  emailInput: '#username',
+  passwordInput: '#password',
 };
 
 export default class LoginPage extends BasePage {

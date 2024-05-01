@@ -1,13 +1,13 @@
-import axios from "axios";
-import RequestOptions from "../models/RequestOptions";
-import RetryHelper from "./retry-helper";
+import axios from 'axios';
+import RequestOptions from '../models/RequestOptions';
+import RetryHelper from './retry-helper';
 
 export default class RestHelper {
   static request = ({
     url,
-    headers = { "Content-Type": "application/json" },
+    headers = { 'Content-Type': 'application/json' },
     body,
-    method = "POST",
+    method = 'POST',
   }: RequestOptions) => {
     return axios.request({
       url: url,
@@ -20,9 +20,9 @@ export default class RestHelper {
   static retriedRequest = async (
     {
       url,
-      headers = { "Content-Type": "application/json" },
+      headers = { 'Content-Type': 'application/json' },
       body,
-      method = "POST",
+      method = 'POST',
     }: RequestOptions,
     expectedStatus = 200,
   ) => {

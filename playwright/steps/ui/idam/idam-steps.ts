@@ -1,7 +1,7 @@
-import { Page } from "playwright-core";
-import User from "../../../models/User";
-import IdamFactory from "../../../pages/idam/idam-factory";
-import { config } from "../../../config/config";
+import { Page } from 'playwright-core';
+import User from '../../../models/User';
+import IdamFactory from '../../../pages/idam/idam-factory';
+import { config } from '../../../config/config';
 
 export default class IdamSteps {
   private idamFactory: IdamFactory;

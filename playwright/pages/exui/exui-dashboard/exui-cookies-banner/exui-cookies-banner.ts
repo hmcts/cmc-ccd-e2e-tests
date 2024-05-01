@@ -1,14 +1,12 @@
-import BasePage from '../../../base-page'
+import BasePage from '../../../base-page';
 
 const selectors = {
   accept: 'button[value=\'accept\']',
-  reject: 'button[value=\'reject\']'
-}
+  reject: 'button[value=\'reject\']',
+};
 
 export default class ExuiCookiesBanner extends BasePage {
   
-  verifyContent(): void {
-  }
   async acceptCookies() {
     await super.clickBySelector(selectors.accept);
   }

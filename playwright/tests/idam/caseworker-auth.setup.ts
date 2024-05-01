@@ -1,25 +1,24 @@
-import { config } from "../../config/config";
-import {judge, caseworker, legalAdvisor} from "../../config/users";
+import { config } from '../../config/config';
+import {judge, caseworker, legalAdvisor} from '../../config/users';
 import { test as setup } from '../../playwright-fixtures/index';
-
 
 setup.describe('Authenticating manage case users and saving cookies', {tag: '@setup'}, () => {
   if(!config.skipAuthSetup) {
     setup.describe.configure({mode: 'parallel'});
     
-    setup("Judge", async ({ IdamSteps, ExuiDashboardSteps }) => {
+    setup('Judge', async ({ IdamSteps, ExuiDashboardSteps }) => {
       await IdamSteps.ManageCaseLogin(judge);
       await ExuiDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(judge.cookiesPath!);
     });
     
-    setup("Legal advisor", async ({ IdamSteps, ExuiDashboardSteps }) => {
+    setup('Legal advisor', async ({ IdamSteps, ExuiDashboardSteps }) => {
       await IdamSteps.ManageCaseLogin(legalAdvisor);
       await ExuiDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(legalAdvisor.cookiesPath!);
     });
     
-    setup("Caseworker", async ({ IdamSteps, ExuiDashboardSteps }) => {
+    setup('Caseworker', async ({ IdamSteps, ExuiDashboardSteps }) => {
       await IdamSteps.ManageCaseLogin(caseworker);
       await ExuiDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(caseworker.cookiesPath!);

@@ -1,17 +1,17 @@
-import { Logger } from "@hmcts/nodejs-logging";
-import urls from "../config/urls";
-import RestHelper from "./rest-helper";
-import RequestOptions from "../models/RequestOptions";
-import NodeCache from "node-cache";
-import { config } from "../config/config";
-import User from "../models/User";
-import UserRole from "../models/UserRole";
+import { Logger } from '@hmcts/nodejs-logging';
+import urls from '../config/urls';
+import RestHelper from './rest-helper';
+import RequestOptions from '../models/RequestOptions';
+import NodeCache from 'node-cache';
+import { config } from '../config/config';
+import User from '../models/User';
+import UserRole from '../models/UserRole';
 
-const logger = Logger.getLogger("idamClient");
+const logger = Logger.getLogger('idamClient');
 
 const idamTokenCache = new NodeCache({ stdTTL: 25200, checkperiod: 1800 });
 
-const loginEndpoint = config.idamStudEnabled ? "oauth2/token" : "loginUser";
+const loginEndpoint = config.idamStudEnabled ? 'oauth2/token' : 'loginUser';
 
 export default class IdamClient {
   /**
@@ -28,20 +28,20 @@ export default class IdamClient {
     logger.info(`Create user: ${email}`);
     try {
       const requestOptions: RequestOptions = {
-        method: "POST",
+        method: 'POST',
         url: `${urls.idamApi}/testing-support/accounts`,
         body: {
           email: email,
           password: password,
-          forename: "John",
-          surname: "Smith",
+          forename: 'John',
+          surname: 'Smith',
           roles: [{ code: role.toString() }],
         },
       };
       await RestHelper.request(requestOptions);
       logger.info(`User with email: ${email} successfully created`);
     } catch (error) {
-      console.error("Error creating account:", email);
+      console.error('Error creating account:', email);
       throw error;
     }
   }
@@ -53,7 +53,7 @@ export default class IdamClient {
    */
   static deleteUser(email: string): Promise<void> {
     const requestOptions: RequestOptions = {
-      method: "DELETE",
+      method: 'DELETE',
       url: `${urls.idamApi}/testing-support/accounts/${email}`,
     };
 
@@ -74,14 +74,14 @@ export default class IdamClient {
    * @returns {Promise<void>}
    */
   static deleteUsers(emails: string[]): Promise<void> {
-    let params = emails
+    const params = emails
       .map(function (username) {
         return `userNames=${encodeURIComponent(username)}`;
       })
-      .join("&");
+      .join('&');
 
     const requestOptions: RequestOptions = {
-      method: "DELETE",
+      method: 'DELETE',
       url: `${urls.idamApi}/testing-support/test-data?${params}&async=true`,
     };
 
@@ -89,7 +89,7 @@ export default class IdamClient {
       .then((resp) => {
         // tslint:disable-next-line:no-console
         logger.info(
-          `Users with emails: ${emails.join(", ")} successfully deleted`,
+          `Users with emails: ${emails.join(', ')} successfully deleted`,
         );
         return Promise.resolve();
       })
@@ -109,13 +109,13 @@ export default class IdamClient {
     email,
     password,
   }): Promise<string | undefined> {
-    logger.info("User logged in ", email);
+    logger.info('User logged in ', email);
     if (idamTokenCache.get(email) != null) {
-      logger.info("Access token from cache: ", email);
+      logger.info('Access token from cache: ', email);
       return idamTokenCache.get(email);
     } else {
       if (email && password) {
-        logger.info("Access token from idam: ", email);
+        logger.info('Access token from idam: ', email);
         const accessToken = await IdamClient.getAccessTokenFromIdam({
           email,
           password,
@@ -124,7 +124,7 @@ export default class IdamClient {
         return accessToken;
       } else {
         logger.info(
-          "*******Missing user details. Cannot get access token******",
+          '*******Missing user details. Cannot get access token******',
         );
       }
     }
@@ -141,10 +141,10 @@ export default class IdamClient {
     password,
   }): Promise<string> {
     const requestOptions: RequestOptions = {
-      method: "POST",
+      method: 'POST',
       url: `${urls.idamApi}/${loginEndpoint}?username=${encodeURIComponent(email)}&password=${password}`,
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
     };
     return RestHelper.retriedRequest(requestOptions).then((response) => {

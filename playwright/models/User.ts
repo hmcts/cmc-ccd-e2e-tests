@@ -1,5 +1,5 @@
-import UserRole from "./UserRole";
-import UserType from "./UserType";
+import UserRole from './UserRole';
+import UserType from './UserType';
 
 type User = {
   readonly email: string;

@@ -1,16 +1,16 @@
-import urls from "../config/urls";
-import { Logger } from "@hmcts/nodejs-logging";
-import IdamClient from "../helpers/idam-client";
-import CitizenUserStateHelper from "../helpers/citizen-users-state-helper";
-import { claimant, defendant } from "../config/users";
-import User from "../models/User";
-import { config } from "../config/config";
-import UserRole from "../models/UserRole";
+import urls from '../config/urls';
+import { Logger } from '@hmcts/nodejs-logging';
+import IdamClient from '../helpers/idam-client';
+import CitizenUserStateHelper from '../helpers/citizen-users-state-helper';
+import { claimant, defendant } from '../config/users';
+import User from '../models/User';
+import { config } from '../config/config';
+import UserRole from '../models/UserRole';
 
-const logger = Logger.getLogger("idamClient");
+const logger = Logger.getLogger('idamClient');
 
 const handleError = (error) => {
-  console.log("Error during bootstrap, exiting", error);
+  console.log('Error during bootstrap, exiting', error);
   process.exit(1);
 };
 
@@ -59,7 +59,7 @@ const globalSetup = async () => {
       handleError(error);
     }
   } else {
-    console.log("SKIP_CITIZEN_SETUP: Skipping claimant and defendant user creation");
+    console.log('SKIP_CITIZEN_SETUP: Skipping claimant and defendant user creation');
   }
 };
 
