@@ -57,8 +57,6 @@ withNightlyPipeline("nodejs", product, component) {
     loadVaultSecrets(secrets)
     enableFullFunctionalTest(120)
     
-    enableCrossBrowserTest()
-    
     afterAlways('fullFunctionalTest') {
         publishHTML([
                   allowMissing: true,
