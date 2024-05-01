@@ -1,7 +1,7 @@
-import FileSystemHelper from "../../../helpers/file-system-helper";
-import FileType from "../../../models/FileType";
-import User from "../../../models/User";
-import BasePage from "../../base-page";
+import FileSystemHelper from '../../../helpers/file-system-helper';
+import FileType from '../../../models/FileType';
+import User from '../../../models/User';
+import BasePage from '../../base-page';
 
 export default class CookiesManager extends BasePage {
 
@@ -15,13 +15,9 @@ export default class CookiesManager extends BasePage {
   }
 
   async replaceCookies(user: User) {
-    if(user.cookiesPath && FileSystemHelper.exists(user.cookiesPath)) {
-      console.log(`Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`)
-      const cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
-      await super.replaceContextCookies(cookies);
-      await super.reload();
-    } else {
-      throw new Error(`Failed to authenticate ${user.type}. Storage state path ${user.cookiesPath} is invalid or not found for ${user.type} with email ${user.email}`);
-    }
+    console.log(`Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`);
+    const cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
+    await super.replaceContextCookies(cookies);
+    await super.reload();
   }
 }

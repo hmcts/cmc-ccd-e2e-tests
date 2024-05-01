@@ -1,5 +1,5 @@
-import { defineConfig, devices } from "@playwright/test";                  
-import { config } from "./playwright/config/config";
+import { defineConfig, devices } from '@playwright/test';                  
+import { config } from './playwright/config/config';
 
 export default defineConfig({
   testDir: './playwright/tests',
@@ -8,7 +8,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 3 : 0,
   workers: process.env.CI ? 4 : undefined,
-  reporter: process.env.CI ? "html" : "list",
+  reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
     timeout: 60 * 1000,
@@ -17,10 +17,10 @@ export default defineConfig({
     headless: !config.showBrowserWindow,
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    trace: "on-first-retry",
+    trace: 'on-first-retry',
     launchOptions: {
       slowMo: !process.env.CI ? 500 : undefined,
-    }
+    },
   },
   projects: [
     {
@@ -38,7 +38,7 @@ export default defineConfig({
       name: 'citizen-auth-setup',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/idam/citizen-auth.setup.ts',
-      teardown: 'citizen-auth-teardown'
+      teardown: 'citizen-auth-teardown',
     },
     {
       name: 'citizen-auth-teardown',

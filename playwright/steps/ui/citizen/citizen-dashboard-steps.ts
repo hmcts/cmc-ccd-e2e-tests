@@ -1,5 +1,5 @@
-import { Page } from "@playwright/test";
-import CitizenDashboardFactory from "../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory";
+import { Page } from '@playwright/test';
+import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
 
 export default class CitizenDashboardSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;

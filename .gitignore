@@ -1,6 +1,6 @@
 # Playwright
-/playwright/test-results/
-/playwright/playwright-report/
+test-results/
+playwright-report/
 /playwright/playwright/.cache/
 /playwright/fixtures/.citizen-users/
 /playwright/fixtures/.cookies/

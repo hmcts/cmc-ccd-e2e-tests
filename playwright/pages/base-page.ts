@@ -1,12 +1,10 @@
-import { Locator, Page } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
-import { expect } from "@playwright/test";
-import { config } from "../config/config";
-
+import { Locator, Page } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+import { expect } from '@playwright/test';
+import { config } from '../config/config';
 
 const selectors = {
-  submitButton: "input[type=submit]",
-
+  submitButton: 'input[type=submit]',
 };
 
 export default abstract class BasePage {
@@ -29,11 +27,11 @@ export default abstract class BasePage {
   }
 
   protected async clickButton(name: string) {
-    await this.page.getByRole('button', {name}).click()
+    await this.page.getByRole('button', {name}).click();
   }
 
   protected async clickLink(name: string) {
-    await this.page.getByRole('link', {name}).click()
+    await this.page.getByRole('link', {name}).click();
   }
 
   protected async locatorExists(selector: string): Promise<boolean> {
@@ -78,7 +76,7 @@ export default abstract class BasePage {
     await this.page.fill(selector, input, {});
   }
 
-  protected async getCookies(): Promise<Object> {
+  protected async getCookies(): Promise<Cookie[]> {
     return await this.page.context().cookies();
   }
 
@@ -95,7 +93,7 @@ export default abstract class BasePage {
   protected async runAccessibilityTests() {
     if(config.runAccessibilityTests) {
       const results = await new AxeBuilder({page: this.page})
-      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22a", "wcag22aa"]).analyze();
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']).analyze();
       expect(results.violations).toHaveLength(0);
     }
   }
