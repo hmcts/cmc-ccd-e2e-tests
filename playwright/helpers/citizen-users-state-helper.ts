@@ -1,11 +1,11 @@
-import User from "../models/User";
-import UserRole from "../models/UserRole";
-import FileSystemHelper from "./file-system-helper";
-import FileType from "../models/FileType";
-import UserType from "../models/UserType";
+import User from '../models/User';
+import UserRole from '../models/UserRole';
+import FileSystemHelper from './file-system-helper';
+import FileType from '../models/FileType';
+import UserType from '../models/UserType';
 
 export default class CitizenUserStateHelper {
-  private static statePath = "playwright/fixtures/.citizen-users/citizen-users.json";
+  private static statePath = 'playwright/fixtures/.citizen-users/citizen-users.json';
 
   private static generateCitizenUser = (userType: UserType): User => {
     return {
@@ -13,7 +13,7 @@ export default class CitizenUserStateHelper {
       password: process.env.SMOKE_TEST_USER_PASSWORD,
       role: UserRole.CITIZEN,
       type: userType,
-      cookiesPath: `playwright/fixtures/.cookies/${userType}.json`
+      cookiesPath: `playwright/fixtures/.cookies/${userType}.json`,
     };
   };
 

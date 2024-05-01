@@ -1,5 +1,5 @@
-import { Page } from "playwright-core";
-import ExuiDashboardFactory from "../../../pages/exui/exui-dashboard/exui-dashboard-factory";
+import { Page } from 'playwright-core';
+import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
 
 export default class ExuiDashboardSteps {
   private exuiDashboardFactory: ExuiDashboardFactory;

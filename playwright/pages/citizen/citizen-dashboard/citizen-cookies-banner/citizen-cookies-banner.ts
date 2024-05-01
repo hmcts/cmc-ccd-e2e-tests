@@ -1,9 +1,9 @@
-import BasePage from '../../../base-page'
+import BasePage from '../../../base-page';
 
 const selectors = {
   accept: '.govuk-button.cookie-banner-accept-button',
-  reject: '.govuk-button.cookie-banner-reject-button'
-}
+  reject: '.govuk-button.cookie-banner-reject-button',
+};
 
 export default class CitizenCookiesBanner extends BasePage {
 

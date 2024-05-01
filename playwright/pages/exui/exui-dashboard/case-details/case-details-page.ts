@@ -1,5 +1,4 @@
-import BasePage from "../../../base-page";
-
+import BasePage from '../../../base-page';
 
 const selectors = {};
 

@@ -1,8 +1,8 @@
-import CaseListPage from "./case-list/case-list-page";
-import CaseDetailsPage from "./case-details/case-details-page";
-import BaseFactory from "../../base-factory";
-import ExuiNavBar from "./exui-nav-bar/exui-nav-bar";
-import ExuiCookiesBanner from "./exui-cookies-banner/exui-cookies-banner";
+import CaseListPage from './case-list/case-list-page';
+import CaseDetailsPage from './case-details/case-details-page';
+import BaseFactory from '../../base-factory';
+import ExuiNavBar from './exui-nav-bar/exui-nav-bar';
+import ExuiCookiesBanner from './exui-cookies-banner/exui-cookies-banner';
 
 export default class ExuiDashboardFactory extends BaseFactory{
 

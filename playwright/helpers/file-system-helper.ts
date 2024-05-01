@@ -13,21 +13,21 @@ export default class FileSystemHelper {
     if(!this.exists(filePath)) {
       fs.mkdirSync(dirPath, {recursive: true});
     }
-  }
+  };
 
   private static encode = (data: any, fileType: FileType): any => {
     switch(fileType) {
       case FileType.JSON:
         return JSON.stringify(data);
     }
-  }
+  };
 
   private static decode = (data: Buffer,  fileType: FileType): any => {
     switch(fileType) {
       case FileType.JSON:
         return JSON.parse(data.toString('utf8'));
     }
-  }
+  };
 
   private static canWrite = (filePath: string) => {
     let canWrite = false;
@@ -38,11 +38,11 @@ export default class FileSystemHelper {
       }
     }
     return canWrite;
-  }
+  };
 
   private static isValid = (filePath: string, fileType: FileType) => {
     return filePath.endsWith(`.${fileType.toLowerCase()}`);
-  }
+  };
 
   static readFile = (filePath = '', fileType: FileType) => {
     if (this.exists(filePath)) {
@@ -50,27 +50,27 @@ export default class FileSystemHelper {
       return this.decode(data, fileType);
     }
     throw new FileError(`Failed to read ${fileType} with path ${filePath}. File path is invalid or does not exist.`);
-  }
+  };
 
   static writeFile = (data: any, filePath = '', fileType: FileType): void => {
     if (!filePath) {
-      throw new FileError("File path cannot be an empty string");
+      throw new FileError('File path cannot be an empty string');
     }
     if (!this.isValid(filePath, fileType)) {
-        throw new FileError(`File path ${filePath} should end with .${fileType}`);
+      throw new FileError(`File path ${filePath} should end with .${fileType}`);
     }
     if (!this.canWrite(filePath)) {
-        throw new FileError(`Cannot write ${fileType} to file path ${filePath}`);
+      throw new FileError(`Cannot write ${fileType} to file path ${filePath}`);
     }
     data = this.encode(data, fileType);
     this.mkDir(filePath);
     fs.writeFileSync(filePath, data);
-}
+  };
   
   static deleteFile = (filePath = '') => {
     try {
       if (!filePath) {
-        throw new FileError("File path cannot be an empty string");
+        throw new FileError('File path cannot be an empty string');
       }
       if (!this.canWrite(filePath)) {
         throw new FileError(`Cannot delete file from file path ${filePath}`);
@@ -90,5 +90,5 @@ export default class FileSystemHelper {
     for (const filePath of filePaths) {
       this.deleteFile(filePath);
     }
-  }
+  };
 }

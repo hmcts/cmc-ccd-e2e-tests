@@ -1,13 +1,13 @@
 
-import BaseFactory from "../../base-factory";
-import CitizenCookiesBanner from "./citizen-cookies-banner/citizen-cookies-banner";
-import CitizenNavBar from "./citizen-nav-bar/citizen-nav-bar";
-import DashboardPage from "./dashboard/dashboard-page";
+import BaseFactory from '../../base-factory';
+import CitizenCookiesBanner from './citizen-cookies-banner/citizen-cookies-banner';
+import CitizenNavBar from './citizen-nav-bar/citizen-nav-bar';
+import DashboardPage from './dashboard/dashboard-page';
 
 export default class CitizenDashboardFactory extends BaseFactory{
 
   get citizenCookiesBanner() {
-    return new CitizenCookiesBanner(this.page)
+    return new CitizenCookiesBanner(this.page);
   }
 
   get citizenNavBar() {
