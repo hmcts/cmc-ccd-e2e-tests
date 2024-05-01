@@ -26,13 +26,16 @@ export default class CitizenUserStateHelper {
   };
 
   static getUserFromState = (userType: UserType): User => {
-    const users = FileSystemHelper.readFile(this.statePath, FileType.JSON);
-  
-    if (users && users[userType]) {
-      return users[userType];
-    } else {
+    let users: User[];
+    try {
+      users = FileSystemHelper.readFile(this.statePath, FileType.JSON);
+    } catch {
       return this.generateCitizenUser(userType);
     }
+    if(users[userType]) {
+      return users[userType];
+    }
+    throw new Error(`User of type ${userType} does not exist in ${this.statePath}`);
   };
 
   static deleteUsersState = () => {

@@ -1,11 +1,19 @@
-import fs from 'fs'
+import fs from 'fs';
+import path from 'path';
 import FileError from '../errors/file-error';
 import FileType from '../models/FileType';
 
 export default class FileSystemHelper {
   private static writeFileDirs = ['playwright/fixtures/.citizen-users/', 'playwright/fixtures/.cookies/'];
   
-  static exists = (filePath: string) => fs.existsSync(filePath);
+  private static exists = (filePath: string) => fs.existsSync(filePath);
+
+  private static mkDir = (filePath: string) => {
+    const dirPath = path.dirname(filePath);
+    if(!this.exists(filePath)) {
+      fs.mkdirSync(dirPath, {recursive: true});
+    }
+  }
 
   private static encode = (data: any, fileType: FileType): any => {
     switch(fileType) {
@@ -41,7 +49,7 @@ export default class FileSystemHelper {
       const data = fs.readFileSync(filePath);
       return this.decode(data, fileType);
     }
-    return null;
+    throw new FileError(`Failed to read ${fileType} with path ${filePath}. File path is invalid or does not exist.`);
   }
 
   static writeFile = (data: any, filePath = '', fileType: FileType): void => {
@@ -55,6 +63,7 @@ export default class FileSystemHelper {
         throw new FileError(`Cannot write ${fileType} to file path ${filePath}`);
     }
     data = this.encode(data, fileType);
+    this.mkDir(filePath);
     fs.writeFileSync(filePath, data);
 }
   
