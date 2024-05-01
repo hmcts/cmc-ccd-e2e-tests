@@ -76,6 +76,7 @@ export default class FileSystemHelper {
         throw new FileError(`Cannot delete file from file path ${filePath}`);
       }
       fs.unlinkSync(filePath);
+      console.log(`Successfully deleted file with path ${filePath}`);
     } catch(error) {
       if(error.code === 'ENOENT') {
         console.log(error.stack);
