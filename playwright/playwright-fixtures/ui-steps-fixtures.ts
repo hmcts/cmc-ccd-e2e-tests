@@ -1,23 +1,26 @@
 import { test as base, TestInfo } from '@playwright/test';
-import IdamSteps from '../steps/ui/idam/idam-steps';
 import CitizenDashboardSteps from '../steps/ui/citizen/citizen-dashboard-steps';
 import ExuiDashboardSteps from '../steps/ui/exui/exui-dashboard-steps';
+import CreateClaimSteps from '../steps/ui/citizen/create-claim-steps';
 
 type StepsFixtures = {
-  IdamSteps: IdamSteps;
+  _isSetupTest: boolean;
   CitizenDashboardSteps: CitizenDashboardSteps;
   ExuiDashboardSteps: ExuiDashboardSteps;
+  CreateClaimSteps: CreateClaimSteps;
 };
 
 export const test = base.extend<StepsFixtures>({
-  IdamSteps: async ({page}: any, use: (arg0: IdamSteps) => any, testInfo: TestInfo) => {
-    const isSetup = testInfo.tags.includes('@setup');
-    await use(new IdamSteps(page, isSetup));
+  _isSetupTest: async ({page, _isSetupTest}: any, use: (arg0: boolean) => any, testInfo: TestInfo) => {
+    await use(testInfo.tags.includes('@setup'));
   },
   CitizenDashboardSteps: async ({page}: any, use: (arg0: CitizenDashboardSteps) => any) => {
     await use(new CitizenDashboardSteps(page));
   },
-  ExuiDashboardSteps: async ({page}: any, use: (arg0: ExuiDashboardSteps) => any) => {
+  ExuiDashboardSteps: async ({page, _isSetupTest}: any, use: (arg0: ExuiDashboardSteps) => any) => {
     await use(new ExuiDashboardSteps(page));
+  },
+  CreateClaimSteps: async ({page}: any, use: (arg0: CreateClaimSteps) => any) => {
+    await use(new CreateClaimSteps(page));
   },
 });

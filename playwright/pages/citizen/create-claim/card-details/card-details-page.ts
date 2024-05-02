@@ -1,4 +1,5 @@
 import users from '../../../../config/users';
+import DateHelper from '../../../../helpers/date-helper';
 import BasePage from '../../../base-page';
 import {heading, subHeadings,inputs, dropdowns} from './card-details-content';
 
@@ -17,9 +18,10 @@ export default class CardDetailsPage extends BasePage{
   }
 
   async fillCardDetails() {
+    const date = DateHelper.addToToday({years: 1});
     await super.fill(inputs.cardNumber.selector, '4444333322221111');
-    await super.fill(inputs.expiryMonth.selector, '10');
-    await super.fill(inputs.expiryYear.selector, '10');
+    await super.fill(inputs.expiryMonth.selector, DateHelper.getTwoDigitMonth(date));
+    await super.fill(inputs.expiryYear.selector, DateHelper.getTwoDigitYear(date));
     await super.fill(inputs.nameOnCard.selector, 'Test');
     await super.fill(inputs.securityCode.selector, '456');
   }

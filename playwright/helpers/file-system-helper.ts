@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import FileError from '../errors/file-error';
-import FileType from '../models/FileType';
+import FileType from '../enums/FileType';
 
 export default class FileSystemHelper {
   private static writeFileDirs = ['playwright/fixtures/.citizen-users/', 'playwright/fixtures/.cookies/'];

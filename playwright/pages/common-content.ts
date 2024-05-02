@@ -11,4 +11,8 @@ export const buttons = {
     title: '',
     selector: 'input[type=submit]',
   },
+  confirm: {
+    title: '',
+    selector: '#confirm'
+  }
 };

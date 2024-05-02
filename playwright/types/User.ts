@@ -1,5 +1,6 @@
-import UserRole from './UserRole';
-import UserType from './UserType';
+import UserRole from "../enums/UserRole";
+import UserType from "../enums/UserType";
+
 
 type User = {
   readonly email: string;

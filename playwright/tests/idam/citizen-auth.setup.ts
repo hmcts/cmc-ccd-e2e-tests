@@ -7,12 +7,12 @@ setup.describe('Authenticating citizen frontend users and saving cookies',  {tag
     setup.describe.configure({mode: 'parallel'});
     setup('Claimant', async ({ IdamSteps, CitizenDashboardSteps }) => {
       await IdamSteps.CitizenFrontEndLogin(claimant);
-      await CitizenDashboardSteps.AcceptCookies();
+      // await CitizenDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(claimant.cookiesPath!);
     });
     setup('Defendant', async ({ IdamSteps, CitizenDashboardSteps }) => {
       await IdamSteps.CitizenFrontEndLogin(defendant);
-      await CitizenDashboardSteps.AcceptCookies();
+      // await CitizenDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(defendant.cookiesPath!);
     });
   } else {

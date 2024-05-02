@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect } from '@playwright/test';
 import { config } from '../config/config';
 import { buttons } from './common-content';
+import Cookie from '../types/Cookie';
 
 export default abstract class BasePage {
   private page: Page;
@@ -13,6 +14,10 @@ export default abstract class BasePage {
 
   abstract verifyContent(): Promise<void>
 
+  protected async clickConfirm() {
+    await this.clickBySelector(buttons.submit.selector);
+  }
+  
   protected async clickSubmit() {
     await this.clickBySelector(buttons.submit.selector);
   }
@@ -33,7 +38,7 @@ export default abstract class BasePage {
     await this.page.getByRole('link', {name}).click();
   }
 
-  protected async locatorExists(selector: string): Promise<boolean> {
+  protected async selectorExists(selector: string): Promise<boolean> {
     const count = await this.page.locator(selector).count();
     if(count > 0) return true;
     return false;
@@ -79,8 +84,12 @@ export default abstract class BasePage {
     await expect(this.page.getByLabel(label)).toBeVisible();
   } 
 
-  protected async fill(selector: string, input: string) {
-    await this.page.fill(selector, input);
+  protected async fill(selector: string, input: string | number) {
+    await this.page.fill(selector, input.toString());
+  }
+
+  protected async getTextFromSelector(selector: string) {
+    return await this.page.textContent(selector);
   }
 
   protected async getCookies(): Promise<Cookie[]> {

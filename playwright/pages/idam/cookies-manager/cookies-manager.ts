@@ -1,7 +1,7 @@
 import FileSystemHelper from '../../../helpers/file-system-helper';
-import FileType from '../../../models/FileType';
-import User from '../../../models/User';
+import FileType from '../../../enums/FileType';
 import BasePage from '../../base-page';
+import User from '../../../types/User';
 
 export default class CookiesManager extends BasePage {
   async verifyContent(): Promise<void> {

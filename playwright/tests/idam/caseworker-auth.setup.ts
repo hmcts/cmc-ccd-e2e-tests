@@ -6,21 +6,18 @@ setup.describe('Authenticating manage case users and saving cookies', {tag: '@se
   if(!config.skipAuthSetup) {
     setup.describe.configure({mode: 'parallel'});
     
-    setup('Judge', async ({ IdamSteps, ExuiDashboardSteps }) => {
+    setup('Judge', async ({ IdamSteps }) => {
       await IdamSteps.ManageCaseLogin(judge);
-      await ExuiDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(judge.cookiesPath!);
     });
     
-    setup('Legal advisor', async ({ IdamSteps, ExuiDashboardSteps }) => {
+    setup('Legal advisor', async ({ IdamSteps }) => {
       await IdamSteps.ManageCaseLogin(legalAdvisor);
-      await ExuiDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(legalAdvisor.cookiesPath!);
     });
     
-    setup('Caseworker', async ({ IdamSteps, ExuiDashboardSteps }) => {
+    setup('Caseworker', async ({ IdamSteps }) => {
       await IdamSteps.ManageCaseLogin(caseworker);
-      await ExuiDashboardSteps.AcceptCookies();
       await IdamSteps.SaveCookies(caseworker.cookiesPath!);
     });
   } else {

@@ -2,8 +2,8 @@ import LoginPage from './login/login-page';
 import BaseFactory from '../base-factory';
 import CookiesManager from './cookies-manager/cookies-manager';
 
-export default class IdamFactory extends BaseFactory{
-
+export default abstract class IdamFactory extends BaseFactory{
+  
   get cookiesManager() {
     return new CookiesManager(this.page);
   }

@@ -2,8 +2,6 @@
 export const heading = 'Your money claims account';
 
 export const links = {
-  makeNewClaim: {
-    title: 'Make a new money claim',
-    selector: '',
-  },
+  makeNewClaim: 'Make a new money claim',
+  testingSupport: 'Testing support',
 };

@@ -1,16 +1,16 @@
 import CaseListPage from './case-list/case-list-page';
 import CaseDetailsPage from './case-details/case-details-page';
-import BaseFactory from '../../base-factory';
 import ExuiNavBar from './exui-nav-bar/exui-nav-bar';
+import IdamFactory from '../../idam/idam-factory';
 import ExuiCookiesBanner from './exui-cookies-banner/exui-cookies-banner';
 
-export default class ExuiDashboardFactory extends BaseFactory{
-
-  get exuiCookiesBanner() {
+export default class ExuiDashboardFactory extends IdamFactory{
+  
+  get cookiesBanner() {
     return new ExuiCookiesBanner(this.page);
   }
-  
-  get exuiNavBar() {
+
+  get navBar() {
     return new ExuiNavBar(this.page);
   }
   

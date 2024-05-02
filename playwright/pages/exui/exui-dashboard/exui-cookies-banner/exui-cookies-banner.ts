@@ -1,9 +1,5 @@
 import BasePage from '../../../base-page';
-
-const selectors = {
-  accept: 'button[value=\'accept\']',
-  reject: 'button[value=\'reject\']',
-};
+import { buttons } from './exui-cookies-banner-content';
 
 export default class ExuiCookiesBanner extends BasePage {
   
@@ -12,10 +8,12 @@ export default class ExuiCookiesBanner extends BasePage {
   }
 
   async acceptCookies() {
-    await super.clickBySelector(selectors.accept);
+    if(super.selectorExists(buttons.accept.selector))
+      await super.clickBySelector(buttons.accept.selector);
   }
 
   async rejectCookies() {
-    await super.clickBySelector(selectors.reject);
+    if(super.selectorExists(buttons.reject.selector))
+      await super.clickBySelector(buttons.reject.selector);
   }
 }

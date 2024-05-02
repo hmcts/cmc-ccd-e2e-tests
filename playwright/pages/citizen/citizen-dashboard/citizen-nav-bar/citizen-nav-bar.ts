@@ -3,11 +3,18 @@ import {links} from './citizen-nav-bar-content';
 
 export default class CitizenNavBar extends BasePage {
   async verifyContent(): Promise<void> {
-    throw new Error('Method not implemented.');
+    await this.expectHeadingToBeVisible
   }
   
   async clickSignOut() {
-    await super.clickLink(links.signOut);
-    await super.expectUrlToContainDomain('idam-web-public');
+    if(await super.selectorExists(links.signOut.selector)) {
+      await super.clickLink(links.signOut.title);
+      await super.expectUrlToContainDomain('idam-web-public');
+    }
+  }
+
+  async clickMyAccount() {
+    await super.clickLink(links.myAccount.title);
+    await super.expectUrlToEndWith('/dashboard');
   }
 }

@@ -3,24 +3,21 @@ import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/ci
 
 export default class CitizenDashboardSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;
+  private isSetupTest: boolean;
 
-  constructor(page: Page) {
+  constructor(page: Page, isSetupTest: boolean) {
+    this.isSetupTest = isSetupTest;
     this.citizenDashboardFactory = new CitizenDashboardFactory(page);
   }
 
   async GoToDashboard() {
     const { dashboardPage } =
       this.citizenDashboardFactory;
-    await dashboardPage.openDashboard();
-  }
-
-  async AcceptCookies() {
-    const { citizenCookiesBanner } = this.citizenDashboardFactory;
-    await citizenCookiesBanner.acceptCookies();
+    await dashboardPage.open();
   }
 
   async SignOut() {
-    const {citizenNavBar} = this.citizenDashboardFactory;
-    await citizenNavBar.clickSignOut();
+    const {navBar} = this.citizenDashboardFactory;
+    await navBar.clickSignOut();
   }
 }

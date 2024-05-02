@@ -48,7 +48,6 @@ export default defineConfig({
     {
       name: 'full-functional',
       use: {...devices['Desktop Chrome']  },
-      testDir: '.playwright/tests',
       dependencies: ['citizen-auth-setup', 'caseworker-auth-setup'],
     },
   ],

@@ -5,34 +5,40 @@ export default class CheckYourAnswersPage extends BasePage{
 
   async verifyContent(): Promise<void> {
     await super.expectHeadingToBeVisible(heading);
+    await this.verifyYourDetails();
+    await this.verifyTheirDetails();
+    await this.verifyClaimAmount();
+    await this.verifyTotalAmount();
+    await this.verifyClaimDetails();
+    await this.verifyStatementOfTruth();
   }
 
-  async verifyYourDetails() {
+  private async verifyYourDetails() {
     await super.expectSubHeadingToBeVisible(subHeadings.yourDetails);
     //verify the rest of content
   }
 
-  async verifyTheirDetails() {
+  private async verifyTheirDetails() {
     await super.expectSubHeadingToBeVisible(subHeadings.theirDetails);
     //verify the rest of content
   }
 
-  async verifyClaimAmount() {
+  private async verifyClaimAmount() {
     await super.expectSubHeadingToBeVisible(subHeadings.claimAmount);
     //verify the rest of content
   }
 
-  async verifyTotalAmount() {
+  private async verifyTotalAmount() {
     await super.expectSubHeadingToBeVisible(subHeadings.totalAmount);
     //verify the rest of content
   }
 
-  async verifyClaimDetails() {
+  private async verifyClaimDetails() {
     await super.expectSubHeadingToBeVisible(subHeadings.claimDetails);
     //verify the rest of content
   }
 
-  async verifyStatementOfTruth() {
+  private async verifyStatementOfTruth() {
     await super.expectSubHeadingToBeVisible(subHeadings.statementOfTruth);
     //verify the rest of content
   }

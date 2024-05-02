@@ -1,13 +1,9 @@
-import { Logger } from '@hmcts/nodejs-logging';
 import urls from '../config/urls';
 import RestHelper from './rest-helper';
-import RequestOptions from '../models/RequestOptions';
+import RequestOptions from '../types/RequestOptions';
 import NodeCache from 'node-cache';
 import { config } from '../config/config';
-import User from '../models/User';
-import UserRole from '../models/UserRole';
-
-const logger = Logger.getLogger('idamClient');
+import UserRole from '../enums/UserRole';
 
 const idamTokenCache = new NodeCache({ stdTTL: 25200, checkperiod: 1800 });
 
@@ -25,7 +21,7 @@ export default class IdamClient {
     password,
     role = UserRole.CITIZEN,
   }): Promise<void> {
-    logger.info(`Create user: ${email}`);
+    console.log(`Create user: ${email}`);
     try {
       const requestOptions: RequestOptions = {
         method: 'POST',
@@ -39,7 +35,7 @@ export default class IdamClient {
         },
       };
       await RestHelper.request(requestOptions);
-      logger.info(`User with email: ${email} successfully created`);
+      console.log(`User with email: ${email} successfully created`);
     } catch (error) {
       console.error('Error creating account:', email);
       throw error;
@@ -59,7 +55,7 @@ export default class IdamClient {
 
     return RestHelper.request(requestOptions)
       .then((resp) => {
-        logger.info(`User with email: ${email} successfully deleted`);
+        console.log(`User with email: ${email} successfully deleted`);
         // return Promise.resolve();
       })
       .catch(function (err) {
@@ -88,7 +84,7 @@ export default class IdamClient {
     return RestHelper.request(requestOptions)
       .then((resp) => {
         // tslint:disable-next-line:no-console
-        logger.info(
+        console.log(
           `Users with emails: ${emails.join(', ')} successfully deleted`,
         );
         return Promise.resolve();
@@ -109,13 +105,13 @@ export default class IdamClient {
     email,
     password,
   }): Promise<string | undefined> {
-    logger.info('User logged in ', email);
+    console.log('User logged in ', email);
     if (idamTokenCache.get(email) != null) {
-      logger.info('Access token from cache: ', email);
+      console.log('Access token from cache: ', email);
       return idamTokenCache.get(email);
     } else {
       if (email && password) {
-        logger.info('Access token from idam: ', email);
+        console.log('Access token from idam: ', email);
         const accessToken = await IdamClient.getAccessTokenFromIdam({
           email,
           password,
@@ -123,7 +119,7 @@ export default class IdamClient {
         idamTokenCache.set(email, accessToken);
         return accessToken;
       } else {
-        logger.info(
+        console.log(
           '*******Missing user details. Cannot get access token******',
         );
       }

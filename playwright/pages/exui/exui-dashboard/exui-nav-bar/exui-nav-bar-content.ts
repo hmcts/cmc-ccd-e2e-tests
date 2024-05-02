@@ -5,4 +5,16 @@ export const links = {
     title: 'Sign out',
     selector: '.hmcts-header__navigation-link',
   },
+  createCase: {
+    title: 'Create case',
+    selector: '',
+  },
+  caseList: {
+    title: 'Case list',
+    selector: ''
+  },
+  findCase: {
+    title: 'Find case',
+    selector: ''
+  }
 };
