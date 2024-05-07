@@ -11,10 +11,10 @@ export const links = {
   },
   caseList: {
     title: 'Case list',
-    selector: ''
+    selector: '',
   },
   findCase: {
     title: 'Find case',
-    selector: ''
-  }
+    selector: '',
+  },
 };

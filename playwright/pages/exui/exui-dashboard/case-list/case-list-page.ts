@@ -1,5 +1,5 @@
 import urls from '../../../../config/urls';
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
 
 export default class CaseListPage extends BasePage {
   

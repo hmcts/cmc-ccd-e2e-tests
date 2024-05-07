@@ -5,15 +5,13 @@ import {claimant, defendant} from '../../config/users';
 setup.describe('Authenticating citizen frontend users and saving cookies',  {tag: '@setup'}, () => {
   if(!config.skipAuthSetup) {
     setup.describe.configure({mode: 'parallel'});
-    setup('Claimant', async ({ IdamSteps, CitizenDashboardSteps }) => {
-      await IdamSteps.CitizenFrontEndLogin(claimant);
-      // await CitizenDashboardSteps.AcceptCookies();
-      await IdamSteps.SaveCookies(claimant.cookiesPath!);
+    setup('Claimant', async ({ CitizenDashboardSteps }) => {
+      await CitizenDashboardSteps.Login(claimant);
+      await CitizenDashboardSteps.SaveCookies(claimant.cookiesPath!);
     });
-    setup('Defendant', async ({ IdamSteps, CitizenDashboardSteps }) => {
-      await IdamSteps.CitizenFrontEndLogin(defendant);
-      // await CitizenDashboardSteps.AcceptCookies();
-      await IdamSteps.SaveCookies(defendant.cookiesPath!);
+    setup('Defendant', async ({ CitizenDashboardSteps }) => {
+      await CitizenDashboardSteps.Login(defendant);
+      await CitizenDashboardSteps.SaveCookies(defendant.cookiesPath!);
     });
   } else {
     console.log('SKIP_AUTH_SETUP: Skipping authenticate citizen users and save cookies setup');

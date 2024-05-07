@@ -1,6 +1,6 @@
 import axios from 'axios';
-import RequestOptions from '../../types/RequestOptions';
 import RetryHelper from './retry-helper';
+import RequestOptions from '../types/RequestOptions';
 
 export default class RestHelper {
   static request = ({

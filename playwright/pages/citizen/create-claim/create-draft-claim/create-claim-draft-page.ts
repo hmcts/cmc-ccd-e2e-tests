@@ -1,4 +1,4 @@
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
 import { heading, buttons } from './create-claim-draft-content';
 
 export default class CreateClaimDraftPage extends BasePage{
@@ -8,7 +8,7 @@ export default class CreateClaimDraftPage extends BasePage{
   }
 
   async clickCreateClaimDraft() {
-    await super.clickButton(buttons.createClaimDraft);
+    await super.clickButtonByName(buttons.createClaimDraft);
   }
   
 }

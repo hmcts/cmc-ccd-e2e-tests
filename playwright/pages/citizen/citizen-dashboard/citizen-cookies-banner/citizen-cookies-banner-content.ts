@@ -14,4 +14,8 @@ export const buttons = {
     title: 'Reject additional cookies',
     selector: '.govuk-button.cookie-banner-reject-button',
   },
+  hideMessage: {
+    title: 'Hide this message',
+    selector: '#cookie-accept-all-success-banner-hide',
+  },
 };

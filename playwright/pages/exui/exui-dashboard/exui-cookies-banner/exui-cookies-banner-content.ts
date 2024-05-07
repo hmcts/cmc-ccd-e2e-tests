@@ -14,4 +14,4 @@ export const buttons = {
     title: 'Reject additional cookies',
     selector: 'button[value=\'reject\']',
   },
-}
+};

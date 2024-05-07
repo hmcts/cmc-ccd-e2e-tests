@@ -12,5 +12,5 @@ export const links = {
   moneyClaims: {
     title: 'Money Claims',
     selector: '',
-  }
+  },
 };

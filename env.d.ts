@@ -20,8 +20,10 @@ declare global {
       SKIP_CITIZEN_SETUP: string,
       IDAM_STUB_ENABLED: string,
       RUN_ACCESSIBILITY_TESTS: string,
+      S2S_MICROSERVICE_KEY_CMC: string,
+      S2S_MICROSERVICE_KEY_PWD: string,
     }
   }
 }
 
-export {}
+export {};

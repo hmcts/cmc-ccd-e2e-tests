@@ -1,4 +1,4 @@
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
 import { links } from './exui-nav-bar-content';
 
 export default class ExuiNavBar extends BasePage {

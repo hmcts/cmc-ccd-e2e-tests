@@ -1,3 +1,9 @@
+const loginPageContent = {
+  heading: 'Sign in or create an account',
+  email_input_label: 'Email Address',
+  password_input_label: 'Password',
+};
+
 export const heading = 'Sign in or create an account';
 
 export const inputs = {
@@ -10,3 +16,4 @@ export const inputs = {
     selector: '#password',
   },
 };
+

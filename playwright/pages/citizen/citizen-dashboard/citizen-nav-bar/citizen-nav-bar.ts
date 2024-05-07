@@ -1,9 +1,9 @@
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
 import {links} from './citizen-nav-bar-content';
 
 export default class CitizenNavBar extends BasePage {
   async verifyContent(): Promise<void> {
-    await this.expectHeadingToBeVisible
+    await this.expectHeadingToBeVisible;
   }
   
   async clickSignOut() {

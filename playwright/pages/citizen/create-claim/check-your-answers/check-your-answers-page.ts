@@ -1,16 +1,18 @@
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
 import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 
 export default class CheckYourAnswersPage extends BasePage{
 
   async verifyContent(): Promise<void> {
-    await super.expectHeadingToBeVisible(heading);
-    await this.verifyYourDetails();
-    await this.verifyTheirDetails();
-    await this.verifyClaimAmount();
-    await this.verifyTotalAmount();
-    await this.verifyClaimDetails();
-    await this.verifyStatementOfTruth();
+    await Promise.all([
+      super.expectHeadingToBeVisible(heading),
+      this.verifyYourDetails(),
+      this.verifyTheirDetails(),
+      this.verifyClaimAmount(),
+      this.verifyTotalAmount(),
+      this.verifyClaimDetails(),
+      this.verifyStatementOfTruth(),
+    ]);
   }
 
   private async verifyYourDetails() {

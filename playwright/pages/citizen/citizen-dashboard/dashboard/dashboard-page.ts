@@ -1,5 +1,5 @@
 import urls from '../../../../config/urls';
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
 import { links } from './dashboard-content';
 
 export default class DashboardPage extends BasePage {

@@ -6,18 +6,18 @@ if(!config.skipAuthSetup) {
   teardown.describe('Signing out citizen users and deleting cookies', () => {
     teardown.describe.configure({mode: 'parallel'});
     
-    teardown('claimant', async ({ IdamSteps, CitizenDashboardSteps }) => {
-      await IdamSteps.CitizenFrontEndLogin(claimant);
+    teardown('claimant', async ({ CitizenDashboardSteps }) => {
+      await CitizenDashboardSteps.Login(claimant);
       await CitizenDashboardSteps.GoToDashboard();
       await CitizenDashboardSteps.SignOut();
-      IdamSteps.DeleteCookies(claimant.cookiesPath!);
+      CitizenDashboardSteps.DeleteCookies(claimant.cookiesPath!);
     });
     
-    teardown('defendant', async ({ IdamSteps, CitizenDashboardSteps }) => {
-      await IdamSteps.CitizenFrontEndLogin(defendant);
+    teardown('defendant', async ({ CitizenDashboardSteps }) => {
+      await CitizenDashboardSteps.Login(defendant);
       await CitizenDashboardSteps.GoToDashboard();
       await CitizenDashboardSteps.SignOut();
-      IdamSteps.DeleteCookies(defendant.cookiesPath!);
+      CitizenDashboardSteps.DeleteCookies(defendant.cookiesPath!);
     });
   });
 }

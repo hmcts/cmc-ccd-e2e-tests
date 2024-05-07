@@ -1,6 +1,6 @@
 import FileSystemHelper from '../../../helpers/file-system-helper';
 import FileType from '../../../enums/FileType';
-import BasePage from '../../base-page';
+import BasePage from '../../../base/base-page';
 import User from '../../../types/User';
 
 export default class CookiesManager extends BasePage {
@@ -17,7 +17,7 @@ export default class CookiesManager extends BasePage {
     FileSystemHelper.deleteFile(filePath);
   }
 
-  async replaceCookies(user: User) {
+  async cookiesLogin(user: User) {
     console.log(`Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`);
     const cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
     await super.replaceContextCookies(cookies);

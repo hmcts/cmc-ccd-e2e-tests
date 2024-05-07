@@ -26,24 +26,24 @@ export default defineConfig({
     {
       name: 'caseworker-auth-setup',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/idam/caseworker-auth.setup.ts',
+      testMatch: '**playwright/tests/auth/caseworker-auth.setup.ts',
       teardown: 'caseworker-auth-teardown',
     },
     {
       name: 'caseworker-auth-teardown',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/idam/caseworker-auth.teardown.ts',
+      testMatch: '**playwright/tests/auth/caseworker-auth.teardown.ts',
     },
     {
       name: 'citizen-auth-setup',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/idam/citizen-auth.setup.ts',
+      testMatch: '**playwright/tests/auth/citizen-auth.setup.ts',
       teardown: 'citizen-auth-teardown',
     },
     {
       name: 'citizen-auth-teardown',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/idam/citizen-auth.teardown.ts',
+      testMatch: '**playwright/tests/auth/citizen-auth.teardown.ts',
     },
     {
       name: 'full-functional',

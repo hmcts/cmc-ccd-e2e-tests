@@ -1,4 +1,4 @@
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
 import { buttons } from './exui-cookies-banner-content';
 
 export default class ExuiCookiesBanner extends BasePage {

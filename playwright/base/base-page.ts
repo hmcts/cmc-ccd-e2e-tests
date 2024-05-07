@@ -15,7 +15,7 @@ export default abstract class BasePage {
   abstract verifyContent(): Promise<void>
 
   protected async clickConfirm() {
-    await this.clickBySelector(buttons.submit.selector);
+    await this.clickBySelector(buttons.confirm.selector);
   }
   
   protected async clickSubmit() {
@@ -30,7 +30,7 @@ export default abstract class BasePage {
     await this.page.locator(selector).click();
   }
 
-  protected async clickButton(name: string) {
+  protected async clickButtonByName(name: string) {
     await this.page.getByRole('button', {name}).click();
   }
 

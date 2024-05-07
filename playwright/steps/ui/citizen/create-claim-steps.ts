@@ -1,17 +1,32 @@
 import { Page } from '@playwright/test';
-import CreateClaimFactory from "../../../pages/citizen/create-claim/create-claim-factory";
+import CreateClaimFactory from '../../../pages/citizen/create-claim/create-claim-factory';
+import BaseSteps from '../../../base/base-steps';
+import TestData from '../../../types/TestData';
+import { test } from '../../../playwright-fixtures';
 
-export default class CreateClaimSteps {
+type TestStepFunction = (...args: any[]) => Promise<any>;
+
+function step(target: Function, context: ClassMethodDecoratorContext) {
+  return function replacementMethod(...args: any) {
+    const name = this.constructor.name + '.' + (context.name as string);
+    return test.step(name, async () => {
+      return await target.call(this, ...args);
+    });
+  };
+}
+
+export default class CreateClaimSteps extends BaseSteps{
   private createClaimFactory: CreateClaimFactory;
 
-  constructor(page: Page) {
-    this.createClaimFactory = new CreateClaimFactory(page)
+  constructor(page: Page, testData: TestData) {
+    super(testData);
+    this.createClaimFactory = new CreateClaimFactory(page);
   }
 
   private async createDraftClaim() {
     const {testingSupportPage} = this.createClaimFactory;
     await testingSupportPage.open();
-    await testingSupportPage.verifyContent()
+    await testingSupportPage.verifyContent();
     await testingSupportPage.clickCreateClaimDraft();
 
     const {createDraftClaimPage} = this.createClaimFactory;
@@ -34,11 +49,17 @@ export default class CreateClaimSteps {
     const {confirmYourPaymentPage} = this.createClaimFactory;
     await confirmYourPaymentPage.verifyContent();
     await confirmYourPaymentPage.confirm();
-    await confirmYourPaymentPage.pause();
   }
 
+  private async getClaimRefFromConfirmation()  {
+    const {confirmationPage} = this.createClaimFactory;
+    await confirmationPage.verifyContent();
+    this.testData.claimRef = await confirmationPage.getClaimNumber();
+  }
+  
   async CreateClaimDefAsIndividual() {
     await this.createDraftClaim();
     await this.checkAndMakePayment();
+    await this.getClaimRefFromConfirmation();
   }
 }

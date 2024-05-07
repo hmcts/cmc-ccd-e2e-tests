@@ -13,6 +13,6 @@ export const buttons = {
   },
   confirm: {
     title: '',
-    selector: '#confirm'
-  }
+    selector: '#confirm',
+  },
 };

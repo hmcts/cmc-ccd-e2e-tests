@@ -6,19 +6,19 @@ setup.describe('Authenticating manage case users and saving cookies', {tag: '@se
   if(!config.skipAuthSetup) {
     setup.describe.configure({mode: 'parallel'});
     
-    setup('Judge', async ({ IdamSteps }) => {
-      await IdamSteps.ManageCaseLogin(judge);
-      await IdamSteps.SaveCookies(judge.cookiesPath!);
+    setup('Judge', async ({ ExuiDashboardSteps }) => {
+      await ExuiDashboardSteps.Login(judge);
+      await ExuiDashboardSteps.SaveCookies(judge.cookiesPath!);
     });
     
-    setup('Legal advisor', async ({ IdamSteps }) => {
-      await IdamSteps.ManageCaseLogin(legalAdvisor);
-      await IdamSteps.SaveCookies(legalAdvisor.cookiesPath!);
+    setup('Legal advisor', async ({ ExuiDashboardSteps }) => {
+      await ExuiDashboardSteps.Login(legalAdvisor);
+      await ExuiDashboardSteps.SaveCookies(legalAdvisor.cookiesPath!);
     });
     
-    setup('Caseworker', async ({ IdamSteps }) => {
-      await IdamSteps.ManageCaseLogin(caseworker);
-      await IdamSteps.SaveCookies(caseworker.cookiesPath!);
+    setup('Caseworker', async ({ ExuiDashboardSteps }) => {
+      await ExuiDashboardSteps.Login(caseworker);
+      await ExuiDashboardSteps.SaveCookies(caseworker.cookiesPath!);
     });
   } else {
     console.log('SKIP_AUTH_SETUP: Skipping authenticate manage case users and save cookies setup');
