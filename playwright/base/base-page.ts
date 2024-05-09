@@ -1,9 +1,8 @@
-import { Locator, Page } from '@playwright/test';
+import { Cookie, Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { expect } from '@playwright/test';
 import { config } from '../config/config';
 import { buttons } from './common-content';
-import Cookie from '../types/Cookie';
 
 export default abstract class BasePage {
   private page: Page;

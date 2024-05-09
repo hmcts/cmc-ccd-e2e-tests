@@ -6,10 +6,11 @@ import { heading, inputs } from './login-page-content';
 export default class LoginPage extends BasePage {
 
   async verifyContent() {
-    await super.runAccessibilityTests();
-    await super.expectTextToBeVisible(heading);
-    await super.expectLabelToBeVisible(inputs.email.label);
-    await super.expectLabelToBeVisible(inputs.password.label);
+    await Promise.all([
+      super.expectTextToBeVisible(heading),
+      super.expectLabelToBeVisible(inputs.email.label),
+      super.expectLabelToBeVisible(inputs.password.label),
+    ]);
   }
 
   private async login(

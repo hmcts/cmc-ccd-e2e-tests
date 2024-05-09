@@ -1,14 +1,12 @@
 import { test as base } from './test-data-fixture';
-import CitizenApiSteps from '../steps/api/citizen/citizen-api-steps';
-import ExuiApiSteps from '../steps/api/exui/exui-api-steps';
+import ApiSteps from '../steps/api/api-steps';
 
 type ApiStepsFixtures = {
-  CitizenApiSteps: CitizenApiSteps;
-  ExuiApiSteps: ExuiApiSteps;
+  ApiSteps: ApiSteps;
 };
 
 export const test = base.extend<ApiStepsFixtures>({
-  CitizenApiSteps: async ({page, testData}, use: (arg0: CitizenApiSteps) => any) => {
-    await use(new CitizenApiSteps(page.request, testData));
+  ApiSteps: async ({testData, request}, use: (arg0: ApiSteps) => any) => {
+    await use(new ApiSteps(request, testData));
   },
 });

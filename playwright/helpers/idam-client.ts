@@ -5,6 +5,8 @@ import NodeCache from 'node-cache';
 import { config } from '../config/config';
 import UserRole from '../enums/UserRole';
 
+//This class will soon become deprecated
+
 const idamTokenCache = new NodeCache({ stdTTL: 25200, checkperiod: 1800 });
 
 const loginEndpoint = config.idamStudEnabled ? 'oauth2/token' : 'loginUser';
@@ -147,77 +149,4 @@ export default class IdamClient {
       return response.data.access_token;
     });
   }
-
-  static getPin(letterHolderId: string): Promise<string> {
-    const requestOptions: RequestOptions = {
-      url: `${urls.idamApi}/testing-support/accounts/pin/${letterHolderId}`,
-    };
-    return RestHelper.request(requestOptions).then(function (response) {
-      return response.data;
-    });
-  }
-
-  // /**
-  //  * Authorizes pin user
-  //  *
-  //  * @param {string} pin
-  //  * @returns {Promise<string>} bearer token
-  //  */
-  // static async authenticatePinUser (pin: string): Promise<string> {
-  //   const oauth2Params: string = IdamClient.toUrlParams(oauth2)
-  //   const options = {
-  //     uri: `${baseURL}/pin?${oauth2Params}`,
-  //     headers: {
-  //       pin,
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     },
-  //     simple: false,
-  //     followRedirect: false,
-  //     json: false,
-  //     resolveWithFullResponse: true
-  //   }
-  //   return request(options).then(function (response) {
-  //     return response
-  //   }).then(function (response) {
-  //     const code: any = new url.URL(response.headers.location)
-  //     return IdamClient.exchangeCode(code).then(function (response) {
-  //       return response
-  //     })
-  //   })
-  // }
-
-  // static exchangeCode (code: string): Promise<string> {
-
-  //   const options = {
-  //     method: 'POST',
-  //     uri: `${baseURL}/oauth2/token`,
-  //     auth: {
-  //       username: oauth2.client_id,
-  //       password: oauth2.client_secret
-  //     },
-  //     form: { grant_type: 'authorization_code', code: code, redirect_uri: oauth2.redirect_uri }
-  //   }
-
-  //   return request(options).then(function (response) {
-  //     return response['access_token']
-  //   })
-  // }
-
-  // /**
-  //  * Retrieves uses details
-  //  *
-  //  * @param {string} jwt
-  //  * @returns {Promise<User>}
-  //  */
-  // static retrieveUser (jwt: string): Promise<User> {
-  //   const options = {
-  //     uri: `${baseURL}/details`,
-  //     headers: {
-  //       Authorization: `Bearer ${jwt}`
-  //     }
-  //   }
-  //   return request(options).then(function (response) {
-  //     return response
-  //   })
-  // }
 }

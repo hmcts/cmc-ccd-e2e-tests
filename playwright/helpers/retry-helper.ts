@@ -1,5 +1,7 @@
 const MAX_RETRY_TIMEOUT = 30000;
 
+//This class will soon become deprecated
+
 export default class RetryHelper {
   static retry = async (
     fn: () => Promise<any>,

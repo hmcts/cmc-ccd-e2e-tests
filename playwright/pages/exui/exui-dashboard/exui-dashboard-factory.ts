@@ -4,9 +4,9 @@ import ExuiNavBar from './exui-nav-bar/exui-nav-bar';
 import ExuiCookiesBanner from './exui-cookies-banner/exui-cookies-banner';
 import CookiesManager from '../../common/cookies-manager/cookies-manager';
 import LoginPage from '../../common/login/login-page';
-import BaseFactory from '../../../base/base-factory';
+import BasePageFactory from '../../../base/base-page-factory';
 
-export default class ExuiDashboardFactory extends BaseFactory {
+export default class ExuiDashboardFactory extends BasePageFactory {
   
   get cookiesManager() {
     return new CookiesManager(this.page);

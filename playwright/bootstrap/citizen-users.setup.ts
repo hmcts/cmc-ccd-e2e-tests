@@ -23,7 +23,7 @@ const createCitizenUserIfDoesntExist = async ({
   } catch (error) {
     if(error.response) {
       console.warn(`Failed authenticate User for: ${email}`);
-      console.warn(`Status Code: ${error.response.statusCode}`);
+      console.warn(`Status Code: ${error.response.status}`);
       console.warn(`Status Message: ${error.response.statusText}`);
     }
     try {
