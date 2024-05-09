@@ -23,6 +23,7 @@ export default class ApiSteps extends BaseSteps{
       accessToken = requestsCookiesManager.getCitizenAccessToken(claimant);
     }
     const {claimsStoreRequests} = this.requestsFactory;
-    this.testData.caseData = claimsStoreRequests.getCaseDataByReference(this.testData.claimRef, accessToken);
+    this.testData.caseData = await claimsStoreRequests.getCaseDataByReference(this.testData.claimRef, accessToken);
+    console.log(this.testData.caseData);
   }
 }
