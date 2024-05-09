@@ -1,14 +1,20 @@
-import BasePage from '../../../base-page';
-import navBarContent from './citizen-nav-bar-content';
-
-const selectors = {
-  moneyClaimsNavBar: '#global-header',
-};
+import BasePage from '../../../../base/base-page';
+import {links} from './citizen-nav-bar-content';
 
 export default class CitizenNavBar extends BasePage {
+  async verifyContent(): Promise<void> {
+    await this.expectHeadingToBeVisible;
+  }
   
   async clickSignOut() {
-    await super.clickLink(navBarContent.signOutLink);
-    await super.expectUrlToContainDomain('idam-web-public');
+    if(await super.selectorExists(links.signOut.selector)) {
+      await super.clickLink(links.signOut.title);
+      await super.expectUrlToContainDomain('idam-web-public');
+    }
+  }
+
+  async clickMyAccount() {
+    await super.clickLink(links.myAccount.title);
+    await super.expectUrlToEndWith('/dashboard');
   }
 }

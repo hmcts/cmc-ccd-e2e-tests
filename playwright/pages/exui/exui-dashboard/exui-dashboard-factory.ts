@@ -1,16 +1,26 @@
 import CaseListPage from './case-list/case-list-page';
 import CaseDetailsPage from './case-details/case-details-page';
-import BaseFactory from '../../base-factory';
 import ExuiNavBar from './exui-nav-bar/exui-nav-bar';
 import ExuiCookiesBanner from './exui-cookies-banner/exui-cookies-banner';
+import CookiesManager from '../../common/cookies-manager/cookies-manager';
+import LoginPage from '../../common/login/login-page';
+import BasePageFactory from '../../../base/base-page-factory';
 
-export default class ExuiDashboardFactory extends BaseFactory{
+export default class ExuiDashboardFactory extends BasePageFactory {
+  
+  get cookiesManager() {
+    return new CookiesManager(this.page);
+  }
+ 
+  get loginPage() {
+    return new LoginPage(this.page);
+  }
 
-  get exuiCookiesBanner() {
+  get cookiesBanner() {
     return new ExuiCookiesBanner(this.page);
   }
-  
-  get exuiNavBar() {
+
+  get navBar() {
     return new ExuiNavBar(this.page);
   }
   

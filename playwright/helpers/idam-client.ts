@@ -1,13 +1,11 @@
-import { Logger } from '@hmcts/nodejs-logging';
 import urls from '../config/urls';
 import RestHelper from './rest-helper';
-import RequestOptions from '../models/RequestOptions';
+import RequestOptions from '../types/RequestOptions';
 import NodeCache from 'node-cache';
 import { config } from '../config/config';
-import User from '../models/User';
-import UserRole from '../models/UserRole';
+import UserRole from '../enums/UserRole';
 
-const logger = Logger.getLogger('idamClient');
+//This class will soon become deprecated
 
 const idamTokenCache = new NodeCache({ stdTTL: 25200, checkperiod: 1800 });
 
@@ -25,7 +23,7 @@ export default class IdamClient {
     password,
     role = UserRole.CITIZEN,
   }): Promise<void> {
-    logger.info(`Create user: ${email}`);
+    console.log(`Create user: ${email}`);
     try {
       const requestOptions: RequestOptions = {
         method: 'POST',
@@ -39,7 +37,7 @@ export default class IdamClient {
         },
       };
       await RestHelper.request(requestOptions);
-      logger.info(`User with email: ${email} successfully created`);
+      console.log(`User with email: ${email} successfully created`);
     } catch (error) {
       console.error('Error creating account:', email);
       throw error;
@@ -59,7 +57,7 @@ export default class IdamClient {
 
     return RestHelper.request(requestOptions)
       .then((resp) => {
-        logger.info(`User with email: ${email} successfully deleted`);
+        console.log(`User with email: ${email} successfully deleted`);
         // return Promise.resolve();
       })
       .catch(function (err) {
@@ -88,7 +86,7 @@ export default class IdamClient {
     return RestHelper.request(requestOptions)
       .then((resp) => {
         // tslint:disable-next-line:no-console
-        logger.info(
+        console.log(
           `Users with emails: ${emails.join(', ')} successfully deleted`,
         );
         return Promise.resolve();
@@ -109,13 +107,13 @@ export default class IdamClient {
     email,
     password,
   }): Promise<string | undefined> {
-    logger.info('User logged in ', email);
+    console.log('User logged in ', email);
     if (idamTokenCache.get(email) != null) {
-      logger.info('Access token from cache: ', email);
+      console.log('Access token from cache: ', email);
       return idamTokenCache.get(email);
     } else {
       if (email && password) {
-        logger.info('Access token from idam: ', email);
+        console.log('Access token from idam: ', email);
         const accessToken = await IdamClient.getAccessTokenFromIdam({
           email,
           password,
@@ -123,7 +121,7 @@ export default class IdamClient {
         idamTokenCache.set(email, accessToken);
         return accessToken;
       } else {
-        logger.info(
+        console.log(
           '*******Missing user details. Cannot get access token******',
         );
       }
@@ -151,77 +149,4 @@ export default class IdamClient {
       return response.data.access_token;
     });
   }
-
-  static getPin(letterHolderId: string): Promise<string> {
-    const requestOptions: RequestOptions = {
-      url: `${urls.idamApi}/testing-support/accounts/pin/${letterHolderId}`,
-    };
-    return RestHelper.request(requestOptions).then(function (response) {
-      return response.data;
-    });
-  }
-
-  // /**
-  //  * Authorizes pin user
-  //  *
-  //  * @param {string} pin
-  //  * @returns {Promise<string>} bearer token
-  //  */
-  // static async authenticatePinUser (pin: string): Promise<string> {
-  //   const oauth2Params: string = IdamClient.toUrlParams(oauth2)
-  //   const options = {
-  //     uri: `${baseURL}/pin?${oauth2Params}`,
-  //     headers: {
-  //       pin,
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     },
-  //     simple: false,
-  //     followRedirect: false,
-  //     json: false,
-  //     resolveWithFullResponse: true
-  //   }
-  //   return request(options).then(function (response) {
-  //     return response
-  //   }).then(function (response) {
-  //     const code: any = new url.URL(response.headers.location)
-  //     return IdamClient.exchangeCode(code).then(function (response) {
-  //       return response
-  //     })
-  //   })
-  // }
-
-  // static exchangeCode (code: string): Promise<string> {
-
-  //   const options = {
-  //     method: 'POST',
-  //     uri: `${baseURL}/oauth2/token`,
-  //     auth: {
-  //       username: oauth2.client_id,
-  //       password: oauth2.client_secret
-  //     },
-  //     form: { grant_type: 'authorization_code', code: code, redirect_uri: oauth2.redirect_uri }
-  //   }
-
-  //   return request(options).then(function (response) {
-  //     return response['access_token']
-  //   })
-  // }
-
-  // /**
-  //  * Retrieves uses details
-  //  *
-  //  * @param {string} jwt
-  //  * @returns {Promise<User>}
-  //  */
-  // static retrieveUser (jwt: string): Promise<User> {
-  //   const options = {
-  //     uri: `${baseURL}/details`,
-  //     headers: {
-  //       Authorization: `Bearer ${jwt}`
-  //     }
-  //   }
-  //   return request(options).then(function (response) {
-  //     return response
-  //   })
-  // }
 }

@@ -1,17 +1,20 @@
-import BasePage from '../../../base-page';
-
-const selectors = {
-  accept: '.govuk-button.cookie-banner-accept-button',
-  reject: '.govuk-button.cookie-banner-reject-button',
-};
+import BasePage from '../../../../base/base-page';
+import { buttons } from './citizen-cookies-banner-content';
 
 export default class CitizenCookiesBanner extends BasePage {
+  verifyContent(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 
   async acceptCookies() {
-    await super.clickBySelector(selectors.accept);
+    if(super.selectorExists(buttons.accept.selector)) {
+      await super.clickButtonByName(buttons.accept.title);
+      await super.clickButtonByName(buttons.hideMessage.title);
+    }
   }
 
   async rejectCookies() {
-    await super.clickBySelector(selectors.reject);
+    if(super.selectorExists(buttons.reject.selector))
+      await super.clickButtonByName(buttons.reject.title);
   }
 }

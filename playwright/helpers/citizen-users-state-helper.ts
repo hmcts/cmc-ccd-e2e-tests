@@ -1,16 +1,16 @@
-import User from '../models/User';
-import UserRole from '../models/UserRole';
+import User from '../types/User';
+import UserRole from '../enums/UserRole';
 import FileSystemHelper from './file-system-helper';
-import FileType from '../models/FileType';
-import UserType from '../models/UserType';
+import FileType from '../enums/FileType';
+import UserType from '../enums/UserType';
 
 export default class CitizenUserStateHelper {
   private static statePath = 'playwright/fixtures/.citizen-users/citizen-users.json';
 
-  private static generateCitizenUser = (userType: UserType): User => {
+  private static generateCitizenUser = (userType: UserType, password: string): User => {
     return {
       email: `${userType}citizen-${Math.random().toString(36).slice(2, 9).toLowerCase()}@gmail.com`,
-      password: process.env.SMOKE_TEST_USER_PASSWORD,
+      password: password,
       role: UserRole.CITIZEN,
       type: userType,
       cookiesPath: `playwright/fixtures/.cookies/${userType}.json`,
@@ -25,12 +25,12 @@ export default class CitizenUserStateHelper {
     return FileSystemHelper.readFile(this.statePath, FileType.JSON);
   };
 
-  static getUserFromState = (userType: UserType): User => {
+  static getUserFromState = (userType: UserType, password: string): User => {
     let users: User[];
     try {
       users = FileSystemHelper.readFile(this.statePath, FileType.JSON);
     } catch {
-      return this.generateCitizenUser(userType);
+      return this.generateCitizenUser(userType, password);
     }
     if(users[userType]) {
       return users[userType];
