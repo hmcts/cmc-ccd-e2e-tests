@@ -1,4 +1,4 @@
-import { APIRequestContext, Page } from '@playwright/test';
+import { APIRequestContext } from '@playwright/test';
 
 export default abstract class BaseRequestsFactory {
   protected requestContext: APIRequestContext;
