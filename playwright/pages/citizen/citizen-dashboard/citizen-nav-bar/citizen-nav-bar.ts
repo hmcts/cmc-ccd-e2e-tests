@@ -2,15 +2,14 @@ import BasePage from '../../../../base/base-page';
 import {links} from './citizen-nav-bar-content';
 
 export default class CitizenNavBar extends BasePage {
-  async verifyContent(): Promise<void> {
-    await this.expectHeadingToBeVisible;
+  
+  verifyContent(): Promise<void> {
+    throw new Error('Method not implemented.');
   }
   
   async clickSignOut() {
-    if(await super.selectorExists(links.signOut.selector)) {
-      await super.clickLink(links.signOut.title);
-      await super.expectUrlToContainDomain('idam-web-public');
-    }
+    await super.clickLink(links.signOut.title);
+    await super.expectUrlToContainDomain('idam-web-public');
   }
 
   async clickMyAccount() {

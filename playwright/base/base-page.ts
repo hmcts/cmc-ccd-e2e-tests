@@ -99,10 +99,12 @@ export default abstract class BasePage {
     await this.page.reload();
   }
 
-  protected async replaceContextCookies(cookies: Cookie[]): Promise<void> {
-    const context =  this.page.context();
-    await context.clearCookies();
-    await context.addCookies(cookies);
+  protected async clearCookies() {
+    await this.page.context().clearCookies();
+  }
+
+  protected async addCookies(cookies: Cookie[]) {
+    await this.page.context().addCookies(cookies);
   }
 
   protected async runAccessibilityTests() {

@@ -20,6 +20,11 @@ export default class PageCookiesManager extends BasePage {
   async cookiesLogin(user: User) {
     console.log(`Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`);
     const cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
-    await super.replaceContextCookies(cookies);
+    await super.clearCookies();
+    await super.addCookies(cookies);
+  }
+
+  async cookiesSignOut() {
+    await super.clearCookies();
   }
 }

@@ -14,15 +14,15 @@ export default class CitizenDashboardSteps extends BaseSteps {
   }
 
   async Login(user: User) {
+    const { pageCookiesManager } = this.citizenDashboardFactory;
     if(config.skipAuthSetup || this.testData.isSetupTest) {
       const { loginPage, cookiesBanner } = this.citizenDashboardFactory;
+      await pageCookiesManager.cookiesSignOut();
       await loginPage.openCitizenFrontEnd();
-      await this.SignOut();
       await loginPage.verifyContent();
       await loginPage.citizenLogin(user);
       await cookiesBanner.acceptCookies();
     } else {
-      const { pageCookiesManager } = this.citizenDashboardFactory;
       await pageCookiesManager.cookiesLogin(user);
       await this.GoToDashboard();
     }

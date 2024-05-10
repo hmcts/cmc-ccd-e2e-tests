@@ -14,15 +14,15 @@ export default class ExuiDashboardSteps extends BaseSteps{
   }
 
   async Login(user: User) {
+    const { pageCookiesManager } = this.exuiDashboardFactory;
     if(config.skipAuthSetup || this.testData.isSetupTest) {
       const { loginPage, cookiesBanner } = this.exuiDashboardFactory;
+      await pageCookiesManager.cookiesSignOut();
       await loginPage.openManageCase();
-      await this.SignOut();
       await loginPage.verifyContent();
-      await cookiesBanner.acceptCookies();
       await loginPage.caseworkerLogin(user);
+      await cookiesBanner.acceptCookies();
     } else {
-      const { pageCookiesManager } = this.exuiDashboardFactory;
       await pageCookiesManager.cookiesLogin(user);
       await this.GoToCaseList();
     }

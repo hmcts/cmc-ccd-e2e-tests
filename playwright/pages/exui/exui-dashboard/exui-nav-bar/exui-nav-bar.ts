@@ -8,9 +8,7 @@ export default class ExuiNavBar extends BasePage {
   }
   
   async clickSignOut() {
-    if(await super.selectorExists(links.signOut.selector)) {
-      await super.clickBySelector(links.signOut.selector);
-      await super.expectUrlToContainDomain('idam-web-public');
-    }
+    await super.clickBySelector(links.signOut.selector);
+    await super.expectUrlToContainDomain('idam-web-public');
   }
 }
