@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
 import User from '../../../types/User';
 import { config } from '../../../config/config';
-import BaseSteps from '../../../base/base-steps';
+import BaseSteps from '../../base-steps';
 import TestData from '../../../types/TestData';
 
 export default class CitizenDashboardSteps extends BaseSteps {

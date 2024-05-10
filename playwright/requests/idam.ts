@@ -1,9 +1,9 @@
-import BaseRequest from "../base/base-requests";
+import BaseRequests from "../base/base-requests";
 import urls from "../config/urls";
 import RequestOptions from "../types/RequestOptions";
 import User from "../types/User";
 
-export default class IdamRequests extends BaseRequest {
+export default class IdamRequests extends BaseRequests {
   async accessToken({email, password}: User): Promise<string> {
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/loginUser`,

@@ -1,5 +1,5 @@
-import BaseRequest from "../base/base-requests";
+import BaseRequests from "../base/base-requests";
 
-export default class CCDRequests extends BaseRequest {
+export default class CCDRequests extends BaseRequests {
 
 }

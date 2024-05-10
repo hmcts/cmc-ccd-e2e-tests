@@ -24,6 +24,5 @@ export default class ApiSteps extends BaseSteps{
     }
     const {claimsStoreRequests} = this.requestsFactory;
     this.testData.caseData = await claimsStoreRequests.getCaseDataByReference(this.testData.claimRef, accessToken);
-    console.log(this.testData.caseData);
   }
 }

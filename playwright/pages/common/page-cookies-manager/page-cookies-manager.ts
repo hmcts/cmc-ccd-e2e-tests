@@ -3,7 +3,7 @@ import FileType from '../../../enums/FileType';
 import BasePage from '../../../base/base-page';
 import User from '../../../types/User';
 
-export default class CookiesManager extends BasePage {
+export default class PageCookiesManager extends BasePage {
   async verifyContent(): Promise<void> {
     throw new Error('Method not implemented.');
   }

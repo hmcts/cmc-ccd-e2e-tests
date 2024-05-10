@@ -2,14 +2,14 @@ import CaseListPage from './case-list/case-list-page';
 import CaseDetailsPage from './case-details/case-details-page';
 import ExuiNavBar from './exui-nav-bar/exui-nav-bar';
 import ExuiCookiesBanner from './exui-cookies-banner/exui-cookies-banner';
-import CookiesManager from '../../common/cookies-manager/cookies-manager';
+import PageCookiesManager from '../../common/page-cookies-manager/page-cookies-manager';
 import LoginPage from '../../common/login/login-page';
 import BasePageFactory from '../../../base/base-page-factory';
 
 export default class ExuiDashboardFactory extends BasePageFactory {
   
-  get cookiesManager() {
-    return new CookiesManager(this.page);
+  get pageCookiesManager() {
+    return new PageCookiesManager(this.page);
   }
  
   get loginPage() {

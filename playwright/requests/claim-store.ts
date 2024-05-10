@@ -1,8 +1,8 @@
-import BaseRequest from "../base/base-requests";
+import BaseRequests from "../base/base-requests";
 import urls from "../config/urls";
 import RequestOptions from "../types/RequestOptions";
 
-export default class ClaimStoreRequests extends BaseRequest {
+export default class ClaimStoreRequests extends BaseRequests {
   private getRequestHeaders(accessToken: string) {
     return {
       'Content-Type': 'application/json',

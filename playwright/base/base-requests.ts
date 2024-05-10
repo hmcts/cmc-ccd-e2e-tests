@@ -1,7 +1,7 @@
 import { APIRequestContext, APIResponse } from "playwright-core";
 import RequestOptions from "../types/RequestOptions";
 
-export default abstract class BaseRequest {
+export default abstract class BaseRequests {
   private requestContext: APIRequestContext; 
   private MAX_RETRY_TIMEOUT = 30000;
 
