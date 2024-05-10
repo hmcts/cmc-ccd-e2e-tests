@@ -14,15 +14,16 @@ export default class ExuiDashboardSteps extends BaseSteps{
   }
 
   async Login(user: User) {
+    const { pageCookiesManager } = this.exuiDashboardFactory;
     if(config.skipAuthSetup || this.testData.isSetupTest) {
       const { loginPage, cookiesBanner } = this.exuiDashboardFactory;
+      await pageCookiesManager.cookiesSignOut();
       await loginPage.openManageCase();
       await loginPage.verifyContent();
-      await cookiesBanner.acceptCookies();
       await loginPage.caseworkerLogin(user);
+      await cookiesBanner.acceptCookies();
     } else {
-      const { cookiesManager } = this.exuiDashboardFactory;
-      await cookiesManager.cookiesLogin(user);
+      await pageCookiesManager.cookiesLogin(user);
       await this.GoToCaseList();
     }
   }
@@ -38,12 +39,12 @@ export default class ExuiDashboardSteps extends BaseSteps{
   }
 
   async SaveCookies(filePath: string) {
-    const { cookiesManager } = this.exuiDashboardFactory;
-    await cookiesManager.saveCookies(filePath);
+    const { pageCookiesManager } = this.exuiDashboardFactory;
+    await pageCookiesManager.saveCookies(filePath);
   }
 
   DeleteCookies(filePath: string) {
-    const { cookiesManager } = this.exuiDashboardFactory;
-    cookiesManager.deleteCookies(filePath);
+    const { pageCookiesManager } = this.exuiDashboardFactory;
+    pageCookiesManager.deleteCookies(filePath);
   }
 }

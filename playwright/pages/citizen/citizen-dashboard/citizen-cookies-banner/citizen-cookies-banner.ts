@@ -7,14 +7,14 @@ export default class CitizenCookiesBanner extends BasePage {
   }
 
   async acceptCookies() {
-    if(super.selectorExists(buttons.accept.selector)) {
+    if(await super.selectorExists(buttons.accept.selector)) {
       await super.clickButtonByName(buttons.accept.title);
       await super.clickButtonByName(buttons.hideMessage.title);
     }
   }
 
   async rejectCookies() {
-    if(super.selectorExists(buttons.reject.selector))
+    if(await super.selectorExists(buttons.reject.selector))
       await super.clickButtonByName(buttons.reject.title);
   }
 }

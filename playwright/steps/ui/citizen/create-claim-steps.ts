@@ -2,18 +2,6 @@ import { Page } from '@playwright/test';
 import CreateClaimFactory from '../../../pages/citizen/create-claim/create-claim-factory';
 import BaseSteps from '../../../base/base-steps';
 import TestData from '../../../types/TestData';
-import { test } from '../../../playwright-fixtures';
-
-type TestStepFunction = (...args: any[]) => Promise<any>;
-
-function step(target: Function, context: ClassMethodDecoratorContext) {
-  return function replacementMethod(...args: any) {
-    const name = this.constructor.name + '.' + (context.name as string);
-    return test.step(name, async () => {
-      return await target.call(this, ...args);
-    });
-  };
-}
 
 export default class CreateClaimSteps extends BaseSteps{
   private createClaimFactory: CreateClaimFactory;

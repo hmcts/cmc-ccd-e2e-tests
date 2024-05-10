@@ -1,16 +1,19 @@
-import BaseRequest from "../base/base-requests";
-import urls from "../config/urls";
-import RequestOptions from "../types/RequestOptions";
+import BaseRequest from '../base/base-requests';
+import urls from '../config/urls';
+import RequestOptions from '../types/RequestOptions';
 
 export default class ClaimStoreRequests extends BaseRequest {
   private getRequestHeaders(accessToken: string) {
     return {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${accessToken}`
-    }
+      'Authorization': `Bearer ${accessToken}`,
+    };
   }
 
-  async getCaseDataByReference(claimRef: string, accessToken: string) {
+  async getCaseDataByReference(claimRef?: string, accessToken?: string) {
+    if(!claimRef || !accessToken) {
+      throw new Error('Claim reference and access token must be defined');
+    }
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,
       headers: this.getRequestHeaders(accessToken),

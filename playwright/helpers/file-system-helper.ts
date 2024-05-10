@@ -44,7 +44,7 @@ export default class FileSystemHelper {
     return filePath.endsWith(`.${fileType.toLowerCase()}`);
   };
 
-  static readFile = (filePath = '', fileType: FileType) => {
+  static readFile = (filePath = '', fileType: FileType): any => {
     if (this.exists(filePath)) {
       const data = fs.readFileSync(filePath);
       return this.decode(data, fileType);

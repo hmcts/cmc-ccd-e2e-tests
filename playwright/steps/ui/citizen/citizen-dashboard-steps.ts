@@ -14,27 +14,28 @@ export default class CitizenDashboardSteps extends BaseSteps {
   }
 
   async Login(user: User) {
+    const { pageCookiesManager } = this.citizenDashboardFactory;
     if(config.skipAuthSetup || this.testData.isSetupTest) {
       const { loginPage, cookiesBanner } = this.citizenDashboardFactory;
+      await pageCookiesManager.cookiesSignOut();
       await loginPage.openCitizenFrontEnd();
       await loginPage.verifyContent();
       await loginPage.citizenLogin(user);
       await cookiesBanner.acceptCookies();
     } else {
-      const { cookiesManager } = this.citizenDashboardFactory;
-      await cookiesManager.cookiesLogin(user);
+      await pageCookiesManager.cookiesLogin(user);
       await this.GoToDashboard();
     }
   }
 
   async SaveCookies(filePath: string) {
-    const { cookiesManager } = this.citizenDashboardFactory;
-    await cookiesManager.saveCookies(filePath);
+    const { pageCookiesManager } = this.citizenDashboardFactory;
+    await pageCookiesManager.saveCookies(filePath);
   }
 
   DeleteCookies(filePath: string) {
-    const { cookiesManager } = this.citizenDashboardFactory;
-    cookiesManager.deleteCookies(filePath);
+    const { pageCookiesManager } = this.citizenDashboardFactory;
+    pageCookiesManager.deleteCookies(filePath);
   }
 
   async GoToDashboard() {

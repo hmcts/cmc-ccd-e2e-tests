@@ -8,12 +8,14 @@ export default class ExuiCookiesBanner extends BasePage {
   }
 
   async acceptCookies() {
-    if(super.selectorExists(buttons.accept.selector))
+    if(await super.selectorExists(buttons.accept.selector)) {
       await super.clickBySelector(buttons.accept.selector);
+    }
   }
 
   async rejectCookies() {
-    if(super.selectorExists(buttons.reject.selector))
+    if(await super.selectorExists(buttons.reject.selector)) {
       await super.clickBySelector(buttons.reject.selector);
+    }
   }
 }

@@ -1,6 +1,6 @@
 
 import BasePageFactory from '../../../base/base-page-factory';
-import CookiesManager from '../../common/cookies-manager/cookies-manager';
+import PageCookiesManager from '../../common/cookies-manager/cookies-manager';
 import LoginPage from '../../common/login/login-page';
 import CitizenCookiesBanner from './citizen-cookies-banner/citizen-cookies-banner';
 import CitizenNavBar from './citizen-nav-bar/citizen-nav-bar';
@@ -8,8 +8,8 @@ import DashboardPage from './dashboard/dashboard-page';
 
 export default class CitizenDashboardFactory extends BasePageFactory {
   
-  get cookiesManager() {
-    return new CookiesManager(this.page);
+  get pageCookiesManager() {
+    return new PageCookiesManager(this.page);
   }
  
   get loginPage() {

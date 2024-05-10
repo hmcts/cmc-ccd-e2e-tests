@@ -1,14 +1,14 @@
-import BaseRequest from "../base/base-requests";
-import urls from "../config/urls";
-import RequestOptions from "../types/RequestOptions";
-import User from "../types/User";
+import BaseRequest from '../base/base-requests';
+import urls from '../config/urls';
+import RequestOptions from '../types/RequestOptions';
+import User from '../types/User';
 
 export default class IdamRequests extends BaseRequest {
   async accessToken({email, password}: User): Promise<string> {
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/loginUser`,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      params: {username: email, password: password}
+      params: {username: email, password: password},
     };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();
@@ -22,7 +22,7 @@ export default class IdamRequests extends BaseRequest {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': `Bearer ${authToken}`,
       },
-    }
+    };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();
     return json.uid;
@@ -31,8 +31,8 @@ export default class IdamRequests extends BaseRequest {
   async getPin(letterHoldId: string) {
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/testing-support/accounts/pin/${letterHoldId}`,
-      method: 'GET'
-    }
+      method: 'GET',
+    };
     const response = await super.retriedRequest(requestOptions);
     return await response.text();
   }

@@ -1,4 +1,4 @@
-import BaseRequest from "../base/base-requests";
+import BaseRequest from '../base/base-requests';
 
 export default class CCDRequests extends BaseRequest {
 
