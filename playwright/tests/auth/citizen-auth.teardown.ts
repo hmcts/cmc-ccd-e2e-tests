@@ -10,14 +10,14 @@ if(!config.skipAuthSetup) {
       await CitizenDashboardSteps.Login(claimant);
       await CitizenDashboardSteps.GoToDashboard();
       await CitizenDashboardSteps.SignOut();
-      CitizenDashboardSteps.DeleteCookies(claimant.cookiesPath!);
+      await CitizenDashboardSteps.DeleteCookies(claimant.cookiesPath!);
     });
     
     teardown('defendant', async ({ CitizenDashboardSteps }) => {
       await CitizenDashboardSteps.Login(defendant);
       await CitizenDashboardSteps.GoToDashboard();
       await CitizenDashboardSteps.SignOut();
-      CitizenDashboardSteps.DeleteCookies(defendant.cookiesPath!);
+      await CitizenDashboardSteps.DeleteCookies(defendant.cookiesPath!);
     });
   });
 }
