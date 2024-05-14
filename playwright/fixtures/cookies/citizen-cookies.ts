@@ -1,5 +1,5 @@
-import Cookie from "../../types/cookie";
-import urls, {getDomain} from "../../config/urls";
+import Cookie from '../../types/cookie';
+import urls, {getDomain} from '../../config/urls';
 
 export const acceptCitizenCookies: Cookie[] = [
   {

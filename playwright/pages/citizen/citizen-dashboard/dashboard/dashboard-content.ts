@@ -8,5 +8,5 @@ export const links = {
   testingSupport: {
     title: 'Testing support',
     selector: '',
-  }
+  },
 };

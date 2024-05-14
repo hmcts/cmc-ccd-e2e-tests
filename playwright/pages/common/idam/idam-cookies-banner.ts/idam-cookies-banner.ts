@@ -1,6 +1,6 @@
-import BasePage from "../../../../base/base-page";
-import { AllMethodsStep } from "../../../../decorators/test-steps";
-import { buttons } from "./idam-cookies-banner-content";
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import { buttons } from './idam-cookies-banner-content';
 
 @AllMethodsStep
 export default class IdamCookiesBanner extends BasePage{

@@ -11,7 +11,7 @@ export default class IdamRequests extends BaseRequest {
       url: `${urls.idamApi}/loginUser`,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       params: {username: email, password: password},
-      method: 'POST'
+      method: 'POST',
     };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();
@@ -25,7 +25,7 @@ export default class IdamRequests extends BaseRequest {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': `Bearer ${authToken}`,
       },
-      method: 'GET'
+      method: 'GET',
     };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();

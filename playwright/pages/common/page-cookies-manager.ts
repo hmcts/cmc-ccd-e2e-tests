@@ -40,7 +40,7 @@ export default class PageCookiesManager extends BasePage {
 
   async addExuiCookies({userId, email}: User) {
     if(!userId) {
-      throw new PageError(`UserId for user with email ${email} is invalid`)
+      throw new PageError(`UserId for user with email ${email} is invalid`);
     }
     await super.addCookies(generateAcceptExuiCookies(userId));
   }

@@ -11,8 +11,8 @@ export const dropdowns = {
     label: 'Country or territory',
     selector: '',
     options: {
-      uk: 'United Kingdom'
-    }
+      uk: 'United Kingdom',
+    },
   },
 };
 

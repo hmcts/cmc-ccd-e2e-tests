@@ -10,7 +10,7 @@ const urls = {
 };
 
 export const getDomain = (url: string) => {
-  return new URL(url).host
-}
+  return new URL(url).host;
+};
 
 export default urls;

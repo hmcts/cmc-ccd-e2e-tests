@@ -19,7 +19,7 @@ export const caseworker: User = {
   type: UserType.CASEWORKER,
   role: UserRole.CASEWORKER,
   cookiesPath: `${filePaths.userCookies}/caseworker.json`,
-  userId: process.env.CW_USER_ID
+  userId: process.env.CW_USER_ID,
 };
 
 export const judge: User = {
@@ -28,7 +28,7 @@ export const judge: User = {
   type: UserType.JUDGE,
   role: UserRole.CASEWORKER,
   cookiesPath: `${filePaths.userCookies}/judge.json`,
-  userId: process.env.JUDGE_USER_ID
+  userId: process.env.JUDGE_USER_ID,
 };
 
 export const claimant: User =

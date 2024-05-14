@@ -1,4 +1,4 @@
-import { Heading, Links } from "../../../../types/page-content";
+import { Heading, Links } from '../../../../types/page-content';
 
 export const heading: Heading = 'Money Claims';
 

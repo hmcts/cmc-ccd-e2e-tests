@@ -52,7 +52,7 @@ export default abstract class BasePage {
     return await this.page.locator(selector!).isVisible();
   }
 
-  protected async elementIncludes(content: string, selector?: string,): Promise<boolean> {
+  protected async elementIncludes(content: string, selector?: string): Promise<boolean> {
     this.validateSelector(selector);
     const textContent = await this.page.locator(selector!).textContent();
     if(!textContent) return false;
@@ -96,7 +96,7 @@ export default abstract class BasePage {
   protected async fill(input: string | number, selector?: string) {
     this.validateSelector(selector);
     if(!input) {
-      throw new PageError('Input must be a non-empty string')
+      throw new PageError('Input must be a non-empty string');
     }
     await this.page.fill(selector!, input.toString());
   }

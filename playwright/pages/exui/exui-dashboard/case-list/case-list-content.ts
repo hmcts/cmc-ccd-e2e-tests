@@ -8,6 +8,6 @@ export const dropdowns = {
   jurisdiction: {
     label: 'Jurisdiction',
     selector: '',
-    options: {}
-  }
+    options: {},
+  },
 };

@@ -7,7 +7,7 @@ type Cookie = {
   expires?: number | undefined;
   httpOnly?: boolean | undefined;
   secure?: boolean | undefined;
-  sameSite?: "Strict"|"Lax"|"None";
+  sameSite?: 'Strict'|'Lax'|'None';
 }
 
 export default Cookie;

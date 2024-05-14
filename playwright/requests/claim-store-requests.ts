@@ -19,7 +19,7 @@ export default class ClaimStoreRequests extends BaseRequest {
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,
       headers: this.getRequestHeaders(accessToken),
-      method: 'GET'
+      method: 'GET',
     };
     const response = await super.retriedRequest(requestOptions);
     return await response.json();
