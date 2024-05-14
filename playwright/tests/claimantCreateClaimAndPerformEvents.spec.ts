@@ -1,4 +1,4 @@
-import { caseworker, claimant, defendant, judge } from '../config/users';
+import { caseworker, claimant, judge } from '../config/users';
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Create claim flow', () =>{

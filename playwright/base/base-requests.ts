@@ -1,5 +1,5 @@
 import { APIRequestContext, APIResponse } from 'playwright-core';
-import RequestOptions from '../types/RequestOptions';
+import RequestOptions from '../types/request-options';
 
 export default abstract class BaseRequest {
   private requestContext: APIRequestContext; 
@@ -12,22 +12,22 @@ export default abstract class BaseRequest {
   protected async request({url,
     headers = { 'Content-Type': 'application/json' },
     body,
-    method = 'POST',
+    method = 'GET',
     params,
   }: RequestOptions): Promise<APIResponse> {
     return await this.requestContext.fetch(url, {
-      method: method,
+      method,
       data: body ? JSON.stringify(body) : undefined,
-      headers: headers,
-      params: params,
+      headers,
+      params,
     });}
 
-  protected async retriedRequest({url, headers, body, method = 'POST', params}: RequestOptions, expectedStatus = 200): Promise<APIResponse> {
+  protected async retriedRequest({url, headers, body, method = 'GET', params}: RequestOptions, expectedStatus = 200): Promise<APIResponse> {
     return await this.retry(async () => {
       const response = await this.request({ url, headers, body, method, params });
       if (response.status() !== expectedStatus) {
-        throw new Error(`Expected status: ${expectedStatus}, actual status: ${response.status}, ` +
-          `message: ${response.statusText}, url: ${response.url}`);
+        throw new Error(`Expected status: ${expectedStatus}, actual status: ${response.status()}, ` +
+          `message: ${response.statusText()}, url: ${response.url()}`);
       }
       return response;
     });

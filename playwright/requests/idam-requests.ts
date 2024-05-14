@@ -1,27 +1,31 @@
 import BaseRequest from '../base/base-requests';
 import urls from '../config/urls';
-import RequestOptions from '../types/RequestOptions';
-import User from '../types/User';
+import { AllMethodsStep } from '../decorators/test-steps';
+import RequestOptions from '../types/request-options';
+import User from '../types/user';
 
+@AllMethodsStep
 export default class IdamRequests extends BaseRequest {
-  async accessToken({email, password}: User): Promise<string> {
+  async getAccessToken({email, password}: User): Promise<string> {
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/loginUser`,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       params: {username: email, password: password},
+      method: 'POST'
     };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();
     return json.access_token;
   }
 
-  async userId(authToken: string): Promise<string> {
+  async getUserId(authToken: string): Promise<string> {
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/o/userinfo`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': `Bearer ${authToken}`,
       },
+      method: 'GET'
     };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();

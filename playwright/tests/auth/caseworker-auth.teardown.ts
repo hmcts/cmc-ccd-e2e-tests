@@ -8,20 +8,23 @@ if(!config.skipAuthSetup) {
   teardown.describe('Signing out manage case users and deleting cookies', () => {
     teardown('judge', async ({ ExuiDashboardSteps }) => {
       await ExuiDashboardSteps.Login(judge);
+      await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
-      ExuiDashboardSteps.DeleteCookies(judge.cookiesPath!);
+      await ExuiDashboardSteps.DeleteCookies(judge.cookiesPath!);
     });
     
     teardown('legal advisor', async ({ ExuiDashboardSteps }) => {
       await ExuiDashboardSteps.Login(legalAdvisor);
+      await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
-      ExuiDashboardSteps.DeleteCookies(legalAdvisor.cookiesPath!);
+      await ExuiDashboardSteps.DeleteCookies(legalAdvisor.cookiesPath!);
     });
     
     teardown('caseworker', async ({ ExuiDashboardSteps }) => {
       await ExuiDashboardSteps.Login(caseworker);
+      await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
-      ExuiDashboardSteps.DeleteCookies(caseworker.cookiesPath!);
+      await ExuiDashboardSteps.DeleteCookies(caseworker.cookiesPath!);
     });
   });
 }

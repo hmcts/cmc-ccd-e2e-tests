@@ -1,6 +1,8 @@
 import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 
+@AllMethodsStep
 export default class CheckYourAnswersPage extends BasePage{
 
   async verifyContent(): Promise<void> {

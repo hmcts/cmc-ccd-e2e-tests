@@ -1,8 +1,10 @@
 import { Page } from '@playwright/test';
 import CreateClaimFactory from '../../../pages/citizen/create-claim/create-claim-factory';
 import BaseSteps from '../../../base/base-steps';
-import TestData from '../../../types/TestData';
+import TestData from '../../../types/test-data';
+import { AllMethodsStep } from '../../../decorators/test-steps';
 
+@AllMethodsStep
 export default class CreateClaimSteps extends BaseSteps{
   private createClaimFactory: CreateClaimFactory;
 

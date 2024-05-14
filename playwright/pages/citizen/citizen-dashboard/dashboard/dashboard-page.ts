@@ -1,7 +1,8 @@
 import urls from '../../../../config/urls';
 import BasePage from '../../../../base/base-page';
-import { links } from './dashboard-content';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 
+@AllMethodsStep
 export default class DashboardPage extends BasePage {
 
   async verifyContent(): Promise<void> {

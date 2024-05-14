@@ -2,7 +2,9 @@ import users from '../../../../config/users';
 import DateHelper from '../../../../helpers/date-helper';
 import BasePage from '../../../../base/base-page';
 import {heading, subHeadings,inputs, dropdowns} from './card-details-content';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 
+@AllMethodsStep
 export default class CardDetailsPage extends BasePage{
   async verifyContent() {
     await Promise.all([
@@ -41,21 +43,21 @@ export default class CardDetailsPage extends BasePage{
 
   async fillCardDetails() {
     const date = DateHelper.addToToday({years: 1});
-    await super.fill(inputs.cardNumber.selector, '4444333322221111');
-    await super.fill(inputs.expiryMonth.selector, DateHelper.getTwoDigitMonth(date));
-    await super.fill(inputs.expiryYear.selector, DateHelper.getTwoDigitYear(date));
-    await super.fill(inputs.nameOnCard.selector, 'Test');
-    await super.fill(inputs.securityCode.selector, '456');
+    await super.fill('4444333322221111', inputs.cardNumber.selector);
+    await super.fill(DateHelper.getTwoDigitMonth(date), inputs.expiryMonth.selector);
+    await super.fill(DateHelper.getTwoDigitYear(date), inputs.expiryYear.selector);
+    await super.fill('Test', inputs.nameOnCard.selector);
+    await super.fill('456', inputs.securityCode.selector);
   }
 
   async fillBillingAddressDetails() {
-    await super.fill(inputs.addressLine1.selector, '123 Street');
-    await super.fill(inputs.city.selector, 'London');
-    await super.fill(inputs.postcode.selector, 'E4 6ry');
+    await super.fill('123 Street', inputs.addressLine1.selector);
+    await super.fill('London', inputs.city.selector);
+    await super.fill('E4 6ry', inputs.postcode.selector);
   }
 
   async fillContactDetails() {
-    await super.fill(inputs.confirmationEmail.selector, users.claimant.email);
+    await super.fill(users.claimant.email, inputs.confirmationEmail.selector);
   }
 
   async continue() {

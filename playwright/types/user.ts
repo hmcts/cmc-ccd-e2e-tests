@@ -1,5 +1,5 @@
-import UserRole from '../enums/UserRole';
-import UserType from '../enums/UserType';
+import UserRole from '../enums/user-role';
+import UserType from '../enums/user-type';
 
 type User = {
   readonly email: string;
@@ -8,6 +8,7 @@ type User = {
   readonly type: UserType;
   readonly cookiesPath?: string;
   readonly userDetailsPath?: string;
+  readonly userId?: string | undefined;
 };
 
 export default User;

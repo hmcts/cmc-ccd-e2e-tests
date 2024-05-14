@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import TestData from '../types/TestData';
+import TestData from '../types/test-data';
 
 export const test = base.extend<{testData: TestData}>({
   testData: async ({}, use: (arg0: TestData) => any, testInfo) => {

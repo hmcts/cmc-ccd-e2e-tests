@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 export const config = {
+  environment: process.env.ENVIRONMENT,
   idamStudEnabled: process.env.IDAM_STUB_ENABLED === 'true',
   skipAuthSetup: process.env.SKIP_AUTH_SETUP === 'true',
   skipCitizenSetup: process.env.SKIP_CITIZEN_SETUP === 'true',

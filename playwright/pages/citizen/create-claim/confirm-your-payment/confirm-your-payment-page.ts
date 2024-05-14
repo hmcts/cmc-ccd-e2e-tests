@@ -1,6 +1,8 @@
 import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { heading, subHeadings, tableHeadings } from './confirm-your-payment-content';
 
+@AllMethodsStep
 export default class ConfirmYourPaymentPage extends BasePage{
   async verifyContent(): Promise<void> {
     await Promise.all([

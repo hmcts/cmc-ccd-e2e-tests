@@ -1,6 +1,6 @@
 import axios from 'axios';
 import RetryHelper from './retry-helper';
-import RequestOptions from '../types/RequestOptions';
+import RequestOptions from '../types/request-options';
 
 //This class will soon become deprecated
 

@@ -1,14 +1,16 @@
 import CitizenUserStateHelper from '../helpers/citizen-users-state-helper';
-import User from '../types/User';
-import UserRole from '../enums/UserRole';
-import UserType from '../enums/UserType';
+import User from '../types/user';
+import UserRole from '../enums/user-role';
+import UserType from '../enums/user-type';
+import filePaths from './filePaths';
 
 export const legalAdvisor: User = {
   email: process.env.LA_USER_EMAIL,
   password: process.env.LA_USER_PASSWORD,
   type: UserType.LEGALADVISOR,
   role: UserRole.CASEWORKER,
-  cookiesPath: 'playwright/fixtures/.cookies/legal-advisor.json',
+  cookiesPath: `${filePaths.userCookies}/legal-advisor.json`,
+  userId: process.env.LA_USER_ID,
 };
 
 export const caseworker: User = {
@@ -16,7 +18,8 @@ export const caseworker: User = {
   password: process.env.CW_USER_PASSWORD,
   type: UserType.CASEWORKER,
   role: UserRole.CASEWORKER,
-  cookiesPath: 'playwright/fixtures/.cookies/caseworker.json',
+  cookiesPath: `${filePaths.userCookies}/caseworker.json`,
+  userId: process.env.CW_USER_ID
 };
 
 export const judge: User = {
@@ -24,7 +27,8 @@ export const judge: User = {
   password: process.env.JUDGE_USER_PASSWORD,
   type: UserType.JUDGE,
   role: UserRole.CASEWORKER,
-  cookiesPath: 'playwright/fixtures/.cookies/judge.json',
+  cookiesPath: `${filePaths.userCookies}/judge.json`,
+  userId: process.env.JUDGE_USER_ID
 };
 
 export const claimant: User =

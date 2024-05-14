@@ -2,9 +2,10 @@ import urls from '../config/urls';
 import IdamClient from '../helpers/idam-client';
 import CitizenUserStateHelper from '../helpers/citizen-users-state-helper';
 import { claimant, defendant } from '../config/users';
-import User from '../types/User';
+import User from '../types/user';
 import { config } from '../config/config';
-import UserRole from '../enums/UserRole';
+import UserRole from '../enums/user-role';
+import { userId } from '../../src/test/end-to-end/ccdApi/idamHelper';
 
 const handleError = (error) => {
   console.log('Error during bootstrap, exiting', error);
@@ -27,7 +28,9 @@ const createCitizenUserIfDoesntExist = async ({
       console.warn(`Status Message: ${error.response.statusText}`);
     }
     try {
-      await IdamClient.createCitizenUser({ email, password, role });
+      const userData = await IdamClient.createCitizenUser({ email, password, role });
+      bearerToken = await IdamClient.authenticateUser({ email, password });
+      return userData;
     } catch (err) {
       if (err && err.statusCode === 409) {
         console.log(`ERROR:: User ${email} already exists.`);
@@ -35,23 +38,29 @@ const createCitizenUserIfDoesntExist = async ({
         throw err;
       }
     }
-    bearerToken = await IdamClient.authenticateUser({ email, password });
   }
 };
 
 const globalSetup = async () => {
   if(!config.skipCitizenSetup) {
     try {
-      if (urls.idamApi) {
-        await Promise.all([
-          createCitizenUserIfDoesntExist(claimant),
-          createCitizenUserIfDoesntExist(defendant),
-        ]);
+      const results = await Promise.all([
+        createCitizenUserIfDoesntExist(claimant),
+        createCitizenUserIfDoesntExist(defendant),
+      ]);
+      const citizenUsers = {};
+      if(results[0] || results[1]) {
+        CitizenUserStateHelper.addUsersToState({
+          claimant: {
+            ...claimant,
+            userId: results[0]?.id ?? undefined,
+          },
+          defendant: {
+            ...defendant,
+            userId: results[1]?.id ?? undefined,
+          },
+        });
       }
-      CitizenUserStateHelper.addUsersToState({
-        claimant,
-        defendant,
-      });
     } catch (error) {
       handleError(error);
     }

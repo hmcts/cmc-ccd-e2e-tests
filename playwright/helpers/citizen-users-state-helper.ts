@@ -1,11 +1,12 @@
-import User from '../types/User';
-import UserRole from '../enums/UserRole';
+import User from '../types/user';
+import UserRole from '../enums/user-role';
 import FileSystemHelper from './file-system-helper';
-import FileType from '../enums/FileType';
-import UserType from '../enums/UserType';
+import FileType from '../enums/file-type';
+import UserType from '../enums/user-type';
+import filePaths from '../config/filePaths';
 
 export default class CitizenUserStateHelper {
-  private static statePath = 'playwright/fixtures/.citizen-users/citizen-users.json';
+  private static statePath = `${filePaths.citizenUsers}/citizen-users.json`;
 
   private static generateCitizenUser = (userType: UserType, password: string): User => {
     return {
@@ -13,7 +14,7 @@ export default class CitizenUserStateHelper {
       password: password,
       role: UserRole.CITIZEN,
       type: userType,
-      cookiesPath: `playwright/fixtures/.cookies/${userType}.json`,
+      cookiesPath: `${filePaths.userCookies}/${userType}.json`,
     };
   };
 

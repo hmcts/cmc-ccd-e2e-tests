@@ -1,8 +1,10 @@
-import { Cookie, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { expect } from '@playwright/test';
 import { config } from '../config/config';
 import { buttons } from './common-content';
+import Cookie from '../types/Cookie';
+import PageError from '../errors/page-error';
 
 export default abstract class BasePage {
   private page: Page;
@@ -12,6 +14,12 @@ export default abstract class BasePage {
   }
 
   abstract verifyContent(): Promise<void>
+
+  private validateSelector(selector?: string) {
+    if(!selector) {
+      throw new PageError('Selector must be a non-empty string');
+    }
+  }
 
   protected async clickConfirm() {
     await this.clickBySelector(buttons.confirm.selector);
@@ -25,8 +33,9 @@ export default abstract class BasePage {
     await this.page.getByRole('button', {name: buttons.continue.title}).click();
   }
 
-  protected async clickBySelector(selector: string) {
-    await this.page.locator(selector).click();
+  protected async clickBySelector(selector?: string) {
+    this.validateSelector(selector);
+    await this.page.locator(selector!).click();
   }
 
   protected async clickButtonByName(name: string) {
@@ -37,14 +46,15 @@ export default abstract class BasePage {
     await this.page.getByRole('link', {name}).click();
   }
 
-  protected async selectorExists(selector: string): Promise<boolean> {
-    const count = await this.page.locator(selector).count();
-    if(count > 0) return true;
-    return false;
+  protected async selectorExists(selector?: string): Promise<boolean> {
+    this.validateSelector(selector);
+    await this.page.waitForSelector(selector!, {state: 'visible'});
+    return await this.page.locator(selector!).isVisible();
   }
 
-  protected async elementIncludes(selector: string, content: string): Promise<boolean> {
-    const textContent = await this.page.locator(selector).textContent();
+  protected async elementIncludes(content: string, selector?: string,): Promise<boolean> {
+    this.validateSelector(selector);
+    const textContent = await this.page.locator(selector!).textContent();
     if(!textContent) return false;
     return textContent.includes(content);
   }
@@ -83,11 +93,16 @@ export default abstract class BasePage {
     await expect(this.page.getByLabel(label)).toBeVisible();
   } 
 
-  protected async fill(selector: string, input: string | number) {
-    await this.page.fill(selector, input.toString());
+  protected async fill(input: string | number, selector?: string) {
+    this.validateSelector(selector);
+    if(!input) {
+      throw new PageError('Input must be a non-empty string')
+    }
+    await this.page.fill(selector!, input.toString());
   }
 
   protected async getTextFromSelector(selector: string) {
+    this.validateSelector(selector);
     return await this.page.textContent(selector) ?? undefined;
   }
 

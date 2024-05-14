@@ -1,7 +1,7 @@
 import BaseRequestsFactory from '../base/base-requests-factory';
-import CCDRequests from './ccd';
-import ClaimStoreRequests from './claim-store';
-import IdamRequests from './idam';
+import CCDRequests from './ccd-requests';
+import ClaimStoreRequests from './claim-store-requests';
+import IdamRequests from './idam-requests';
 import RequestsCookiesManager from './requests-cookies-manager';
 
 export default class RequestsFactory extends BaseRequestsFactory {
@@ -14,7 +14,7 @@ export default class RequestsFactory extends BaseRequestsFactory {
   }
 
   get idamRequests() {
-    return new IdamRequests(this.idamRequests);
+    return new IdamRequests(this.requestContext);
   }
 
   get requestsCookiesManager() {

@@ -1,10 +1,12 @@
 import { Page } from 'playwright-core';
 import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
-import User from '../../../types/User';
+import User from '../../../types/user';
 import { config } from '../../../config/config';
 import BaseSteps from '../../../base/base-steps';
-import TestData from '../../../types/TestData';
+import TestData from '../../../types/test-data';
+import { AllMethodsStep } from '../../../decorators/test-steps';
 
+@AllMethodsStep
 export default class ExuiDashboardSteps extends BaseSteps{
   private exuiDashboardFactory: ExuiDashboardFactory;
 
@@ -16,15 +18,15 @@ export default class ExuiDashboardSteps extends BaseSteps{
   async Login(user: User) {
     const { pageCookiesManager } = this.exuiDashboardFactory;
     if(config.skipAuthSetup || this.testData.isSetupTest) {
-      const { loginPage, cookiesBanner } = this.exuiDashboardFactory;
+      const { loginPage } = this.exuiDashboardFactory;
       await pageCookiesManager.cookiesSignOut();
+      await pageCookiesManager.addIdamCookies();
+      await pageCookiesManager.addExuiCookies(user);
       await loginPage.openManageCase();
       await loginPage.verifyContent();
       await loginPage.caseworkerLogin(user);
-      await cookiesBanner.acceptCookies();
     } else {
       await pageCookiesManager.cookiesLogin(user);
-      await this.GoToCaseList();
     }
   }
 
@@ -43,8 +45,8 @@ export default class ExuiDashboardSteps extends BaseSteps{
     await pageCookiesManager.saveCookies(filePath);
   }
 
-  DeleteCookies(filePath: string) {
+  async DeleteCookies(filePath: string) {
     const { pageCookiesManager } = this.exuiDashboardFactory;
-    pageCookiesManager.deleteCookies(filePath);
+    await pageCookiesManager.deleteCookies(filePath);
   }
 }

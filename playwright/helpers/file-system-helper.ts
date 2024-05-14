@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import FileError from '../errors/file-error';
-import FileType from '../enums/FileType';
+import FileType from '../enums/file-type';
+import filePaths from '../config/filePaths';
 
 export default class FileSystemHelper {
-  private static writeFileDirs = ['playwright/fixtures/.citizen-users/', 'playwright/fixtures/.cookies/'];
+  private static writeFileDirs = [`${filePaths.citizenUsers}/`, `${filePaths.userCookies}/`];
   
   private static exists = (filePath: string) => fs.existsSync(filePath);
 

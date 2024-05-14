@@ -1,17 +1,17 @@
-import BasePage from '../../../../base/base-page';
-import { AllMethodsStep } from '../../../../decorators/test-steps';
-import { buttons } from './exui-cookies-banner-content';
+import BasePage from "../../../../base/base-page";
+import { AllMethodsStep } from "../../../../decorators/test-steps";
+import { buttons } from "./idam-cookies-banner-content";
 
 @AllMethodsStep
-export default class ExuiCookiesBanner extends BasePage {
-  
+export default class IdamCookiesBanner extends BasePage{
   async verifyContent(): Promise<void> {
     throw new Error('Method not implemented.');
   }
 
   async acceptCookies() {
-    if(await super.selectorExists(buttons.accept.selector)) {
+    if(await super.selectorExists('#cm_cookie_notification')) {
       await super.clickBySelector(buttons.accept.selector);
+      await super.clickBySelector(buttons.hideMessage.selector);
     }
   }
 

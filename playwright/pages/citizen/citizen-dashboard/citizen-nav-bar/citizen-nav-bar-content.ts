@@ -1,6 +1,8 @@
-export const heading = 'Money Claims';
+import { Heading, Links } from "../../../../types/page-content";
 
-export const links = {
+export const heading: Heading = 'Money Claims';
+
+export const links: Links = {
   signOut: {
     title: 'Sign out',
     selector: 'a[href=\'/logout\']',

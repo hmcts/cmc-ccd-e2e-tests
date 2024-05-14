@@ -5,5 +5,9 @@ export const subHeadings = {
 };
 
 export const dropdowns = {
-  jurisdiction: 'Jurisdiction',
+  jurisdiction: {
+    label: 'Jurisdiction',
+    selector: '',
+    options: {}
+  }
 };

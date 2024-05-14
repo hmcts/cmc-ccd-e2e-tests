@@ -1,9 +1,9 @@
 import urls from '../config/urls';
 import RestHelper from './rest-helper';
-import RequestOptions from '../types/RequestOptions';
+import RequestOptions from '../types/request-options';
 import NodeCache from 'node-cache';
 import { config } from '../config/config';
-import UserRole from '../enums/UserRole';
+import UserRole from '../enums/user-role';
 
 //This class will soon become deprecated
 
@@ -22,7 +22,7 @@ export default class IdamClient {
     email,
     password,
     role = UserRole.CITIZEN,
-  }): Promise<void> {
+  }): Promise<any> {
     console.log(`Create user: ${email}`);
     try {
       const requestOptions: RequestOptions = {
@@ -36,8 +36,9 @@ export default class IdamClient {
           roles: [{ code: role.toString() }],
         },
       };
-      await RestHelper.request(requestOptions);
+      const response = await RestHelper.request(requestOptions);
       console.log(`User with email: ${email} successfully created`);
+      return response.data;
     } catch (error) {
       console.error('Error creating account:', email);
       throw error;

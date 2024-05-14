@@ -15,5 +15,8 @@ export const subHeadings = {
 };
 
 export const links = {
-  account: 'Go to your account',
+  account: {
+    title: 'Go to your account',
+    selector: ''
+  }
 };

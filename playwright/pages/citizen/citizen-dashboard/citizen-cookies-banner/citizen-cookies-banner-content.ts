@@ -16,6 +16,6 @@ export const buttons = {
   },
   hideMessage: {
     title: 'Hide this message',
-    selector: '#cookie-accept-all-success-banner-hide',
+    selector: '',
   },
 };
