@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect } from '@playwright/test';
 import { config } from '../config/config';
 import { buttons } from './common-content';
-import Cookie from '../types/Cookie';
+import Cookie from '../types/cookie';
 import PageError from '../errors/page-error';
 
 export default abstract class BasePage {
