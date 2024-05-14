@@ -1,9 +1,9 @@
-import { Cookie } from 'playwright-core';
 import FileSystemHelper from '../helpers/file-system-helper';
 import User from '../types/user';
 import FileType from '../enums/file-type';
 import { AllMethodsStep } from '../decorators/test-steps';
 import UserRole from '../enums/user-role';
+import Cookie from '../types/cookie';
 
 @AllMethodsStep
 export default class RequestsCookiesManager {
