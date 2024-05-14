@@ -53,7 +53,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.CITIZEN_APP_URL = params.CMC_URL_TO_TEST
     env.DM_STORE_URL=params.DM_STORE_URL
     env.IDAM_API_URL=params.IDAM_API_URL
-    en.IDAM_WEB_URL=params.IDAM_WEB_URL
+    env.IDAM_WEB_URL=params.IDAM_WEB_URL
     env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
     env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
     env.CLAIM_STORE_URL = params.CLAIM_STORE_URL
