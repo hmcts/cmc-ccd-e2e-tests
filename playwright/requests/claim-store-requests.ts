@@ -14,7 +14,7 @@ export default class ClaimStoreRequests extends BaseRequest {
   @Step
   async getCaseDataByReference(claimRef?: string, accessToken?: string) {
     if(!claimRef || !accessToken) {
-      throw new Error('Claim reference and access token must be defined');
+      throw new Error('Claim reference and access token must be non-empty strings');
     }
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,

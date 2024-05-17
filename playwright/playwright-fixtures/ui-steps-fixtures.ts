@@ -4,7 +4,6 @@ import ExuiDashboardSteps from '../steps/ui/exui/exui-dashboard-steps';
 import { test as base } from './test-data-fixture';
 
 type UiStepsFixtures = {
-  _isSetupTest: boolean;
   CitizenDashboardSteps: CitizenDashboardSteps;
   ExuiDashboardSteps: ExuiDashboardSteps;
   CreateClaimSteps: CreateClaimSteps;

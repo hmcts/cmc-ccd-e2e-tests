@@ -8,9 +8,13 @@ import PageError from '../errors/page-error';
 
 export default abstract class BasePage {
   private page: Page;
+  private axeBuilder: AxeBuilder | undefined;
 
   constructor(page: Page) {
     this.page = page;
+    if(config.runAccessibilityTests)
+      this.axeBuilder = new AxeBuilder({page: this.page})
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
   }
 
   abstract verifyContent(): Promise<void>
@@ -60,7 +64,7 @@ export default abstract class BasePage {
   }
 
   protected async goTo(url: string) {
-    if(!(this.page.url() === url)) {
+    if(this.page.url() !== url) {
       await this.page.goto(url);
     }
   } 
@@ -73,8 +77,8 @@ export default abstract class BasePage {
     await expect(this.page).toHaveURL(new RegExp(`^${path}`));
   }
 
-  protected async expectUrlToEndWith(endpoint: string) {
-    await expect(this.page).toHaveURL(new RegExp(`${endpoint}$`));
+  protected async expectUrlToEndWith(...endpoints: string[]) {
+    await expect(this.page).toHaveURL(new RegExp(`(${endpoints.join('|')})$`));
   }
 
   protected async expectHeadingToBeVisible(text: string) {
@@ -123,9 +127,8 @@ export default abstract class BasePage {
   }
 
   protected async runAccessibilityTests() {
-    if(config.runAccessibilityTests) {
-      const results = await new AxeBuilder({page: this.page})
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']).analyze();
+    if(config.runAccessibilityTests && this.axeBuilder) {
+      const results = await this.axeBuilder.analyze();
       expect(results.violations).toHaveLength(0);
     }
   }

@@ -7,7 +7,7 @@ import { config } from '../config/config';
 import UserRole from '../enums/user-role';
 import { userId } from '../../src/test/end-to-end/ccdApi/idamHelper';
 
-const handleError = (error) => {
+const handleError = (error: any) => {
   console.log('Error during bootstrap, exiting', error);
   process.exit(1);
 };
@@ -21,7 +21,7 @@ const createCitizenUserIfDoesntExist = async ({
   try {
     console.log(`Authenticate user: ${email} `);
     bearerToken = await IdamClient.authenticateUser({ email, password });
-  } catch (error) {
+  } catch (error: any) {
     if(error.response) {
       console.warn(`Failed authenticate User for: ${email}`);
       console.warn(`Status Code: ${error.response.status}`);
@@ -31,7 +31,7 @@ const createCitizenUserIfDoesntExist = async ({
       const userData = await IdamClient.createCitizenUser({ email, password, role });
       bearerToken = await IdamClient.authenticateUser({ email, password });
       return userData;
-    } catch (err) {
+    } catch (err: any) {
       if (err && err.statusCode === 409) {
         console.log(`ERROR:: User ${email} already exists.`);
       } else {

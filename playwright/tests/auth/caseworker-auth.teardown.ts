@@ -5,7 +5,7 @@ import { test as teardown } from '../../playwright-fixtures/index';
 if(!config.skipAuthSetup) {
   teardown.describe.configure({mode: 'parallel'});
 
-  teardown.describe('Signing out manage case users and deleting cookies', () => {
+  teardown.describe('Signing out manage case users and deleting cookies', {tag: '@teardown'}, () => {
     teardown('judge', async ({ ExuiDashboardSteps }) => {
       await ExuiDashboardSteps.Login(judge);
       await ExuiDashboardSteps.GoToCaseList();

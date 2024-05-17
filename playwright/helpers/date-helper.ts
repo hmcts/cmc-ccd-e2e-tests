@@ -1,5 +1,5 @@
 export default class DateHelper {
-  static addToToday = ({days = 0, months = 0, years = 0}): Date => {
+  static addToToday({days = 0, months = 0, years = 0}): Date {
     const today = new Date();
     today.setDate(today.getDate() + days);
     today.setMonth(today.getMonth() + months);

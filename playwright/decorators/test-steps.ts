@@ -16,7 +16,7 @@ export const Step = (target: Function, context: ClassMethodDecoratorContext) => 
   if(target.constructor.name !== 'AsyncFunction') {
     throw new DecoratorError(`Method must be asynchronous to use @${Step.name} decorator`);
   }
-  return function replacementMethod(...args: any) {
+  return function replacementMethod(this: any, ...args: any) {
     const stepName = formatClassName(this.constructor.name) + '.' + (context.name as string);
     return test.step(stepName, async () => {
       return await target.call(this, ...args);

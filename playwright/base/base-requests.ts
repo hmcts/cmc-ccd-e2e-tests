@@ -33,7 +33,7 @@ export default abstract class BaseRequest {
     });
   }
 
-  private async retry(fn: () => Promise<APIResponse>, remainingRetries = 3, retryTimeout = 5000, err = null) {
+  private async retry(fn: () => Promise<APIResponse>, remainingRetries = 3, retryTimeout = 5000, err = null): Promise<APIResponse> {
     if (!remainingRetries) {
       return Promise.reject(err);
     }
@@ -43,7 +43,7 @@ export default abstract class BaseRequest {
     try {
       const response = await fn();
       return response;
-    } catch (err) {
+    } catch (err: any) {
       console.log(`${err.message}, retrying in ${retryTimeout / 1000} seconds (Retries left: ${remainingRetries})`);
       await this.sleep(retryTimeout);
       return this.retry(fn, remainingRetries - 1, retryTimeout, err);
