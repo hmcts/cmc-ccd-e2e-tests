@@ -1,17 +1,23 @@
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import { buttons } from './exui-cookies-banner-content';
 
-const selectors = {
-  accept: 'button[value=\'accept\']',
-  reject: 'button[value=\'reject\']',
-};
-
+@AllMethodsStep
 export default class ExuiCookiesBanner extends BasePage {
   
+  async verifyContent(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
   async acceptCookies() {
-    await super.clickBySelector(selectors.accept);
+    if(await super.selectorExists(buttons.accept.selector)) {
+      await super.clickBySelector(buttons.accept.selector);
+    }
   }
 
   async rejectCookies() {
-    await super.clickBySelector(selectors.reject);
+    if(await super.selectorExists(buttons.reject.selector)) {
+      await super.clickBySelector(buttons.reject.selector);
+    }
   }
 }

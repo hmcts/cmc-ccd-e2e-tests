@@ -7,6 +7,7 @@ properties([
                 string(name: 'RUN_FULL_REGRESSION_SUITE', defaultValue: 'NO', description: 'Environment to test'),
                 string(name: 'ExUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net/', description: 'The exui URL you want to run cmc end to end tests against'),
                 string(name: 'CMC_URL_TO_TEST', defaultValue: 'https://moneyclaims.aat.platform.hmcts.net/', description: 'The cmc citizen frontend URL you want to run cmc end to end tests against'),
+                string(name: 'IDAM_WEB_URL', defaultValue: 'https://idam-web.aat.platform.hmcts.net', description: 'The URL of idam web'),
                 string(name: 'IDAM_API_URL', defaultValue: 'https://idam-api.aat.platform.hmcts.net', description: 'The URL of idam api'),
                 string(name: 'DM_STORE_URL', defaultValue: 'http://dm-store-aat.service.core-compute-aat.internal', description: 'The URL of dm store'),
                 string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
@@ -24,10 +25,13 @@ def secrets = [
   'cmc-aat': [
     secret('cmc-caseworker-test-username', 'CW_USER_EMAIL'),
     secret('cmc-caseworker-password', 'CW_USER_PASSWORD'),
+    secret('cmc-caseworker-user-id', 'CW_USER_ID'),
     secret('cmc-la-username', 'LA_USER_EMAIL'),
     secret('cmc-la-password', 'LA_USER_PASSWORD'),
+    secret('cmc-la-user-id', 'LA_USER_ID'),
     secret('cmc-judge-username', 'JUDGE_USER_EMAIL'),
     secret('cmc-judge-password', 'JUDGE_USER_PASSWORD'),
+    secret('cmc-judge-user-id', 'JUDGE_USER_ID'),
     secret('smoke-test-user-password', 'SMOKE_TEST_USER_PASSWORD'),
     secret('s2s-microservicekey-cmc', 'S2S_MICROSERVICE_KEY_CMC'),
     secret('cmc-s2s-secret', 'S2S_MICROSERVICE_KEY_PWD'),
@@ -49,6 +53,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.CITIZEN_APP_URL = params.CMC_URL_TO_TEST
     env.DM_STORE_URL=params.DM_STORE_URL
     env.IDAM_API_URL=params.IDAM_API_URL
+    env.IDAM_WEB_URL=params.IDAM_WEB_URL
     env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
     env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
     env.CLAIM_STORE_URL = params.CLAIM_STORE_URL

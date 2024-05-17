@@ -1,14 +1,14 @@
 import urls from '../../../../config/urls';
-import BasePage from '../../../base-page';
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 
-const selectors = {};
-
+@AllMethodsStep
 export default class DashboardPage extends BasePage {
 
-  verifyContent(): void {
-    // throw new Error("Method not implemented.");
+  async verifyContent(): Promise<void> {
+    throw new Error('Method not implemented.');
   }
-  async openDashboard() {
+  async open() {
     await super.goTo(`${urls.citizenFrontEnd}/dashboard`);
   }
 }

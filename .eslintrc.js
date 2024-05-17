@@ -33,6 +33,8 @@ module.exports = {
       },
       'plugins': ['@typescript-eslint', 'codeceptjs'],
       'rules': {
+        'no-empty-pattern': 0,
+        'no-unused-vars': 'warn',
         'indent': ['error', 2, { 'SwitchCase': 1 }],
         'linebreak-style': ['error', 'unix'],
         'quotes': ['error', 'single', { 'avoidEscape': true }],

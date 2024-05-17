@@ -1,6 +1,12 @@
-const dashboardPageContent = {
-  heading: 'Your money claims account',
-  create_claim_link: 'Make a new money claim',
-};
+export const heading = 'Your money claims account';
 
-export default dashboardPageContent;
+export const links = {
+  makeNewClaim: {
+    title: 'Make a new money claim',
+    selector: '',
+  },
+  testingSupport: {
+    title: 'Testing support',
+    selector: '',
+  },
+};

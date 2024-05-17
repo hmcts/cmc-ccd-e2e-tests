@@ -1,7 +1,13 @@
-const caseListPageContent = {
-  // heading: 'Case list',
-  // filters_title: 'Filter',
-  // dropdown_1_label: 'Jurisdiction'
+export const heading = 'Case list';
+
+export const subHeadings = {
+  filters: 'Filters',
 };
 
-export default caseListPageContent;
+export const dropdowns = {
+  jurisdiction: {
+    label: 'Jurisdiction',
+    selector: '',
+    options: {},
+  },
+};

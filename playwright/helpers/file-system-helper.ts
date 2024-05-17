@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import FileError from '../errors/file-error';
-import FileType from '../models/FileType';
+import FileType from '../enums/file-type';
+import filePaths from '../config/filePaths';
 
 export default class FileSystemHelper {
-  private static writeFileDirs = ['playwright/fixtures/.citizen-users/', 'playwright/fixtures/.cookies/'];
+  private static writeFileDirs = [`${filePaths.citizenUsers}/`, `${filePaths.userCookies}/`];
   
   private static exists = (filePath: string) => fs.existsSync(filePath);
 
@@ -44,7 +45,7 @@ export default class FileSystemHelper {
     return filePath.endsWith(`.${fileType.toLowerCase()}`);
   };
 
-  static readFile = (filePath = '', fileType: FileType) => {
+  static readFile = (filePath = '', fileType: FileType): any => {
     if (this.exists(filePath)) {
       const data = fs.readFileSync(filePath);
       return this.decode(data, fileType);
@@ -77,7 +78,7 @@ export default class FileSystemHelper {
       }
       fs.unlinkSync(filePath);
       console.log(`Successfully deleted file with path ${filePath}`);
-    } catch(error) {
+    } catch(error: any) {
       if(error.code === 'ENOENT') {
         console.log(error.stack);
       } else {

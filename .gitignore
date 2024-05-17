@@ -3,7 +3,7 @@ test-results/
 playwright-report/
 /playwright/playwright/.cache/
 /playwright/fixtures/.citizen-users/
-/playwright/fixtures/.cookies/
+/playwright/fixtures/.user-cookies/
 
 
 # Logs

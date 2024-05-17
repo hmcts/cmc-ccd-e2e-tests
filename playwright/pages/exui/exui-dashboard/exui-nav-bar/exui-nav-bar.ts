@@ -1,14 +1,16 @@
-import BasePage from '../../../base-page';
-import navBarContent from './exui-nav-bar-content';
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import { links } from './exui-nav-bar-content';
 
-const selectors = {
-  exuiSignOut: '.hmcts-header__navigation-link',
-};
-
+@AllMethodsStep
 export default class ExuiNavBar extends BasePage {
   
+  async verifyContent(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  
   async clickSignOut() {
-    await super.clickBySelector(selectors.exuiSignOut);
+    await super.clickBySelector(links.signOut.selector);
     await super.expectUrlToContainDomain('idam-web-public');
   }
 }
