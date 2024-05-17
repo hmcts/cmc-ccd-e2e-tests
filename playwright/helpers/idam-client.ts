@@ -4,6 +4,7 @@ import RequestOptions from '../types/request-options';
 import NodeCache from 'node-cache';
 import { config } from '../config/config';
 import UserRole from '../enums/user-role';
+import User from '../types/user';
 
 //This class will soon become deprecated
 

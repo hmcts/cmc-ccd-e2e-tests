@@ -27,7 +27,7 @@ export default class CitizenUserStateHelper {
   };
 
   static getUserFromState = (userType: UserType, password: string): User => {
-    let users: User[];
+    let users: {[key:string]: User};
     try {
       users = FileSystemHelper.readFile(this.statePath, FileType.JSON);
     } catch {

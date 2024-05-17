@@ -78,7 +78,7 @@ export default class FileSystemHelper {
       }
       fs.unlinkSync(filePath);
       console.log(`Successfully deleted file with path ${filePath}`);
-    } catch(error) {
+    } catch(error: any) {
       if(error.code === 'ENOENT') {
         console.log(error.stack);
       } else {
