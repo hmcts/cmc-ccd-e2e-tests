@@ -1,9 +1,13 @@
 import { APIRequestContext } from '@playwright/test';
 
 export default abstract class BaseRequestsFactory {
-  protected requestContext: APIRequestContext;
+  private _requestContext: APIRequestContext;
 
   constructor(requestContext: APIRequestContext) {
-    this.requestContext = requestContext;
+    this._requestContext = requestContext;
+  }
+
+  get requestContext() {
+    return this._requestContext;
   }
 }

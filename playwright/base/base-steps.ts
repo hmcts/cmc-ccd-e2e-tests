@@ -1,9 +1,18 @@
+import CaseData from '../types/case-data';
 import TestData from '../types/test-data';
 
 export default abstract class BaseSteps {
-  protected testData: TestData;
+  private _testData: TestData;
 
   constructor(testData: TestData) {
-    this.testData = testData;
+    this._testData = testData;
+  }
+
+  get caseData() {
+    return this._testData.caseData;
+  }
+
+  set setCaseData(caseData: CaseData) {
+    this._testData.caseData = caseData;
   }
 }

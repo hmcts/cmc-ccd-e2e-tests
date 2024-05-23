@@ -1,10 +1,11 @@
 import { APIRequestContext } from 'playwright-core';
 import BaseSteps from '../../base/base-steps';
-import TestData from '../../types/test-data';
+import CaseData from '../../types/case-data';
 import RequestsFactory from '../../requests/requests-factory';
 import { config } from '../../config/config';
 import { claimant } from '../../config/users';
 import { AllMethodsStep } from '../../decorators/test-steps';
+import TestData from '../../types/test-data';
 
 @AllMethodsStep
 export default class ApiSteps extends BaseSteps{
@@ -25,6 +26,6 @@ export default class ApiSteps extends BaseSteps{
       accessToken = await requestsCookiesManager.getAccessToken(claimant);
     }
     const {claimsStoreRequests} = this.requestsFactory;
-    this.testData.caseData = await claimsStoreRequests.getCaseDataByReference(this.testData.claimRef, accessToken);
+    this.setCaseData = await claimsStoreRequests.getCaseDataByReference(this.caseData.referenceNumber, accessToken);
   }
 }

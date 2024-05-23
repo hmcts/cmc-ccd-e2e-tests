@@ -1,10 +1,8 @@
 import { Page } from 'playwright-core';
 import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
-import User from '../../../types/user';
-import { config } from '../../../config/config';
 import BaseSteps from '../../../base/base-steps';
-import TestData from '../../../types/test-data';
 import { AllMethodsStep } from '../../../decorators/test-steps';
+import TestData from '../../../types/test-data';
 
 @AllMethodsStep
 export default class ExuiDashboardSteps extends BaseSteps{
@@ -15,34 +13,31 @@ export default class ExuiDashboardSteps extends BaseSteps{
     this.exuiDashboardFactory = new ExuiDashboardFactory(page);
   }
 
-  async Login(user: User) {
+  async AcceptCookies() {
+    const { exuiCookiesBanner } = this.exuiDashboardFactory;
+    await exuiCookiesBanner.verifyContent();
+    await exuiCookiesBanner.acceptCookies();
+  }
+
+  async SaveCookies(filePath: string) {
     const { pageCookiesManager } = this.exuiDashboardFactory;
-    if(config.skipAuthSetup || this.testData.isSetupTest) {
-      const { loginPage } = this.exuiDashboardFactory;
-      await pageCookiesManager.cookiesSignOut();
-      await pageCookiesManager.addIdamCookies();
-      await pageCookiesManager.addExuiCookies(user);
-      await loginPage.openManageCase();
-      await loginPage.verifyContent();
-      await loginPage.caseworkerLogin(user);
-    } else {
-      await pageCookiesManager.cookiesLogin(user);
-    }
+    await pageCookiesManager.saveCookies(filePath);
   }
 
   async GoToCaseList() {
     const { caseListPage } = this.exuiDashboardFactory;
     await caseListPage.openCaseList();
   }
+
+  async GoToCaseDetails() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.goToCaseDetails(this.caseData.id);
+    await caseDetailsPage.verifyContent(this.caseData);
+  }
   
   async SignOut() {
     const {navBar} = this.exuiDashboardFactory;
     await navBar.clickSignOut();
-  }
-
-  async SaveCookies(filePath: string) {
-    const { pageCookiesManager } = this.exuiDashboardFactory;
-    await pageCookiesManager.saveCookies(filePath);
   }
 
   async DeleteCookies(filePath: string) {

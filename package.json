@@ -59,6 +59,5 @@
   "bugs": {
     "url": "https://github.com/hmcts/cmc-ccd-e2e-tests/issues"
   },
-  "homepage": "https://github.com/hmcts/cmc-ccd-e2e-tests#readme",
-  "packageManager": "yarn@3.8.2"
+  "homepage": "https://github.com/hmcts/cmc-ccd-e2e-tests#readme"
 }

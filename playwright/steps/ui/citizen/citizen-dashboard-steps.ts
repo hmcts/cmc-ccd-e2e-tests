@@ -1,10 +1,9 @@
 import { Page } from '@playwright/test';
 import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
-import User from '../../../types/user';
-import { config } from '../../../config/config';
 import BaseSteps from '../../../base/base-steps';
-import TestData from '../../../types/test-data';
+import CaseData from '../../../types/case-data';
 import { AllMethodsStep } from '../../../decorators/test-steps';
+import TestData from '../../../types/test-data';
 
 @AllMethodsStep
 export default class CitizenDashboardSteps extends BaseSteps {
@@ -15,19 +14,10 @@ export default class CitizenDashboardSteps extends BaseSteps {
     this.citizenDashboardFactory = new CitizenDashboardFactory(page);
   }
 
-  async Login(user: User) {
-    const { pageCookiesManager } = this.citizenDashboardFactory;
-    if(config.skipAuthSetup || this.testData.isSetupTest) {
-      const { loginPage } = this.citizenDashboardFactory;
-      await pageCookiesManager.cookiesSignOut();
-      await pageCookiesManager.addIdamCookies();
-      await pageCookiesManager.addCitizenCookies();
-      await loginPage.openCitizenFrontEnd();
-      await loginPage.verifyContent();
-      await loginPage.citizenLogin(user);
-    } else {
-      await pageCookiesManager.cookiesLogin(user);
-    }
+  async AcceptCookies() {
+    const { citizensCookiesBanner } = this.citizenDashboardFactory;
+    await citizensCookiesBanner.verifyContent();
+    await citizensCookiesBanner.acceptCookies();
   }
 
   async SaveCookies(filePath: string) {

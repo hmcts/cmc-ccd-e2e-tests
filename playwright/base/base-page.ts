@@ -4,7 +4,7 @@ import { expect } from '@playwright/test';
 import { config } from '../config/config';
 import { buttons } from './common-content';
 import Cookie from '../types/cookie';
-import PageError from '../errors/page-error';
+import { TruthyParams } from '../decorators/truthy-params';
 
 export default abstract class BasePage {
   private page: Page;
@@ -17,13 +17,7 @@ export default abstract class BasePage {
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
   }
 
-  abstract verifyContent(): Promise<void>
-
-  private validateSelector(selector?: string) {
-    if(!selector) {
-      throw new PageError('Selector must be a non-empty string');
-    }
-  }
+  abstract verifyContent(...args: any[]): Promise<void>
 
   protected async clickConfirm() {
     await this.clickBySelector(buttons.confirm.selector);
@@ -38,7 +32,6 @@ export default abstract class BasePage {
   }
 
   protected async clickBySelector(selector?: string) {
-    this.validateSelector(selector);
     await this.page.locator(selector!).click();
   }
 
@@ -50,19 +43,20 @@ export default abstract class BasePage {
     await this.page.getByRole('link', {name}).click();
   }
 
+  @TruthyParams()
   protected async selectorExists(selector?: string): Promise<boolean> {
-    this.validateSelector(selector);
     await this.page.waitForSelector(selector!, {state: 'visible'});
     return await this.page.locator(selector!).isVisible();
   }
 
+  @TruthyParams()
   protected async elementIncludes(content: string, selector?: string): Promise<boolean> {
-    this.validateSelector(selector);
     const textContent = await this.page.locator(selector!).textContent();
     if(!textContent) return false;
     return textContent.includes(content);
   }
 
+  @TruthyParams()
   protected async goTo(url: string) {
     if(this.page.url() !== url) {
       await this.page.goto(url);
@@ -97,17 +91,19 @@ export default abstract class BasePage {
     await expect(this.page.getByLabel(label)).toBeVisible();
   } 
 
+  @TruthyParams()
   protected async fill(input: string | number, selector?: string) {
-    this.validateSelector(selector);
-    if(!input) {
-      throw new PageError('Input must be a non-empty string');
-    }
     await this.page.fill(selector!, input.toString());
   }
 
-  protected async getTextFromSelector(selector: string) {
-    this.validateSelector(selector);
+  @TruthyParams()
+  protected async getTextFromSelector(selector?: string) {
     return await this.page.textContent(selector) ?? undefined;
+  }
+
+  @TruthyParams()
+  protected async selectFromDropdown(option: string, selector?: string) {
+    await this.page.selectOption(selector, option);
   }
 
   protected async getCookies(): Promise<Cookie[]> {
@@ -129,7 +125,7 @@ export default abstract class BasePage {
   protected async runAccessibilityTests() {
     if(config.runAccessibilityTests && this.axeBuilder) {
       const results = await this.axeBuilder.analyze();
-      expect(results.violations).toHaveLength(0);
+      expect.soft(results.violations).toHaveLength(0);
     }
   }
 

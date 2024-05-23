@@ -1,9 +1,14 @@
 import { Page } from '@playwright/test';
 
 export default abstract class BasePageFactory {
-  protected page: Page;
+  private _page: Page;
 
   constructor(page: Page) {
-    this.page = page;
+    this._page = page;
   }
+
+  get page() {
+    return this._page;
+  }
+
 }

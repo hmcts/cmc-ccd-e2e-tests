@@ -1,7 +1,7 @@
+import CaseData from "./case-data";
+
 type TestData = {
-  isSetupTest: boolean
-  claimRef?: string
-  caseData?: any
-}
+  caseData: CaseData
+};
 
 export default TestData;

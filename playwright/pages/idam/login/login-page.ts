@@ -1,8 +1,8 @@
-import urls from '../../../../config/urls';
-import User from '../../../../types/user';
-import BasePage from '../../../../base/base-page';
+import urls from '../../../config/urls';
+import User from '../../../types/user';
+import BasePage from '../../../base/base-page';
 import { heading, inputs } from './login-page-content';
-import { AllMethodsStep } from '../../../../decorators/test-steps';
+import { AllMethodsStep } from '../../../decorators/test-steps';
 
 @AllMethodsStep
 export default class LoginPage extends BasePage {
