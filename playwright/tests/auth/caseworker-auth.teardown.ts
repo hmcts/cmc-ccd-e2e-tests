@@ -6,22 +6,22 @@ if(!config.skipAuthSetup) {
   teardown.describe.configure({mode: 'parallel'});
 
   teardown.describe('Signing out manage case users and deleting cookies', {tag: '@teardown'}, () => {
-    teardown('judge', async ({ ExuiDashboardSteps }) => {
-      await ExuiDashboardSteps.Login(judge);
+    teardown('judge', async ({ IdamSteps, ExuiDashboardSteps }) => {
+      await IdamSteps.ExuiLogin(judge);
       await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
       await ExuiDashboardSteps.DeleteCookies(judge.cookiesPath!);
     });
     
-    teardown('legal advisor', async ({ ExuiDashboardSteps }) => {
-      await ExuiDashboardSteps.Login(legalAdvisor);
+    teardown('legal advisor', async ({ IdamSteps, ExuiDashboardSteps }) => {
+      await IdamSteps.ExuiLogin(legalAdvisor);
       await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
       await ExuiDashboardSteps.DeleteCookies(legalAdvisor.cookiesPath!);
     });
     
-    teardown('caseworker', async ({ ExuiDashboardSteps }) => {
-      await ExuiDashboardSteps.Login(caseworker);
+    teardown('caseworker', async ({ IdamSteps, ExuiDashboardSteps }) => {
+      await IdamSteps.ExuiLogin(caseworker);
       await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
       await ExuiDashboardSteps.DeleteCookies(caseworker.cookiesPath!);

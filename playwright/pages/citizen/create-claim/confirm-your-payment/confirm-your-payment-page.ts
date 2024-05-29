@@ -1,6 +1,6 @@
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
-import { heading, subHeadings, tableHeadings } from './confirm-your-payment-content';
+import { buttons, heading, subHeadings, tableHeadings } from './confirm-your-payment-content';
 
 @AllMethodsStep
 export default class ConfirmYourPaymentPage extends BasePage{
@@ -21,6 +21,6 @@ export default class ConfirmYourPaymentPage extends BasePage{
   }
   
   async confirm() {
-    await super.clickConfirm();
+    await super.clickBySelector(buttons.confirm.selector);
   }
 }

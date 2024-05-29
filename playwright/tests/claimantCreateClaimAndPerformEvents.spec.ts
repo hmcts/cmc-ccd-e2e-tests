@@ -1,11 +1,22 @@
-import { caseworker, claimant } from '../config/users';
+import { claimant, judge } from '../config/users';
 import { test } from '../playwright-fixtures/index';
 
-test.describe('Create claim flow', () =>{
-  test('Create claim flow then perform caseworker events', async ({CitizenDashboardSteps, ExuiDashboardSteps, CreateClaimSteps, ApiSteps}) =>{
-    await CitizenDashboardSteps.Login(claimant);
+test.describe('Create claim flow', () => {
+  test('Create claim flow then perform caseworker events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiSteps, CaseworkerEventsSteps}) =>{
+    await IdamSteps.CitizenLogin(claimant);
     await CreateClaimSteps.CreateClaimDefAsIndividual();
-    await ApiSteps.SaveCaseDataByClaimRef();
-    await ExuiDashboardSteps.Login(caseworker);
+    await ApiSteps.FetchClaimStoreCaseData();
+    await ApiSteps.FetchCCDCaseData();
+    await IdamSteps.ExuiLogin(judge);
+    await ExuiDashboardSteps.GoToCaseDetails();
+    await CaseworkerEventsSteps.ClaimNotes();
+    await CaseworkerEventsSteps.ChangeClaimantDetails();
+    await CaseworkerEventsSteps.ChangeDefendantDetails();
+    await CaseworkerEventsSteps.ResendRpa();
+    await CaseworkerEventsSteps.WaitingToBeTransferred();
+    // await CaseworkerEventsSteps.LinkLetterHolder();
+    await CaseworkerEventsSteps.AttachViaBulkScan();
+    await CaseworkerEventsSteps.SupportUpdate();
+    await CaseworkerEventsSteps.TransferCase();
   });
 });

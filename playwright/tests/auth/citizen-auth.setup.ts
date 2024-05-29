@@ -5,12 +5,14 @@ import {claimant, defendant} from '../../config/users';
 setup.describe('Authenticating citizen frontend users and saving cookies',  {tag: '@setup'}, () => {
   if(!config.skipAuthSetup) {
     setup.describe.configure({mode: 'parallel'});
-    setup('Claimant', async ({ CitizenDashboardSteps }) => {
-      await CitizenDashboardSteps.Login(claimant);
+    setup('Claimant', async ({ IdamSteps, CitizenDashboardSteps }) => {
+      await IdamSteps.CitizenLogin(claimant);
+      await CitizenDashboardSteps.AcceptCookies();
       await CitizenDashboardSteps.SaveCookies(claimant.cookiesPath!);
     });
-    setup('Defendant', async ({ CitizenDashboardSteps }) => {
-      await CitizenDashboardSteps.Login(defendant);
+    setup('Defendant', async ({ IdamSteps, CitizenDashboardSteps }) => {
+      await IdamSteps.CitizenLogin(defendant);
+      await CitizenDashboardSteps.AcceptCookies();
       await CitizenDashboardSteps.SaveCookies(defendant.cookiesPath!);
     });
   } else {

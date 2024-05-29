@@ -1,5 +1,6 @@
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
+import { cButtons } from '../../citizen-common-content';
 import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 
 @AllMethodsStep
@@ -49,6 +50,6 @@ export default class CheckYourAnswersPage extends BasePage{
 
   async checkAndSubmit() {
     await super.clickBySelector(checkboxes.signedTrue.selector);
-    await super.clickSubmit();
+    await super.clickBySelector(cButtons.submit.selector);
   }
 }

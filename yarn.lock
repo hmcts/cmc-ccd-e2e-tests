@@ -5267,10 +5267,10 @@ jsprim@^1.2.2:
     json-schema "0.4.0"
     verror "1.10.0"
 
-jssha@^2.3.0:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/jssha/-/jssha-2.4.2.tgz#d950b095634928bd6b2bda1d42da9a3a762d65e9"
-  integrity sha512-/jsi/9C0S70zfkT/4UlKQa5E1xKurDnXcQizcww9JSR/Fv+uIbWM2btG+bFcL3iNoK9jIGS0ls9HWLr1iw0kFg==
+jssha@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jssha/-/jssha-3.3.1.tgz#c5b7fc7fb9aa745461923b87df0e247dd59c7ea8"
+  integrity sha512-VCMZj12FCFMQYcFLPRm/0lOBbLi8uM2BhXPTqw3U4YAfs4AZfiApOoBLoN8cQE60Z50m1MYMTQVCfgF/KaCVhQ==
 
 just-extend@^4.0.2:
   version "4.2.1"
@@ -8263,12 +8263,12 @@ toidentifier@1.0.1:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.1.tgz#3be34321a88a820ed1bd80dfaa33e479fbb8dd35"
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
 
-totp-generator@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/totp-generator/-/totp-generator-0.0.7.tgz#51293d9da09e63cb44b773b6843522dd31d701ed"
-  integrity sha512-ci1dZ6e2QDIaNVwUpwGrwEif600gZL0zaHR/19BIeuC2iVcnlaou7U8r7uyJTSSgYLbd16tSlnCmf+ojg6Wv3w==
+totp-generator@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/totp-generator/-/totp-generator-1.0.0.tgz#00a3532dbece7a08950a6318c1317bff3b609510"
+  integrity sha512-Iu/1Lk60/MH8FE+5cDWPiGbwKK1hxzSq+KT9oSqhZ1BEczGIKGcN50bP0WMLiIZKRg7t29iWLxw6f81TICQdoA==
   dependencies:
-    jssha "^2.3.0"
+    jssha "^3.3.1"
 
 tough-cookie@^2.3.3, tough-cookie@~2.5.0:
   version "2.5.0"

@@ -147,7 +147,7 @@ export default class IdamClient {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     };
-    return RestHelper.retriedRequest(requestOptions).then((response) => {
+    return RestHelper.request(requestOptions).then((response) => {
       return response.data.access_token;
     });
   }

@@ -1,12 +1,16 @@
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
-import { buttons } from './exui-cookies-banner-content';
+import { buttons, heading, paragraphs } from './exui-cookies-banner-content';
 
 @AllMethodsStep
 export default class ExuiCookiesBanner extends BasePage {
   
   async verifyContent(): Promise<void> {
-    throw new Error('Method not implemented.');
+    await Promise.all([
+      super.expectSubHeadingToBeVisible(heading),
+      super.expectTextToBeVisible(paragraphs.cookiesDescription1),
+      super.expectTextToBeVisible(paragraphs.cookiesDescription2),
+    ]);
   }
 
   async acceptCookies() {
