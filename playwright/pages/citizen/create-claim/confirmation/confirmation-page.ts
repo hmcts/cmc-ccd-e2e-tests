@@ -17,7 +17,9 @@ export default class ConfirmationPage extends BasePage {
     await super.clickLink(links.account.title);
   }
 
-  async getClaimNumber() {
-    return await super.getTextFromSelector(headings.claimNumber.selector);
+  async getClaimRefNumber() {
+    const claimRefNumber = await super.getTextFromSelector(headings.claimNumber.selector);
+    console.log(`Claim created with claim reference: ${claimRefNumber}`);
+    return claimRefNumber;
   }
 }

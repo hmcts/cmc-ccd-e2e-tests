@@ -62,3 +62,10 @@ export const inputs = {
     selector: '#email',
   },
 };
+
+export const buttons = {
+  continue: {
+    title: 'Continue',
+    selector: '#submit-card-details',
+  },
+};

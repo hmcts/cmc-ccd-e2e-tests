@@ -1,16 +1,15 @@
-import { Page } from '@playwright/test';
 import CreateClaimFactory from '../../../pages/citizen/create-claim/create-claim-factory';
 import BaseSteps from '../../../base/base-steps';
-import TestData from '../../../types/test-data';
 import { AllMethodsStep } from '../../../decorators/test-steps';
+import TestData from '../../../types/test-data';
 
 @AllMethodsStep
 export default class CreateClaimSteps extends BaseSteps{
   private createClaimFactory: CreateClaimFactory;
 
-  constructor(page: Page, testData: TestData) {
+  constructor(createClaimFactory: CreateClaimFactory, testData: TestData) {
     super(testData);
-    this.createClaimFactory = new CreateClaimFactory(page);
+    this.createClaimFactory = createClaimFactory;
   }
 
   private async createDraftClaim() {
@@ -44,7 +43,7 @@ export default class CreateClaimSteps extends BaseSteps{
   private async getClaimRefFromConfirmation()  {
     const {confirmationPage} = this.createClaimFactory;
     await confirmationPage.verifyContent();
-    this.testData.claimRef = await confirmationPage.getClaimNumber();
+    this.claimStoreCaseData.referenceNumber = await confirmationPage.getClaimRefNumber();
   }
   
   async CreateClaimDefAsIndividual() {

@@ -6,7 +6,7 @@ export default class DateHelper {
     today.setFullYear(today.getFullYear() + years);
 
     return today;
-  };
+  }
 
   static getTwoDigitMonth(date: Date): string {
     const month = date.getMonth() + 1;

@@ -1,12 +1,12 @@
 import BaseRequestsFactory from '../base/base-requests-factory';
-import CCDRequests from './ccd-requests';
+import CcdRequests from './ccd-requests';
 import ClaimStoreRequests from './claim-store-requests';
 import IdamRequests from './idam-requests';
 import RequestsCookiesManager from './requests-cookies-manager';
 
 export default class RequestsFactory extends BaseRequestsFactory {
   get ccdRequests() {
-    return new CCDRequests(this.requestContext);
+    return new CcdRequests(this.requestContext);
   }
 
   get claimsStoreRequests() {
