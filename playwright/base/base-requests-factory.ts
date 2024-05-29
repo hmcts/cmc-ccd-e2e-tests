@@ -7,7 +7,7 @@ export default abstract class BaseRequestsFactory {
     this._requestContext = requestContext;
   }
 
-  get requestContext() {
+  protected get requestContext() {
     return this._requestContext;
   }
 }

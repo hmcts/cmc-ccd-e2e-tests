@@ -1,6 +1,6 @@
 import BaseRequest from '../base/base-requests';
 import urls from '../config/urls';
-import { Step } from '../decorators/test-steps';
+import { AllMethodsStep, Step } from '../decorators/test-steps';
 import { TruthyParams } from '../decorators/truthy-params';
 import RequestOptions from '../types/request-options';
 
@@ -14,7 +14,7 @@ export default class ClaimStoreRequests extends BaseRequest {
 
   @Step
   @TruthyParams()
-  async getCaseDataByReference(claimRef?: string, accessToken?: string) {
+  async fetchClaimStoreCaseData(claimRef?: string, accessToken?: string) {
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,
       headers: this.getRequestHeaders(accessToken),

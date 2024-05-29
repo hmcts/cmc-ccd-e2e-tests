@@ -1,7 +1,7 @@
 import users from '../../../../config/users';
 import DateHelper from '../../../../helpers/date-helper';
 import BasePage from '../../../../base/base-page';
-import {heading, subHeadings,inputs, dropdowns} from './card-details-content';
+import {heading, subHeadings,inputs, dropdowns, buttons} from './card-details-content';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 
 @AllMethodsStep
@@ -16,7 +16,7 @@ export default class CardDetailsPage extends BasePage{
   }
 
   private async verifyPaymentSummaryContent() {
-    await Promise.all([
+    return Promise.all([
       // super.expectSubHeadingToBeVisible(subHeadings.paymentSummary),
       super.expectLabelToBeVisible(inputs.cardNumber.label),
       super.expectLabelToBeVisible(inputs.expiryMonth.label),
@@ -27,7 +27,7 @@ export default class CardDetailsPage extends BasePage{
   }
 
   async verifyBillingAddressContent() {
-    await Promise.all([
+    return Promise.all([
       super.expectSubHeadingToBeVisible(subHeadings.billingAddress),
       super.expectLabelToBeVisible(inputs.addressLine1.label),
       super.expectLabelToBeVisible(inputs.addressLine2.label),
@@ -38,7 +38,7 @@ export default class CardDetailsPage extends BasePage{
   }
 
   async verifyContactDetails() {
-    await super.expectSubHeadingToBeVisible(subHeadings.contactDetails);
+    return super.expectSubHeadingToBeVisible(subHeadings.contactDetails);
   }
 
   async fillCardDetails() {
@@ -61,6 +61,6 @@ export default class CardDetailsPage extends BasePage{
   }
 
   async continue() {
-    await super.clickContinue();
+    await super.clickBySelector(buttons.continue.selector);
   }
 }

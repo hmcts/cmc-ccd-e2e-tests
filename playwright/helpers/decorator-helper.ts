@@ -13,5 +13,12 @@ export default class DecoratorHelper {
     }
     const argsString = argsMatch[1];
     return argsString.split(',').map(arg => arg.trim()).filter(arg => arg !== '');
-  }
+  };
+
+  static formatArg = (arg: any) => {
+    if(typeof arg === 'string' && arg.length === 0) {
+      return '\'\'';
+    }
+    return arg;
+  };
 }

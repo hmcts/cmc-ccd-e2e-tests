@@ -1,4 +1,5 @@
-import CaseData from '../types/case-data';
+import CCDCaseData from '../types/case-data/ccd-case-data';
+import ClaimStoreCaseData from '../types/case-data/claim-store-case-data';
 import TestData from '../types/test-data';
 
 export default abstract class BaseSteps {
@@ -8,11 +9,19 @@ export default abstract class BaseSteps {
     this._testData = testData;
   }
 
-  get caseData() {
-    return this._testData.caseData;
+  protected get claimStoreCaseData() {
+    return this._testData.claimStoreCaseData;
   }
 
-  set setCaseData(caseData: CaseData) {
-    this._testData.caseData = caseData;
+  protected set setClaimStoreCaseData(claimStoreCaseData: ClaimStoreCaseData) {
+    this._testData.claimStoreCaseData = claimStoreCaseData;
+  }
+
+  protected get ccdCaseData() {
+    return this._testData.ccdCaseData;
+  }
+
+  protected set setCcdCaseData(ccdCaseData: CCDCaseData) {
+    this._testData.ccdCaseData = ccdCaseData;
   }
 }

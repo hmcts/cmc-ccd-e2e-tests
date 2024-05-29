@@ -11,3 +11,10 @@ export const tableHeadings = {
   billingAddress: 'Billing address',
   confirmationEmail: 'Confirmation email',
 };
+
+export const buttons = {
+  confirm: {
+    title: 'Confirm payment',
+    selector: '#confirm',
+  },
+};

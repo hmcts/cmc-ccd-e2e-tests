@@ -1,22 +1,21 @@
-import { Page } from "@playwright/test";
-import BaseSteps from "../../../base/base-steps";
-import User from "../../../types/user";
-import { config } from "../../../config/config";
-import IdamFactory from "../../../pages/idam/idam-factory";
-import { AllMethodsStep } from "../../../decorators/test-steps";
-import TestData from "../../../types/test-data";
+import { Page } from '@playwright/test';
+import BaseSteps from '../../../base/base-steps';
+import User from '../../../types/user';
+import { config } from '../../../config/config';
+import IdamFactory from '../../../pages/idam/idam-factory';
+import { AllMethodsStep } from '../../../decorators/test-steps';
+import TestData from '../../../types/test-data';
 
 @AllMethodsStep
 export default class IdamSteps extends BaseSteps {
   private isSetupTest: boolean;
   private idamFactory: IdamFactory;
   
-  constructor(page: Page, isSetupTest: boolean, testData: TestData) {
+  constructor(idamFactory: IdamFactory, isSetupTest: boolean, testData: TestData) {
     super(testData);
     this.isSetupTest = isSetupTest;
-    this.idamFactory = new IdamFactory(page);
+    this.idamFactory = idamFactory;
   }
-
 
   async ExuiLogin(user: User) {
     const { pageCookiesManager } = this.idamFactory;

@@ -1,7 +1,7 @@
 import urls from '../../../config/urls';
 import User from '../../../types/user';
 import BasePage from '../../../base/base-page';
-import { heading, inputs } from './login-page-content';
+import { heading, inputs, buttons } from './login-page-content';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 
 @AllMethodsStep
@@ -21,7 +21,7 @@ export default class LoginPage extends BasePage {
     console.log(`Authenticating user with email ${email} by Idam`);
     await super.fill(email, inputs.email.selector);
     await super.fill(password, inputs.password.selector);
-    await super.clickSubmit();
+    await super.clickBySelector(buttons.submit.selector);
   }
 
   async openCitizenFrontEnd() {

@@ -1,35 +1,19 @@
-import { Page } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { expect } from '@playwright/test';
 import { config } from '../config/config';
-import { buttons } from './common-content';
 import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
 
 export default abstract class BasePage {
   private page: Page;
-  private axeBuilder: AxeBuilder | undefined;
+  private axeBuilder?: AxeBuilder;
 
-  constructor(page: Page) {
+  constructor(page: Page, axeBuilder?: AxeBuilder) {
     this.page = page;
-    if(config.runAccessibilityTests)
-      this.axeBuilder = new AxeBuilder({page: this.page})
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']);
+    this.axeBuilder = axeBuilder;
   }
 
   abstract verifyContent(...args: any[]): Promise<void>
-
-  protected async clickConfirm() {
-    await this.clickBySelector(buttons.confirm.selector);
-  }
-  
-  protected async clickSubmit() {
-    await this.clickBySelector(buttons.submit.selector);
-  }
-
-  protected async clickContinue() {
-    await this.page.getByRole('button', {name: buttons.continue.title}).click();
-  }
 
   protected async clickBySelector(selector?: string) {
     await this.page.locator(selector!).click();
@@ -39,8 +23,8 @@ export default abstract class BasePage {
     await this.page.getByRole('button', {name}).click();
   }
 
-  protected async clickLink(name: string) {
-    await this.page.getByRole('link', {name}).click();
+  protected async clickLink(name: string, {index} = {index: 0}) {
+    await this.page.getByRole('link', {name}).nth(index).click();
   }
 
   @TruthyParams()
@@ -83,13 +67,41 @@ export default abstract class BasePage {
     await expect(this.page.locator('h2', {hasText: text})).toBeVisible();
   }
 
-  protected async expectTextToBeVisible(text: string) {
-    await expect(this.page.getByText(text)).toBeVisible();
+  @TruthyParams('text')
+  protected async expectTextToBeVisible(text: string, container?: string) {
+    const locator = container 
+      ? this.page.locator(container).getByText(text) 
+      : this.page.getByText(text);
+    
+    await expect(locator).toBeVisible();
   }
 
-  protected async expectLabelToBeVisible(label: string) {
-    await expect(this.page.getByLabel(label)).toBeVisible();
-  } 
+  protected async clickByText(text: string) {
+    await this.page.getByText(text).click();
+  }
+
+  protected async expectLabelToBeVisible(label: string, {exact} = {exact: false}) {
+    await expect(this.page.getByLabel(label, {exact})).toBeVisible();
+  }
+
+  protected async expectOptionChecked(label: string) {
+    await expect(this.page.getByLabel(label)).toBeChecked();
+  }
+
+  @TruthyParams()
+  protected async expectInputToHaveValue(selector: string, text: string) {
+    await expect(this.page.locator(selector)).toHaveValue(text);
+  }
+
+  @TruthyParams('label')
+  protected async expectInputToContainText(label: string, input: string) {
+    await expect(this.page.getByLabel(label)).toContainText(input);
+  }
+
+  @TruthyParams('text', 'selector')
+  protected async expectTableRowToContain(text: string, selector: string, {rowNum} = {rowNum: 0}) {
+    await expect(this.page.locator(`${selector} >> tr`).nth(rowNum).getByText(text)).toBeVisible();
+  }
 
   @TruthyParams()
   protected async fill(input: string | number, selector?: string) {

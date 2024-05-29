@@ -2,14 +2,17 @@ import BasePage from '../../../../base/base-page';
 import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { TruthyParams } from '../../../../decorators/truthy-params';
-import CaseData from '../../../../types/case-data';
-import { tabs, getHeading, dropdowns, buttons } from './case-details-content';
+import ExuiEvents from '../../../../types/exui-events';
+import { getCaseTitle, getSuccessBannerText } from '../../exui-common-content';
+import { tabs, dropdowns, buttons, containers } from './case-details-content';
+import {claimantInputs as claimantChangeDetailsInputs, defendantInputs as defendantChangeDetailsInputs} from '../../caseworker-events/change-contact-details/change-contact-details-content';
+import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 
 @AllMethodsStep
 export default class CaseDetailsPage extends BasePage {
-  async verifyContent(caseData: CaseData): Promise<void> {
+  async verifyContent(caseData: CCDCaseData): Promise<void> {
     await Promise.all([
-      super.expectHeadingToBeVisible(getHeading(caseData)),
+      super.expectHeadingToBeVisible(getCaseTitle(caseData)),
       super.expectTextToBeVisible(tabs.claimHistory.title),
       super.expectTextToBeVisible(tabs.claimDetails.title),
       super.expectTextToBeVisible(tabs.defendantDetails.title),
@@ -18,17 +21,44 @@ export default class CaseDetailsPage extends BasePage {
     ]);
   }
 
-  @TruthyParams('caseNumber')
-  async goToCaseDetails(caseNumber: number) {
-    await super.goTo(`${urls.manageCase}/cases/case-details/${caseNumber}`);
+  @TruthyParams()
+  async goToCaseDetails(caseId: number) {
+    console.log(`Navigating to case with ccd case id: ${caseId}`);
+    await super.goTo(`${urls.manageCase}/cases/case-details/${caseId}`);
   }
 
-  private async chooseNextStep(option: string) {
-    await super.selectFromDropdown(option, dropdowns.nextStep.selector);
+  async chooseNextStep(event: ExuiEvents) {
+    await super.selectFromDropdown(event, dropdowns.nextStep.selector);
     await super.clickBySelector(buttons.go.selector);
   }
 
-  async startClaimNotes(option: string) {
-    await this.chooseNextStep(dropdowns.nextStep.options.claimNotes);
+  async verifySuccessEvent(caseId: number, event: ExuiEvents) {
+    await super.expectTextToBeVisible(getSuccessBannerText(caseId, event));
+    await super.clickByText(tabs.claimHistory.title);
+    await super.expectTableRowToContain(event, containers.eventHistory.selector, {rowNum: 1});
+  }
+
+  async verifyClaimantDetails() {
+    await super.clickByText(tabs.claimantDetails.title);
+    await Promise.all([
+      super.expectTextToBeVisible(claimantChangeDetailsInputs.email.value),
+      super.expectTextToBeVisible(claimantChangeDetailsInputs.addressLine1.value),
+      super.expectTextToBeVisible(claimantChangeDetailsInputs.addressLine2.value),
+      super.expectTextToBeVisible(claimantChangeDetailsInputs.addressLine3.value),
+      super.expectTextToBeVisible(claimantChangeDetailsInputs.city.value),
+      super.expectTextToBeVisible(claimantChangeDetailsInputs.postcode.value),
+    ]);
+  }
+
+  async verifyDefendantDetails() {
+    await super.clickByText(tabs.defendantDetails.title);
+    await Promise.all([
+      super.expectTextToBeVisible(defendantChangeDetailsInputs.email.value),
+      super.expectTextToBeVisible(defendantChangeDetailsInputs.addressLine1.value),
+      super.expectTextToBeVisible(defendantChangeDetailsInputs.addressLine2.value),
+      super.expectTextToBeVisible(defendantChangeDetailsInputs.addressLine3.value),
+      super.expectTextToBeVisible(defendantChangeDetailsInputs.city.value),
+      super.expectTextToBeVisible(defendantChangeDetailsInputs.postcode.value),
+    ]);
   }
 }

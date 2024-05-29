@@ -1,7 +1,5 @@
-import { Page } from '@playwright/test';
 import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
 import BaseSteps from '../../../base/base-steps';
-import CaseData from '../../../types/case-data';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 
@@ -9,9 +7,9 @@ import TestData from '../../../types/test-data';
 export default class CitizenDashboardSteps extends BaseSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;
 
-  constructor(page: Page, testData: TestData) {
+  constructor(citizenDashboardFactory: CitizenDashboardFactory, testData: TestData) {
     super(testData);
-    this.citizenDashboardFactory = new CitizenDashboardFactory(page);
+    this.citizenDashboardFactory = citizenDashboardFactory;
   }
 
   async AcceptCookies() {

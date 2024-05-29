@@ -11,3 +11,9 @@ export const inputs = {
   },
 };
 
+export const buttons = {
+  submit: {
+    title: '',
+    selector: 'input[type=submit]',
+  },
+};

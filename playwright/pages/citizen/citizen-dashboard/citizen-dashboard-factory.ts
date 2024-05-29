@@ -2,8 +2,8 @@
 import BasePageFactory from '../../../base/base-page-factory';
 import PageCookiesManager from '../../common/page-cookies-manager';
 import DashboardPage from './dashboard/dashboard-page';
-import CitizenNavBar from '../fragments/citizen-nav-bar/citizen-nav-bar';
-import CitizenCookiesBanner from '../fragments/citizen-cookies-banner/citizen-cookies-banner';
+import CitizenCookiesBanner from './citizen-cookies-banner/citizen-cookies-banner';
+import CitizenNavBar from './citizen-nav-bar/citizen-nav-bar';
 
 export default class CitizenDashboardFactory extends BasePageFactory {
   
@@ -12,14 +12,14 @@ export default class CitizenDashboardFactory extends BasePageFactory {
   }
 
   get citizensCookiesBanner() {
-    return new CitizenCookiesBanner(this.page);
+    return new CitizenCookiesBanner(this.page, this.axeBuilder);
   }
   
   get navBar() {
-    return new CitizenNavBar(this.page);
+    return new CitizenNavBar(this.page, this.axeBuilder);
   }
   
   get dashboardPage() {
-    return new DashboardPage(this.page);
+    return new DashboardPage(this.page, this.axeBuilder);
   }
 }

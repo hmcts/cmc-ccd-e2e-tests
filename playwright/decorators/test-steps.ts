@@ -2,9 +2,11 @@ import DecoratorError from '../errors/decorator-error';
 import DecoratorHelper from '../helpers/decorator-helper';
 import {test} from '../playwright-fixtures/index';
 
+const allMethodsStepFlag = '__allMethodsStepApplied';
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const Step = (target: Function, context: ClassMethodDecoratorContext) => {
-  if (target.prototype && target.prototype['__allMethodsStepApplied']) {
+  if (target.prototype && target.prototype[allMethodsStepFlag]) {
     throw new DecoratorError(`${Step.name} decorator cannot be applied when @${AllMethodsStep.name} decorator is already applied.`);
   }
   if(target.constructor.name !== 'AsyncFunction') {
@@ -21,7 +23,7 @@ export const Step = (target: Function, context: ClassMethodDecoratorContext) => 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const AllMethodsStep = (target: Function, context: ClassDecoratorContext) => {
   const targetClass = target;
-  targetClass.prototype['__allMethodsStepApplied'] = true;
+  targetClass.prototype[allMethodsStepFlag] = true;
 
   for (const methodName of Object.getOwnPropertyNames(targetClass.prototype)) {
     const method = targetClass.prototype[methodName];
@@ -39,5 +41,3 @@ export const AllMethodsStep = (target: Function, context: ClassDecoratorContext)
     }
   }
 };
-
-//add soft assertions to idam cookies banner and exui cookies banner and citizen cookies banner

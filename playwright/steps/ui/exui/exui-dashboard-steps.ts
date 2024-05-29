@@ -1,4 +1,3 @@
-import { Page } from 'playwright-core';
 import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
@@ -8,9 +7,9 @@ import TestData from '../../../types/test-data';
 export default class ExuiDashboardSteps extends BaseSteps{
   private exuiDashboardFactory: ExuiDashboardFactory;
 
-  constructor(page: Page, testData: TestData) {
+  constructor(exuiDashboardFactory: ExuiDashboardFactory, testData: TestData) {
     super(testData);
-    this.exuiDashboardFactory = new ExuiDashboardFactory(page);
+    this.exuiDashboardFactory = exuiDashboardFactory;
   }
 
   async AcceptCookies() {
@@ -31,8 +30,8 @@ export default class ExuiDashboardSteps extends BaseSteps{
 
   async GoToCaseDetails() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.goToCaseDetails(this.caseData.id);
-    await caseDetailsPage.verifyContent(this.caseData);
+    await caseDetailsPage.goToCaseDetails(this.claimStoreCaseData.id);
+    await caseDetailsPage.verifyContent(this.ccdCaseData);
   }
   
   async SignOut() {
