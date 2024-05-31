@@ -90,7 +90,7 @@ export default abstract class BasePage {
       }).toPass({
         intervals: [1_000, 2_000, 3_000],
         timeout: 30_000,
-     });
+      });
     }
   }
 
