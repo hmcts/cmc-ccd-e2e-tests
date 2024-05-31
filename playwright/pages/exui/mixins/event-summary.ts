@@ -5,10 +5,10 @@ import { cButtons, cInputs } from '../exui-common-content';
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
   abstract class ExuiEvent extends Base {
     protected async verifyEventSummaryContent() {
-      await Promise.all([
-        super.expectLabelToBeVisible(cInputs.eventSummary.label),
-        super.expectLabelToBeVisible(cInputs.eventSummary.helperText),
-        super.expectLabelToBeVisible(cInputs.eventDescription.label),
+      await super.myExpect([
+        super.expectLabel(cInputs.eventSummary.label),
+        super.expectLabel(cInputs.eventSummary.helperText),
+        super.expectLabel(cInputs.eventDescription.label),
       ]);
     }
 

@@ -7,8 +7,8 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 @AllMethodsStep
 export default class CardDetailsPage extends BasePage{
   async verifyContent() {
-    await Promise.all([
-      super.expectHeadingToBeVisible(heading),
+    await super.myExpect([
+      super.expectHeading(heading),
       this.verifyPaymentSummaryContent(),
       this.verifyBillingAddressContent(),
       this.verifyContactDetails(),
@@ -16,29 +16,29 @@ export default class CardDetailsPage extends BasePage{
   }
 
   private async verifyPaymentSummaryContent() {
-    return Promise.all([
+    await super.myExpect([
       // super.expectSubHeadingToBeVisible(subHeadings.paymentSummary),
-      super.expectLabelToBeVisible(inputs.cardNumber.label),
-      super.expectLabelToBeVisible(inputs.expiryMonth.label),
-      super.expectLabelToBeVisible(inputs.expiryYear.label),
-      super.expectLabelToBeVisible(inputs.nameOnCard.label),
-      super.expectLabelToBeVisible(inputs.securityCode.label),
+      super.expectLabel(inputs.cardNumber.label),
+      super.expectLabel(inputs.expiryMonth.label),
+      super.expectLabel(inputs.expiryYear.label),
+      super.expectLabel(inputs.nameOnCard.label),
+      super.expectLabel(inputs.securityCode.label),
     ]);
   }
 
   async verifyBillingAddressContent() {
-    return Promise.all([
-      super.expectSubHeadingToBeVisible(subHeadings.billingAddress),
-      super.expectLabelToBeVisible(inputs.addressLine1.label),
-      super.expectLabelToBeVisible(inputs.addressLine2.label),
-      super.expectLabelToBeVisible(inputs.city.label),
-      super.expectLabelToBeVisible(dropdowns.country.label),
-      super.expectLabelToBeVisible(inputs.postcode.label),
+    await super.myExpect([
+      super.expectSubHeading(subHeadings.billingAddress),
+      super.expectLabel(inputs.addressLine1.label),
+      super.expectLabel(inputs.addressLine2.label),
+      super.expectLabel(inputs.city.label),
+      super.expectLabel(dropdowns.country.label),
+      super.expectLabel(inputs.postcode.label),
     ]);
   }
 
   async verifyContactDetails() {
-    return super.expectSubHeadingToBeVisible(subHeadings.contactDetails);
+    await super.expectSubHeading(subHeadings.contactDetails);
   }
 
   async fillCardDetails() {

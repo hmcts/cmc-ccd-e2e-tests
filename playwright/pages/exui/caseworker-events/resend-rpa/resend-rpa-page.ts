@@ -11,10 +11,10 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 export default class ResendRpaPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
-      super.expectHeadingToBeVisible(heading),
-      super.expectHeadingToBeVisible(getCaseTitle(caseData)),
-      super.expectLabelToBeVisible(dropdowns.resendRpa.label),
+    await super.myExpect([
+      super.expectHeading(heading),
+      super.expectHeading(getCaseTitle(caseData)),
+      super.expectLabel(dropdowns.resendRpa.label),
     ]);
   }
 

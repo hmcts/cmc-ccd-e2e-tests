@@ -6,10 +6,10 @@ import { headings, subHeadings, links } from './confirmation-content';
 export default class ConfirmationPage extends BasePage {
   
   async verifyContent(): Promise<void> {
-    await Promise.all([
-      super.expectTextToBeVisible(headings.claimSubmitted.title),
-      super.expectSubHeadingToBeVisible(subHeadings.whatHappensNext),
-      super.expectSubHeadingToBeVisible(subHeadings.defendantPaysYou),
+    await super.myExpect([
+      super.expectText(headings.claimSubmitted.title),
+      super.expectSubHeading(subHeadings.whatHappensNext),
+      super.expectSubHeading(subHeadings.defendantPaysYou),
     ]);
   }
 
@@ -18,7 +18,7 @@ export default class ConfirmationPage extends BasePage {
   }
 
   async getClaimRefNumber() {
-    const claimRefNumber = await super.getTextFromSelector(headings.claimNumber.selector);
+    const claimRefNumber = await super.getText(headings.claimNumber.selector);
     console.log(`Claim created with claim reference: ${claimRefNumber}`);
     return claimRefNumber;
   }

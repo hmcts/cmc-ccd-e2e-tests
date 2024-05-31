@@ -8,10 +8,10 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 export default class LoginPage extends BasePage {
 
   async verifyContent() {
-    await Promise.all([
-      super.expectTextToBeVisible(heading),
-      super.expectLabelToBeVisible(inputs.email.label),
-      super.expectLabelToBeVisible(inputs.password.label),
+    await super.myExpect([
+      super.expectText(heading),
+      super.expectLabel(inputs.email.label),
+      super.expectLabel(inputs.password.label),
     ]);
   }
 
@@ -34,11 +34,11 @@ export default class LoginPage extends BasePage {
 
   async citizenLogin(user: User) {
     await this.login(user);
-    await super.expectUrlToEndWith('/dashboard', '/eligibility');
+    await super.expectUrlEnd('/dashboard', '/eligibility');
   }
 
   async caseworkerLogin(user: User) {
     await this.login(user);
-    await super.expectUrlToEndWith('/cases');
+    await super.expectUrlEnd('/cases');
   }
 }

@@ -6,7 +6,7 @@ import { heading, buttons } from './create-claim-draft-content';
 export default class CreateClaimDraftPage extends BasePage{
   
   async verifyContent(): Promise<void> {
-    await super.expectHeadingToBeVisible(heading);
+    await super.expectHeading(heading);
   }
 
   async clickCreateClaimDraft() {

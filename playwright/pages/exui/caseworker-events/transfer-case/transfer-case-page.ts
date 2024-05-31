@@ -11,21 +11,21 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 export default class TransferCasePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
-      super.expectHeadingToBeVisible(heading),
-      super.expectHeadingToBeVisible(getCaseTitle(caseData)),
+    await super.myExpect([
+      super.expectHeading(heading),
+      super.expectHeading(getCaseTitle(caseData)),
     ]);
   }
 
   private async verifyAddressInputs() {
-    await Promise.all([
-      super.expectLabelToBeVisible(inputs.addressLine1.label),
-      super.expectLabelToBeVisible(inputs.addressLine2.label),
-      super.expectLabelToBeVisible(inputs.addressLine3.label),
-      super.expectLabelToBeVisible(inputs.city.label),
-      super.expectLabelToBeVisible(inputs.county.label),
-      super.expectLabelToBeVisible(inputs.country.label),
-      super.expectLabelToBeVisible(inputs.postcode.label),
+    await super.myExpect([
+      super.expectLabel(inputs.addressLine1.label),
+      super.expectLabel(inputs.addressLine2.label),
+      super.expectLabel(inputs.addressLine3.label),
+      super.expectLabel(inputs.city.label),
+      super.expectLabel(inputs.county.label),
+      super.expectLabel(inputs.country.label),
+      super.expectLabel(inputs.postcode.label),
     ]);
   }
 

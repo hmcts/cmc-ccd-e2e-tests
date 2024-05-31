@@ -22,6 +22,7 @@ export default abstract class BaseRequest {
       params,
     });}
 
+  //change error to a playwright expext
   protected async retriedRequest({url, headers, body, method = 'GET', params}: RequestOptions, expectedStatus = 200): Promise<APIResponse> {
     return await this.retry(async () => {
       const response = await this.request({ url, headers, body, method, params });
@@ -33,6 +34,7 @@ export default abstract class BaseRequest {
     });
   }
 
+  //change error/function to use playwright expect.poll or expect.toPass
   private async retry(fn: () => Promise<APIResponse>, remainingRetries = 3, retryTimeout = 5000, err = null): Promise<APIResponse> {
     if (!remainingRetries) {
       return Promise.reject(err);
