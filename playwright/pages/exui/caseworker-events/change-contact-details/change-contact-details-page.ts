@@ -10,11 +10,11 @@ import { heading, radioButtons, subHeadings, claimantInputs, defendantInputs, li
 export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData){
-    await Promise.all([
-      super.expectHeadingToBeVisible(heading),
-      super.expectHeadingToBeVisible(getCaseTitle(caseData)),
-      super.expectLabelToBeVisible(radioButtons.claimant.label, {exact: true}),
-      super.expectLabelToBeVisible(radioButtons.defendant.label, {exact: true}),
+    await super.myExpect([
+      super.expectHeading(heading),
+      super.expectHeading(getCaseTitle(caseData)),
+      super.expectLabel(radioButtons.claimant.label, {exact: true}),
+      super.expectLabel(radioButtons.defendant.label, {exact: true}),
     ]);
   }
 
@@ -23,16 +23,16 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
   }
 
   async verifyClaimantContent(claimantDetails: ApplicantValue) {
-    await Promise.all([
-      super.expectSubHeadingToBeVisible(subHeadings.claimants),
+    await super.myExpect([
+      super.expectSubHeading(subHeadings.claimants),
       // super.expectTextToBeVisible(claimantDetails.partyName),
-      super.expectInputToHaveValue(claimantInputs.email.selector, 
+      super.expectInputValue(claimantInputs.email.selector, 
         claimantDetails.partyDetail.emailAddress),
-      super.expectInputToHaveValue(claimantInputs.addressLine1.selector, 
+      super.expectInputValue(claimantInputs.addressLine1.selector, 
         claimantDetails.partyDetail.primaryAddress.AddressLine1),
-      super.expectInputToHaveValue(claimantInputs.addressLine2.selector, 
+      super.expectInputValue(claimantInputs.addressLine2.selector, 
         claimantDetails.partyDetail.primaryAddress.AddressLine2),
-      super.expectInputToHaveValue(claimantInputs.postcode.selector, 
+      super.expectInputValue(claimantInputs.postcode.selector, 
         claimantDetails.partyDetail.primaryAddress.PostCode),
     ]);
   }
@@ -52,16 +52,16 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
   }
 
   async verifyDefendantContent(defendantDetails: RespondentValue) {
-    await Promise.all([
-      super.expectSubHeadingToBeVisible(subHeadings.defendants),
+    await super.myExpect([
+      super.expectSubHeading(subHeadings.defendants),
       // super.expectTextToBeVisible(claimantDetails.partyName),
-      super.expectInputToHaveValue(defendantInputs.email.selector, 
+      super.expectInputValue(defendantInputs.email.selector, 
         defendantDetails.claimantProvidedDetail.emailAddress),
-      super.expectInputToHaveValue(defendantInputs.addressLine1.selector, 
+      super.expectInputValue(defendantInputs.addressLine1.selector, 
         defendantDetails.claimantProvidedDetail.primaryAddress.AddressLine1),
-      super.expectInputToHaveValue(defendantInputs.addressLine2.selector, 
+      super.expectInputValue(defendantInputs.addressLine2.selector, 
         defendantDetails.claimantProvidedDetail.primaryAddress.AddressLine2),
-      super.expectInputToHaveValue(defendantInputs.postcode.selector, 
+      super.expectInputValue(defendantInputs.postcode.selector, 
         defendantDetails.claimantProvidedDetail.primaryAddress.PostCode),
     ]);
   }

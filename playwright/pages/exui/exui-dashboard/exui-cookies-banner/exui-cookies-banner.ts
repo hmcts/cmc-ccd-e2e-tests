@@ -6,10 +6,10 @@ import { buttons, heading, paragraphs } from './exui-cookies-banner-content';
 export default class ExuiCookiesBanner extends BasePage {
   
   async verifyContent(): Promise<void> {
-    await Promise.all([
-      super.expectSubHeadingToBeVisible(heading),
-      super.expectTextToBeVisible(paragraphs.cookiesDescription1),
-      super.expectTextToBeVisible(paragraphs.cookiesDescription2),
+    await super.myExpect([
+      super.expectSubHeading(heading),
+      super.expectText(paragraphs.cookiesDescription1),
+      super.expectText(paragraphs.cookiesDescription2),
     ]);
   }
 

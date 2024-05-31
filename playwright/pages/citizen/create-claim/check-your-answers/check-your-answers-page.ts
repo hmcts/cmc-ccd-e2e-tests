@@ -7,8 +7,8 @@ import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 export default class CheckYourAnswersPage extends BasePage{
 
   async verifyContent(): Promise<void> {
-    await Promise.all([
-      super.expectHeadingToBeVisible(heading),
+    await super.myExpect([
+      super.expectHeading(heading),
       this.verifyYourDetails(),
       this.verifyTheirDetails(),
       this.verifyClaimAmount(),
@@ -19,32 +19,32 @@ export default class CheckYourAnswersPage extends BasePage{
   }
 
   private async verifyYourDetails() {
-    await super.expectSubHeadingToBeVisible(subHeadings.yourDetails);
+    await super.expectSubHeading(subHeadings.yourDetails);
     //verify the rest of content
   }
 
   private async verifyTheirDetails() {
-    await super.expectSubHeadingToBeVisible(subHeadings.theirDetails);
+    await super.expectSubHeading(subHeadings.theirDetails);
     //verify the rest of content
   }
 
   private async verifyClaimAmount() {
-    await super.expectSubHeadingToBeVisible(subHeadings.claimAmount);
+    await super.expectSubHeading(subHeadings.claimAmount);
     //verify the rest of content
   }
 
   private async verifyTotalAmount() {
-    await super.expectSubHeadingToBeVisible(subHeadings.totalAmount);
+    await super.expectSubHeading(subHeadings.totalAmount);
     //verify the rest of content
   }
 
   private async verifyClaimDetails() {
-    await super.expectSubHeadingToBeVisible(subHeadings.claimDetails);
+    await super.expectSubHeading(subHeadings.claimDetails);
     //verify the rest of content
   }
 
   private async verifyStatementOfTruth() {
-    await super.expectSubHeadingToBeVisible(subHeadings.statementOfTruth);
+    await super.expectSubHeading(subHeadings.statementOfTruth);
     //verify the rest of content
   }
 

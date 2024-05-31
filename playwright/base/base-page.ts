@@ -47,28 +47,28 @@ export default abstract class BasePage {
     }
   } 
 
-  protected async expectUrlToContainDomain(domain: string) {
+  protected async expectDomain(domain: string) {
     await expect(this.page).toHaveURL(new RegExp(`https?://${domain}.*`));
   }
 
-  protected async expectUrlToStartWith(path: string) {
+  protected async expectUrlStart(path: string) {
     await expect(this.page).toHaveURL(new RegExp(`^${path}`));
   }
 
-  protected async expectUrlToEndWith(...endpoints: string[]) {
+  protected async expectUrlEnd(...endpoints: string[]) {
     await expect(this.page).toHaveURL(new RegExp(`(${endpoints.join('|')})$`));
   }
 
-  protected async expectHeadingToBeVisible(text: string) {
+  protected async expectHeading(text: string) {
     await expect(this.page.locator('h1', {hasText: text})).toBeVisible();
   }
 
-  protected async expectSubHeadingToBeVisible(text: string) {
+  protected async expectSubHeading(text: string) {
     await expect(this.page.locator('h2', {hasText: text})).toBeVisible();
   }
 
   @TruthyParams('text')
-  protected async expectTextToBeVisible(text: string, container?: string) {
+  protected async expectText(text: string, container?: string) {
     const locator = container 
       ? this.page.locator(container).getByText(text) 
       : this.page.getByText(text);
@@ -76,11 +76,30 @@ export default abstract class BasePage {
     await expect(locator).toBeVisible();
   }
 
+  protected async myExpect(expects: Promise<void>[] | Promise<void>, {retry} = {retry: false}) {
+    const expectsPromise = Array.isArray(expects) ? Promise.all(expects) : expects;
+    if(!retry)
+      await expectsPromise;
+    else {
+      let firstTime = true;
+      await expect(async () => {
+        if(!firstTime) {
+          await this.page.reload();
+        }
+        firstTime = false;
+        await expectsPromise
+      }).toPass({
+        intervals: [1_000, 2_000, 3_000], 
+        timeout: 10_000
+      });
+    }
+  }
+
   protected async clickByText(text: string) {
     await this.page.getByText(text).click();
   }
 
-  protected async expectLabelToBeVisible(label: string, {exact} = {exact: false}) {
+  protected async expectLabel(label: string, {exact} = {exact: false}) {
     await expect(this.page.getByLabel(label, {exact})).toBeVisible();
   }
 
@@ -89,17 +108,12 @@ export default abstract class BasePage {
   }
 
   @TruthyParams()
-  protected async expectInputToHaveValue(selector: string, text: string) {
+  protected async expectInputValue(selector: string, text: string) {
     await expect(this.page.locator(selector)).toHaveValue(text);
   }
 
-  @TruthyParams('label')
-  protected async expectInputToContainText(label: string, input: string) {
-    await expect(this.page.getByLabel(label)).toContainText(input);
-  }
-
   @TruthyParams('text', 'selector')
-  protected async expectTableRowToContain(text: string, selector: string, {rowNum} = {rowNum: 0}) {
+  protected async expectTableRowValue(text: string, selector: string, {rowNum} = {rowNum: 0}) {
     await expect(this.page.locator(`${selector} >> tr`).nth(rowNum).getByText(text)).toBeVisible();
   }
 
@@ -109,7 +123,7 @@ export default abstract class BasePage {
   }
 
   @TruthyParams()
-  protected async getTextFromSelector(selector?: string) {
+  protected async getText(selector?: string) {
     return await this.page.textContent(selector) ?? undefined;
   }
 

@@ -11,7 +11,7 @@ export default class TestingSupportPage extends BasePage{
   }
 
   async verifyContent(): Promise<void> {
-    await super.expectHeadingToBeVisible(heading);
+    await super.expectHeading(heading);
   }
 
   async clickCreateClaimDraft() {
