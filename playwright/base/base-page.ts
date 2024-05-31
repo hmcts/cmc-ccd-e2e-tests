@@ -76,22 +76,21 @@ export default abstract class BasePage {
     await expect(locator).toBeVisible();
   }
 
-  protected async myExpect(expects: Promise<void>[] | Promise<void>, {retry} = {retry: false}) {
-    if(!retry)
-      await (Array.isArray(expects) ? Promise.all(expects) : expects);
-    else {
-      let firstAttempt = true;
-      await expect(async () => {
-        if(!firstAttempt) {
-          await this.page.reload();
-        }
-        firstAttempt = false;
-        await (Array.isArray(expects) ? Promise.all(expects) : expects);
-      }).toPass({
-        intervals: [1_000, 2_000, 3_000],
-        timeout: 30_000,
-      });
-    }
+
+  protected async retryExpect(expects: () => Promise<void>[] | (() => Promise<void>)) {
+    let firstAttempt = true;
+    await expect(async () => {
+      const promises = expects();
+      console.log(promises);
+      if(!firstAttempt) {
+        await this.page.reload();
+      }
+      firstAttempt = false;
+      await (Array.isArray(promises) ? Promise.all(promises) : promises);
+    }).toPass({
+      intervals: [1_000, 2_000, 3_000],
+      timeout: 30_000,
+    });
   }
 
   protected async clickByText(text: string) {

@@ -7,7 +7,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 @AllMethodsStep
 export default class CardDetailsPage extends BasePage{
   async verifyContent() {
-    await super.myExpect([
+    await Promise.all([
       super.expectHeading(heading),
       this.verifyPaymentSummaryContent(),
       this.verifyBillingAddressContent(),
@@ -16,7 +16,7 @@ export default class CardDetailsPage extends BasePage{
   }
 
   private async verifyPaymentSummaryContent() {
-    await super.myExpect([
+    await Promise.all([
       // super.expectSubHeadingToBeVisible(subHeadings.paymentSummary),
       super.expectLabel(inputs.cardNumber.label),
       super.expectLabel(inputs.expiryMonth.label),
@@ -27,7 +27,7 @@ export default class CardDetailsPage extends BasePage{
   }
 
   async verifyBillingAddressContent() {
-    await super.myExpect([
+    await Promise.all([
       super.expectSubHeading(subHeadings.billingAddress),
       super.expectLabel(inputs.addressLine1.label),
       super.expectLabel(inputs.addressLine2.label),

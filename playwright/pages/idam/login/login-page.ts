@@ -8,7 +8,7 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 export default class LoginPage extends BasePage {
 
   async verifyContent() {
-    await super.myExpect([
+    await Promise.all([
       super.expectText(heading),
       super.expectLabel(inputs.email.label),
       super.expectLabel(inputs.password.label),

@@ -7,7 +7,7 @@ import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 export default class CheckYourAnswersPage extends BasePage{
 
   async verifyContent(): Promise<void> {
-    await super.myExpect([
+    await Promise.all([
       super.expectHeading(heading),
       this.verifyYourDetails(),
       this.verifyTheirDetails(),

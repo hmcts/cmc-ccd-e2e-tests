@@ -5,7 +5,7 @@ import { buttons, heading, paragraphs } from './idam-cookies-banner-content';
 @AllMethodsStep
 export default class IdamCookiesBanner extends BasePage{
   async verifyContent(): Promise<void> {
-    await super.myExpect([
+    await Promise.all([
       super.expectSubHeading(heading),
       super.expectText(paragraphs.cookiesDescription1),
       super.expectText(paragraphs.cookiesDescription2),

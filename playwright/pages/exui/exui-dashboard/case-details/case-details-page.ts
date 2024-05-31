@@ -11,14 +11,14 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 @AllMethodsStep
 export default class CaseDetailsPage extends BasePage {
   async verifyContent(caseData: CCDCaseData): Promise<void> {
-    await super.myExpect([
+    await super.retryExpect(() => [
       super.expectHeading(getCaseTitle(caseData)),
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
       super.expectText(tabs.defendantDetails.title),
       super.expectText(tabs.claimDocs.title),
       super.expectLabel(dropdowns.nextStep.label),
-    ], {retry: true});
+    ]);
   }
 
   @TruthyParams()
@@ -42,7 +42,7 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyClaimantDetails() {
     await super.clickByText(tabs.claimantDetails.title);
-    await super.myExpect([
+    await Promise.all([
       super.expectText(claimantChangeDetailsInputs.email.value),
       super.expectText(claimantChangeDetailsInputs.addressLine1.value),
       super.expectText(claimantChangeDetailsInputs.addressLine2.value),
@@ -54,7 +54,7 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyDefendantDetails() {
     await super.clickByText(tabs.defendantDetails.title);
-    await super.myExpect([
+    await Promise.all([
       super.expectText(defendantChangeDetailsInputs.email.value),
       super.expectText(defendantChangeDetailsInputs.addressLine1.value),
       super.expectText(defendantChangeDetailsInputs.addressLine2.value),

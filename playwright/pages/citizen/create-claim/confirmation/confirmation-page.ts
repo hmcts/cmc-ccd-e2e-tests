@@ -6,7 +6,7 @@ import { headings, subHeadings, links } from './confirmation-content';
 export default class ConfirmationPage extends BasePage {
   
   async verifyContent(): Promise<void> {
-    await super.myExpect([
+    await Promise.all([
       super.expectText(headings.claimSubmitted.title),
       super.expectSubHeading(subHeadings.whatHappensNext),
       super.expectSubHeading(subHeadings.defendantPaysYou),
