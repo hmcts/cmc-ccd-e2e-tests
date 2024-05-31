@@ -87,10 +87,10 @@ export default abstract class BasePage {
           await this.page.reload();
         }
         firstTime = false;
-        await expectsPromise
+        await expectsPromise;
       }).toPass({
         intervals: [1_000, 2_000, 3_000], 
-        timeout: 10_000
+        timeout: 10_000,
       });
     }
   }
