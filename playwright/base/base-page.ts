@@ -77,21 +77,20 @@ export default abstract class BasePage {
   }
 
   protected async myExpect(expects: Promise<void>[] | Promise<void>, {retry} = {retry: false}) {
-    const expectsPromise = Array.isArray(expects) ? Promise.all(expects) : expects;
     if(!retry)
-      await expectsPromise;
+      await (Array.isArray(expects) ? Promise.all(expects) : expects);
     else {
-      let firstTime = true;
+      let firstAttempt = true;
       await expect(async () => {
-        if(!firstTime) {
+        if(!firstAttempt) {
           await this.page.reload();
         }
-        firstTime = false;
-        await expectsPromise;
+        firstAttempt = false;
+        await (Array.isArray(expects) ? Promise.all(expects) : expects);
       }).toPass({
-        intervals: [1_000, 2_000, 3_000], 
-        timeout: 10_000,
-      });
+        intervals: [1_000, 2_000, 3_000],
+        timeout: 30_000,
+     });
     }
   }
 

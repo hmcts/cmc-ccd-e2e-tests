@@ -2,7 +2,7 @@ import { claimant, judge } from '../config/users';
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Create claim flow', () => {
-  test.fail('Create claim flow then perform caseworker events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiSteps, CaseworkerEventsSteps}) =>{
+  test('Create claim flow then perform caseworker events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiSteps, CaseworkerEventsSteps}) =>{
     await IdamSteps.CitizenLogin(claimant);
     await CreateClaimSteps.CreateClaimDefAsIndividual();
     await ApiSteps.FetchClaimStoreCaseData();

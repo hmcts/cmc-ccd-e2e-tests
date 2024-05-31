@@ -11,7 +11,7 @@ export default defineConfig({
   reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
-    timeout: 60 * 1000,
+    timeout: 5000,
   },
   use: {
     headless: !config.showBrowserWindow,
