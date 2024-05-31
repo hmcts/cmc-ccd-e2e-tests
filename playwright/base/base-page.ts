@@ -76,7 +76,6 @@ export default abstract class BasePage {
     await expect(locator).toBeVisible();
   }
 
-
   protected async retryExpect(expects: () => Promise<void>[] | (() => Promise<void>)) {
     let firstAttempt = true;
     await expect(async () => {

@@ -11,7 +11,7 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 @AllMethodsStep
 export default class CaseDetailsPage extends BasePage {
   async verifyContent(caseData: CCDCaseData): Promise<void> {
-    await super.retryExpect(() => [
+    await super.retryExpect(() =>[
       super.expectHeading(getCaseTitle(caseData)),
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
