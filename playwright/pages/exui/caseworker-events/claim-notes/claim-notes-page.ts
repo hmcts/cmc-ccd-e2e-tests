@@ -11,7 +11,7 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 export default class ClaimNotesPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.myExpect([
+    await Promise.all([
       super.expectHeading(heading),
       super.expectHeading(getCaseTitle(caseData)),
       super.verifyEventSummaryContent(),
