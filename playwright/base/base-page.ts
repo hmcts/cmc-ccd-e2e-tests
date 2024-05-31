@@ -80,7 +80,6 @@ export default abstract class BasePage {
     let firstAttempt = true;
     await expect(async () => {
       const promises = expects();
-      console.log(promises);
       if(!firstAttempt) {
         await this.page.reload();
       }
@@ -88,6 +87,7 @@ export default abstract class BasePage {
       await (Array.isArray(promises) ? Promise.all(promises) : promises);
     }).toPass({
       intervals: [1_000, 2_000, 5_000],
+      timeout: 30_000,
     });
   }
 
