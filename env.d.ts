@@ -23,6 +23,7 @@ declare global {
       SHOW_BROWSER_WINDOW: string,
       SKIP_AUTH_SETUP: string,
       SKIP_CITIZEN_SETUP: string,
+      UI_SOFT_EXPECT: string,
       IDAM_STUB_ENABLED: string,
       RUN_ACCESSIBILITY_TESTS: string,
       S2S_MICROSERVICE_KEY_CMC: string,

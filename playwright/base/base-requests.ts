@@ -1,5 +1,6 @@
 import { APIRequestContext, APIResponse } from 'playwright-core';
 import RequestOptions from '../types/request-options';
+import { expect } from '../playwright-fixtures';
 
 export default abstract class BaseRequest {
   private requestContext: APIRequestContext; 
@@ -20,21 +21,18 @@ export default abstract class BaseRequest {
       data: body ? JSON.stringify(body) : undefined,
       headers,
       params,
-    });}
+    });
+  }
 
-  //change error to a playwright expext
   protected async retriedRequest({url, headers, body, method = 'GET', params}: RequestOptions, expectedStatus = 200): Promise<APIResponse> {
     return await this.retry(async () => {
       const response = await this.request({ url, headers, body, method, params });
-      if (response.status() !== expectedStatus) {
-        throw new Error(`Expected status: ${expectedStatus}, actual status: ${response.status()}, ` +
-          `message: ${response.statusText()}, url: ${response.url()}`);
-      }
+      expect(response.status(), `Expected status: ${expectedStatus}, actual status: ${response.status()}, ` +
+          `message: ${response.statusText()}, url: ${response.url()}`).toBe(expectedStatus);
       return response;
     });
   }
 
-  //change error/function to use playwright expect.poll or expect.toPass
   private async retry(fn: () => Promise<APIResponse>, remainingRetries = 3, retryTimeout = 5000, err = null): Promise<APIResponse> {
     if (!remainingRetries) {
       return Promise.reject(err);
@@ -46,7 +44,9 @@ export default abstract class BaseRequest {
       const response = await fn();
       return response;
     } catch (err: any) {
-      console.log(`${err.message}, retrying in ${retryTimeout / 1000} seconds (Retries left: ${remainingRetries})`);
+     
+      console.log(`${err.message.split('\n')[0]}, retrying in ${retryTimeout / 1000} seconds (Retries left: ${remainingRetries})`);
+    
       await this.sleep(retryTimeout);
       return this.retry(fn, remainingRetries - 1, retryTimeout, err);
     }

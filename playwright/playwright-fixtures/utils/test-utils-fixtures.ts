@@ -1,7 +1,7 @@
 import { test as base } from '@playwright/test';
 import TestData from '../../types/test-data';
 import AxeBuilder from '@axe-core/playwright';
-import { config } from '../../config/config';
+import config from '../../config/config';
 
 type TestDataFixture = {
   _axeBuilder?: AxeBuilder;

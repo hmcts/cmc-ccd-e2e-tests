@@ -1,11 +1,9 @@
-import urls from '../config/urls';
 import IdamClient from '../helpers/idam-client';
 import CitizenUserStateHelper from '../helpers/citizen-users-state-helper';
 import { claimant, defendant } from '../config/users';
 import User from '../types/user';
-import { config } from '../config/config';
+import config from '../config/config';
 import UserRole from '../enums/user-role';
-import { userId } from '../../src/test/end-to-end/ccdApi/idamHelper';
 
 const handleError = (error: any) => {
   console.log('Error during bootstrap, exiting', error);

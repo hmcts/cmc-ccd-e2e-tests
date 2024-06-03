@@ -16,7 +16,7 @@ export default class CaseDetailsPage extends BasePage {
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
       super.expectText(tabs.defendantDetails.title),
-      super.expectText(tabs.claimDocs.title),
+      super.expectText(tabs.claimDocs.title, {timeout: 3000}),
       super.expectLabel(dropdowns.nextStep.label),
     ]);
   }
@@ -28,13 +28,13 @@ export default class CaseDetailsPage extends BasePage {
   }
 
   async chooseNextStep(event: ExuiEvents) {
-    console.log(`Starting event with event name: ${event}`);
+    console.log(`Starting event: ${event}`);
     await super.selectFromDropdown(event, dropdowns.nextStep.selector);
     await super.clickBySelector(buttons.go.selector);
   }
 
   async verifySuccessEvent(caseId: number, event: ExuiEvents) {
-    console.log(`Verifying success banner and event history for event: ${event}`);
+    console.log(`Verifying success banner and event history: ${event}`);
     await super.expectText(getSuccessBannerText(caseId, event));
     await super.clickByText(tabs.claimHistory.title);
     await super.expectTableRowValue(event, containers.eventHistory.selector, {rowNum: 1});

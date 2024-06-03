@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-export const config = {
+const config = {
   environment: process.env.ENVIRONMENT,
   idamStudEnabled: process.env.IDAM_STUB_ENABLED === 'true',
   skipAuthSetup: process.env.SKIP_AUTH_SETUP === 'true',
@@ -14,6 +14,12 @@ export const config = {
   s2s: {
     microservice: process.env.S2S_MICROSERVICE_KEY_CMC,
     secret: process.env.S2S_MICROSERVICE_KEY_PWD,
+  }, 
+  playwright: {
+    softExpect: process.env.UI_SOFT_EXPECT === 'true',
+    toPassTimeout: 30_000,
   },
 };
+
+export default config;
 

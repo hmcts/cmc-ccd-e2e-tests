@@ -1,6 +1,6 @@
 import { TOTP } from 'totp-generator';
 import BaseRequest from '../base/base-requests';
-import { config } from '../config/config';
+import config from '../config/config';
 import urls from '../config/urls';
 import { Step } from '../decorators/test-steps';
 import RequestOptions from '../types/request-options';

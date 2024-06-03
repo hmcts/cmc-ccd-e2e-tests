@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test';
 import BaseSteps from '../../../base/base-steps';
 import User from '../../../types/user';
-import { config } from '../../../config/config';
+import config from '../../../config/config';
 import IdamFactory from '../../../pages/idam/idam-factory';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';

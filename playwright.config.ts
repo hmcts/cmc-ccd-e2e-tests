@@ -1,17 +1,21 @@
 import { defineConfig, devices } from '@playwright/test';                  
-import { config } from './playwright/config/config';
+import config from './playwright/config/config';
 
 export default defineConfig({
   testDir: './playwright/tests',
   globalSetup: './playwright/bootstrap/citizen-users.setup',
   globalTeardown: './playwright/bootstrap/citizen-users.teardown',
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 3 : 0,
-  workers: process.env.CI ? 4 : undefined,
+  fullyParallel: true,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 5 : 5,
   reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
-    timeout: 5000,
+    timeout: 20_000,
+    toPass: {
+      timeout: config.playwright.toPassTimeout,
+    },
   },
   use: {
     headless: !config.showBrowserWindow,

@@ -1,6 +1,6 @@
 import BaseSteps from '../../base/base-steps';
 import RequestsFactory from '../../requests/requests-factory';
-import { config } from '../../config/config';
+import config from '../../config/config';
 import { caseworker, claimant, judge } from '../../config/users';
 import { AllMethodsStep } from '../../decorators/test-steps';
 import TestData from '../../types/test-data';

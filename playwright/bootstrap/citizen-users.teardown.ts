@@ -2,7 +2,7 @@ import IdamClient from '../helpers/idam-client';
 import { claimant, defendant } from '../config/users';
 import urls from '../config/urls';
 import CitizenUserStateHelper from '../helpers/citizen-users-state-helper';
-import { config } from '../config/config';
+import config from '../config/config';
 
 const teardown = async () => {
   if(!config.skipCitizenSetup) {

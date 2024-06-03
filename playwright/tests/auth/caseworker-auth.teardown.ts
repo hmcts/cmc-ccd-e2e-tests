@@ -1,4 +1,4 @@
-import { config } from '../../config/config';
+import config from '../../config/config';
 import {caseworker, legalAdvisor, judge} from '../../config/users';
 import { test as teardown } from '../../playwright-fixtures/index';
 
