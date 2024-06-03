@@ -1,4 +1,3 @@
-import { Page } from '@playwright/test';
 import BaseSteps from '../../../base/base-steps';
 import User from '../../../types/user';
 import config from '../../../config/config';
@@ -9,11 +8,13 @@ import TestData from '../../../types/test-data';
 @AllMethodsStep
 export default class IdamSteps extends BaseSteps {
   private isSetupTest: boolean;
+  private isTeardown: boolean;
   private idamFactory: IdamFactory;
   
-  constructor(idamFactory: IdamFactory, isSetupTest: boolean, testData: TestData) {
+  constructor(idamFactory: IdamFactory, isSetupTest: boolean, isTeardownTest: boolean, testData: TestData) {
     super(testData);
     this.isSetupTest = isSetupTest;
+    this.isTeardown = isTeardownTest;
     this.idamFactory = idamFactory;
   }
 
@@ -40,7 +41,7 @@ export default class IdamSteps extends BaseSteps {
 
     } 
     else {
-      await pageCookiesManager.cookiesLogin(user);
+      await pageCookiesManager.cookiesLogin(user, this.isTeardown);
     }
   }
 
@@ -67,7 +68,7 @@ export default class IdamSteps extends BaseSteps {
 
     } 
     else {
-      await pageCookiesManager.cookiesLogin(user);
+      await pageCookiesManager.cookiesLogin(user, this.isTeardown);
     }
   }
 }

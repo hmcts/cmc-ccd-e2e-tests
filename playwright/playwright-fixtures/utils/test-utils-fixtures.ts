@@ -6,6 +6,7 @@ import config from '../../config/config';
 type TestDataFixture = {
   _axeBuilder?: AxeBuilder;
   _isSetupTest: boolean,
+  _isTeardown: boolean,
   _testData: TestData
 }
 
@@ -20,6 +21,9 @@ export const test = base.extend<TestDataFixture>({
   },
   _isSetupTest: async ({}, use: (arg0: boolean) => any, testInfo) => {
     await use(testInfo.tags.includes('@setup'));
+  },
+  _isTeardown: async ({}, use: (arg0: boolean) => any, testInfo) => {
+    await use(testInfo.tags.includes('@teardown'));
   },
   _testData: async ({}, use: (arg0: TestData) => any) => {
     await use({claimStoreCaseData: {}, ccdCaseData: {}});

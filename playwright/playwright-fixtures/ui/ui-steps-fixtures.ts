@@ -17,8 +17,8 @@ type UiStepsFixtures = {
 };
 
 export const test = base.extend<UiStepsFixtures>({
-  IdamSteps: async ({_idamFactory, _testData, _isSetupTest}, use: (arg0: IdamSteps) => any) => {
-    await use(new IdamSteps(_idamFactory, _isSetupTest, _testData));
+  IdamSteps: async ({_idamFactory, _testData, _isSetupTest, _isTeardown}, use: (arg0: IdamSteps) => any) => {
+    await use(new IdamSteps(_idamFactory, _isSetupTest, _isTeardown, _testData));
   },
   CitizenDashboardSteps: async ({_citizenDashboardFactory, _testData}, use: (arg0: CitizenDashboardSteps) => any) => {
     await use(new CitizenDashboardSteps(_citizenDashboardFactory, _testData));
