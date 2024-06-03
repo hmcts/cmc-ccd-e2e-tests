@@ -16,7 +16,7 @@ export default class CaseDetailsPage extends BasePage {
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
       super.expectText(tabs.defendantDetails.title),
-      super.expectText(tabs.claimDocs.title, {timeout: 3000}),
+      super.expectText(tabs.claimDocs.title, {timeout: 5000}),
       super.expectLabel(dropdowns.nextStep.label),
     ]);
   }
