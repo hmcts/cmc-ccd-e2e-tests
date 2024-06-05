@@ -9,12 +9,14 @@ import TestData from '../../../types/test-data';
 export default class IdamSteps extends BaseSteps {
   private isSetupTest: boolean;
   private isTeardown: boolean;
+  private verifyCookiesBanner: boolean;
   private idamFactory: IdamFactory;
   
-  constructor(idamFactory: IdamFactory, isSetupTest: boolean, isTeardownTest: boolean, testData: TestData) {
+  constructor(idamFactory: IdamFactory, isSetupTest: boolean, isTeardownTest: boolean, verifyCookiesBanner: boolean, testData: TestData) {
     super(testData);
     this.isSetupTest = isSetupTest;
     this.isTeardown = isTeardownTest;
+    this.verifyCookiesBanner = verifyCookiesBanner
     this.idamFactory = idamFactory;
   }
 
@@ -25,7 +27,7 @@ export default class IdamSteps extends BaseSteps {
       const { loginPage } = this.idamFactory;
       await pageCookiesManager.cookiesSignOut();
 
-      if(this.isSetupTest) {
+      if(this.isSetupTest && this.verifyCookiesBanner) {
         const { idamsCookiesBanner } = this.idamFactory;
         await loginPage.openManageCase();
         await idamsCookiesBanner.verifyContent();
@@ -45,14 +47,16 @@ export default class IdamSteps extends BaseSteps {
     }
   }
 
-  async CitizenLogin(user: User) {
+  async CitizenLogin(users: User[], workerIndex?: number) {
+    const user: User = isNaN(workerIndex) ? users[this.workerIndex] : users[workerIndex];
+    
     const { pageCookiesManager } = this.idamFactory;
 
     if(config.skipAuthSetup || this.isSetupTest) {
       const { loginPage } = this.idamFactory;
       await pageCookiesManager.cookiesSignOut();
 
-      if(this.isSetupTest) {
+      if(this.isSetupTest && this.verifyCookiesBanner) {
         const { idamsCookiesBanner } = this.idamFactory;
         await loginPage.openCitizenFrontEnd();
         await idamsCookiesBanner.verifyContent();

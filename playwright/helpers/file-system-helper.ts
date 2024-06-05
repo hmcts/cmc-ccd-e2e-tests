@@ -7,7 +7,7 @@ import filePaths from '../config/filePaths';
 export default class FileSystemHelper {
   private static writeFileDirs = [`${filePaths.citizenUsers}/`, `${filePaths.userCookies}/`];
   
-  private static exists = (filePath: string) => fs.existsSync(filePath);
+  static exists = (filePath: string) => fs.existsSync(filePath);
 
   private static mkDir = (filePath: string) => {
     const dirPath = path.dirname(filePath);
@@ -80,7 +80,7 @@ export default class FileSystemHelper {
       console.log(`Successfully deleted file with path ${filePath}`);
     } catch(error: any) {
       if(error.code === 'ENOENT') {
-        console.log(error.stack);
+        console.log(error.message);
       } else {
         console.log(error);
       }

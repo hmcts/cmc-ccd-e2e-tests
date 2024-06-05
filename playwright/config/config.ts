@@ -18,6 +18,7 @@ const config = {
   playwright: {
     softExpect: process.env.UI_SOFT_EXPECT === 'true',
     toPassTimeout: 30_000,
+    workers: parseInt(process.env.WORKERS),
   },
 };
 

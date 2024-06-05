@@ -1,7 +1,7 @@
 import BaseSteps from '../../base/base-steps';
 import RequestsFactory from '../../requests/requests-factory';
 import config from '../../config/config';
-import { caseworker, claimant, judge } from '../../config/users';
+import { claimants, judge } from '../../config/users';
 import { AllMethodsStep } from '../../decorators/test-steps';
 import TestData from '../../types/test-data';
 import User from '../../types/user';
@@ -9,14 +9,16 @@ import User from '../../types/user';
 @AllMethodsStep
 export default class ApiSteps extends BaseSteps{
   private requestsFactory: RequestsFactory;
+  private isSetupTest: boolean
 
-  constructor(requestsFactory: RequestsFactory, testData: TestData) {
+  constructor(requestsFactory: RequestsFactory, testData: TestData, isSetupTest: boolean) {
     super(testData);
     this.requestsFactory = requestsFactory;
+    this.isSetupTest = isSetupTest;
   }
 
   private async getAccessToken(user: User) {
-    if(config.skipAuthSetup) {
+    if(config.skipAuthSetup || this.isSetupTest) {
       const {idamRequests} = this.requestsFactory;
       return await idamRequests.getAccessToken(user);
     } else {
@@ -25,8 +27,18 @@ export default class ApiSteps extends BaseSteps{
     }
   }
 
+  async CreateCitizenUsers(users: User[]) {
+    const {idamRequests} = this.requestsFactory;
+    await idamRequests.createCitizenUsers(users);
+  }
+
+  async DeleteCitizenUsers(users: User[]) {
+    const {idamRequests} = this.requestsFactory;
+    await idamRequests.deleteUsers(users);
+  }
+
   async FetchClaimStoreCaseData() {
-    const accessToken = await this.getAccessToken(claimant);
+    const accessToken = await this.getAccessToken(claimants[this.workerIndex]);
     const {claimsStoreRequests} = this.requestsFactory;
     this.setClaimStoreCaseData = await claimsStoreRequests.fetchClaimStoreCaseData(this.claimStoreCaseData.referenceNumber, accessToken);
   }

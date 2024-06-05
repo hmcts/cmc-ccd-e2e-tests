@@ -2,6 +2,7 @@ import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/ci
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
+import User from '../../../types/user';
 
 @AllMethodsStep
 export default class CitizenDashboardSteps extends BaseSteps {
@@ -18,14 +19,10 @@ export default class CitizenDashboardSteps extends BaseSteps {
     await citizensCookiesBanner.acceptCookies();
   }
 
-  async SaveCookies(filePath: string) {
+  async SaveCookies(users: User[], workerIndex?: number) {
+    const user: User = isNaN(workerIndex) ? users[this.workerIndex] : users[workerIndex];
     const { pageCookiesManager } = this.citizenDashboardFactory;
-    await pageCookiesManager.saveCookies(filePath);
-  }
-
-  async DeleteCookies(filePath: string) {
-    const { pageCookiesManager } = this.citizenDashboardFactory;
-    await pageCookiesManager.deleteCookies(filePath);
+    await pageCookiesManager.saveCookies(user.cookiesPath);
   }
 
   async GoToDashboard() {

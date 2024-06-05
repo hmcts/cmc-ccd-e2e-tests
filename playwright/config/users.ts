@@ -1,8 +1,9 @@
-import CitizenUserStateHelper from '../helpers/citizen-users-state-helper';
+import CitizenUsersHelper from '../helpers/citizen-users-helper';
 import User from '../types/user';
 import UserRole from '../enums/user-role';
 import UserType from '../enums/user-type';
 import filePaths from './filePaths';
+import config from './config';
 
 export const legalAdvisor: User = {
   email: process.env.LA_USER_EMAIL,
@@ -31,16 +32,16 @@ export const judge: User = {
   userId: process.env.JUDGE_USER_ID,
 };
 
-export const claimant: User =
-  CitizenUserStateHelper.getUserFromState(UserType.CLAIMANT, process.env.SMOKE_TEST_USER_PASSWORD);
+export const claimants: User[] =
+  CitizenUsersHelper.getUsersFromState(UserType.CLAIMANT, config.playwright.workers, process.env.SMOKE_TEST_USER_PASSWORD);
 
-export const defendant: User =
-  CitizenUserStateHelper.getUserFromState(UserType.DEFENDANT, process.env.SMOKE_TEST_USER_PASSWORD);
+export const defendants: User[] =
+  CitizenUsersHelper.getUsersFromState(UserType.DEFENDANT, config.playwright.workers, process.env.SMOKE_TEST_USER_PASSWORD);
 
 export default {
   legalAdvisor,
   caseworker,
   judge,
-  claimant,
-  defendant,
+  claimants,
+  defendants,
 };

@@ -7,6 +7,7 @@ type TestDataFixture = {
   _axeBuilder?: AxeBuilder;
   _isSetupTest: boolean,
   _isTeardown: boolean,
+  _verifyCookiesBanner: boolean,
   _testData: TestData
 }
 
@@ -25,7 +26,10 @@ export const test = base.extend<TestDataFixture>({
   _isTeardown: async ({}, use: (arg0: boolean) => any, testInfo) => {
     await use(testInfo.tags.includes('@teardown'));
   },
-  _testData: async ({}, use: (arg0: TestData) => any) => {
-    await use({claimStoreCaseData: {}, ccdCaseData: {}});
+  _verifyCookiesBanner: async ({}, use: (arg0: boolean) => any, testInfo) => {
+    await use(testInfo.tags.includes('@verify-cookies-banner'));
+  },
+  _testData: async ({}, use: (arg0: TestData) => any, testInfo) => {
+    await use({workerIndex: testInfo.parallelIndex, claimStoreCaseData: {}, ccdCaseData: {}});
   },
 });

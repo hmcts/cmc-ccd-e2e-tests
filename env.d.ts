@@ -21,6 +21,7 @@ declare global {
       JUDGE_USER_PASSWORD: string,
       SMOKE_TEST_USER_PASSWORD: string,
       SHOW_BROWSER_WINDOW: string,
+      WORKERS:string,
       SKIP_AUTH_SETUP: string,
       SKIP_CITIZEN_SETUP: string,
       UI_SOFT_EXPECT: string,
