@@ -7,7 +7,7 @@ if(!config.skipAuthSetup) {
   teardown.describe('Signing out citizen users and deleting cookies',{tag: '@teardown'}, () => {
     teardown.describe.configure({mode: 'parallel'});
 
-    teardown(`Worker 1: Claimant`, async ({ IdamSteps, CitizenDashboardSteps }) => {
+    teardown('Worker 1: Claimant', async ({ IdamSteps, CitizenDashboardSteps }) => {
       await IdamSteps.CitizenLogin(claimants, 0);
       await CitizenDashboardSteps.GoToDashboard();
       await CitizenDashboardSteps.SignOut();
@@ -16,9 +16,9 @@ if(!config.skipAuthSetup) {
 
     for(let workerIndex = 0; workerIndex < config.playwright.workers; workerIndex++) {
       if(workerIndex > 0)
-      teardown(`Worker ${workerIndex + 1}: Claimant`, async () => {
-        FileSystemHelper.deleteFile(claimants[workerIndex].cookiesPath);
-      });
+        teardown(`Worker ${workerIndex + 1}: Claimant`, async () => {
+          FileSystemHelper.deleteFile(claimants[workerIndex].cookiesPath);
+        });
       
       teardown(`Worker ${workerIndex + 1}: Defendant`, async () => {
         FileSystemHelper.deleteFile(defendants[workerIndex].cookiesPath);

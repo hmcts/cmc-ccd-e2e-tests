@@ -24,7 +24,7 @@ export default class IdamRequests extends BaseRequest {
   private async createCitizenUser({
     email,
     password,
-    role
+    role,
   }: User): Promise<IdamUser> {
     console.log(`Creating user with email: ${email}`);
     const requestOptions: RequestOptions = {
@@ -49,7 +49,7 @@ export default class IdamRequests extends BaseRequest {
   }
 
   private async deleteUser({email}: User): Promise<void> {
-    console.log(`Delete user: ${email}`)
+    console.log(`Delete user: ${email}`);
     const requestOptions: RequestOptions = {
       method: 'DELETE',
       url: `${urls.idamApi}/testing-support/accounts/${email}`,

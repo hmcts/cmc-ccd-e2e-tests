@@ -9,7 +9,7 @@ import User from '../../types/user';
 @AllMethodsStep
 export default class ApiSteps extends BaseSteps{
   private requestsFactory: RequestsFactory;
-  private isSetupTest: boolean
+  private isSetupTest: boolean;
 
   constructor(requestsFactory: RequestsFactory, testData: TestData, isSetupTest: boolean) {
     super(testData);

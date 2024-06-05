@@ -16,7 +16,7 @@ export default class IdamSteps extends BaseSteps {
     super(testData);
     this.isSetupTest = isSetupTest;
     this.isTeardown = isTeardownTest;
-    this.verifyCookiesBanner = verifyCookiesBanner
+    this.verifyCookiesBanner = verifyCookiesBanner;
     this.idamFactory = idamFactory;
   }
 

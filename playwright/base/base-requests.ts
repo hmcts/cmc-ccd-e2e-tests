@@ -39,7 +39,7 @@ export default abstract class BaseRequest {
       retryTimeout = this.MAX_RETRY_TIMEOUT;
     }
     try {
-      const response = await this.request(requestOptions, expectedStatus);;
+      const response = await this.request(requestOptions, expectedStatus);
       return response;
     } catch (err: any) {
       console.log(`${err.message.split('\n')[0]}, retrying in ${retryTimeout / 1000} seconds (Retries left: ${remainingRetries})`);
