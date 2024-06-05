@@ -34,7 +34,7 @@ export default class LoginPage extends BasePage {
 
   async citizenLogin(user: User) {
     await this.login(user);
-    await super.expectUrlEnd('/dashboard', '/eligibility');
+    await super.expectUrlEnd(['/dashboard', '/eligibility']);
   }
 
   async caseworkerLogin(user: User) {

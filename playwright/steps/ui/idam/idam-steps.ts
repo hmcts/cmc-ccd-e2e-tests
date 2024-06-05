@@ -1,7 +1,6 @@
-import { Page } from '@playwright/test';
 import BaseSteps from '../../../base/base-steps';
 import User from '../../../types/user';
-import { config } from '../../../config/config';
+import config from '../../../config/config';
 import IdamFactory from '../../../pages/idam/idam-factory';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
@@ -9,11 +8,15 @@ import TestData from '../../../types/test-data';
 @AllMethodsStep
 export default class IdamSteps extends BaseSteps {
   private isSetupTest: boolean;
+  private isTeardown: boolean;
+  private verifyCookiesBanner: boolean;
   private idamFactory: IdamFactory;
   
-  constructor(idamFactory: IdamFactory, isSetupTest: boolean, testData: TestData) {
+  constructor(idamFactory: IdamFactory, isSetupTest: boolean, isTeardownTest: boolean, verifyCookiesBanner: boolean, testData: TestData) {
     super(testData);
     this.isSetupTest = isSetupTest;
+    this.isTeardown = isTeardownTest;
+    this.verifyCookiesBanner = verifyCookiesBanner;
     this.idamFactory = idamFactory;
   }
 
@@ -24,7 +27,7 @@ export default class IdamSteps extends BaseSteps {
       const { loginPage } = this.idamFactory;
       await pageCookiesManager.cookiesSignOut();
 
-      if(this.isSetupTest) {
+      if(this.isSetupTest && this.verifyCookiesBanner) {
         const { idamsCookiesBanner } = this.idamFactory;
         await loginPage.openManageCase();
         await idamsCookiesBanner.verifyContent();
@@ -40,18 +43,20 @@ export default class IdamSteps extends BaseSteps {
 
     } 
     else {
-      await pageCookiesManager.cookiesLogin(user);
+      await pageCookiesManager.cookiesLogin(user, this.isTeardown);
     }
   }
 
-  async CitizenLogin(user: User) {
+  async CitizenLogin(users: User[], workerIndex?: number) {
+    const user: User = isNaN(workerIndex) ? users[this.workerIndex] : users[workerIndex];
+    
     const { pageCookiesManager } = this.idamFactory;
 
     if(config.skipAuthSetup || this.isSetupTest) {
       const { loginPage } = this.idamFactory;
       await pageCookiesManager.cookiesSignOut();
 
-      if(this.isSetupTest) {
+      if(this.isSetupTest && this.verifyCookiesBanner) {
         const { idamsCookiesBanner } = this.idamFactory;
         await loginPage.openCitizenFrontEnd();
         await idamsCookiesBanner.verifyContent();
@@ -67,7 +72,7 @@ export default class IdamSteps extends BaseSteps {
 
     } 
     else {
-      await pageCookiesManager.cookiesLogin(user);
+      await pageCookiesManager.cookiesLogin(user, this.isTeardown);
     }
   }
 }

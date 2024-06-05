@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --fix",
+    "test:debug": "npx playwright test --project full-functional",
     "test:full-functional": "npx playwright test --project full-functional",
     "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run-multiple parallel -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
     "test:fullfunctional": "yarn playwright install && npx playwright test --project full-functional",

@@ -38,9 +38,4 @@ export default class ExuiDashboardSteps extends BaseSteps{
     const {navBar} = this.exuiDashboardFactory;
     await navBar.clickSignOut();
   }
-
-  async DeleteCookies(filePath: string) {
-    const { pageCookiesManager } = this.exuiDashboardFactory;
-    await pageCookiesManager.deleteCookies(filePath);
-  }
 }

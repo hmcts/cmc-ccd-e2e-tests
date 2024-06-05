@@ -7,7 +7,8 @@ import Cookie from '../types/cookie';
 
 @AllMethodsStep
 export default class RequestsCookiesManager {
-  async getAccessToken({cookiesPath, role}: User) {
+  async getAccessToken({cookiesPath, role, email}: User) {
+    console.log(`Getting access token from cookies: ${email} ${cookiesPath}`);
     const cookies: Cookie[] = FileSystemHelper.readFile(cookiesPath, FileType.JSON);
     if(role === UserRole.CITIZEN) {
       return cookies.find(cookie => cookie.name === 'SESSION_ID')!.value;

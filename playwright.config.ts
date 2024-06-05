@@ -1,17 +1,20 @@
 import { defineConfig, devices } from '@playwright/test';                  
-import { config } from './playwright/config/config';
+import config from './playwright/config/config';
 
 export default defineConfig({
   testDir: './playwright/tests',
-  globalSetup: './playwright/bootstrap/citizen-users.setup',
-  globalTeardown: './playwright/bootstrap/citizen-users.teardown',
+  globalTeardown: './playwright/global/teardown',
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 3 : 0,
-  workers: process.env.CI ? 4 : undefined,
+  fullyParallel: true,
+  retries: process.env.CI ? 2 : 0,
+  workers: config.playwright.workers,
   reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
-    timeout: 5000,
+    timeout: 20_000,
+    toPass: {
+      timeout: config.playwright.toPassTimeout,
+    },
   },
   use: {
     headless: !config.showBrowserWindow,
@@ -24,26 +27,36 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'caseworker-auth-setup',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/auth/caseworker-auth.setup.ts',
-      teardown: 'caseworker-auth-teardown',
+      name: 'citizen-users-teardown',
+      testMatch: '**playwright/tests/bootstrap/users/citizen-users.teardown.ts',
     },
     {
-      name: 'caseworker-auth-teardown',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/auth/caseworker-auth.teardown.ts',
+      name: 'citizen-users-setup',
+      testMatch: '**playwright/tests/bootstrap/users/citizen-users.setup.ts',
+      teardown: 'citizen-users-teardown',
     },
     {
       name: 'citizen-auth-setup',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/auth/citizen-auth.setup.ts',
+      testMatch: '**playwright/tests/bootstrap/auth/citizen-auth.setup.ts',
+      dependencies: ['citizen-users-setup'],
       teardown: 'citizen-auth-teardown',
     },
     {
       name: 'citizen-auth-teardown',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**playwright/tests/auth/citizen-auth.teardown.ts',
+      testMatch: '**playwright/tests/bootstrap/auth/citizen-auth.teardown.ts',
+    },
+    {
+      name: 'caseworker-auth-setup',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**playwright/tests/bootstrap/auth/caseworker-auth.setup.ts',
+      teardown: 'caseworker-auth-teardown',
+    },
+    {
+      name: 'caseworker-auth-teardown',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**playwright/tests/bootstrap/auth/caseworker-auth.teardown.ts',
     },
     {
       name: 'full-functional',

@@ -1,9 +1,9 @@
-import { claimant, judge } from '../config/users';
+import { claimants, judge } from '../config/users';
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Create claim flow', () => {
   test('Create claim flow then perform caseworker events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiSteps, CaseworkerEventsSteps}) =>{
-    await IdamSteps.CitizenLogin(claimant);
+    await IdamSteps.CitizenLogin(claimants);
     await CreateClaimSteps.CreateClaimDefAsIndividual();
     await ApiSteps.FetchClaimStoreCaseData();
     await ApiSteps.FetchCCDCaseData();

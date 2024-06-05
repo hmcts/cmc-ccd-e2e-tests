@@ -3,6 +3,7 @@ import DateHelper from '../../../../helpers/date-helper';
 import BasePage from '../../../../base/base-page';
 import {heading, subHeadings,inputs, dropdowns, buttons} from './card-details-content';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
+import User from '../../../../types/user';
 
 @AllMethodsStep
 export default class CardDetailsPage extends BasePage{
@@ -56,8 +57,8 @@ export default class CardDetailsPage extends BasePage{
     await super.fill('E4 6ry', inputs.postcode.selector);
   }
 
-  async fillContactDetails() {
-    await super.fill(users.claimant.email, inputs.confirmationEmail.selector);
+  async fillContactDetails({email}: User) {
+    await super.fill(email, inputs.confirmationEmail.selector);
   }
 
   async continue() {

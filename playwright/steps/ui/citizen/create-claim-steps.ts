@@ -2,6 +2,7 @@ import CreateClaimFactory from '../../../pages/citizen/create-claim/create-claim
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
+import { claimants } from '../../../config/users';
 
 @AllMethodsStep
 export default class CreateClaimSteps extends BaseSteps{
@@ -32,7 +33,7 @@ export default class CreateClaimSteps extends BaseSteps{
     await cardDetailsPage.verifyContent();
     await cardDetailsPage.fillCardDetails();
     await cardDetailsPage.fillBillingAddressDetails();
-    await cardDetailsPage.fillContactDetails();
+    await cardDetailsPage.fillContactDetails(claimants[this.workerIndex]);
     await cardDetailsPage.continue();
 
     const {confirmYourPaymentPage} = this.createClaimFactory;

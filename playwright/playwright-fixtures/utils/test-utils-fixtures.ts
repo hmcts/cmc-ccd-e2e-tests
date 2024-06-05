@@ -1,11 +1,13 @@
 import { test as base } from '@playwright/test';
 import TestData from '../../types/test-data';
 import AxeBuilder from '@axe-core/playwright';
-import { config } from '../../config/config';
+import config from '../../config/config';
 
 type TestDataFixture = {
   _axeBuilder?: AxeBuilder;
   _isSetupTest: boolean,
+  _isTeardown: boolean,
+  _verifyCookiesBanner: boolean,
   _testData: TestData
 }
 
@@ -21,7 +23,13 @@ export const test = base.extend<TestDataFixture>({
   _isSetupTest: async ({}, use: (arg0: boolean) => any, testInfo) => {
     await use(testInfo.tags.includes('@setup'));
   },
-  _testData: async ({}, use: (arg0: TestData) => any) => {
-    await use({claimStoreCaseData: {}, ccdCaseData: {}});
+  _isTeardown: async ({}, use: (arg0: boolean) => any, testInfo) => {
+    await use(testInfo.tags.includes('@teardown'));
+  },
+  _verifyCookiesBanner: async ({}, use: (arg0: boolean) => any, testInfo) => {
+    await use(testInfo.tags.includes('@verify-cookies-banner'));
+  },
+  _testData: async ({}, use: (arg0: TestData) => any, testInfo) => {
+    await use({workerIndex: testInfo.parallelIndex, claimStoreCaseData: {}, ccdCaseData: {}});
   },
 });

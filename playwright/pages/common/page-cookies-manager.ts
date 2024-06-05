@@ -1,4 +1,3 @@
-import FileSystemHelper from '../../helpers/file-system-helper';
 import FileType from '../../enums/file-type';
 import BasePage from '../../base/base-page';
 import User from '../../types/user';
@@ -7,6 +6,9 @@ import { acceptIdamCookies } from '../../fixtures/cookies/idam-cookies';
 import { generateAcceptExuiCookies } from '../../fixtures/cookies/exui-cookies';
 import { acceptCitizenCookies } from '../../fixtures/cookies/citizen-cookies';
 import PageError from '../../errors/page-error';
+import {test} from '../../playwright-fixtures/index';
+import Cookie from '../../types/cookie';
+import FileSystemHelper from '../../helpers/file-system-helper';
 
 @AllMethodsStep
 export default class PageCookiesManager extends BasePage {
@@ -19,13 +21,15 @@ export default class PageCookiesManager extends BasePage {
     FileSystemHelper.writeFile(cookies, filePath, FileType.JSON);
   }
 
-  async deleteCookies(filePath = '') {
-    FileSystemHelper.deleteFile(filePath);
-  }
-
-  async cookiesLogin(user: User) {
+  async cookiesLogin(user: User, isTeardown: boolean) {
     console.log(`Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`);
-    const cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
+    let cookies: Cookie[];
+    try {
+      cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
+    } catch(error) {
+      if(isTeardown) test.skip(error.message);
+      else throw error;
+    }
     await super.clearCookies();
     await super.addCookies(cookies);
   }

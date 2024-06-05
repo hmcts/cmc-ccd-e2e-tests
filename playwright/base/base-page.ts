@@ -1,8 +1,10 @@
-import { Page, expect } from '@playwright/test';
+import { Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { config } from '../config/config';
+import config from '../config/config';
 import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
+import { pageExpect } from '../playwright-fixtures';
+import Timer from '../helpers/timer';
 
 export default abstract class BasePage {
   private page: Page;
@@ -47,70 +49,8 @@ export default abstract class BasePage {
     }
   } 
 
-  protected async expectDomain(domain: string) {
-    await expect(this.page).toHaveURL(new RegExp(`https?://${domain}.*`));
-  }
-
-  protected async expectUrlStart(path: string) {
-    await expect(this.page).toHaveURL(new RegExp(`^${path}`));
-  }
-
-  protected async expectUrlEnd(...endpoints: string[]) {
-    await expect(this.page).toHaveURL(new RegExp(`(${endpoints.join('|')})$`));
-  }
-
-  protected async expectHeading(text: string) {
-    await expect(this.page.locator('h1', {hasText: text})).toBeVisible();
-  }
-
-  protected async expectSubHeading(text: string) {
-    await expect(this.page.locator('h2', {hasText: text})).toBeVisible();
-  }
-
-  @TruthyParams('text')
-  protected async expectText(text: string, container?: string) {
-    const locator = container 
-      ? this.page.locator(container).getByText(text) 
-      : this.page.getByText(text);
-    
-    await expect(locator).toBeVisible();
-  }
-
-  protected async retryExpect(expects: () => Promise<void>[] | (() => Promise<void>)) {
-    let firstAttempt = true;
-    await expect(async () => {
-      const promises = expects();
-      if(!firstAttempt) {
-        await this.page.reload();
-      }
-      firstAttempt = false;
-      await (Array.isArray(promises) ? Promise.all(promises) : promises);
-    }).toPass({
-      intervals: [1_000, 2_000, 5_000],
-      timeout: 30_000,
-    });
-  }
-
   protected async clickByText(text: string) {
     await this.page.getByText(text).click();
-  }
-
-  protected async expectLabel(label: string, {exact} = {exact: false}) {
-    await expect(this.page.getByLabel(label, {exact})).toBeVisible();
-  }
-
-  protected async expectOptionChecked(label: string) {
-    await expect(this.page.getByLabel(label)).toBeChecked();
-  }
-
-  @TruthyParams()
-  protected async expectInputValue(selector: string, text: string) {
-    await expect(this.page.locator(selector)).toHaveValue(text);
-  }
-
-  @TruthyParams('text', 'selector')
-  protected async expectTableRowValue(text: string, selector: string, {rowNum} = {rowNum: 0}) {
-    await expect(this.page.locator(`${selector} >> tr`).nth(rowNum).getByText(text)).toBeVisible();
   }
 
   @TruthyParams()
@@ -144,18 +84,113 @@ export default abstract class BasePage {
     await this.page.context().addCookies(cookies);
   }
 
-  protected async runAccessibilityTests() {
-    if(config.runAccessibilityTests && this.axeBuilder) {
-      const results = await this.axeBuilder.analyze();
-      expect.soft(results.violations).toHaveLength(0);
-    }
-  }
-
   public async pause() {
     await this.page.pause();
   }
 
   public async wait(time: number) {
     await this.page.waitForTimeout(time);
+  }
+
+  protected async expectDomain(domain: string, options: {timeout?: number} = {}) {
+    await pageExpect(this.page).toHaveURL(new RegExp(`https?://${domain}.*`), {...options});
+  }
+
+  protected async expectUrlStart(path: string, options: {timeout?: number} = {}) {
+    await pageExpect(this.page).toHaveURL(new RegExp(`^${path}`), {...options});
+  }
+
+  protected async expectUrlEnd(endpoints: string | string[], options: {timeout?: number} = {}) {
+    const regex = new RegExp(Array.isArray(endpoints) ? `(${endpoints.join('|')})$` : `${endpoints}$`);
+    await pageExpect(this.page).toHaveURL(regex, {...options});
+  }
+
+  protected async expectHeading(text: string, options?: {timeout?: number}) {
+    await pageExpect(this.page.locator('h1', {hasText: text})).toBeVisible(options);
+  }
+
+  protected async expectSubHeading(text: string, options?: {timeout?: number}) {
+    await pageExpect(this.page.locator('h2', {hasText: text})).toBeVisible(options);
+  }
+
+  @TruthyParams('text')
+  protected async expectText(text: string, options: {container?: string, timeout?: number} = {}) {
+    const locator = options.container
+      ? this.page.locator(options.container).getByText(text) 
+      : this.page.getByText(text);
+    
+    await pageExpect(locator).toBeVisible({timeout: options.timeout});
+  }
+
+  protected async expectLabel(label: string, options: {exact?: boolean, timeout?: number} = {exact: false}) {
+    await pageExpect(this.page.getByLabel(label, {exact: options.exact})).toBeVisible({timeout: options.timeout});
+  }
+
+  protected async expectOptionChecked(label: string, options?: {timeout?: number}) {
+    await pageExpect(this.page.getByLabel(label)).toBeChecked(options);
+  }
+
+  @TruthyParams('selector', 'text')
+  protected async expectInputValue(selector: string, text: string, options?: {timeout?: number}) {
+    await pageExpect(this.page.locator(selector)).toHaveValue(text, options);
+  }
+
+  @TruthyParams('text', 'selector')
+  protected async expectTableRowValue(text: string, selector: string, options: {rowNum: number, timeout?: number} = {rowNum: 0}) {
+    await pageExpect(this.page.locator(`${selector} >> tr`).nth(options.rowNum).getByText(text)).toBeVisible({timeout: options.timeout});
+  }
+
+  protected async retryExpectTimeout(expects: () => Promise<void>[] | Promise<void>, 
+    {interval = 0, timeout = config.playwright.toPassTimeout}: { interval?: number, timeout?: number } = {}) {
+    let attempts = 0;
+    const timer = new Timer(timeout);
+    await pageExpect(async () => {
+      if(attempts > 0) {
+        await this.page.reload();
+      }
+      attempts++;
+      const promises = expects();
+      try {
+        await (Array.isArray(promises) ? Promise.all(promises) : promises);
+      } catch (error) {
+        console.log('\n' + '-'.repeat(100));
+        console.log('Error: ' + error.matcherResult.message);
+        console.log(`Attempts: ${attempts}`);
+        console.log(`Reloading page and trying again in ${interval} second(s)`);
+        console.log(`Timeout in ${timer.remainingTime} second(s)`);
+        throw error;
+      }
+    }).toPass({
+      intervals: [interval],
+      timeout: timeout,
+    });
+  }
+
+  protected async retryExpect(expects: () => Promise<void>[] | Promise<void>, {retries = 1}: { retries?: number } = {}) {
+    let attempts = 0;
+    while(attempts <= retries) {
+      if(attempts > 0) {
+        await this.page.reload();
+      }
+      const promises = expects();
+      try {
+        await (Array.isArray(promises) ? Promise.all(promises) : promises);
+        break;
+      } catch(error) {
+        console.log('\n' + '-'.repeat(100));
+        if(attempts >= retries) throw error;
+        console.log('Error: ' + error.matcherResult.message);
+        console.log('Reloading page and trying again');
+        console.log(`Retries: ${retries - attempts} remaining`);
+      }
+      attempts++;
+    }
+  }
+
+  protected async runAccessibilityTests() {
+    if(config.runAccessibilityTests && this.axeBuilder) {
+      const results = await this.axeBuilder.analyze();
+      pageExpect.soft(results.violations).toHaveLength(0);
+    }
   }
 }
