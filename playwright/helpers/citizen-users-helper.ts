@@ -8,7 +8,7 @@ import filePaths from '../config/filePaths';
 export default class CitizenUsersHelper {
   static readonly statePaths = {
     claimant: `${filePaths.citizenUsers}/claimant-users.json`,
-    defendant: `${filePaths.citizenUsers}/defendant-users.json`
+    defendant: `${filePaths.citizenUsers}/defendant-users.json`,
   };
 
   private static generateCitizenUsers = (userType: UserType, quantity: number, password: string): User[] => {
