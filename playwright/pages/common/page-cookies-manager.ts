@@ -1,4 +1,3 @@
-import FileSystemHelper from '../../helpers/file-system-helper';
 import FileType from '../../enums/file-type';
 import BasePage from '../../base/base-page';
 import User from '../../types/user';
@@ -9,6 +8,7 @@ import { acceptCitizenCookies } from '../../fixtures/cookies/citizen-cookies';
 import PageError from '../../errors/page-error';
 import {test} from '../../playwright-fixtures/index';
 import Cookie from '../../types/cookie';
+import FileSystemHelper from '../../helpers/file-system-helper';
 
 @AllMethodsStep
 export default class PageCookiesManager extends BasePage {
@@ -19,10 +19,6 @@ export default class PageCookiesManager extends BasePage {
   async saveCookies(filePath = '') {
     const cookies = await super.getCookies();
     FileSystemHelper.writeFile(cookies, filePath, FileType.JSON);
-  }
-
-  async deleteCookies(filePath = '') {
-    FileSystemHelper.deleteFile(filePath);
   }
 
   async cookiesLogin(user: User, isTeardown: boolean) {

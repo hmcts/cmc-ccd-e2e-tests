@@ -3,8 +3,8 @@ import AxeBuilder from '@axe-core/playwright';
 import config from '../config/config';
 import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
-import Timer from '../helpers/timer';
 import { pageExpect } from '../playwright-fixtures';
+import Timer from '../helpers/timer';
 
 export default abstract class BasePage {
   private page: Page;
@@ -48,6 +48,49 @@ export default abstract class BasePage {
       await this.page.goto(url);
     }
   } 
+
+  protected async clickByText(text: string) {
+    await this.page.getByText(text).click();
+  }
+
+  @TruthyParams()
+  protected async fill(input: string | number, selector?: string) {
+    await this.page.fill(selector!, input.toString());
+  }
+
+  @TruthyParams()
+  protected async getText(selector?: string) {
+    return await this.page.textContent(selector) ?? undefined;
+  }
+
+  @TruthyParams()
+  protected async selectFromDropdown(option: string, selector?: string) {
+    await this.page.selectOption(selector, option);
+  }
+
+  protected async getCookies(): Promise<Cookie[]> {
+    return await this.page.context().cookies();
+  }
+
+  protected async reload() {
+    await this.page.reload();
+  }
+
+  protected async clearCookies() {
+    await this.page.context().clearCookies();
+  }
+
+  protected async addCookies(cookies: Cookie[]) {
+    await this.page.context().addCookies(cookies);
+  }
+
+  public async pause() {
+    await this.page.pause();
+  }
+
+  public async wait(time: number) {
+    await this.page.waitForTimeout(time);
+  }
 
   protected async expectDomain(domain: string, options: {timeout?: number} = {}) {
     await pageExpect(this.page).toHaveURL(new RegExp(`https?://${domain}.*`), {...options});
@@ -144,53 +187,10 @@ export default abstract class BasePage {
     }
   }
 
-  protected async clickByText(text: string) {
-    await this.page.getByText(text).click();
-  }
-
-  @TruthyParams()
-  protected async fill(input: string | number, selector?: string) {
-    await this.page.fill(selector!, input.toString());
-  }
-
-  @TruthyParams()
-  protected async getText(selector?: string) {
-    return await this.page.textContent(selector) ?? undefined;
-  }
-
-  @TruthyParams()
-  protected async selectFromDropdown(option: string, selector?: string) {
-    await this.page.selectOption(selector, option);
-  }
-
-  protected async getCookies(): Promise<Cookie[]> {
-    return await this.page.context().cookies();
-  }
-
-  protected async reload() {
-    await this.page.reload();
-  }
-
-  protected async clearCookies() {
-    await this.page.context().clearCookies();
-  }
-
-  protected async addCookies(cookies: Cookie[]) {
-    await this.page.context().addCookies(cookies);
-  }
-
   protected async runAccessibilityTests() {
     if(config.runAccessibilityTests && this.axeBuilder) {
       const results = await this.axeBuilder.analyze();
       pageExpect.soft(results.violations).toHaveLength(0);
     }
-  }
-
-  public async pause() {
-    await this.page.pause();
-  }
-
-  public async wait(time: number) {
-    await this.page.waitForTimeout(time);
   }
 }

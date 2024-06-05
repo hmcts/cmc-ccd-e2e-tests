@@ -9,6 +9,10 @@ export default abstract class BaseSteps {
     this._testData = testData;
   }
 
+  protected get workerIndex() {
+    return this._testData.workerIndex;
+  }
+
   protected get claimStoreCaseData() {
     return this._testData.claimStoreCaseData;
   }

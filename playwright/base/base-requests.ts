@@ -15,40 +15,36 @@ export default abstract class BaseRequest {
     body,
     method = 'GET',
     params,
-  }: RequestOptions): Promise<APIResponse> {
-    return await this.requestContext.fetch(url, {
+  }: RequestOptions, expectedStatus = 200): Promise<APIResponse> {
+    const response = await this.requestContext.fetch(url, {
       method,
       data: body ? JSON.stringify(body) : undefined,
       headers,
       params,
     });
-  }
-
-  protected async retriedRequest({url, headers, body, method = 'GET', params}: RequestOptions, expectedStatus = 200): Promise<APIResponse> {
-    return await this.retry(async () => {
-      const response = await this.request({ url, headers, body, method, params });
-      expect(response.status(), `Expected status: ${expectedStatus}, actual status: ${response.status()}, ` +
+    expect(response.status(), `Expected status: ${expectedStatus}, actual status: ${response.status()}, ` +
           `message: ${response.statusText()}, url: ${response.url()}`).toBe(expectedStatus);
-      return response;
-    });
+    return response;
   }
 
-  private async retry(fn: () => Promise<APIResponse>, remainingRetries = 3, retryTimeout = 5000, err = null): Promise<APIResponse> {
+  protected async retriedRequest(requestOptions: RequestOptions, 
+    expectedStatus = 200, 
+    remainingRetries = 3, 
+    retryTimeout = 5000, 
+    err = null): Promise<APIResponse> {
     if (!remainingRetries) {
-      return Promise.reject(err);
+      throw err;
     }
     if (retryTimeout > this.MAX_RETRY_TIMEOUT) {
       retryTimeout = this.MAX_RETRY_TIMEOUT;
     }
     try {
-      const response = await fn();
+      const response = await this.request(requestOptions, expectedStatus);;
       return response;
     } catch (err: any) {
-     
       console.log(`${err.message.split('\n')[0]}, retrying in ${retryTimeout / 1000} seconds (Retries left: ${remainingRetries})`);
-    
       await this.sleep(retryTimeout);
-      return this.retry(fn, remainingRetries - 1, retryTimeout, err);
+      return await this.retriedRequest(requestOptions, remainingRetries - 1, retryTimeout, err);
     }
   }
 
