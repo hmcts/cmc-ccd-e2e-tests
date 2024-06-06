@@ -7,7 +7,7 @@ import filePaths from '../config/filePaths';
 export default class FileSystemHelper {
   private static writeFileDirs = [`${filePaths.citizenUsers}/`, `${filePaths.userCookies}/`];
   
-  private static exists = (filePath: string) => fs.existsSync(filePath);
+  static exists = (filePath: string) => fs.existsSync(filePath);
 
   private static mkDir = (filePath: string) => {
     const dirPath = path.dirname(filePath);
@@ -76,7 +76,6 @@ export default class FileSystemHelper {
       if (!this.canWrite(path)) {
         throw new FileError(`Cannot delete folder/file from path ${path}`);
       }
-
       const stats = fs.lstatSync(path);
 
       if (stats.isDirectory()) {
