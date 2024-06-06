@@ -41,6 +41,10 @@ export default class CitizenUsersHelper {
   };
 
   static deleteUsersState = (userType: UserType) => {
-    FileSystemHelper.deleteFile(this.statePaths[userType]);
+    FileSystemHelper.delete(this.statePaths[userType]);
+  };
+
+  static deleteAllUsersState = () => {
+    FileSystemHelper.delete(`${filePaths.citizenUsers}/`);
   };
 }
