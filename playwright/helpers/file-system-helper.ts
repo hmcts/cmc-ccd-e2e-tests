@@ -7,7 +7,7 @@ import filePaths from '../config/filePaths';
 export default class FileSystemHelper {
   private static writeFileDirs = [`${filePaths.citizenUsers}/`, `${filePaths.userCookies}/`];
   
-  static exists = (filePath: string) => fs.existsSync(filePath);
+  private static exists = (filePath: string) => fs.existsSync(filePath);
 
   private static mkDir = (filePath: string) => {
     const dirPath = path.dirname(filePath);
@@ -68,18 +68,26 @@ export default class FileSystemHelper {
     fs.writeFileSync(filePath, data);
   };
   
-  static deleteFile = (filePath = '') => {
+  static delete = (path = '') => {
     try {
-      if (!filePath) {
-        throw new FileError('File path cannot be an empty string');
+      if (!path) {
+        throw new FileError('Folder/File path cannot be an empty string');
       }
-      if (!this.canWrite(filePath)) {
-        throw new FileError(`Cannot delete file from file path ${filePath}`);
+      if (!this.canWrite(path)) {
+        throw new FileError(`Cannot delete folder/file from path ${path}`);
       }
-      fs.unlinkSync(filePath);
-      console.log(`Successfully deleted file with path ${filePath}`);
-    } catch(error: any) {
-      if(error.code === 'ENOENT') {
+
+      const stats = fs.lstatSync(path);
+
+      if (stats.isDirectory()) {
+        fs.rmSync(path, { recursive: true, force: true });
+        console.log(`Successfully deleted folder with path ${path}`);
+      } else {
+        fs.unlinkSync(path);
+        console.log(`Successfully deleted file with path ${path}`);
+      }
+    } catch (error: any) {
+      if (error.code === 'ENOENT') {
         console.log(error.message);
       } else {
         console.log(error);
@@ -87,9 +95,4 @@ export default class FileSystemHelper {
     }
   };
 
-  static deleteFiles = (...filePaths: (string|undefined)[] ) => {
-    for (const filePath of filePaths) {
-      this.deleteFile(filePath);
-    }
-  };
 }

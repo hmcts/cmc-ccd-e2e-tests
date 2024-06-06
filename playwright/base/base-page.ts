@@ -136,8 +136,9 @@ export default abstract class BasePage {
   }
 
   @TruthyParams('text', 'selector')
-  protected async expectTableRowValue(text: string, selector: string, options: {rowNum: number, timeout?: number} = {rowNum: 0}) {
-    await pageExpect(this.page.locator(`${selector} >> tr`).nth(options.rowNum).getByText(text)).toBeVisible({timeout: options.timeout});
+  protected async expectTableRowValue(text: string, selector: string, options: {rowNum: number, timeout?: number, tableName?: string} = {rowNum: 0}) {
+    await pageExpect(this.page.locator(`${selector} >> tr`)
+      .nth(options.rowNum).getByText(text)).toBeVisible({timeout: options.timeout});
   }
 
   protected async retryExpectTimeout(expects: () => Promise<void>[] | Promise<void>, 

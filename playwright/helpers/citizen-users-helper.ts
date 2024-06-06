@@ -40,7 +40,11 @@ export default class CitizenUsersHelper {
     throw new Error(`${quantity} user(s) of type ${userType} does not exist in ${this.statePaths[userType]}`);
   };
 
-  static deleteUsersState = (userType: UserType) => {
-    FileSystemHelper.deleteFile(this.statePaths[userType]);
+  static deleteUserState = (userType: UserType) => {
+    FileSystemHelper.delete(this.statePaths[userType]);
+  };
+
+  static deleteUsersState = () => {
+    FileSystemHelper.delete(filePaths.citizenUsers);
   };
 }

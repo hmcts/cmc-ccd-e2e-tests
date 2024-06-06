@@ -1,6 +1,5 @@
 import config from '../../../config/config';
-import {caseworker, legalAdvisor, judge} from '../../../config/users';
-import FileSystemHelper from '../../../helpers/file-system-helper';
+import {judge} from '../../../config/users';
 import { test as teardown } from '../../../playwright-fixtures/index';
 
 if(!config.skipAuthSetup) {
@@ -11,15 +10,6 @@ if(!config.skipAuthSetup) {
       await IdamSteps.ExuiLogin(judge);
       await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
-      FileSystemHelper.deleteFile(judge.cookiesPath);
-    });
-    
-    teardown('Legal Advisor', async () => {
-      FileSystemHelper.deleteFile(legalAdvisor.cookiesPath);
-    });
-    
-    teardown('Caseworker', async () => {
-      FileSystemHelper.deleteFile(caseworker.cookiesPath);
     });
   });
 }

@@ -1,39 +1,34 @@
+import filePaths from '../config/filePaths';
 import urls from '../config/urls';
-import { claimants, defendants } from '../config/users';
+import FileType from '../enums/file-type';
 import UserType from '../enums/user-type';
 import CitizenUsersHelper from '../helpers/citizen-users-helper';
 import FileSystemHelper from '../helpers/file-system-helper';
-import User from '../types/user';
 
 //This is last resort teardown for citizen users if test execution gets interupted.
 
-const deleteUsers = async (users: User[]) => {
-  const params = users
-    .map(function ({email}) {
-      return `userNames=${encodeURIComponent(email)}`;
-    })
-    .join('&');
+const deleteUsers = async (userType: UserType) => {
+  
   try {
-    await fetch(`${urls.idamApi}/testing-support/test-data?${params}&async=true`, {method: 'DELETE'});
-    console.log(`Users of type ${users[0].type} successfully deleted`);
+    const users = FileSystemHelper.readFile(CitizenUsersHelper.statePaths[userType], FileType.JSON);
+    for(const user of users) {
+      const response = await fetch(`${urls.idamApi}/testing-support/accounts/${user.email}`, {method: 'DELETE'});
+      console.log(`User with email: ${user.email} successfully deleted`);
+      if(response.status !== 204) {
+        throw new Error(`Error deleting user: ${user.email}`);
+      }
+    }
   } catch(error) {
-    console.log(`error deleting user/s ${params}: ` + error);
+    if(error.name !== 'FileError') 
+      console.log(error);
   }
 };
 
 const globalTeardown = async () => {
-  const claimantsExist = FileSystemHelper.exists(CitizenUsersHelper.statePaths.claimant);
-  const defendantExists = FileSystemHelper.exists(CitizenUsersHelper.statePaths.defendant);
-  if(claimantsExist || defendantExists) {
-    if(claimantsExist) {
-      await deleteUsers(claimants);
-      CitizenUsersHelper.deleteUsersState(UserType.CLAIMANT);
-    }
-    if(defendantExists) {
-      await deleteUsers(defendants);
-      CitizenUsersHelper.deleteUsersState(UserType.DEFENDANT);
-    }
-  }
+  await deleteUsers(UserType.CLAIMANT);
+  await deleteUsers(UserType.DEFENDANT);
+  FileSystemHelper.delete(`${filePaths.citizenUsers}/`);
+  FileSystemHelper.delete(`${filePaths.userCookies}/`);
 };
 
 export default globalTeardown;

@@ -45,7 +45,6 @@ export default class IdamRequests extends BaseRequest {
 
   async deleteUsers(users: User[]) {
     await Promise.all(users.map(user => this.deleteUser(user)));
-    CitizenUsersHelper.deleteUsersState(users[0].type);
   }
 
   private async deleteUser({email}: User): Promise<void> {
