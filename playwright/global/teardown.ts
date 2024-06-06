@@ -27,7 +27,7 @@ const deleteUsers = async (userType: UserType) => {
 const globalTeardown = async () => {
   await deleteUsers(UserType.CLAIMANT);
   await deleteUsers(UserType.DEFENDANT);
-  FileSystemHelper.delete(`${filePaths.citizenUsers}/`);
+  CitizenUsersHelper.deleteAllUsersState();
   FileSystemHelper.delete(`${filePaths.userCookies}/`);
 };
 
