@@ -6,5 +6,6 @@ test.describe('Full reject flow', async () => {
     await IdamSteps.CitizenLogin(claimants);
     await CreateClaimSteps.CreateClaimDefAsIndividual();
     await ApiSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiSteps.FetchClaimSecurityPin();
   });
 });

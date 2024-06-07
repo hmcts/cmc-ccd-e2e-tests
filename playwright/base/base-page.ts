@@ -5,6 +5,7 @@ import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
 import { pageExpect } from '../playwright-fixtures';
 import Timer from '../helpers/timer';
+import filePaths from '../config/filePaths';
 
 export default abstract class BasePage {
   private page: Page;

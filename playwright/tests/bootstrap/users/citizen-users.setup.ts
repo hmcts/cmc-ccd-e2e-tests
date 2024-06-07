@@ -3,7 +3,8 @@ import { claimants, defendants } from '../../../config/users';
 import { test as setup } from '../../../playwright-fixtures/index';
 
 if(!config.skipCitizenSetup) {
-  setup.describe(`Creating citizen users for ${config.playwright.workers} worker(s)`,  {tag: '@setup'}, () => {
+  setup.describe(`Creating citizen users for ${config.playwright.workers} worker(s)`, () => {
+    setup.describe.configure({mode: 'parallel'});
     setup('Claimant', async ({ApiSteps}) => {
       await ApiSteps.CreateCitizenUsers(claimants);
     });

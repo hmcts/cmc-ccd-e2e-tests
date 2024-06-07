@@ -3,7 +3,7 @@ import {judge, caseworker, legalAdvisor} from '../../../config/users';
 import { test as setup } from '../../../playwright-fixtures/index';
 
 if(!config.skipAuthSetup) {
-  setup.describe('Authenticating exui users and saving cookies', {tag: '@setup'}, () => {
+  setup.describe('Authenticating exui users and saving cookies', () => {
     setup.describe.configure({mode: 'parallel'});
     
     setup('Judge', {tag: '@verify-cookies-banner'}, async ({ IdamSteps, ExuiDashboardSteps }) => {
