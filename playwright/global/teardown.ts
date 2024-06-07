@@ -4,8 +4,12 @@ import FileType from '../enums/file-type';
 import UserType from '../enums/user-type';
 import CitizenUsersHelper from '../helpers/citizen-users-helper';
 import FileSystemHelper from '../helpers/file-system-helper';
+import { request } from 'playwright-core';
 
 //This is last resort teardown for citizen users if test execution gets interupted.
+
+
+
 
 const deleteUsers = async (userType: UserType) => {
   

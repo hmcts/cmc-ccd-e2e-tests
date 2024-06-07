@@ -3,7 +3,7 @@ import { test as setup } from '../../../playwright-fixtures/index';
 import {claimants, defendants} from '../../../config/users';
 
 if(!config.skipAuthSetup) {
-  setup.describe('Authenticating citizen users and saving cookies',  {tag: '@setup'}, () => {
+  setup.describe('Authenticating citizen users and saving cookies', () => {
     setup.describe.configure({mode: 'parallel'});
 
     setup('Worker 1: Claimant', {tag: '@verify-cookies-banner'}, async ({ IdamSteps, CitizenDashboardSteps }) => {

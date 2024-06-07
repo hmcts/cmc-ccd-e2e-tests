@@ -21,10 +21,10 @@ export const test = base.extend<TestDataFixture>({
     await use(axeBuilder);
   },
   _isSetupTest: async ({}, use: (arg0: boolean) => any, testInfo) => {
-    await use(testInfo.tags.includes('@setup'));
+    await use(testInfo.project.name.endsWith('setup'));
   },
   _isTeardown: async ({}, use: (arg0: boolean) => any, testInfo) => {
-    await use(testInfo.tags.includes('@teardown'));
+    await use(testInfo.project.name.endsWith('teardown'));
   },
   _verifyCookiesBanner: async ({}, use: (arg0: boolean) => any, testInfo) => {
     await use(testInfo.tags.includes('@verify-cookies-banner'));

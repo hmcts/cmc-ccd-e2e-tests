@@ -3,6 +3,7 @@ import ClaimStoreCaseData from './case-data/claim-store-case-data';
 
 type TestData = {
   workerIndex: number;
+  claimSecurityPin?: string;
   claimStoreCaseData: ClaimStoreCaseData;
   ccdCaseData: CCDCaseData;
 };
