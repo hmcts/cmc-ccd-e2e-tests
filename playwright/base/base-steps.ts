@@ -30,7 +30,7 @@ export default abstract class BaseSteps {
   }
 
   protected get claimSecurityPin() {
-    return this._testData.claimSecurityPin
+    return this._testData.claimSecurityPin;
   }
 
   protected set setClaimSecurityPin(claimSecurityPin: string) {

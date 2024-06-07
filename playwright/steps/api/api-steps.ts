@@ -50,7 +50,7 @@ export default class ApiSteps extends BaseSteps{
   }
 
   async FetchClaimSecurityPin() {
-    const {idamRequests} = this.requestsFactory
+    const {idamRequests} = this.requestsFactory;
     this.setClaimSecurityPin = await idamRequests.getPin(this.claimStoreCaseData.letterHolderId);
   }
 

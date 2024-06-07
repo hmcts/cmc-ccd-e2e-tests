@@ -4,9 +4,6 @@ import FileSystemHelper from './file-system-helper';
 import FileType from '../enums/file-type';
 import UserType from '../enums/user-type';
 import filePaths from '../config/filePaths';
-import RequestOptions from '../types/request-options';
-import urls from '../config/urls';
-import IdamUser from '../types/idam-user';
 
 export default class CitizenUsersHelper {
   static readonly statePaths = {
