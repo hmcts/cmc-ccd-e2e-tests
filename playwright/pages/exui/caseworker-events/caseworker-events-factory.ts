@@ -3,6 +3,7 @@ import AttachViaBulkScanPage from './attach-via-bulk-scan/attach-via-bulk-scan-p
 import ChangeContactDetailsPage from './change-contact-details/change-contact-details-page';
 import ClaimNotesPage from './claim-notes/claim-notes-page';
 import LinkLetterHolderPage from './link-letter-holder/link-letter-holder-page';
+import ManageDocumentsPage from './manage-documents/manage-documents-page';
 import ResendRpaPage from './resend-rpa/resend-rpa-page';
 import ResetPinPage from './reset-pin/reset-pin-page';
 import SupportUpdatePage from './support-update/support-update-page';
@@ -45,5 +46,9 @@ export default class CaseworkerEventsFactory extends BasePageFactory{
 
   get changeContactDetailsPage() {
     return new ChangeContactDetailsPage(this.page, this.axeBuilder);
+  }
+
+  get manageDocumentsPage() {
+    return new ManageDocumentsPage(this.page, this.axeBuilder);
   }
 }
