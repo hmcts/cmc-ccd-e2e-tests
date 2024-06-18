@@ -5,7 +5,6 @@ import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
 import { pageExpect } from '../playwright-fixtures';
 import Timer from '../helpers/timer';
-import filePaths from '../config/filePaths';
 
 export default abstract class BasePage {
   private page: Page;
@@ -18,8 +17,9 @@ export default abstract class BasePage {
 
   abstract verifyContent(...args: any[]): Promise<void>
 
-  protected async clickBySelector(selector?: string) {
-    await this.page.locator(selector!).click();
+  @TruthyParams()
+  protected async clickBySelector(selector: string) {
+    await this.page.locator(selector).click();
   }
 
   protected async clickButtonByName(name: string) {
@@ -83,6 +83,11 @@ export default abstract class BasePage {
 
   protected async addCookies(cookies: Cookie[]) {
     await this.page.context().addCookies(cookies);
+  }
+
+  @TruthyParams()
+  protected async uploadFile(filePath: string, selector: string) {
+    await this.page.locator(selector).setInputFiles([filePath])
   }
 
   public async pause() {
@@ -195,4 +200,5 @@ export default abstract class BasePage {
       pageExpect.soft(results.violations).toHaveLength(0);
     }
   }
+
 }
