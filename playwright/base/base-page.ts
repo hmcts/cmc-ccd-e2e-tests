@@ -200,5 +200,4 @@ export default abstract class BasePage {
       pageExpect.soft(results.violations).toHaveLength(0);
     }
   }
-
 }
