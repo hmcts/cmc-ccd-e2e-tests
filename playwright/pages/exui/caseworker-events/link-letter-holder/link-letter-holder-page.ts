@@ -18,7 +18,6 @@ export default class LinkLetterHolderPage extends ExuiEvent(BasePage) {
     ]);
   }
 
-  @TruthyParams()
   async submitEvent() {
     await super.fillEventDetails(CaseworkerEvents.LINK_LETTER_HOLDER_ID);
     await super.clickSubmit();

@@ -8,6 +8,8 @@ export default class DateHelper {
     return today;
   }
 
+  static getTwoDigitDay(date: Date): string { const day = date.getDate(); return day < 10 ? `0${day}` : `${day}`; }
+
   static getTwoDigitMonth(date: Date): string {
     const month = date.getMonth() + 1;
     return month < 10 ? `0${month}` : `${month}`;
