@@ -5,3 +5,4 @@ app/assets/javascripts/*.js
 src/*
 coverage
 *.min.js
+cmc-ccd-e2e-tests/*
