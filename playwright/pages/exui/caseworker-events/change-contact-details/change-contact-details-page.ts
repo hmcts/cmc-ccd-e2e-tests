@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData, { ApplicantValue, RespondentValue } from '../../../../types/case-data/ccd-case-data';
 import { cButtons, getCaseTitle } from '../../exui-common-content';
-import ExuiEvent from '../../mixins/event-summary';
+import ExuiEvent from '../../mixins/exui-event';
 import { heading, radioButtons, subHeadings, claimantInputs, defendantInputs, links } from './change-contact-details-content';
 
 @AllMethodsStep
@@ -79,8 +79,8 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
 
   async submitEvent() {
     await super.clickSubmit();
-    await super.fillEventDetails(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
     await super.verifyEventSummaryContent();
+    await super.fillEventDetails(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
     await super.clickSubmit();
   }
 }

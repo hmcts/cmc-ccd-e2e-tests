@@ -7,7 +7,7 @@ if(!config.skipAuthSetup) {
 
   teardown.describe('Signing out exui users', () => {
     teardown('Judge', async ({ IdamSteps, ExuiDashboardSteps }) => {
-      await IdamSteps.ExuiLogin(judge);
+      await IdamSteps.JudgeLogin();
       await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
     });

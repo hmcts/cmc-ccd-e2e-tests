@@ -1,7 +1,7 @@
 import { dropdowns, heading } from './resend-rpa-content';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import BasePage from '../../../../base/base-page';
-import ExuiEvent from '../../mixins/event-summary';
+import ExuiEvent from '../../mixins/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import { getCaseTitle } from '../../exui-common-content';
 import { TruthyParams } from '../../../../decorators/truthy-params';
@@ -20,11 +20,11 @@ export default class ResendRpaPage extends ExuiEvent(BasePage) {
 
   async chooseClaimRpa() {
     await super.selectFromDropdown(dropdowns.resendRpa.options.claim, dropdowns.resendRpa.selector);
-    await super.clickSubmit();
   }
 
   @TruthyParams()
   async submitEvent() {
+    await super.clickSubmit();
     await super.fillEventDetails(CaseworkerEvents.RESEND_RPA);
     await super.clickSubmit();
   }

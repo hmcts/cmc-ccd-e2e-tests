@@ -1,7 +1,7 @@
 import { heading } from './link-letter-holder-content';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import BasePage from '../../../../base/base-page';
-import ExuiEvent from '../../mixins/event-summary';
+import ExuiEvent from '../../mixins/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import { getCaseTitle } from '../../exui-common-content';
 import { TruthyParams } from '../../../../decorators/truthy-params';

@@ -59,10 +59,13 @@ export default class CaseworkerEventsSteps extends BaseSteps {
   async ManageDocuments(){
     const {caseDetailsPage} = this.exuiDashboardFactory;
     await caseDetailsPage.chooseNextStep(CaseworkerEvents.MANAGE_DOCUMENTS);
+
     const {manageDocumentsPage} = this.caseworkerEventsFactory;
     await manageDocumentsPage.verifyContent(this.ccdCaseData);
-    await manageDocumentsPage.addDocument1();
+    await manageDocumentsPage.addDocument();
+    await manageDocumentsPage.fillDocument1Details();
     await manageDocumentsPage.submitEvent();
+
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MANAGE_DOCUMENTS);
   }
 

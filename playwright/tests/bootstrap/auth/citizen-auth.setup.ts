@@ -7,7 +7,7 @@ if(!config.skipAuthSetup) {
     setup.describe.configure({mode: 'parallel'});
 
     setup('Worker 1: Claimant', {tag: '@verify-cookies-banner'}, async ({ IdamSteps, CitizenDashboardSteps }) => {
-      await IdamSteps.CitizenLogin(claimants, 0);
+      await IdamSteps.ClaimantLogin(0);
       await CitizenDashboardSteps.AcceptCookies();
       await CitizenDashboardSteps.SaveCookies(claimants, 0);
     });
@@ -15,12 +15,12 @@ if(!config.skipAuthSetup) {
     for(let workerIndex = 0; workerIndex < config.playwright.workers; workerIndex++) {
       if(workerIndex > 0)
         setup(`Worker ${workerIndex + 1}: Claimant`, async ({ IdamSteps, CitizenDashboardSteps }) => {
-          await IdamSteps.CitizenLogin(claimants, workerIndex);
+          await IdamSteps.ClaimantLogin(workerIndex);
           await CitizenDashboardSteps.SaveCookies(claimants, workerIndex);
         });
 
       setup(`Worker ${workerIndex + 1}: Defendant`, async ({ IdamSteps, CitizenDashboardSteps }) => {
-        await IdamSteps.CitizenLogin(defendants, workerIndex);
+        await IdamSteps.DefendantLogin(workerIndex);
         await CitizenDashboardSteps.SaveCookies(defendants, workerIndex);
       });
     }

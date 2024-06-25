@@ -35,6 +35,7 @@ export default class CcdRequests extends BaseRequest {
   @Step
   @TruthyParams()
   async fetchCcdCaseData(caseId: number, userId: string, accessToken: string) {
+    console.log('Fetching CCD case data');
     const s2sToken = await this.getS2sToken();
     const requestOptions: RequestOptions = {
       url: `${this.getCcdDataStoreBaseUrl(userId)}/cases/${caseId}`,

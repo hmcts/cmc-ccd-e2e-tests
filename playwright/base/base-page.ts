@@ -87,7 +87,19 @@ export default abstract class BasePage {
 
   @TruthyParams()
   protected async uploadFile(filePath: string, selector: string) {
-    await this.page.locator(selector).setInputFiles([filePath])
+    await this.page.locator(selector).setInputFiles([filePath]);
+  }
+
+  protected async waitForSelectorToDetach(selector: string) {
+    const locator = this.page.locator(selector);
+    await locator.waitFor({state: 'attached'});
+    await locator.waitFor({state: 'detached'});
+  }
+
+  protected async waitForTextToDetach(text: string) {
+    const locator = this.page.getByText(text);
+    await locator.waitFor({state: 'attached'});
+    await locator.waitFor({state: 'detached'});
   }
 
   public async pause() {
