@@ -3,9 +3,8 @@ import BasePage from '../../../../base/base-page';
 import ExuiEvent from '../../mixins/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import { getCaseTitle } from '../../exui-common-content';
-import { TruthyParams } from '../../../../decorators/truthy-params';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
-import { buttons, heading, subHeadings, doc1Inputs, document1Dropdowns as doc1Dropdowns } from './manage-documents-content';
+import { buttons, heading, subHeadings, doc1Inputs, doc1Dropdowns, doc2Inputs, doc2Dropdowns } from './manage-documents-content';
 import DateHelper from '../../../../helpers/date-helper';
 import filePaths from '../../../../config/filePaths';
 
@@ -26,7 +25,7 @@ export default class ManageDocumentsPage extends ExuiEvent(BasePage) {
 
   async fillDocument1Details() {
     const date = DateHelper.addToToday({years: 1});
-    await super.fill('Correspondence', doc1Inputs.docName.selector);
+    await super.fill(doc1Inputs.docName.value, doc1Inputs.docName.selector);
 
     await super.fill(DateHelper.getTwoDigitDay(date), doc1Inputs.docDay.selector);
     await super.fill(DateHelper.getTwoDigitMonth(date), doc1Inputs.docMonth.selector);
@@ -39,6 +38,15 @@ export default class ManageDocumentsPage extends ExuiEvent(BasePage) {
     await super.selectFromDropdown(doc1Dropdowns.docType.options.correspondence, doc1Dropdowns.docType.selector);
     await super.uploadFile(filePaths.testPdfFile, doc1Inputs.fileUpload.selector);
   } 
+
+  async fillDocument2Details() {
+    await super.fill(doc2Inputs.docName.value, doc2Inputs.docName.selector);
+
+    await super.selectFromDropdown(doc2Dropdowns.docType.options.other, doc2Dropdowns.docType.selector);
+    await super.fill(doc2Inputs.otherDocType.value, doc2Inputs.otherDocType.selector);
+
+    await super.uploadFile(filePaths.testPdfFile, doc2Inputs.fileUpload.selector);
+  }
 
   async submitEvent() {
     await super.clickSubmit();

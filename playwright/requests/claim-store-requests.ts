@@ -22,7 +22,9 @@ export default class ClaimStoreRequests extends BaseRequest {
       method: 'GET',
     };
     const response = await super.retriedRequest(requestOptions);
-    return await response.json();
+    const caseData = await response.json();
+    console.log('Claim store case data fetched successfully');
+    return caseData;
   }
 
   @Step
@@ -34,6 +36,8 @@ export default class ClaimStoreRequests extends BaseRequest {
       method: 'GET',
     };
     const response = await super.retriedRequest(requestOptions, 200, 5, ['letterHolderId'] );
-    return await response.json();
+    const caseData = await response.json();
+    console.log('Claim store case data with letter id fetched successfully');
+    return caseData;
   }
 }

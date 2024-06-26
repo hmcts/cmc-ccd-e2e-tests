@@ -7,6 +7,7 @@ import { getCaseTitle, getSuccessBannerText } from '../../exui-common-content';
 import { tabs, dropdowns, buttons, containers } from './case-details-content';
 import {claimantInputs as claimantChangeDetailsInputs, defendantInputs as defendantChangeDetailsInputs} from '../../caseworker-events/change-contact-details/change-contact-details-content';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
+import { doc1Dropdowns } from '../../caseworker-events/manage-documents/manage-documents-content';
 
 @AllMethodsStep
 export default class CaseDetailsPage extends BasePage {
@@ -61,6 +62,16 @@ export default class CaseDetailsPage extends BasePage {
       super.expectText(defendantChangeDetailsInputs.addressLine3.value),
       super.expectText(defendantChangeDetailsInputs.city.value),
       super.expectText(defendantChangeDetailsInputs.postcode.value),
+    ]);
+  }
+
+  async verifyManageDocuments() {
+    await super.clickByText(tabs.claimDocs.title);
+    await Promise.all([
+      super.expectText(doc1Dropdowns.docType.options.correspondence),
+      super.expectText(doc1Dropdowns.docType.options.other),
+      // super.expectText(doc1Inputs.docName.value),
+      // super.expectText(doc2Inputs.docName.value),
     ]);
   }
 }

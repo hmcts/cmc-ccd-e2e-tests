@@ -41,6 +41,8 @@ export default class CcdRequests extends BaseRequest {
       url: `${this.getCcdDataStoreBaseUrl(userId)}/cases/${caseId}`,
       headers: this.getRequestHeaders(accessToken, s2sToken),
     };
-    return (await (await super.retriedRequest(requestOptions)).json()).case_data;
+    const caseData = (await (await super.retriedRequest(requestOptions)).json()).case_data;
+    console.log('CCD case data fetched successfully');
+    return caseData;
   }
 }

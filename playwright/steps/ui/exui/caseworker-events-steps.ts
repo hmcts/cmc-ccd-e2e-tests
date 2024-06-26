@@ -62,11 +62,17 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
     const {manageDocumentsPage} = this.caseworkerEventsFactory;
     await manageDocumentsPage.verifyContent(this.ccdCaseData);
+
     await manageDocumentsPage.addDocument();
     await manageDocumentsPage.fillDocument1Details();
+
+    await manageDocumentsPage.addDocument();
+    await manageDocumentsPage.fillDocument2Details();
+
     await manageDocumentsPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MANAGE_DOCUMENTS);
+    await caseDetailsPage.verifyManageDocuments();
   }
 
   async ResendRpa() {

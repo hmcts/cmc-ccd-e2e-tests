@@ -16,9 +16,21 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
       ]);
     }
 
-    protected async uploadFile(filePath: string, selector: string) {
-      await super.uploadFile(filePath, selector);
-      await super.waitForSelectorToDetach('span.error-message');
+    protected async uploadFile(filePath: string, selector: string, retries = 3, timeout = 5000) {
+      while(retries > 0) {
+        try {
+          await super.uploadFile(filePath, selector);
+          await super.waitForSelectorToDetach('span.error-message', {timeout});
+          break;
+        } catch (error) {
+          retries--;
+          console.log('\n' + '-'.repeat(100));
+          if(retries <= 0) throw error;
+          // console.log(error);
+          console.log('Uploading document again');
+          console.log(`Retries: ${retries} remaining`);
+        }
+      }
     }
 
     protected async fillEventDetails(event: ExuiEvents) {

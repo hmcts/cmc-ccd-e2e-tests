@@ -18,6 +18,7 @@ export const buttons = {
 const getInputs = (docIndex : number) => ({
   docName: {
     label: 'Name',
+    value: `Test Document ${docIndex + 1}`,
     selector: `#staffUploadedDocuments_${docIndex}_documentName`,
   },
   docDay: {
@@ -48,6 +49,11 @@ const getInputs = (docIndex : number) => ({
     label: 'Upload essential documents',
     selector: `#staffUploadedDocuments_${docIndex}_documentLink`,
   },
+  otherDocType: {
+    label: 'What type of document is it? (Optional)',
+    selector: `#staffUploadedDocuments_${docIndex}_documentTypeOther`,
+    value: `Document Type ${docIndex + 1}`,
+  },
 });
 
 export const doc1Inputs = getInputs(0);
@@ -64,10 +70,5 @@ const getDropdowns = (docIndex : number) => ({
   },
 });
 
-export const uploadingMessage = {
-  title: 'Uploading...',
-  selector: '#error-message ng-star-inserted',
-};
-
-export const document1Dropdowns = getDropdowns(0);
-export const document2Dropdowns = getDropdowns(1);
+export const doc1Dropdowns = getDropdowns(0);
+export const doc2Dropdowns = getDropdowns(1);
