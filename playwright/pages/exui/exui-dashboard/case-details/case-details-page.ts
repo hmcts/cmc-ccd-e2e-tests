@@ -77,6 +77,6 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyFullReject() {
     await super.clickByText(tabs.claimHistory.title);
-    await super.expectTableRowValue('Dispute all', containers.eventHistory.selector, {rowNum: 1});
+    await super.expectTableRowValue('Disputed all', containers.eventHistory.selector, {rowNum: 1});
   }
 }

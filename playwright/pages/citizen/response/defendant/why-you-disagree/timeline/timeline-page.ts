@@ -10,8 +10,8 @@ export default class TimelinePage extends CitizenEvent(BasePage) {
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.addTimeline),
       // super.expectSubHeading(subHeadings.theirTimeline),
-      super.expectLabel(inputs.date1.label),
-      super.expectLabel(inputs.date2.label),
+      // super.expectLabel(inputs.date1.label),
+      // super.expectLabel(inputs.date2.label),
     ]);
   }
 

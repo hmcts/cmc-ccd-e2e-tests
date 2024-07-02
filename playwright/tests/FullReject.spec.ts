@@ -1,7 +1,7 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Full reject', async () => {
-  test('Claimant creates claim, then defendant rejects and caseworker verifies defendant reject event',  async ({IdamSteps, CreateClaimSteps, ApiSteps, DefendantResponseSteps, ExuiDashboardSteps}) => {
+  test('Claimant creates claim, then defendant rejects and caseworker verifies defendant reject event', {tag: '@debug'},  async ({IdamSteps, CreateClaimSteps, ApiSteps, DefendantResponseSteps, ExuiDashboardSteps}) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.CheckAndSubmit();
@@ -18,6 +18,7 @@ test.describe('Full reject', async () => {
     await DefendantResponseSteps.HearingDetails();
     await DefendantResponseSteps.CheckAndSubmit();
     await IdamSteps.JudgeLogin();
+    await ApiSteps.FetchCCDCaseData();
     await ExuiDashboardSteps.VerifyDefendantFullReject();
   });
 });
