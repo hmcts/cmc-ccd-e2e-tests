@@ -1,6 +1,5 @@
 export const heading = 'Paper Response - Admission';
 
-
 export const radioButtons = {
   fullAdmit: {
     label: 'Full Admit',

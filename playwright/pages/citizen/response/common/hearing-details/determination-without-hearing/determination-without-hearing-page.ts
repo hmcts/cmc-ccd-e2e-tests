@@ -1,7 +1,7 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { heading, inputs, paragraphs, radioButtons } from "./determination-without-hearing-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { heading, inputs, paragraphs, radioButtons } from './determination-without-hearing-content';
 
 @AllMethodsStep
 export default class DeterminationWithoutHearingPage extends CitizenEvent(BasePage) {

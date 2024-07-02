@@ -1,8 +1,8 @@
-import BasePageFactory from "../../../base/base-page-factory";
-import ClaimDetailsPage from "./claim-details/claim-details-page";
-import EnterClaimNumberPage from "./enter-claim-number/enter-claim-number-page";
-import EnterSecurityCodePage from "./enter-security-code/enter-security-code-page";
-import RespondToClaimPage from "./respond-to-claim/respond-to-claim-page";
+import BasePageFactory from '../../../base/base-page-factory';
+import ClaimDetailsPage from './claim-details/claim-details-page';
+import EnterClaimNumberPage from './enter-claim-number/enter-claim-number-page';
+import EnterSecurityCodePage from './enter-security-code/enter-security-code-page';
+import RespondToClaimPage from './respond-to-claim/respond-to-claim-page';
 
 export default class LinkClaimFactory extends BasePageFactory {
 

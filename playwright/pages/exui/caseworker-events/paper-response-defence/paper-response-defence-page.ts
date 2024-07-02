@@ -26,7 +26,7 @@ export default class PaperResponseDefencePage extends ExuiEvent(BasePage) {
   }
 
   async chooseDispute() {
-    await super.clickBySelector(radioButtons.dispute.selector)
+    await super.clickBySelector(radioButtons.dispute.selector);
   }
 
   async chooseNoMediation() {

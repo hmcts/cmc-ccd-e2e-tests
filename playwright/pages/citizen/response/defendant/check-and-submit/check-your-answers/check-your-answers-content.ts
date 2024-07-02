@@ -6,8 +6,8 @@ export const subHeadings = {
   responseDetails: 'Response details',
   mediation: 'Free telephone mediation',
   hearingRequirements: 'Your hearing requirements',
-  statementOfTruth: 'Statement of truth'
-}
+  statementOfTruth: 'Statement of truth',
+};
 
 export const checkBoxes = {
   signed: {

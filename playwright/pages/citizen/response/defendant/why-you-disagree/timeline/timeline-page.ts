@@ -1,7 +1,7 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { heading, subHeadings, inputs } from "./timeline-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { heading, subHeadings, inputs } from './timeline-content';
 
 @AllMethodsStep
 export default class TimelinePage extends CitizenEvent(BasePage) {

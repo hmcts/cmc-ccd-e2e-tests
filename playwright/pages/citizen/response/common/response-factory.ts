@@ -1,17 +1,16 @@
-import BasePageFactory from "../../../../base/base-page-factory";
-import ConfirmYourNumberPage from "./free-mediation/confirm-your-number/confirm-your-number-page";
-import FreeTelephoneMediationPage from "./free-mediation/free-telephone-mediation/free-telephone-mediation-page";
-import MediationPhoneNumberPage from "./free-mediation/mediation-phone-number/mediation-phone-number-page";
-import DeterminationWithoutHearingPage from "./hearing-details/determination-without-hearing/determination-without-hearing-page";
-import ExpertPage from "./hearing-details/expert/expert-page";
-import HearingDatesPage from "./hearing-details/hearing-dates/hearing-dates-page";
-import HearingLocationPage from "./hearing-details/hearing-location/hearing-location-page";
-import SelfWitnessPage from "./hearing-details/self-witness/self-witness-page";
-import SupportRequiredPage from "./hearing-details/support-required/support-required-page";
-import VulnerabilityQuestionsPage from "./hearing-details/vulnerability-questions/vulnerability-questions-page";
-import WitnessesPage from "./hearing-details/witnesses/witnesses-page";
-import ResponseDashboardPage from "./response-dashboard/response-dashboard-page";
-
+import BasePageFactory from '../../../../base/base-page-factory';
+import ConfirmYourNumberPage from './free-mediation/confirm-your-number/confirm-your-number-page';
+import FreeTelephoneMediationPage from './free-mediation/free-telephone-mediation/free-telephone-mediation-page';
+import MediationPhoneNumberPage from './free-mediation/mediation-phone-number/mediation-phone-number-page';
+import DeterminationWithoutHearingPage from './hearing-details/determination-without-hearing/determination-without-hearing-page';
+import ExpertPage from './hearing-details/expert/expert-page';
+import HearingDatesPage from './hearing-details/hearing-dates/hearing-dates-page';
+import HearingLocationPage from './hearing-details/hearing-location/hearing-location-page';
+import SelfWitnessPage from './hearing-details/self-witness/self-witness-page';
+import SupportRequiredPage from './hearing-details/support-required/support-required-page';
+import VulnerabilityQuestionsPage from './hearing-details/vulnerability-questions/vulnerability-questions-page';
+import WitnessesPage from './hearing-details/witnesses/witnesses-page';
+import ResponseDashboardPage from './response-dashboard/response-dashboard-page';
 
 export default class ResponseFactory extends BasePageFactory {
   get responseDashboardPage() {

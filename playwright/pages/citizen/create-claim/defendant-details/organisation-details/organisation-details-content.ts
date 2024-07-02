@@ -36,7 +36,7 @@ export const inputs = {
   postcode: {
     label: 'Postcode',
     selector: 'input[id=\'address[postcode]\']',
-  }
+  },
 };
 
 export const buttons = {

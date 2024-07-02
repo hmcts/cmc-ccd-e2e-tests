@@ -1,6 +1,6 @@
-import BasePage from "../../../base/base-page";
+import BasePage from '../../../base/base-page';
 import { AllMethodsStep } from '../../../decorators/test-steps';
-import { cButtons } from "../citizen-common-content";
+import { cButtons } from '../citizen-common-content';
 
 export default function CitizenEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
 

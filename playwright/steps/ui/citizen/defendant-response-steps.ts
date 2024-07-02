@@ -1,12 +1,12 @@
-import { defendants } from "../../../config/users";
-import { AllMethodsStep } from "../../../decorators/test-steps";
-import CitizenDashboardFactory from "../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory";
-import LinkClaimFactory from "../../../pages/citizen/link-claim/link-claim-factory";
-import DefendantResponseFactory from "../../../pages/citizen/response/defendant/defendant-response-factory";
-import IdamFactory from "../../../pages/idam/idam-factory";
-import TestData from "../../../types/test-data";
-import ResponseSteps from "./response-steps";
-import ResponseFactory from "../../../pages/citizen/response/common/response-factory";
+import { defendants } from '../../../config/users';
+import { AllMethodsStep } from '../../../decorators/test-steps';
+import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
+import LinkClaimFactory from '../../../pages/citizen/link-claim/link-claim-factory';
+import DefendantResponseFactory from '../../../pages/citizen/response/defendant/defendant-response-factory';
+import IdamFactory from '../../../pages/idam/idam-factory';
+import TestData from '../../../types/test-data';
+import ResponseSteps from './response-steps';
+import ResponseFactory from '../../../pages/citizen/response/common/response-factory';
 
 @AllMethodsStep
 export default class DefendantResponseSteps extends ResponseSteps {

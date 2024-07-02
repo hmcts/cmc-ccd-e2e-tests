@@ -3,7 +3,7 @@ export const heading = 'Make a money claim';
 export const subHeadings = {
   otherOptions: 'Consider other options',
   prepareClaim: 'Prepare your claim',
-  submit: 'Submit'
+  submit: 'Submit',
 };
 
 export const links = {

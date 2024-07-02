@@ -19,8 +19,8 @@ export const checkboxes = {
   },
   otherSupport: {
     label: 'Other support',
-    selector: '#otherSupportSelectedtrue'
-  }
+    selector: '#otherSupportSelectedtrue',
+  },
 };
 
 export const inputs = {
@@ -34,6 +34,6 @@ export const inputs = {
   },
   otherSupport: {
     label: 'The court can\'t guarantee extra support, but it will consider other needs relating to physical or mental health impairments',
-    selector: '#otherSupport'
-  }
-}
+    selector: '#otherSupport',
+  },
+};

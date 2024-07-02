@@ -31,4 +31,4 @@ export const links = {
   signIn: {
     title: 'Sign in to your account.',
   },
-}
+};

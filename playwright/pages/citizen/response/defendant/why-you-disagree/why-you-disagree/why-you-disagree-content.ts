@@ -2,7 +2,7 @@ export const heading = 'Why do you disagree with the claim?';
 
 export const paragraphs = {
   theirReasons: 'Their reasons for making the claim',
-}
+};
 
 export const inputs = {
   disagreeReason: {

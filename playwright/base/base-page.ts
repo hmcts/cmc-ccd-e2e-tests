@@ -50,8 +50,6 @@ export default abstract class BasePage {
     }
   } 
 
-
-
   protected async clickByText(text: string) {
     await this.page.getByText(text).click();
   }

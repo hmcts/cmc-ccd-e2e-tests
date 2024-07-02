@@ -1,7 +1,7 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { checkboxes, heading, inputs } from "./support-required-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { checkboxes, heading, inputs } from './support-required-content';
 
 @AllMethodsStep
 export default class SupportRequiredPage extends CitizenEvent(BasePage) {

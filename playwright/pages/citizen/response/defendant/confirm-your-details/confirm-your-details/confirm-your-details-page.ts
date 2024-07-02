@@ -1,8 +1,8 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import ClaimStoreCaseData from "../../../../../../types/case-data/claim-store-case-data";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { heading, subHeadings, inputs } from "./confirm-your-details-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import ClaimStoreCaseData from '../../../../../../types/case-data/claim-store-case-data';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { heading, subHeadings, inputs } from './confirm-your-details-content';
 
 @AllMethodsStep
 export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){

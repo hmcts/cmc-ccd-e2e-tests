@@ -3,7 +3,7 @@ export const heading = 'Who are you making the claim against?';
 export const radioButtons = {
   individual: {
     label: 'An individual',
-    selector: '#typeindividual'
+    selector: '#typeindividual',
   },
   soleTrader: {
     label: 'A sole trader or self-employed person',

@@ -1,6 +1,6 @@
-import BasePage from "../../../../base/base-page";
-import ClaimStoreCaseData from "../../../../types/case-data/claim-store-case-data";
-import { getHeading, links, tabs } from "./claim-details-content";
+import BasePage from '../../../../base/base-page';
+import ClaimStoreCaseData from '../../../../types/case-data/claim-store-case-data';
+import { getHeading, links, tabs } from './claim-details-content';
 
 export default class ClaimDetailsPage extends BasePage {
   async verifyContent(caseData: ClaimStoreCaseData) {

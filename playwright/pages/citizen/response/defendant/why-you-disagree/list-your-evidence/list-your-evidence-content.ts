@@ -26,11 +26,11 @@ export const dropdowns = {
 export const inputs = {
   evidence1Description: {
     label: 'Describe this evidence in more detail (optional). For example, a signed contract.',
-    selector: 'textarea[id=\'rows[0][description]\']'
+    selector: 'textarea[id=\'rows[0][description]\']',
   },
   evidence2Description: {
     label: 'Describe this evidence in more detail (optional). For example, a surveyor\'s report.',
-    selector: 'textarea[id=\'rows[1][description]\']'
+    selector: 'textarea[id=\'rows[1][description]\']',
   },
   theirEvidenceComments: {
     label: 'List any parts of their evidence you disagree with (optional)',

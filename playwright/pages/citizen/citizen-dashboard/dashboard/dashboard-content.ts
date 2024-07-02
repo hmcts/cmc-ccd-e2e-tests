@@ -12,5 +12,5 @@ export const links = {
   continueClaim: {
     title: 'Continue with claim',
     selector: '',
-  }
+  },
 };

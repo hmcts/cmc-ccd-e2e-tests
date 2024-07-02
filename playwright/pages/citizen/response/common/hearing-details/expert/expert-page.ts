@@ -1,7 +1,7 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { buttons, heading, paragraphs } from "./expert-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { buttons, heading, paragraphs } from './expert-content';
 
 @AllMethodsStep
 export default class ExpertPage extends CitizenEvent(BasePage) {

@@ -1,6 +1,6 @@
-import BasePage from "../../../../base/base-page";
-import CitizenEvent from "../../mixins/citizen-events";
-import { buttons, heading, paragraphs } from "./claim-details-content";
+import BasePage from '../../../../base/base-page';
+import CitizenEvent from '../../mixins/citizen-events';
+import { buttons, heading, paragraphs } from './claim-details-content';
 
 export default class ClaimDetailsPage extends CitizenEvent(BasePage) {
   async verifyContent(claimRef: string) {

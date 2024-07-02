@@ -18,7 +18,7 @@ export default class PaperResponseAdmissionPage extends ExuiEvent(BasePage) {
   }
 
   async chooseFullAdmit() {
-    await super.clickBySelector(radioButtons.fullAdmit.selector)
+    await super.clickBySelector(radioButtons.fullAdmit.selector);
     await super.clickSubmit();
   }
 

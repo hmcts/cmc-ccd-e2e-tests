@@ -1,11 +1,11 @@
-import BaseSteps from "../../../base/base-steps";
-import { AllMethodsStep } from "../../../decorators/test-steps";
-import ResponseFactory from "../../../pages/citizen/response/common/response-factory";
-import TestData from "../../../types/test-data";
+import BaseSteps from '../../../base/base-steps';
+import { AllMethodsStep } from '../../../decorators/test-steps';
+import ResponseFactory from '../../../pages/citizen/response/common/response-factory';
+import TestData from '../../../types/test-data';
 
 @AllMethodsStep
 export default abstract class ResponseSteps extends BaseSteps {
-  private responseFactory: ResponseFactory
+  private responseFactory: ResponseFactory;
 
   constructor(responseFactory: ResponseFactory, testData: TestData) {
     super(testData);

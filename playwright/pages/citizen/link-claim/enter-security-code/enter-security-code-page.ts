@@ -1,7 +1,7 @@
-import BasePage from "../../../../base/base-page";
-import { AllMethodsStep } from "../../../../decorators/test-steps";
-import CitizenEvent from "../../mixins/citizen-events";
-import { heading, inputs, paragraphs } from "./enter-security-code-content";
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import CitizenEvent from '../../mixins/citizen-events';
+import { heading, inputs, paragraphs } from './enter-security-code-content';
 
 @AllMethodsStep
 export default class EnterSecurityCodePage extends CitizenEvent(BasePage) {

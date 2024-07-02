@@ -1,6 +1,6 @@
-import BasePage from "../../../../base/base-page";
-import CitizenEvent from "../../mixins/citizen-events";
-import { heading, inputs, paragraphs } from "./enter-claim-number-content";
+import BasePage from '../../../../base/base-page';
+import CitizenEvent from '../../mixins/citizen-events';
+import { heading, inputs, paragraphs } from './enter-claim-number-content';
 
 export default class EnterClaimNumberPage extends CitizenEvent(BasePage) {
 
@@ -9,7 +9,7 @@ export default class EnterClaimNumberPage extends CitizenEvent(BasePage) {
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText),
       super.expectLabel(inputs.claimNumber.label),
-    ])
+    ]);
   }
 
   async fillClaimNumber(claimNumber: string) {

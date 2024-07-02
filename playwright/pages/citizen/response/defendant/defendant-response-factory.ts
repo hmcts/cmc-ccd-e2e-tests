@@ -1,18 +1,18 @@
-import BasePageFactory from "../../../../base/base-page-factory";
-import CheckYourAnswersPage from "./check-and-submit/check-your-answers/check-your-answers-page";
-import ConfirmationPage from "./check-and-submit/confirmation/confirmation-page";
-import EligibilityAndDiversityPage from "./check-and-submit/eligibility-and-diversity/eligibility-and-diversity-page";
-import HowDoYouRespondToClaimPage from "./choose-a-response/how-do-you-respond-to-the-claim/how-do-you-respond-to-the-claim-page";
-import WhyYouDontOweMoneyPage from "./choose-a-response/why-you-dont-owe-money/why-you-dont-owe-money-page";
-import ConfirmYourDetailsPage from "./confirm-your-details/confirm-your-details/confirm-your-details-page";
-import DateOfBirthPage from "./confirm-your-details/date-of-birth/date-of-birth-page";
-import PhoneNumberPage from "./confirm-your-details/phone-number/phone-number-page";
-import ExtraTimeToRespondPage from "./decide-if-you-need-more-time/extra-time-to-respond/extra-time-to-respond-page";
-import MoreTimePage from "./decide-if-you-need-more-time/more-time-to-respond/more-time-page";
-import DefendantResponseDashboardPage from "./defendant-response-dashboard/defendant-response-dashboard-page";
-import ListYourEvidencePage from "./why-you-disagree/list-your-evidence/list-your-evidence-page";
-import TimelinePage from "./why-you-disagree/timeline/timeline-page";
-import WhyYouDisagreePage from "./why-you-disagree/why-you-disagree/why-you-disagree-page";
+import BasePageFactory from '../../../../base/base-page-factory';
+import CheckYourAnswersPage from './check-and-submit/check-your-answers/check-your-answers-page';
+import ConfirmationPage from './check-and-submit/confirmation/confirmation-page';
+import EligibilityAndDiversityPage from './check-and-submit/eligibility-and-diversity/eligibility-and-diversity-page';
+import HowDoYouRespondToClaimPage from './choose-a-response/how-do-you-respond-to-the-claim/how-do-you-respond-to-the-claim-page';
+import WhyYouDontOweMoneyPage from './choose-a-response/why-you-dont-owe-money/why-you-dont-owe-money-page';
+import ConfirmYourDetailsPage from './confirm-your-details/confirm-your-details/confirm-your-details-page';
+import DateOfBirthPage from './confirm-your-details/date-of-birth/date-of-birth-page';
+import PhoneNumberPage from './confirm-your-details/phone-number/phone-number-page';
+import ExtraTimeToRespondPage from './decide-if-you-need-more-time/extra-time-to-respond/extra-time-to-respond-page';
+import MoreTimePage from './decide-if-you-need-more-time/more-time-to-respond/more-time-page';
+import DefendantResponseDashboardPage from './defendant-response-dashboard/defendant-response-dashboard-page';
+import ListYourEvidencePage from './why-you-disagree/list-your-evidence/list-your-evidence-page';
+import TimelinePage from './why-you-disagree/timeline/timeline-page';
+import WhyYouDisagreePage from './why-you-disagree/why-you-disagree/why-you-disagree-page';
 
 export default class DefendantResponseFactory extends BasePageFactory {
 

@@ -1,5 +1,5 @@
-import BasePage from "../../../../../base/base-page";
-import { links } from "./response-dashboard-content";
+import BasePage from '../../../../../base/base-page';
+import { links } from './response-dashboard-content';
 
 export default class ResponseDashboardPage extends BasePage {
   async verifyContent() {

@@ -17,16 +17,16 @@ export const dropdowns = {
     label: 'Document Type',
     selector: '#scannedDocuments_0_type',
     options: {
-      form: 'Form'
-    }
+      form: 'Form',
+    },
   },
   doc1DocSubType: {
     label: 'Document Subtype',
     selector: '#scannedDocuments_0_formSubtype',
     options: {
-      ocon9x: 'OCON9x (Paper response (All))'
-    }
-  }
+      ocon9x: 'OCON9x (Paper response (All))',
+    },
+  },
 };
 
 export const buttons = {

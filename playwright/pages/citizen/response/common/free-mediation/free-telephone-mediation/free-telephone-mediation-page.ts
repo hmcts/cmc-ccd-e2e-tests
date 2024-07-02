@@ -1,7 +1,7 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { buttons, heading, links, subHeadings } from "./free-telephone-mediation-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { buttons, heading, links, subHeadings } from './free-telephone-mediation-content';
 
 @AllMethodsStep
 export default class FreeTelephoneMediationPage extends CitizenEvent(BasePage) {

@@ -1,7 +1,7 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { heading, inputs } from "./mediation-phone-number-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { heading, inputs } from './mediation-phone-number-content';
 
 @AllMethodsStep
 export default class MediationPhoneNumberPage extends CitizenEvent(BasePage) {

@@ -1,8 +1,8 @@
-import BasePage from "../../../../base/base-page";
-import urls from "../../../../config/urls";
-import { AllMethodsStep } from "../../../../decorators/test-steps";
-import CitizenEvent from "../../mixins/citizen-events";
-import { buttons, heading, paragraphs, subHeadings } from "./respond-to-claim-content";
+import BasePage from '../../../../base/base-page';
+import urls from '../../../../config/urls';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import CitizenEvent from '../../mixins/citizen-events';
+import { buttons, heading, paragraphs, subHeadings } from './respond-to-claim-content';
 
 @AllMethodsStep
 export default class RespondToClaimPage extends CitizenEvent(BasePage){

@@ -7,7 +7,7 @@ export const inputs = {
   },
   month: {
     label: 'Month',
-    selector: 'input[id=\'date[month]\']'
+    selector: 'input[id=\'date[month]\']',
   },
   year: {
     label: 'Year',

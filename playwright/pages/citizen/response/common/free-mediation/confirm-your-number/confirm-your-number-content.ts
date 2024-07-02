@@ -1,7 +1,7 @@
 export const heading = 'Confirm your telephone number';
 
 export const paragraphs = {
-  descriptionText: 'Can the mediation service use'
+  descriptionText: 'Can the mediation service use',
 };
 
 export const radioButtons = {
@@ -11,8 +11,8 @@ export const radioButtons = {
   },
   noPhoneNumber: {
     label: 'No',
-    selector: '#freeMediationOptionNO'
-  }
+    selector: '#freeMediationOptionNO',
+  },
 };
 
 export const inputs = {

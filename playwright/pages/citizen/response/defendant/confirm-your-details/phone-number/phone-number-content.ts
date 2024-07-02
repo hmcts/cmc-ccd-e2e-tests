@@ -8,6 +8,6 @@ export const paragraphs = {
 export const inputs = {
   phoneNumber: {
     label: '',
-    selector: '#number'
-  }
-}
+    selector: '#number',
+  },
+};

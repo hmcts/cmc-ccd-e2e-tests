@@ -18,7 +18,7 @@ export const radioButtons = {
   },
   yesMediation: {
     label: 'Yes',
-    selector: '#respondents_0_responseFreeMediationOption_Yes'
+    selector: '#respondents_0_responseFreeMediationOption_Yes',
   },
   noMedition: {
     label: 'No',

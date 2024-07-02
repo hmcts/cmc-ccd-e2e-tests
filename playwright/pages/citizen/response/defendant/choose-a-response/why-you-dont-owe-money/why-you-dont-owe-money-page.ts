@@ -1,8 +1,8 @@
-import BasePage from "../../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../../decorators/test-steps";
-import ClaimStoreCaseData from "../../../../../../types/case-data/claim-store-case-data";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { getHeading, radioButtons } from "./why-you-dont-owe-money-content";
+import BasePage from '../../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../../decorators/test-steps';
+import ClaimStoreCaseData from '../../../../../../types/case-data/claim-store-case-data';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { getHeading, radioButtons } from './why-you-dont-owe-money-content';
 
 @AllMethodsStep
 export default class WhyYouDontOweMoneyPage extends CitizenEvent(BasePage){

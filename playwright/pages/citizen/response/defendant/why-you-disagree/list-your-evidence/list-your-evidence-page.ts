@@ -1,6 +1,6 @@
-import BasePage from "../../../../../../base/base-page";
-import CitizenEvent from "../../../../mixins/citizen-events";
-import { dropdowns, heading, inputs, paragraphs, subHeadings } from "./list-your-evidence-content";
+import BasePage from '../../../../../../base/base-page';
+import CitizenEvent from '../../../../mixins/citizen-events';
+import { dropdowns, heading, inputs, paragraphs, subHeadings } from './list-your-evidence-content';
 
 export default class ListYourEvidencePage extends CitizenEvent(BasePage){
   async verifyContent() {

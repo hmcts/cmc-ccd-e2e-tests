@@ -1,8 +1,7 @@
-import BasePage from "../../../../../base/base-page";
-import { AllMethodsStep } from "../../../../../decorators/test-steps";
-import CitizenEvent from "../../../mixins/citizen-events";
-import { heading, inputs, links } from "./organisation-details-content";
-
+import BasePage from '../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../decorators/test-steps';
+import CitizenEvent from '../../../mixins/citizen-events';
+import { heading, inputs, links } from './organisation-details-content';
 
 @AllMethodsStep
 export default class OrganisationDetailsPage extends CitizenEvent(BasePage) {
