@@ -9,7 +9,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
   // reporter: 'allure-playwright',
-  reporter: process.env.CI ? 'allure-playwright' : 'list',
+  reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
     timeout: 20_000,

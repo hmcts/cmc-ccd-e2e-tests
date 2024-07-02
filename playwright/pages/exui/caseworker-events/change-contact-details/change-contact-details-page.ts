@@ -2,7 +2,6 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData, { ApplicantValue, RespondentValue } from '../../../../types/case-data/ccd-case-data';
-import { getCaseTitle } from '../../exui-common-content';
 import ExuiEvent from '../../mixins/exui-event';
 import { heading, radioButtons, subHeadings, claimantInputs, defendantInputs, links } from './change-contact-details-content';
 
@@ -12,7 +11,7 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData){
     await Promise.all([
       super.expectHeading(heading),
-      super.expectHeading(getCaseTitle(caseData)),
+      super.verifyCaseTitle(caseData),
       super.expectLabel(radioButtons.claimant.label, {exact: true}),
       super.expectLabel(radioButtons.defendant.label, {exact: true}),
     ]);

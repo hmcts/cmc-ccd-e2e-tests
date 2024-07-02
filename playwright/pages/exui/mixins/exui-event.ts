@@ -1,7 +1,8 @@
 import BasePage from '../../../base/base-page';
 import { AllMethodsStep } from '../../../decorators/test-steps';
+import CCDCaseData from '../../../types/case-data/ccd-case-data';
 import ExuiEvents from '../../../types/exui-events';
-import { cButtons, cInputs } from '../exui-common-content'
+import { cButtons, cInputs, getCaseTitle } from '../exui-common-content'
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
   
@@ -13,6 +14,10 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
         super.expectLabel(cInputs.eventSummary.helperText),
         super.expectLabel(cInputs.eventDescription.label),
       ]);
+    }
+
+    protected async verifyCaseTitle(caseData: CCDCaseData) {
+      await super.expectHeading(getCaseTitle(caseData))
     }
 
     protected async uploadFile(filePath: string, selector: string, retries = 3, timeout = 5000) {

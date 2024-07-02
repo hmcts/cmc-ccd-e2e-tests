@@ -1,25 +1,30 @@
-import { heading } from './claim-notes-content';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import BasePage from '../../../../base/base-page';
 import ExuiEvent from '../../mixins/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
-import { TruthyParams } from '../../../../decorators/truthy-params';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
+import filePaths from '../../../../config/filePaths';
+import { dropdowns, heading, subHeadings } from './review-ocon9x-paper-response-content';
 
 @AllMethodsStep
-export default class ClaimNotesPage extends ExuiEvent(BasePage) {
+export default class ReviewOcon9xPaperResponsePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
     await Promise.all([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
-      super.verifyEventSummaryContent(),
+      super.expectSubHeading(subHeadings.scannedDocs),
     ]);
   }
 
-  @TruthyParams()
+  async chooseOcon9xDoc() {
+    await super.selectFromDropdown('test.pdf', dropdowns.ocon9xDoc.selector);
+    await super.clickSubmit();
+  }
+
   async submitEvent() {
-    await super.fillEventDetails(CaseworkerEvents.CLAIM_NOTES);
+    await super.fillEventDetails(CaseworkerEvents.PAPER_RESP_REVIEWED);
+    await super.verifyEventSummaryContent();
     await super.clickSubmit();
   }
 }
