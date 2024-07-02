@@ -7,18 +7,18 @@ if(!config.skipAuthSetup) {
     setup.describe.configure({mode: 'parallel'});
     
     setup('Judge', {tag: '@verify-cookies-banner'}, async ({ IdamSteps, ExuiDashboardSteps }) => {
-      await IdamSteps.ExuiLogin(judge);
+      await IdamSteps.JudgeLogin();
       await ExuiDashboardSteps.AcceptCookies();
       await ExuiDashboardSteps.SaveCookies(judge.cookiesPath!);
     });
     
     setup('Legal advisor', async ({ IdamSteps, ExuiDashboardSteps }) => {
-      await IdamSteps.ExuiLogin(legalAdvisor);
+      await IdamSteps.LegalAdvisorLogin();
       await ExuiDashboardSteps.SaveCookies(legalAdvisor.cookiesPath!);
     });
     
     setup('Caseworker', async ({ IdamSteps, ExuiDashboardSteps }) => {
-      await IdamSteps.ExuiLogin(caseworker);
+      await IdamSteps.CaseworkerLogin();
       await ExuiDashboardSteps.SaveCookies(caseworker.cookiesPath!);
     });
   });

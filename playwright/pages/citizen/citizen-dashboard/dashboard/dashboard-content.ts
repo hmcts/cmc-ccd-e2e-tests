@@ -9,4 +9,8 @@ export const links = {
     title: 'Testing support',
     selector: '',
   },
+  continueClaim: {
+    title: 'Continue with claim',
+    selector: '',
+  },
 };

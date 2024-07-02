@@ -1,5 +1,7 @@
 # Playwright
 test-results/
+allure-results/
+allure-report/
 playwright-report/
 /playwright/playwright/.cache/
 /playwright/fixtures/.citizen-users/

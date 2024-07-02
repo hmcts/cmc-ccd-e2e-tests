@@ -4,6 +4,7 @@ import PageCookiesManager from '../../common/page-cookies-manager';
 import DashboardPage from './dashboard/dashboard-page';
 import CitizenCookiesBanner from './citizen-cookies-banner/citizen-cookies-banner';
 import CitizenNavBar from './citizen-nav-bar/citizen-nav-bar';
+import ClaimDetailsPage from './claim-details/claim-details-page';
 
 export default class CitizenDashboardFactory extends BasePageFactory {
   
@@ -21,5 +22,9 @@ export default class CitizenDashboardFactory extends BasePageFactory {
   
   get dashboardPage() {
     return new DashboardPage(this.page, this.axeBuilder);
+  }
+
+  get claimDetailsPage() {
+    return new ClaimDetailsPage(this.page, this.axeBuilder);
   }
 }
