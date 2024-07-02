@@ -50,6 +50,8 @@ export default abstract class BasePage {
     }
   } 
 
+
+
   protected async clickByText(text: string) {
     await this.page.getByText(text).click();
   }
@@ -133,10 +135,10 @@ export default abstract class BasePage {
   }
 
   @TruthyParams('text')
-  protected async expectText(text: string, options: {container?: string, timeout?: number} = {}) {
+  protected async expectText(text: string | number, options: {exact?: boolean, container?: string, timeout?: number} = {}) {
     const locator = options.container
-      ? this.page.locator(options.container).getByText(text) 
-      : this.page.getByText(text);
+      ? this.page.locator(options.container).getByText(text.toString()) 
+      : this.page.getByText(text.toString(), {exact: options.exact});
     
     await pageExpect(locator).toBeVisible({timeout: options.timeout});
   }
@@ -145,8 +147,9 @@ export default abstract class BasePage {
     await pageExpect(this.page.getByLabel(label, {exact: options.exact})).toBeVisible({timeout: options.timeout});
   }
 
-  protected async expectOptionChecked(label: string, options?: {timeout?: number}) {
-    await pageExpect(this.page.getByLabel(label)).toBeChecked(options);
+  @TruthyParams('selector')
+  protected async expectOptionChecked(selector: string, options?: {timeout?: number}) {
+    await pageExpect(this.page.locator(selector)).toBeChecked(options);
   }
 
   @TruthyParams('selector', 'text')

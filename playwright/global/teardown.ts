@@ -1,3 +1,4 @@
+import config from '../../src/test/config';
 import filePaths from '../config/filePaths';
 import urls from '../config/urls';
 import FileType from '../enums/file-type';
@@ -24,10 +25,12 @@ const deleteUsers = async (userType: UserType) => {
 };
 
 const globalTeardown = async () => {
-  await deleteUsers(UserType.CLAIMANT);
-  await deleteUsers(UserType.DEFENDANT);
-  CitizenUsersHelper.deleteAllUsersState();
-  FileSystemHelper.delete(`${filePaths.userCookies}/`);
+  if(config.skipAuthSetup) {
+    await deleteUsers(UserType.CLAIMANT);
+    await deleteUsers(UserType.DEFENDANT);
+    CitizenUsersHelper.deleteAllUsersState();
+    FileSystemHelper.delete(`${filePaths.userCookies}/`);
+  }
 };
 
 export default globalTeardown;

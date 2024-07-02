@@ -33,6 +33,13 @@ export default class ExuiDashboardSteps extends BaseSteps{
     await caseDetailsPage.goToCaseDetails(this.claimStoreCaseData.id);
     await caseDetailsPage.verifyContent(this.ccdCaseData);
   }
+
+  async VerifyDefendantFullReject() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.goToCaseDetails(this.claimStoreCaseData.id);
+    await caseDetailsPage.verifyContent(this.ccdCaseData);
+    await caseDetailsPage.verifyFullReject();
+  }
   
   async SignOut() {
     const {navBar} = this.exuiDashboardFactory;

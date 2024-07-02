@@ -1,8 +1,7 @@
 import BasePage from '../../../base/base-page';
-import filePaths from '../../../config/filePaths';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import ExuiEvents from '../../../types/exui-events';
-import { cButtons, cInputs } from '../exui-common-content';
+import { cButtons, cInputs } from '../exui-common-content'
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
   

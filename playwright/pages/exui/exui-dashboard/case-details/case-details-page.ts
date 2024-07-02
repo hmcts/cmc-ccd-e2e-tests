@@ -41,7 +41,7 @@ export default class CaseDetailsPage extends BasePage {
     await super.expectTableRowValue(event, containers.eventHistory.selector, {rowNum: 1});
   }
 
-  async verifyClaimantDetails() {
+  async verifyNewClaimantDetails() {
     await super.clickByText(tabs.claimantDetails.title);
     await Promise.all([
       super.expectText(claimantChangeDetailsInputs.email.value),
@@ -53,7 +53,7 @@ export default class CaseDetailsPage extends BasePage {
     ]);
   }
 
-  async verifyDefendantDetails() {
+  async verifyNewDefendantDetails() {
     await super.clickByText(tabs.defendantDetails.title);
     await Promise.all([
       super.expectText(defendantChangeDetailsInputs.email.value),
@@ -65,7 +65,7 @@ export default class CaseDetailsPage extends BasePage {
     ]);
   }
 
-  async verifyManageDocuments() {
+  async verifyUploadedDocuments() {
     await super.clickByText(tabs.claimDocs.title);
     await Promise.all([
       super.expectText(doc1Dropdowns.docType.options.correspondence),
@@ -73,5 +73,10 @@ export default class CaseDetailsPage extends BasePage {
       // super.expectText(doc1Inputs.docName.value),
       // super.expectText(doc2Inputs.docName.value),
     ]);
+  }
+
+  async verifyFullReject() {
+    await super.clickByText(tabs.claimHistory.title);
+    await super.expectTableRowValue('Dispute all', containers.eventHistory.selector, {rowNum: 1});
   }
 }

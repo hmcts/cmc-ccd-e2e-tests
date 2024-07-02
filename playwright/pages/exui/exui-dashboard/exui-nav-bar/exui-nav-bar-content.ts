@@ -7,14 +7,11 @@ export const links = {
   },
   createCase: {
     title: 'Create case',
-    selector: '',
   },
   caseList: {
     title: 'Case list',
-    selector: '',
   },
   findCase: {
     title: 'Find case',
-    selector: '',
   },
 };

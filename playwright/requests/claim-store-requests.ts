@@ -15,7 +15,7 @@ export default class ClaimStoreRequests extends BaseRequest {
   @Step
   @TruthyParams()
   async fetchClaimStoreCaseData(claimRef?: string, accessToken?: string) {
-    console.log('Fetching claim store case data');
+    console.log('Fetching claim store case data...');
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,
       headers: this.getRequestHeaders(accessToken),
@@ -29,7 +29,7 @@ export default class ClaimStoreRequests extends BaseRequest {
 
   @Step
   async fetchClaimStoreCaseDataWithLetterId(claimRef?: string, accessToken?: string) {
-    console.log('Fetching claim store case data with letter id');
+    console.log('Fetching claim store case data with letter id...');
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,
       headers: this.getRequestHeaders(accessToken),

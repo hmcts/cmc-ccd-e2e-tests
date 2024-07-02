@@ -39,7 +39,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await changeContactDetailsPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CHANGE_CONTACT_DETAILS);
-    await caseDetailsPage.verifyClaimantDetails();
+    await caseDetailsPage.verifyNewClaimantDetails();
   }
 
   async ChangeDefendantDetails() {
@@ -53,7 +53,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await changeContactDetailsPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CHANGE_CONTACT_DETAILS);
-    await caseDetailsPage.verifyDefendantDetails();
+    await caseDetailsPage.verifyNewDefendantDetails();
   }
 
   async ManageDocuments(){
@@ -72,7 +72,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await manageDocumentsPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MANAGE_DOCUMENTS);
-    await caseDetailsPage.verifyManageDocuments();
+    await caseDetailsPage.verifyUploadedDocuments();
   }
 
   async ResendRpa() {
