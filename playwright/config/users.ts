@@ -35,7 +35,6 @@ export const judge: User = {
 export const claimants: User[] =
   CitizenUsersHelper.getUsersFromState(UserType.CLAIMANT, config.playwright.workers, process.env.SMOKE_TEST_USER_PASSWORD);
 
-
 export const defendants: User[] =
   CitizenUsersHelper.getUsersFromState(UserType.DEFENDANT, config.playwright.workers, process.env.SMOKE_TEST_USER_PASSWORD);
 
