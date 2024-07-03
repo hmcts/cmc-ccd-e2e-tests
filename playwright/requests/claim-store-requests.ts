@@ -3,6 +3,7 @@ import urls from '../config/urls';
 import { Step } from '../decorators/test-steps';
 import { TruthyParams } from '../decorators/truthy-params';
 import RequestOptions from '../types/request-options';
+import User from '../types/user';
 
 export default class ClaimStoreRequests extends BaseRequest {
   private getRequestHeaders(accessToken: string) {
@@ -14,7 +15,7 @@ export default class ClaimStoreRequests extends BaseRequest {
 
   @Step
   @TruthyParams()
-  async fetchClaimStoreCaseData(claimRef?: string, accessToken?: string) {
+  async fetchClaimStoreCaseData({accessToken}: User, claimRef?: string) {
     console.log('Fetching claim store case data...');
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,
@@ -28,7 +29,7 @@ export default class ClaimStoreRequests extends BaseRequest {
   }
 
   @Step
-  async fetchClaimStoreCaseDataWithLetterId(claimRef?: string, accessToken?: string) {
+  async fetchClaimStoreCaseDataWithLetterId({accessToken}: User, claimRef?: string) {
     console.log('Fetching claim store case data with letter id...');
     const requestOptions: RequestOptions = {
       url: `${urls.claimStore}/claims/${claimRef}`,

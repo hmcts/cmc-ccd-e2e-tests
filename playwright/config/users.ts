@@ -2,7 +2,7 @@ import CitizenUsersHelper from '../helpers/citizen-users-helper';
 import User from '../types/user';
 import UserRole from '../enums/user-role';
 import UserType from '../enums/user-type';
-import filePaths from './filePaths';
+import filePaths from './file-paths';
 import config from './config';
 
 export const legalAdvisor: User = {
@@ -34,6 +34,7 @@ export const judge: User = {
 
 export const claimants: User[] =
   CitizenUsersHelper.getUsersFromState(UserType.CLAIMANT, config.playwright.workers, process.env.SMOKE_TEST_USER_PASSWORD);
+
 
 export const defendants: User[] =
   CitizenUsersHelper.getUsersFromState(UserType.DEFENDANT, config.playwright.workers, process.env.SMOKE_TEST_USER_PASSWORD);

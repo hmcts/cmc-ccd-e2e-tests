@@ -30,7 +30,7 @@ export default class ExuiDashboardSteps extends BaseSteps{
 
   async GoToCaseDetails() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.goToCaseDetails(this.claimStoreCaseData.id);
+    await caseDetailsPage.goToCaseDetails(this.ccdCaseData.id);
     await caseDetailsPage.verifyContent(this.ccdCaseData);
   }
 

@@ -19,5 +19,6 @@ export const dropdowns = {
   ocon9xDoc: {
     label: 'Which document is the OCON9X?',
     selector: '#ocon9xForm',
+    options: ['test.pdf'],
   },
 };

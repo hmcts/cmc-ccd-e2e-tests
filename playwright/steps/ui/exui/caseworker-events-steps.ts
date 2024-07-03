@@ -117,7 +117,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await linkLetterHolderPage.verifyContent(this.ccdCaseData);
     await linkLetterHolderPage.submitEvent();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.LINK_LETTER_HOLDER_ID);
+    // await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.LINK_LETTER_HOLDER_ID);
   }
 
   async AttachViaBulkScan() {

@@ -3,7 +3,7 @@ import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { TruthyParams } from '../../../../decorators/truthy-params';
 import ExuiEvents from '../../../../types/exui-events';
-import { getCaseTitle, getSuccessBannerText } from '../../exui-common-content';
+import { getSuccessBannerText } from '../../exui-common-content';
 import { tabs, dropdowns, buttons, containers } from './case-details-content';
 import {claimantInputs as claimantChangeDetailsInputs, defendantInputs as defendantChangeDetailsInputs} from '../../caseworker-events/change-contact-details/change-contact-details-content';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
@@ -13,7 +13,7 @@ import { doc1Dropdowns } from '../../caseworker-events/manage-documents/manage-d
 export default class CaseDetailsPage extends BasePage {
   async verifyContent(caseData: CCDCaseData): Promise<void> {
     await super.retryExpect(() =>[
-      super.expectHeading(getCaseTitle(caseData)),
+      super.expectHeading(caseData.caseName),
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
       super.expectText(tabs.defendantDetails.title),
@@ -68,8 +68,8 @@ export default class CaseDetailsPage extends BasePage {
   async verifyUploadedDocuments() {
     await super.clickByText(tabs.claimDocs.title);
     await Promise.all([
-      super.expectText(doc1Dropdowns.docType.options.correspondence),
-      super.expectText(doc1Dropdowns.docType.options.other),
+      super.expectText(doc1Dropdowns.docType.options[0]),
+      super.expectText(doc1Dropdowns.docType.options[1]),
       // super.expectText(doc1Inputs.docName.value),
       // super.expectText(doc2Inputs.docName.value),
     ]);

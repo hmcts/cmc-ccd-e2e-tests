@@ -63,10 +63,7 @@ const getDropdowns = (docIndex : number) => ({
   docType: {
     label: 'Type',
     selector: `#staffUploadedDocuments_${docIndex}_documentType`,
-    options: {
-      correspondence: 'Correspondence',
-      other: 'Other',
-    },
+    options: ['Correspondence', 'Other'],
   },
 });
 

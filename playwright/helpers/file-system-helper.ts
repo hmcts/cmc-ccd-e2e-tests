@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import FileError from '../errors/file-error';
 import FileType from '../enums/file-type';
-import filePaths from '../config/filePaths';
+import filePaths from '../config/file-paths';
 
 export default class FileSystemHelper {
   private static writeFileDirs = [`${filePaths.citizenUsers}/`, `${filePaths.userCookies}/`];

@@ -5,7 +5,7 @@ import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { buttons, heading, subHeadings, doc1Inputs, doc1Dropdowns, doc2Inputs, doc2Dropdowns } from './manage-documents-content';
 import DateHelper from '../../../../helpers/date-helper';
-import filePaths from '../../../../config/filePaths';
+import filePaths from '../../../../config/file-paths';
 
 @AllMethodsStep
 export default class ManageDocumentsPage extends ExuiEvent(BasePage) {
@@ -34,14 +34,14 @@ export default class ManageDocumentsPage extends ExuiEvent(BasePage) {
     await super.fill('08', doc1Inputs.docMinute.selector);
     await super.fill('08', doc1Inputs.docSecond.selector);
 
-    await super.selectFromDropdown(doc1Dropdowns.docType.options.correspondence, doc1Dropdowns.docType.selector);
+    await super.selectFromDropdown(doc1Dropdowns.docType.options[0], doc1Dropdowns.docType.selector);
     await super.uploadFile(filePaths.testPdfFile, doc1Inputs.fileUpload.selector);
   } 
 
   async enterDocument2Details() {
     await super.fill(doc2Inputs.docName.value, doc2Inputs.docName.selector);
 
-    await super.selectFromDropdown(doc2Dropdowns.docType.options.other, doc2Dropdowns.docType.selector);
+    await super.selectFromDropdown(doc2Dropdowns.docType.options[1], doc2Dropdowns.docType.selector);
     await super.fill(doc2Inputs.otherDocType.value, doc2Inputs.otherDocType.selector);
 
     await super.uploadFile(filePaths.testPdfFile, doc2Inputs.fileUpload.selector);

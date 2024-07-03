@@ -18,7 +18,7 @@ export default class ResendRpaPage extends ExuiEvent(BasePage) {
   }
 
   async chooseClaimRpa() {
-    await super.selectFromDropdown(dropdowns.resendRpa.options.claim, dropdowns.resendRpa.selector);
+    await super.selectFromDropdown(dropdowns.resendRpa.options[0], dropdowns.resendRpa.selector);
   }
 
   @TruthyParams()

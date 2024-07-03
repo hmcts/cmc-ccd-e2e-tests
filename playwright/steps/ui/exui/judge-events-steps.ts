@@ -1,0 +1,38 @@
+import BaseSteps from '../../../base/base-steps';
+import { AllMethodsStep } from '../../../decorators/test-steps';
+import JudgeEvents from '../../../enums/events/judge-events';
+import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
+import JudgeEventsFactory from '../../../pages/exui/judge-events/judge-events-factory';
+import TestData from '../../../types/test-data';
+
+@AllMethodsStep
+export default class JudgeEventsSteps extends BaseSteps {
+  private judgeEventsFactory: JudgeEventsFactory;
+  private exuiDashboardFactory: ExuiDashboardFactory;
+
+  constructor(judgeEventsFactory: JudgeEventsFactory, exuiDashboardFactory: ExuiDashboardFactory, testData: TestData) {
+    super(testData);
+    this.judgeEventsFactory = judgeEventsFactory;
+    this.exuiDashboardFactory = exuiDashboardFactory;
+  }
+
+  async DrawDirectionsOrder() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
+
+    const {drawDirectionsOrder1Page} = this.judgeEventsFactory;
+    await drawDirectionsOrder1Page.verifyContent(this.ccdCaseData);
+    await drawDirectionsOrder1Page.chooseSdo();
+
+    const {drawDirectionsOrder2Page} = this.judgeEventsFactory;
+    await drawDirectionsOrder2Page.verifyContent(this.ccdCaseData);
+    await drawDirectionsOrder2Page.enterSdoDetails();
+
+    const {drawDirectionsOrder3Page} = this.judgeEventsFactory;
+    await drawDirectionsOrder3Page.verifyContent(this.ccdCaseData);
+    await drawDirectionsOrder3Page.submitEvent();
+    
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
+  }
+
+}

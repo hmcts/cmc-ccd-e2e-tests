@@ -16,8 +16,7 @@ export default class SupportUpdatePage extends ExuiEvent(BasePage) {
       super.verifyEventSummaryContent(),
     ]);
   }
-
-  @TruthyParams()
+  
   async submitEvent() {
     await super.fillEventDetails(CaseworkerEvents.SUPPORT_UPDATE);
     await super.clickSubmit();

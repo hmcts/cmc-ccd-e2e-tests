@@ -7,8 +7,8 @@ type User = {
   readonly role: UserRole;
   readonly type: UserType;
   readonly cookiesPath?: string;
-  readonly userDetailsPath?: string;
-  readonly userId?: string | undefined;
+  userId?: string;
+  accessToken?: string;
 };
 
 export default User;

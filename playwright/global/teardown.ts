@@ -1,5 +1,5 @@
 import config from '../../src/test/config';
-import filePaths from '../config/filePaths';
+import filePaths from '../config/file-paths';
 import urls from '../config/urls';
 import FileType from '../enums/file-type';
 import UserType from '../enums/user-type';

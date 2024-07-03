@@ -12,12 +12,12 @@ export default class ListYourEvidencePage extends CitizenEvent(BasePage){
   }
 
   async addEvidence1() {
-    await super.selectFromDropdown(dropdowns.evidenceType1.options.contractsAndAgreements, dropdowns.evidenceType1.selector);
+    await super.selectFromDropdown(dropdowns.evidenceType1.options[0], dropdowns.evidenceType1.selector);
     await super.fill('No more detail required', inputs.evidence1Description.selector);
   }
 
   async addEvidence2() {
-    await super.selectFromDropdown(dropdowns.evidenceType2.options.expertWitness, dropdowns.evidenceType2.selector);
+    await super.selectFromDropdown(dropdowns.evidenceType2.options[0], dropdowns.evidenceType2.selector);
     await super.fill('No more detail required', inputs.evidence2Description.selector);
   }
 

@@ -24,9 +24,7 @@ export const dropdowns = {
   nextStep: {
     label: 'Next step',
     selector: '#next-step',
-    options: {
-      claimNotes: 'Claim notes',
-    },
+    options: ['Claim notes'],
   },
 };
 

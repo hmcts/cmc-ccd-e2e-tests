@@ -11,15 +11,11 @@ export const paragraphs = {
 export const dropdowns = {
   evidenceType1: {
     selector: 'select[id=\'rows[0][type]\']',
-    options: {
-      contractsAndAgreements: 'Contracts and agreements',
-    },
+    options:  ['Contracts and agreements'],
   },
   evidenceType2: {
     selector: 'select[id=\'rows[1][type]\']',
-    options: {
-      expertWitness: 'Expert witness',
-    },
+    options: ['Expert witness'],
   },
 };
 

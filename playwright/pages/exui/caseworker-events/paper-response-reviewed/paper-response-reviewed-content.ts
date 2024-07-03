@@ -8,24 +8,20 @@ export const dropdowns = {
   responseType: {
     label: 'Received Paper Response type',
     selector: '#paperResponseType',
-    options: {
-      bulkScanOrEmail: 'Received via Bulk scan or Email',
-      notViaService: 'Received not via service',
-    },
+    options: [
+      'Received via Bulk scan or Email',
+      'Received not via service',
+    ],
   },
   doc1DocType: {
     label: 'Document Type',
     selector: '#scannedDocuments_0_type',
-    options: {
-      form: 'Form',
-    },
+    options: ['Form'],
   },
   doc1DocSubType: {
     label: 'Document Subtype',
     selector: '#scannedDocuments_0_formSubtype',
-    options: {
-      ocon9x: 'OCON9x (Paper response (All))',
-    },
+    options: ['OCON9x (Paper response (All))'],
   },
 };
 

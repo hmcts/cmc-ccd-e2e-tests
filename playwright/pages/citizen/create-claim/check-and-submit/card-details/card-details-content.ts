@@ -10,9 +10,7 @@ export const dropdowns = {
   country: {
     label: 'Country or territory',
     selector: '',
-    options: {
-      uk: 'United Kingdom',
-    },
+    options: ['United Kingdom'],
   },
 };
 

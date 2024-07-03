@@ -1,13 +1,13 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Caseworker events', () => {
-  test('Claimant creates claim and then caseworker performs events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiSteps, CaseworkerEventsSteps}) =>{
+  test('Claimant creates claim and then caseworker performs events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiCaseDataSteps, CaseworkerEventsSteps}) =>{
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiSteps.FetchClaimStoreCaseData();
-    await ApiSteps.FetchCCDCaseData();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
+    await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.JudgeLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.ClaimNotes();

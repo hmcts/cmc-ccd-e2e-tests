@@ -6,6 +6,7 @@ import ResponseFactory from '../../pages/citizen/response/common/response-factor
 import DefendantResponseFactory from '../../pages/citizen/response/defendant/defendant-response-factory';
 import CaseworkerEventsFactory from '../../pages/exui/caseworker-events/caseworker-events-factory';
 import ExuiDashboardFactory from '../../pages/exui/exui-dashboard/exui-dashboard-factory';
+import JudgeEventsFactory from '../../pages/exui/judge-events/judge-events-factory';
 import IdamFactory from '../../pages/idam/idam-factory';
 import { test as base } from '../utils/test-utils-fixtures';
 
@@ -18,6 +19,7 @@ type PageFactoryFixtures = {
   _linkClaimFactory: LinkClaimFactory;
   _responseFactory: ResponseFactory;
   _defendantResponseFactory: DefendantResponseFactory;
+  _judgeEventsFactory: JudgeEventsFactory;
 };
 
 export const test = base.extend<PageFactoryFixtures>({
@@ -44,5 +46,8 @@ export const test = base.extend<PageFactoryFixtures>({
   },
   _defendantResponseFactory: async ({page, _axeBuilder}, use: (arg0: DefendantResponseFactory) => any) => {
     await use(new DefendantResponseFactory(page, _axeBuilder));
+  },
+  _judgeEventsFactory: async ({page, _axeBuilder}, use: (arg0: JudgeEventsFactory) => any) => {
+    await use(new JudgeEventsFactory(page, _axeBuilder));
   },
 });

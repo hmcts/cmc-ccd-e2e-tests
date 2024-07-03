@@ -76,12 +76,12 @@ export default class IdamRequests extends BaseRequest {
     return json.access_token;
   }
 
-  async getUserId(authToken: string): Promise<string> {
+  async getUserId(accessToken: string): Promise<string> {
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/o/userinfo`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Bearer ${authToken}`,
+        'Authorization': `Bearer ${accessToken}`,
       },
       method: 'GET',
     };

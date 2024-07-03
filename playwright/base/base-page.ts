@@ -145,6 +145,10 @@ export default abstract class BasePage {
     await pageExpect(this.page.getByLabel(label, {exact: options.exact})).toBeVisible({timeout: options.timeout});
   }
 
+  protected async expectLink(name: string, options: {exact?: boolean, timeout?: number} = {exact: false}) {
+    await pageExpect(this.page.getByRole('link', {name, exact: options.exact})).toBeVisible({timeout: options.timeout});
+  }
+
   @TruthyParams('selector')
   protected async expectOptionChecked(selector: string, options?: {timeout?: number}) {
     await pageExpect(this.page.locator(selector)).toBeChecked(options);

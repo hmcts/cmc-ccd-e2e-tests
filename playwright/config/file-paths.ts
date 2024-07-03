@@ -4,4 +4,5 @@ const filePaths = {
   testPdfFile: 'playwright/fixtures/files/test.pdf',
   testTextFile: 'playwright/fixtures/files/fileupload.txt',
 };
+
 export default filePaths;
