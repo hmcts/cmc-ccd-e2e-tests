@@ -37,7 +37,7 @@ export default class TransferCasePage extends ExuiEvent(BasePage) {
 
   async chooseTransferOption() {
     await super.clickBySelector(radioButtons.other.selector);
-    await super.expectOptionChecked(radioButtons.other.label);
+    await super.expectOptionChecked(radioButtons.other.selector);
     await super.fill('Some Reason', inputs.otherReason.selector);
   }
 
