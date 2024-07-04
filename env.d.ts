@@ -1,7 +1,8 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      ENVIRONMENT: string
+      CI: string,
+      ENVIRONMENT: string,
       CITIZEN_APP_URL: string,
       EXUI_URL: string,
       SERVICE_AUTH_PROVIDER_API_BASE_URL: string,
