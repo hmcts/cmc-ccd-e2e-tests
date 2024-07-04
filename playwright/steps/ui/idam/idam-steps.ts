@@ -4,6 +4,7 @@ import config from '../../../config/config';
 import IdamFactory from '../../../pages/idam/idam-factory';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
+import { caseworker, claimants, defendants, judge, legalAdvisor } from '../../../config/users';
 
 @AllMethodsStep
 export default class IdamSteps extends BaseSteps {
@@ -20,7 +21,29 @@ export default class IdamSteps extends BaseSteps {
     this.idamFactory = idamFactory;
   }
 
-  async ExuiLogin(user: User) {
+  async ClaimantLogin(workerIndex?: number) {
+    const claimant: User = isNaN(workerIndex) ? claimants[this.workerIndex] : claimants[workerIndex];
+    await this.citizenLogin(claimant);
+  }
+
+  async DefendantLogin(workerIndex?: number) {
+    const defendant: User = isNaN(workerIndex) ? defendants[this.workerIndex] : defendants[workerIndex];
+    await this.citizenLogin(defendant);
+  }
+
+  async CaseworkerLogin() {
+    await this.exuiLogin(caseworker);
+  }
+
+  async JudgeLogin() {
+    await this.exuiLogin(judge);
+  }
+
+  async LegalAdvisorLogin() {
+    await this.exuiLogin(legalAdvisor);
+  }
+
+  private async exuiLogin(user: User) {
     const { pageCookiesManager } = this.idamFactory;
 
     if(config.skipAuthSetup || this.isSetupTest) {
@@ -47,8 +70,7 @@ export default class IdamSteps extends BaseSteps {
     }
   }
 
-  async CitizenLogin(users: User[], workerIndex?: number) {
-    const user: User = isNaN(workerIndex) ? users[this.workerIndex] : users[workerIndex];
+  private async citizenLogin(user: User) {
     
     const { pageCookiesManager } = this.idamFactory;
 

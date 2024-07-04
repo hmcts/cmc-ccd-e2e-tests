@@ -2,12 +2,14 @@ import { test as base } from '@playwright/test';
 import TestData from '../../types/test-data';
 import AxeBuilder from '@axe-core/playwright';
 import config from '../../config/config';
+import CaseDataFactory from '../../fixtures/case-data/case-data-factory';
 
 type TestDataFixture = {
   _axeBuilder?: AxeBuilder;
   _isSetupTest: boolean,
   _isTeardown: boolean,
   _verifyCookiesBanner: boolean,
+  _caseDataFactory: CaseDataFactory,
   _testData: TestData
 }
 
@@ -21,13 +23,16 @@ export const test = base.extend<TestDataFixture>({
     await use(axeBuilder);
   },
   _isSetupTest: async ({}, use: (arg0: boolean) => any, testInfo) => {
-    await use(testInfo.tags.includes('@setup'));
+    await use(testInfo.project.name.endsWith('setup'));
   },
   _isTeardown: async ({}, use: (arg0: boolean) => any, testInfo) => {
-    await use(testInfo.tags.includes('@teardown'));
+    await use(testInfo.project.name.endsWith('teardown'));
   },
   _verifyCookiesBanner: async ({}, use: (arg0: boolean) => any, testInfo) => {
     await use(testInfo.tags.includes('@verify-cookies-banner'));
+  },
+  _caseDataFactory: async ({}, use: (arg0: CaseDataFactory) => any) => {
+    await use(new CaseDataFactory());
   },
   _testData: async ({}, use: (arg0: TestData) => any, testInfo) => {
     await use({workerIndex: testInfo.parallelIndex, claimStoreCaseData: {}, ccdCaseData: {}});

@@ -17,8 +17,9 @@ export default abstract class BasePage {
 
   abstract verifyContent(...args: any[]): Promise<void>
 
-  protected async clickBySelector(selector?: string) {
-    await this.page.locator(selector!).click();
+  @TruthyParams()
+  protected async clickBySelector(selector: string) {
+    await this.page.locator(selector).click();
   }
 
   protected async clickButtonByName(name: string) {
@@ -84,6 +85,24 @@ export default abstract class BasePage {
     await this.page.context().addCookies(cookies);
   }
 
+  @TruthyParams()
+  protected async uploadFile(filePath: string, selector: string) {
+    await this.page.locator(selector).setInputFiles([]);
+    await this.page.locator(selector).setInputFiles([filePath]);
+  }
+
+  protected async waitForSelectorToDetach(selector: string, options: {timeout?: number} = {}) {
+    const locator = this.page.locator(selector);
+    await locator.waitFor({state: 'attached'});
+    await locator.waitFor({state: 'detached', ...options});
+  }
+
+  protected async waitForTextToDetach(text: string, options: {timeout?: number} = {}) {
+    const locator = this.page.getByText(text);
+    await locator.waitFor({state: 'attached'});
+    await locator.waitFor({state: 'detached', ...options});
+  }
+
   public async pause() {
     await this.page.pause();
   }
@@ -114,10 +133,10 @@ export default abstract class BasePage {
   }
 
   @TruthyParams('text')
-  protected async expectText(text: string, options: {container?: string, timeout?: number} = {}) {
+  protected async expectText(text: string | number, options: {exact?: boolean, container?: string, timeout?: number} = {}) {
     const locator = options.container
-      ? this.page.locator(options.container).getByText(text) 
-      : this.page.getByText(text);
+      ? this.page.locator(options.container).getByText(text.toString()) 
+      : this.page.getByText(text.toString(), {exact: options.exact});
     
     await pageExpect(locator).toBeVisible({timeout: options.timeout});
   }
@@ -126,8 +145,13 @@ export default abstract class BasePage {
     await pageExpect(this.page.getByLabel(label, {exact: options.exact})).toBeVisible({timeout: options.timeout});
   }
 
-  protected async expectOptionChecked(label: string, options?: {timeout?: number}) {
-    await pageExpect(this.page.getByLabel(label)).toBeChecked(options);
+  protected async expectLink(name: string, options: {exact?: boolean, timeout?: number} = {exact: false}) {
+    await pageExpect(this.page.getByRole('link', {name, exact: options.exact})).toBeVisible({timeout: options.timeout});
+  }
+
+  @TruthyParams('selector')
+  protected async expectOptionChecked(selector: string, options?: {timeout?: number}) {
+    await pageExpect(this.page.locator(selector)).toBeChecked(options);
   }
 
   @TruthyParams('selector', 'text')

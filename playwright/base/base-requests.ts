@@ -59,8 +59,8 @@ export default abstract class BaseRequest {
         const response = await this.request(requestOptions, expectedStatus, expectedBodyPaths);
         return response;
       } catch (error: any) {
-        console.log(`${error.message.split('\n')[0]}, retrying in ${retryTimeInterval / 1000} seconds (Retries left: ${remainingRetries})`);
         if(!remainingRetries) throw error;
+        console.log(`${error.message.split('\n')[0]}, retrying in ${retryTimeInterval / 1000} seconds (Retries left: ${remainingRetries})`);
         await this.sleep(retryTimeInterval);
       }
     }

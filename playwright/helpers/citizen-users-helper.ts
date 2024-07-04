@@ -3,7 +3,7 @@ import UserRole from '../enums/user-role';
 import FileSystemHelper from './file-system-helper';
 import FileType from '../enums/file-type';
 import UserType from '../enums/user-type';
-import filePaths from '../config/filePaths';
+import filePaths from '../config/file-paths';
 
 export default class CitizenUsersHelper {
   static readonly statePaths = {

@@ -63,7 +63,7 @@ export default class IdamRequests extends BaseRequest {
   }
   
   async getAccessToken({email, password}: User): Promise<string> {
-    console.log(`Get access token using idam: ${email} `);
+    console.log(`Fetching access token for user: ${email}...`);
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/loginUser`,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -72,15 +72,16 @@ export default class IdamRequests extends BaseRequest {
     };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();
+    console.log(`Access token for user: ${email} fetched successfully`);
     return json.access_token;
   }
 
-  async getUserId(authToken: string): Promise<string> {
+  async getUserId(accessToken: string): Promise<string> {
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/o/userinfo`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Bearer ${authToken}`,
+        'Authorization': `Bearer ${accessToken}`,
       },
       method: 'GET',
     };
@@ -89,12 +90,16 @@ export default class IdamRequests extends BaseRequest {
     return json.uid;
   }
 
-  async getPin(letterHoldId: string) {
+  async getSecurityPin(letterHolderId: string) {
+    console.log('Fetching security pin for claim...');
     const requestOptions: RequestOptions = {
-      url: `${urls.idamApi}/testing-support/accounts/pin/${letterHoldId}`,
+      url: `${urls.idamApi}/testing-support/accounts/pin/${letterHolderId}`,
       method: 'GET',
     };
     const response = await super.retriedRequest(requestOptions);
-    return await response.text();
+    const pin = await response.text();
+    console.log('Security pin fetched successfully');
+    console.log(`Security pin: ${pin}`);
+    return pin;
   }
 }

@@ -28,4 +28,12 @@ export default abstract class BaseSteps {
   protected set setCcdCaseData(ccdCaseData: CCDCaseData) {
     this._testData.ccdCaseData = ccdCaseData;
   }
+
+  protected get claimSecurityPin() {
+    return this._testData.claimSecurityPin;
+  }
+
+  protected set setClaimSecurityPin(claimSecurityPin: string) {
+    this._testData.claimSecurityPin = claimSecurityPin;
+  }
 }

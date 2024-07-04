@@ -1,4 +1,5 @@
-import filePaths from '../config/filePaths';
+import config from '../../src/test/config';
+import filePaths from '../config/file-paths';
 import urls from '../config/urls';
 import FileType from '../enums/file-type';
 import UserType from '../enums/user-type';
@@ -8,7 +9,6 @@ import FileSystemHelper from '../helpers/file-system-helper';
 //This is last resort teardown for citizen users if test execution gets interupted.
 
 const deleteUsers = async (userType: UserType) => {
-  
   try {
     const users = FileSystemHelper.readFile(CitizenUsersHelper.statePaths[userType], FileType.JSON);
     for(const user of users) {
@@ -25,10 +25,12 @@ const deleteUsers = async (userType: UserType) => {
 };
 
 const globalTeardown = async () => {
-  await deleteUsers(UserType.CLAIMANT);
-  await deleteUsers(UserType.DEFENDANT);
-  CitizenUsersHelper.deleteAllUsersState();
-  FileSystemHelper.delete(`${filePaths.userCookies}/`);
+  if(config.skipAuthSetup) {
+    await deleteUsers(UserType.CLAIMANT);
+    await deleteUsers(UserType.DEFENDANT);
+    CitizenUsersHelper.deleteAllUsersState();
+    FileSystemHelper.delete(`${filePaths.userCookies}/`);
+  }
 };
 
 export default globalTeardown;

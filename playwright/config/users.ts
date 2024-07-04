@@ -2,7 +2,7 @@ import CitizenUsersHelper from '../helpers/citizen-users-helper';
 import User from '../types/user';
 import UserRole from '../enums/user-role';
 import UserType from '../enums/user-type';
-import filePaths from './filePaths';
+import filePaths from './file-paths';
 import config from './config';
 
 export const legalAdvisor: User = {

@@ -2,8 +2,7 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData, { ApplicantValue, RespondentValue } from '../../../../types/case-data/ccd-case-data';
-import { cButtons, getCaseTitle } from '../../exui-common-content';
-import ExuiEvent from '../../mixins/event-summary';
+import ExuiEvent from '../../mixins/exui-event/exui-event';
 import { heading, radioButtons, subHeadings, claimantInputs, defendantInputs, links } from './change-contact-details-content';
 
 @AllMethodsStep
@@ -12,7 +11,7 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData){
     await Promise.all([
       super.expectHeading(heading),
-      super.expectHeading(getCaseTitle(caseData)),
+      super.verifyCaseTitle(caseData),
       super.expectLabel(radioButtons.claimant.label, {exact: true}),
       super.expectLabel(radioButtons.defendant.label, {exact: true}),
     ]);
@@ -44,7 +43,7 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
     await super.fill(claimantInputs.addressLine3.value, claimantInputs.addressLine3.selector);
     await super.fill(claimantInputs.city.value, claimantInputs.city.selector);
     await super.fill(claimantInputs.postcode.value, claimantInputs.postcode.selector);
-    await super.clickBySelector(cButtons.submit.selector);
+    await super.clickSubmit();
   }
 
   async clickDefendant() {
@@ -74,13 +73,13 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
     await super.fill(defendantInputs.addressLine3.value, defendantInputs.addressLine3.selector);
     await super.fill(defendantInputs.city.value, defendantInputs.city.selector);
     await super.fill(defendantInputs.postcode.value, defendantInputs.postcode.selector);
-    await super.clickBySelector(cButtons.submit.selector);
+    await super.clickSubmit();
   }
 
   async submitEvent() {
     await super.clickSubmit();
-    await super.fillEventDetails(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
     await super.verifyEventSummaryContent();
+    await super.fillEventDetails(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
     await super.clickSubmit();
   }
 }

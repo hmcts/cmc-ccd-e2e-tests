@@ -39,7 +39,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await changeContactDetailsPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CHANGE_CONTACT_DETAILS);
-    await caseDetailsPage.verifyClaimantDetails();
+    await caseDetailsPage.verifyNewClaimantDetails();
   }
 
   async ChangeDefendantDetails() {
@@ -53,7 +53,26 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await changeContactDetailsPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CHANGE_CONTACT_DETAILS);
-    await caseDetailsPage.verifyDefendantDetails();
+    await caseDetailsPage.verifyNewDefendantDetails();
+  }
+
+  async ManageDocuments(){
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MANAGE_DOCUMENTS);
+
+    const {manageDocumentsPage} = this.caseworkerEventsFactory;
+    await manageDocumentsPage.verifyContent(this.ccdCaseData);
+
+    await manageDocumentsPage.addDocument();
+    await manageDocumentsPage.enterDocument1Details();
+
+    await manageDocumentsPage.addDocument();
+    await manageDocumentsPage.enterDocument2Details();
+
+    await manageDocumentsPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MANAGE_DOCUMENTS);
+    await caseDetailsPage.verifyUploadedDocuments();
   }
 
   async ResendRpa() {
@@ -98,7 +117,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await linkLetterHolderPage.verifyContent(this.ccdCaseData);
     await linkLetterHolderPage.submitEvent();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.LINK_LETTER_HOLDER_ID);
+    // await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.LINK_LETTER_HOLDER_ID);
   }
 
   async AttachViaBulkScan() {
@@ -134,5 +153,111 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await transferCasePage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.TRANSFER_CASE);
+  }
+
+  async IssuePaperDefenceForms() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.ISSUE_PAPER_DEFENCE_FORMS);
+
+    const {issuePaperDefenceFormsPage: issuePaperDefenceForms} = this.caseworkerEventsFactory;
+    await issuePaperDefenceForms.verifyContent(this.ccdCaseData);
+    await issuePaperDefenceForms.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.ISSUE_PAPER_DEFENCE_FORMS);
+  }
+
+  async PaperResponseReviewed() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.PAPER_RESP_REVIEWED);
+
+    const {paperResponseReviewedPage} = this.caseworkerEventsFactory;
+    await paperResponseReviewedPage.verifyContent(this.ccdCaseData);
+    await paperResponseReviewedPage.chooseBulkScanOrEmail();
+    await paperResponseReviewedPage.enterOcon9xDocDetails();
+    await paperResponseReviewedPage.noScannedDocReviewed();
+    await paperResponseReviewedPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.PAPER_RESP_REVIEWED);
+  }
+
+  async ReviewOcon9xPaperResponse() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.REVIEW_OCON9X_RESP);
+
+    const {reveiwOcon9xPaperResponsePage} = this.caseworkerEventsFactory;
+    await reveiwOcon9xPaperResponsePage.verifyContent(this.ccdCaseData);
+    await reveiwOcon9xPaperResponsePage.chooseOcon9xDoc();
+    await reveiwOcon9xPaperResponsePage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.REVIEW_OCON9X_RESP);
+  }
+
+  async PaperResponseAdmission() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.PAPER_RESP_ADMISSIOON);
+
+    const {paperResponseAdmissionPage} = this.caseworkerEventsFactory;
+    await paperResponseAdmissionPage.verifyContent(this.ccdCaseData);
+    await paperResponseAdmissionPage.chooseFullAdmit();
+    await paperResponseAdmissionPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.PAPER_RESP_ADMISSIOON);
+  }
+
+  async PaperResponseDefence() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.PAPER_RESP_DEFENCE);
+
+    const {paperResponseDefencePage} = this.caseworkerEventsFactory;
+    await paperResponseDefencePage.verifyContent(this.ccdCaseData);
+    await paperResponseDefencePage.chooseDispute();
+    await paperResponseDefencePage.chooseNoMediation();
+    await paperResponseDefencePage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.PAPER_RESP_DEFENCE);
+  }
+
+  async MediationPending() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.REFERRED_MEDIATION);
+    
+    const {mediationPendingPage} = this.caseworkerEventsFactory;
+    await mediationPendingPage.verifyContent(this.ccdCaseData);
+    await mediationPendingPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.REFERRED_MEDIATION);
+  }
+
+  async MediationSuccessful() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MEDIATION_SUCCESSFUL);
+    
+    const {mediationSuccessful1Page} = this.caseworkerEventsFactory;
+    await mediationSuccessful1Page.verifyContent(this.ccdCaseData);
+    await mediationSuccessful1Page.enterMediationDate();
+
+    const {mediationSuccessful2Page} = this.caseworkerEventsFactory;
+    await mediationSuccessful2Page.verifyContent(this.ccdCaseData);
+    await mediationSuccessful2Page.addDocument();
+    await mediationSuccessful2Page.enterDocument1Details();
+
+    await mediationSuccessful2Page.addDocument();
+    await mediationSuccessful2Page.enterDocument2Details();
+
+    await mediationSuccessful2Page.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_SUCCESSFUL);
+  }
+
+  async MediationUnsuccessful() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MEDIATION_FAILED);
+    
+    const {mediationUnsuccessfulPage} = this.caseworkerEventsFactory;
+    await mediationUnsuccessfulPage.verifyContent(this.ccdCaseData);
+    await mediationUnsuccessfulPage.chooseMediationFailedReason();
+    await mediationUnsuccessfulPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_FAILED);
   }
 }

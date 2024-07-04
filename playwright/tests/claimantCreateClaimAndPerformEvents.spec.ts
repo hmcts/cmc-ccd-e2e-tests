@@ -1,13 +1,14 @@
-import { claimants, judge } from '../config/users';
 import { test } from '../playwright-fixtures/index';
 
-test.describe('Create claim flow', () => {
-  test('Create claim flow then perform caseworker events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiSteps, CaseworkerEventsSteps}) =>{
-    await IdamSteps.CitizenLogin(claimants);
-    await CreateClaimSteps.CreateClaimDefAsIndividual();
-    await ApiSteps.FetchClaimStoreCaseData();
-    await ApiSteps.FetchCCDCaseData();
-    await IdamSteps.ExuiLogin(judge);
+test.describe('Caseworker events', () => {
+  test('Claimant creates claim and then caseworker performs events', async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiCaseDataSteps, CaseworkerEventsSteps}) =>{
+    await IdamSteps.ClaimantLogin();
+    await CreateClaimSteps.CreateDraftClaim();
+    await CreateClaimSteps.CheckAndSubmit();
+    await CreateClaimSteps.GetClaimReference();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
+    await ApiCaseDataSteps.FetchCCDCaseData();
+    await IdamSteps.JudgeLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.ClaimNotes();
     await CaseworkerEventsSteps.ChangeClaimantDetails();

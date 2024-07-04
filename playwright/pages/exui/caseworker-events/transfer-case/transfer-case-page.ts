@@ -1,10 +1,8 @@
 import { heading, inputs, links, radioButtons } from './transfer-case-content';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import BasePage from '../../../../base/base-page';
-import ExuiEvent from '../../mixins/event-summary';
+import ExuiEvent from '../../mixins/exui-event/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
-import { getCaseTitle } from '../../exui-common-content';
-import { TruthyParams } from '../../../../decorators/truthy-params';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 
 @AllMethodsStep
@@ -13,7 +11,7 @@ export default class TransferCasePage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await Promise.all([
       super.expectHeading(heading),
-      super.expectHeading(getCaseTitle(caseData)),
+      super.verifyCaseTitle(caseData),
     ]);
   }
 
@@ -39,12 +37,12 @@ export default class TransferCasePage extends ExuiEvent(BasePage) {
 
   async chooseTransferOption() {
     await super.clickBySelector(radioButtons.other.selector);
-    await super.expectOptionChecked(radioButtons.other.label);
+    await super.expectOptionChecked(radioButtons.other.selector);
     await super.fill('Some Reason', inputs.otherReason.selector);
-    await super.clickSubmit();
   }
 
   async submitEvent() {
+    await super.clickSubmit();
     await super.fillEventDetails(CaseworkerEvents.TRANSFER_CASE);
     await super.clickSubmit();
   }

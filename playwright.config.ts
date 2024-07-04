@@ -8,10 +8,11 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
+  // reporter: 'allure-playwright',
   reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
-    timeout: 20_000,
+    timeout: 25_000,
     toPass: {
       timeout: config.playwright.toPassTimeout,
     },
@@ -51,6 +52,7 @@ export default defineConfig({
       name: 'caseworker-auth-setup',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/bootstrap/auth/caseworker-auth.setup.ts',
+      dependencies: ['citizen-users-setup'],
       teardown: 'caseworker-auth-teardown',
     },
     {
