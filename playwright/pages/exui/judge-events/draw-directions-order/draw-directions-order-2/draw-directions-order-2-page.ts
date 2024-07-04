@@ -1,6 +1,6 @@
 import BasePage from '../../../../../base/base-page';
 import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
-import ExuiEvent from '../../../mixins/exui-event';
+import ExuiEvent from '../../../mixins/exui-event/exui-event';
 import { heading, radioButtons, checkboxes, subHeadings, legends, buttons, inputs, dropdowns } from './draw-directions-order-2-content';
 
 export default class DrawDirectionsOrder2Page extends ExuiEvent(BasePage){

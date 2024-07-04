@@ -1,6 +1,6 @@
 import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
-import CitizenEvent from '../../../mixins/citizen-events';
+import CitizenEvent from '../../../mixins/citizen-events/citizen-events';
 import { heading, inputs } from './defendant-phone-number-content';
 
 @AllMethodsStep

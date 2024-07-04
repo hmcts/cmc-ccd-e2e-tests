@@ -5,6 +5,10 @@ import ClaimNotesPage from './claim-notes/claim-notes-page';
 import IssuePaperDefenceFormsPage from './issue-paper-defence-forms/issue-paper-defence-forms-page';
 import LinkLetterHolderPage from './link-letter-holder/link-letter-holder-page';
 import ManageDocumentsPage from './manage-documents/manage-documents-page';
+import MediationPendingPage from './mediation-pending/mediation-pending-page';
+import MediationSuccessful1Page from './mediation-successful/mediation-successful-1/mediation-successful-1-page';
+import MediationSuccessful2Page from './mediation-successful/mediation-successful-2/mediation-successful-2-page';
+import MediationUnsuccessfulPage from './mediation-unsuccessful/mediation-unsuccessful-page';
 import PaperResponseAdmissionPage from './paper-response-admission/paper-response-admission-page';
 import PaperResponseDefencePage from './paper-response-defence/paper-response-defence-page';
 import PaperResponseReviewedPage from './paper-response-reviewed/paper-response-reviewed-page';
@@ -75,5 +79,21 @@ export default class CaseworkerEventsFactory extends BasePageFactory{
 
   get paperResponseDefencePage() {
     return new PaperResponseDefencePage(this.page, this.axeBuilder);
+  }
+
+  get mediationPendingPage() {
+    return new MediationPendingPage(this.page, this.axeBuilder);
+  }
+
+  get mediationSuccessful1Page() {
+    return new MediationSuccessful1Page(this.page, this.axeBuilder);
+  }
+
+  get mediationSuccessful2Page() {
+    return new MediationSuccessful2Page(this.page, this.axeBuilder);
+  }
+
+  get mediationUnsuccessfulPage() {
+    return new MediationUnsuccessfulPage(this.page, this.axeBuilder);
   }
 }

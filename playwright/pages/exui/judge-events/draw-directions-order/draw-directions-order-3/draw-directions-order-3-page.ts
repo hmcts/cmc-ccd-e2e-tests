@@ -1,6 +1,6 @@
 import BasePage from '../../../../../base/base-page';
 import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
-import ExuiEvent from '../../../mixins/exui-event';
+import ExuiEvent from '../../../mixins/exui-event/exui-event';
 import { heading } from './draw-directions-order-3-content';
 
 export default class DrawDirectionsOrder3Page extends ExuiEvent(BasePage){

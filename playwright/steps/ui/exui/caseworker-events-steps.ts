@@ -216,4 +216,48 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.PAPER_RESP_DEFENCE);
   }
+
+  async MediationPending() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.REFERRED_MEDIATION);
+    
+    const {mediationPendingPage} = this.caseworkerEventsFactory;
+    await mediationPendingPage.verifyContent(this.ccdCaseData);
+    await mediationPendingPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.REFERRED_MEDIATION);
+  }
+
+  async MediationSuccessful() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MEDIATION_SUCCESSFUL);
+    
+    const {mediationSuccessful1Page} = this.caseworkerEventsFactory;
+    await mediationSuccessful1Page.verifyContent(this.ccdCaseData);
+    await mediationSuccessful1Page.enterMediationDate();
+
+    const {mediationSuccessful2Page} = this.caseworkerEventsFactory;
+    await mediationSuccessful2Page.verifyContent(this.ccdCaseData);
+    await mediationSuccessful2Page.addDocument();
+    await mediationSuccessful2Page.enterDocument1Details();
+
+    await mediationSuccessful2Page.addDocument();
+    await mediationSuccessful2Page.enterDocument2Details();
+
+    await mediationSuccessful2Page.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_SUCCESSFUL);
+  }
+
+  async MediationUnsuccessful() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MEDIATION_FAILED);
+    
+    const {mediationUnsuccessfulPage} = this.caseworkerEventsFactory;
+    await mediationUnsuccessfulPage.verifyContent(this.ccdCaseData);
+    await mediationUnsuccessfulPage.chooseMediationFailedReason();
+    await mediationUnsuccessfulPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_FAILED);
+  }
 }

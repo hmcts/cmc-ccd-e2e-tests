@@ -1,6 +1,6 @@
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import BasePage from '../../../../base/base-page';
-import ExuiEvent from '../../mixins/exui-event';
+import ExuiEvent from '../../mixins/exui-event/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { buttons, heading, subHeadings, doc1Inputs, doc1Dropdowns, doc2Inputs, doc2Dropdowns } from './manage-documents-content';

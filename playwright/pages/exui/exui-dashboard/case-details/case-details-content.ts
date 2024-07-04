@@ -1,4 +1,5 @@
 import ClaimStoreCaseData from '../../../../types/case-data/claim-store-case-data';
+import ExuiEvents from '../../../../types/exui-events';
 
 export const getHeading = (caseData: ClaimStoreCaseData) => `${caseData.referenceNumber} ${caseData.claim.claimants[0].name} Vs ${caseData.claim.defendants[0].name}`;
 
@@ -40,3 +41,12 @@ export const containers = {
     selector: '.EventLogTable',
   },
 };
+
+export const getFormattedClaimNumber = (caseNumber: number) => {
+  const groups = caseNumber.toString().match(/.{1,4}/g);
+  const formattedString = '#' + groups.join('-');
+  return formattedString;
+};
+
+export const getSuccessBannerText = (caseId: number, event: ExuiEvents) => 
+  `Case ${getFormattedClaimNumber(caseId)} has been updated with event: ${event}`;

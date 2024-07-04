@@ -1,4 +1,4 @@
-export const cButtons = {
+export const buttons = {
   submit: {
     title: '',
     selector: 'input[type=submit]',

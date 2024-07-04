@@ -42,6 +42,11 @@ export default class ApiCaseEventSteps extends BaseApiSteps {
     await this.createOpenCase(jddoDisputeAllBothRejectMediation);
   }
 
+  async CreateReferMediationFullDefenceDisputeAllClaim() {
+    const {referMediationFullDefenceDisputeAll} = this.caseDataFactory;
+    await this.createOpenCase(referMediationFullDefenceDisputeAll);
+  }
+
   async ClaimantRejects() {
     const {ccdRequests} = this.requestsFactory;
     await ccdRequests.updateCaseEvent(CaseEvents.CLAIMANT_REJECTS, this.ccdCaseData, claimants[this.workerIndex]);
@@ -51,4 +56,5 @@ export default class ApiCaseEventSteps extends BaseApiSteps {
     const {ccdRequests} = this.requestsFactory;
     await ccdRequests.updateCaseEvent(CaseEvents.ASSIGN_FOR_JUDGE_DIRECTIONS, this.ccdCaseData, claimants[this.workerIndex]);
   }
+
 }

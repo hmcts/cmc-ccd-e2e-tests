@@ -8,6 +8,15 @@ export default class DateHelper {
     return today;
   }
 
+  static subtractFromToday({days = 0, months = 0, years = 0}): Date {
+    const today = new Date();
+    today.setDate(today.getDate() - days);
+    today.setMonth(today.getMonth() - months);
+    today.setFullYear(today.getFullYear() - years);
+
+    return today;
+  }
+
   static getTwoDigitDay(date: Date): string { const day = date.getDate(); return day < 10 ? `0${day}` : `${day}`; }
 
   static getTwoDigitMonth(date: Date): string {

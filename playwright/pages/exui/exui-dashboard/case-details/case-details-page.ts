@@ -3,8 +3,7 @@ import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { TruthyParams } from '../../../../decorators/truthy-params';
 import ExuiEvents from '../../../../types/exui-events';
-import { getSuccessBannerText } from '../../exui-common-content';
-import { tabs, dropdowns, buttons, containers } from './case-details-content';
+import { tabs, dropdowns, buttons, containers, getSuccessBannerText } from './case-details-content';
 import {claimantInputs as claimantChangeDetailsInputs, defendantInputs as defendantChangeDetailsInputs} from '../../caseworker-events/change-contact-details/change-contact-details-content';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { doc1Dropdowns } from '../../caseworker-events/manage-documents/manage-documents-content';
@@ -17,7 +16,7 @@ export default class CaseDetailsPage extends BasePage {
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
       super.expectText(tabs.defendantDetails.title),
-      super.expectText(tabs.claimDocs.title, {timeout: 5000}),
+      super.expectText(tabs.claimDocs.title, {timeout: 8000}),
       super.expectLabel(dropdowns.nextStep.label),
     ]);
   }

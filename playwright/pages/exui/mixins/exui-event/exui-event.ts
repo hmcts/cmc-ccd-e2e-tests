@@ -1,8 +1,8 @@
-import BasePage from '../../../base/base-page';
-import { AllMethodsStep } from '../../../decorators/test-steps';
-import CCDCaseData from '../../../types/case-data/ccd-case-data';
-import ExuiEvents from '../../../types/exui-events';
-import { cButtons, cInputs } from '../exui-common-content';
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import CCDCaseData from '../../../../types/case-data/ccd-case-data';
+import ExuiEvents from '../../../../types/exui-events';
+import { eventInputs, buttons } from './exui-event-content';
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
   
@@ -10,9 +10,9 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
   abstract class ExuiEvent extends Base {
     protected async verifyEventSummaryContent() {
       await Promise.all([
-        super.expectLabel(cInputs.eventSummary.label),
-        super.expectLabel(cInputs.eventSummary.helperText),
-        super.expectLabel(cInputs.eventDescription.label),
+        super.expectLabel(eventInputs.eventSummary.label),
+        super.expectLabel(eventInputs.eventSummary.helperText),
+        super.expectLabel(eventInputs.eventDescription.label),
       ]);
     }
 
@@ -38,12 +38,12 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
     }
 
     protected async fillEventDetails(event: ExuiEvents) {
-      await super.fill(event, cInputs.eventSummary.selector);
-      await super.fill(event, cInputs.eventDescription.selector);
+      await super.fill(event, eventInputs.eventSummary.selector);
+      await super.fill(event, eventInputs.eventDescription.selector);
     }
 
     protected async clickSubmit() {
-      await super.clickBySelector(cButtons.submit.selector);
+      await super.clickBySelector(buttons.submit.selector);
     }
 
     abstract submitEvent(...args: any[]): Promise<void>;
