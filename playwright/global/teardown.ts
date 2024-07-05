@@ -27,7 +27,7 @@ const globalTeardown = async () => {
   await deleteUsers(UserType.CLAIMANT);
   await deleteUsers(UserType.DEFENDANT);
   CitizenUsersHelper.deleteAllUsersState();
-  // FileSystemHelper.delete(`${filePaths.userCookies}/`);
+  FileSystemHelper.delete(`${filePaths.userCookies}/`);
 };
 
 export default globalTeardown;
