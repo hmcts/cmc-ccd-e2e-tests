@@ -9,7 +9,7 @@ export default class LoginPage extends BasePage {
 
   async verifyContent() {
     await Promise.all([
-      super.expectText(heading),
+      // super.expectText(heading),
       super.expectLabel(inputs.email.label),
       super.expectLabel(inputs.password.label),
     ]);

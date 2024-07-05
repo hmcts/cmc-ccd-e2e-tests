@@ -47,6 +47,11 @@ export default class ApiCaseEventSteps extends BaseApiSteps {
     await this.createOpenCase(referMediationFullDefenceDisputeAll);
   }
 
+  async CreateGenerateOrderDisputeAllRejectMediationClaim() {
+    const {generateOrderDisputeAllBothRejectMediation} = this.caseDataFactory;
+    await this.createOpenCase(generateOrderDisputeAllBothRejectMediation);
+  }
+
   async ClaimantRejects() {
     const {ccdRequests} = this.requestsFactory;
     await ccdRequests.updateCaseEvent(CaseEvents.CLAIMANT_REJECTS, this.ccdCaseData, claimants[this.workerIndex]);

@@ -5,12 +5,16 @@ import IdamUser from '../types/idam-user';
 import RequestOptions from '../types/request-options';
 import User from '../types/user';
 import CitizenUsersHelper from '../helpers/citizen-users-helper';
+import FileError from '../errors/file-error';
 
 @AllMethodsStep
 export default class IdamRequests extends BaseRequest {
   
   async createCitizenUsers(users: User[]) {
     const userType = users[0].type;
+    if(CitizenUsersHelper.userStateExists(userType)) {
+      throw new FileError(`Citizen users: ${userType.toUpperCase()} already exists`);
+    }
     if(!users.every(user => user.type === users[0].type)) {
       throw new TypeError(`Users in ${users} must all have the same user type`);
     }
