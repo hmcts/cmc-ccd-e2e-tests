@@ -58,7 +58,7 @@
     "webdriverio": "^6.11.3"
   },
   "resolutions": {
-    "jackspeak": "2.1.1"
+    "jackspeak": "3.4.1"
   },
   "license": "MIT",
   "bugs": {
