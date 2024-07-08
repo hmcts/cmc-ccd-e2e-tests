@@ -114,3 +114,6 @@ dist
 .tern-port
 
 ./functional-output
+
+# Yarn 3 files
+/.yarn
