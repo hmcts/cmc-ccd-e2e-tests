@@ -21,6 +21,16 @@ export default class CaseDetailsPage extends BasePage {
     ]);
   }
 
+  async verifyHwfContent(caseData: CCDCaseData): Promise<void> {
+    await Promise.all([
+      super.expectHeading(caseData.caseName),
+      super.expectText(tabs.claimHistory.title),
+      super.expectText(tabs.claimDetails.title),
+      super.expectText(tabs.defendantDetails.title),
+      super.expectLabel(dropdowns.nextStep.label),
+    ]);
+  }
+
   @TruthyParams()
   async goToCaseDetails(caseId: number) {
     console.log(`Navigating to case with ccd case id: ${caseId}`);

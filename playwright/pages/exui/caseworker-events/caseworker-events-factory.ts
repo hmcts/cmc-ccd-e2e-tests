@@ -18,6 +18,8 @@ import ReviewOcon9xPaperResponsePage from './review-ocon9x-paper-response/review
 import SupportUpdatePage from './support-update/support-update-page';
 import TransferCasePage from './transfer-case/transfer-case-page';
 import WaitingToBeTransferredPage from './waiting-to-be-transferred/waiting-to-be-transferred-page';
+import InvalidHwfNumberPage from './hwf-number-invalid/hwf-number-invalid-page';
+import UpdatedHwfNumberPage from './hwf-number-updated/hwf-number-updated-page';
 
 export default class CaseworkerEventsFactory extends BasePageFactory{
 
@@ -95,5 +97,13 @@ export default class CaseworkerEventsFactory extends BasePageFactory{
 
   get mediationUnsuccessfulPage() {
     return new MediationUnsuccessfulPage(this.page, this.axeBuilder);
+  }
+
+  get invalidHwfNumberPage() {
+    return new InvalidHwfNumberPage(this.page, this.axeBuilder);
+  }
+
+  get updatedHwfNumberPage() {
+    return new UpdatedHwfNumberPage(this.page, this.axeBuilder);
   }
 }

@@ -116,4 +116,10 @@ export default class CreateClaimSteps extends BaseSteps{
     await confirmationPage.verifyContent();
     this.claimStoreCaseData.referenceNumber = await confirmationPage.getClaimRefNumber();
   }
+
+  async GetHwfClaimReference() {
+    const {confirmationPage} = this.createClaimFactory;
+    await confirmationPage.verifyContent();
+    this.ccdCaseData.id = await confirmationPage.getHwfClaimRefNumber();
+  }
 }
