@@ -116,4 +116,4 @@ dist
 ./functional-output
 
 # Yarn 3 files
-/.yarn
+.yarn/
