@@ -75,6 +75,28 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await caseDetailsPage.verifyUploadedDocuments();
   }
 
+  async InvalidHwfNumber(){
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.INVALID_HWF_REF);
+
+    const {invalidHwfNumberPage} = this.caseworkerEventsFactory;
+    await invalidHwfNumberPage.verifyContent(this.ccdCaseData);
+
+    await invalidHwfNumberPage.submitEvent();
+  }
+
+  async UpdateHwfNumber(){
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.UPDATED_HWF_NUM);
+
+    const {updatedHwfNumberPage} = this.caseworkerEventsFactory;
+    await updatedHwfNumberPage.verifyContent(this.ccdCaseData);
+
+    await updatedHwfNumberPage.enterHwfNumber();
+
+    await updatedHwfNumberPage.submitEvent();
+  }
+
   async ResendRpa() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
     await caseDetailsPage.chooseNextStep(CaseworkerEvents.RESEND_RPA);

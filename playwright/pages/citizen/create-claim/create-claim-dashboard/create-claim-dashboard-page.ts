@@ -18,6 +18,10 @@ export default class CreateClaimDashboardPage extends BasePage {
     await super.clickLink(links.theirDetails.title);
   }
 
+  async claimAmount() {
+    await super.clickLink(links.claimAmount.title);
+  }
+
   async checkAndSubmit() {
     await super.clickLink(links.checkAndSubmit.title);
   }

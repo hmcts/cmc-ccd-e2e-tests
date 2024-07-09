@@ -58,6 +58,36 @@ export default class CreateClaimSteps extends BaseSteps{
     await createClaimDashboardPage.checkAndSubmit();
   }
 
+  async ChangeDraftClaimToHwf() {
+    const {navBar} = this.citizenDashboardFactory;
+    await navBar.clickMyAccount();
+
+    const {dashboardPage} = this.citizenDashboardFactory;
+    await dashboardPage.continueClaim();
+
+    const {createClaimDashboardPage} = this.createClaimFactory;
+    await createClaimDashboardPage.verifyContent();
+    await createClaimDashboardPage.claimAmount();
+
+    const {claimAmountPage} = this.createClaimFactory;
+    await claimAmountPage.verifyContent();
+    await claimAmountPage.enterAdditionalAmount();
+
+    const {claimInterestPage} = this.createClaimFactory;
+    await claimInterestPage.verifyContent();
+    await claimInterestPage.selectNoInterest();
+
+    const {helpWithFeesRefPage} = this.createClaimFactory;
+    await helpWithFeesRefPage.verifyContent();
+    await helpWithFeesRefPage.selectYesToHwf();
+
+    const {totalAmountPage} = this.createClaimFactory;
+    await totalAmountPage.verifyContent();
+    await totalAmountPage.clickSaveAndContinueOnTotalAmountPage();
+
+    await createClaimDashboardPage.checkAndSubmit();
+  }
+
   async CheckAndSubmit() {
     const {checkYourAnswersPage} = this.createClaimFactory;
     await checkYourAnswersPage.verifyContent();
@@ -75,9 +105,21 @@ export default class CreateClaimSteps extends BaseSteps{
     await confirmYourPaymentPage.confirm();
   }
 
+  async CheckAndSubmitHwf() {
+    const {checkYourAnswersPage} = this.createClaimFactory;
+    await checkYourAnswersPage.verifyContent();
+    await checkYourAnswersPage.checkAndSubmit();
+  }
+
   async GetClaimReference() {
     const {confirmationPage} = this.createClaimFactory;
     await confirmationPage.verifyContent();
     this.claimStoreCaseData.referenceNumber = await confirmationPage.getClaimRefNumber();
+  }
+
+  async GetHwfClaimReference() {
+    const {confirmationPage} = this.createClaimFactory;
+    await confirmationPage.verifyContent();
+    this.ccdCaseData.id = await confirmationPage.getHwfClaimRefNumber();
   }
 }
