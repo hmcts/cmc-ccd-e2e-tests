@@ -1,16 +1,16 @@
 import { test } from '../playwright-fixtures/index';
 
-test.describe('Help With Fees actions @debug', async () => {
+test.describe('Help With Fees actions', async () => {
   test('Claimant creates claim, caseworker performs Manage Documents action', async({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiCaseDataSteps, CaseworkerEventsSteps}) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimToHwf();
     await CreateClaimSteps.CheckAndSubmitHwf();
-    await CreateClaimSteps.GetHwfClaimReference();
-    await ApiCaseDataSteps.FetchHwfCCDCaseData();
+    await CreateClaimSteps.GetClaimReferenceHwf();
+    await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.JudgeLogin();
-    await ExuiDashboardSteps.GoToHwfCaseDetails();
-    await CaseworkerEventsSteps.UpdateHwfNumber(); // change
+    await ExuiDashboardSteps.GoToCaseDetails();
+    await CaseworkerEventsSteps.UpdateHwfNumber();
     await CaseworkerEventsSteps.InvalidHwfNumber();
   });
 });

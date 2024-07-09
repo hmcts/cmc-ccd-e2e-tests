@@ -63,12 +63,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     const {manageDocumentsPage} = this.caseworkerEventsFactory;
     await manageDocumentsPage.verifyContent(this.ccdCaseData);
 
-    await manageDocumentsPage.addDocument();
     await manageDocumentsPage.enterDocumentDetais();
-
-    await manageDocumentsPage.addDocument();
-    await manageDocumentsPage.enterDocument2Details();
-
     await manageDocumentsPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MANAGE_DOCUMENTS);
@@ -81,8 +76,9 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
     const {invalidHwfNumberPage} = this.caseworkerEventsFactory;
     await invalidHwfNumberPage.verifyContent(this.ccdCaseData);
-
     await invalidHwfNumberPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.INVALID_HWF_REF);
   }
 
   async UpdateHwfNumber(){
@@ -91,10 +87,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
     const {updatedHwfNumberPage} = this.caseworkerEventsFactory;
     await updatedHwfNumberPage.verifyContent(this.ccdCaseData);
-
     await updatedHwfNumberPage.enterHwfNumber();
-
     await updatedHwfNumberPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.UPDATED_HWF_NUM);
   }
 
   async ResendRpa() {
@@ -260,12 +256,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
     const {mediationSuccessful2Page} = this.caseworkerEventsFactory;
     await mediationSuccessful2Page.verifyContent(this.ccdCaseData);
-    await mediationSuccessful2Page.addDocument();
-    await mediationSuccessful2Page.enterDocument1Details();
-
-    await mediationSuccessful2Page.addDocument();
-    await mediationSuccessful2Page.enterDocument2Details();
-
+    await mediationSuccessful2Page.enterDocumentDetais();
     await mediationSuccessful2Page.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_SUCCESSFUL);

@@ -46,4 +46,27 @@ export default class JudgeEventsSteps extends BaseSteps {
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.PROVIDE_DIRECTIONS);
   }
 
+  async ReviewOrder() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(JudgeEvents.REVIEW_ORDER);
+    
+    const {reviewOrderPage} = this.judgeEventsFactory;
+    await reviewOrderPage.verifyContent(this.ccdCaseData);
+    await reviewOrderPage.reviewOrder();
+    await reviewOrderPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.REVIEW_ORDER);
+  }
+
+  async ApproveDirectionsOrder() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(JudgeEvents.APPROVE_DIRECTIONS_ORDER);
+    
+    const {approveDirectionsOrderPage} = this.judgeEventsFactory;
+    await approveDirectionsOrderPage.verifyContent(this.ccdCaseData);
+    await approveDirectionsOrderPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.APPROVE_DIRECTIONS_ORDER);
+  }
+
 }

@@ -1,8 +1,5 @@
 enum CaseworkerEvents {
     LIFT_STAY = 'Lift Stay',
-    REVIEW_ORDER = 'Review Order',
-    ACTION_REVIEW_COMMENTS = 'Action review comments',
-    APPROVE_DIRECTIONS_ORDER = 'Approve direction\'s order',
     REFERRED_MEDIATION = 'Mediation pending',
     MANAGE_DOCUMENTS = 'Manage Documents',
     MEDIATION_SUCCESSFUL = 'Mediation successful',

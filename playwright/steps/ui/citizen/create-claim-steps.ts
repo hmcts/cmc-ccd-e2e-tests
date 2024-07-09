@@ -83,7 +83,7 @@ export default class CreateClaimSteps extends BaseSteps{
 
     const {totalAmountPage} = this.createClaimFactory;
     await totalAmountPage.verifyContent();
-    await totalAmountPage.clickSaveAndContinueOnTotalAmountPage();
+    await totalAmountPage.saveAndContinue();
 
     await createClaimDashboardPage.checkAndSubmit();
   }
@@ -117,9 +117,9 @@ export default class CreateClaimSteps extends BaseSteps{
     this.claimStoreCaseData.referenceNumber = await confirmationPage.getClaimRefNumber();
   }
 
-  async GetHwfClaimReference() {
+  async GetClaimReferenceHwf() {
     const {confirmationPage} = this.createClaimFactory;
     await confirmationPage.verifyContent();
-    this.ccdCaseData.id = await confirmationPage.getHwfClaimRefNumber();
+    this.claimStoreCaseData.id = await confirmationPage.getHwfClaimRefNumber();
   }
 }

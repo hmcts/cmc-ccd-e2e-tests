@@ -164,6 +164,11 @@ export default abstract class BasePage {
     await pageExpect(this.page.locator(selector)).toHaveValue(text, options);
   }
 
+  @TruthyParams('selector', 'option')
+  protected async expectDropdownOption(selector: string, option: string, options?: {timeout?: number}) {
+    await pageExpect(this.page.locator(selector)).toHaveText(option, options);
+  }
+
   @TruthyParams('text', 'selector')
   protected async expectTableRowValue(text: string, selector: string, options: {rowNum: number, timeout?: number, tableName?: string} = {rowNum: 0}) {
     await pageExpect(this.page.locator(`${selector} >> tr`)

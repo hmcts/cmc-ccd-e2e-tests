@@ -16,17 +16,6 @@ export default class CaseDetailsPage extends BasePage {
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
       super.expectText(tabs.defendantDetails.title),
-      // super.expectText(tabs.claimDocs.title, {timeout: 8000}),
-      super.expectLabel(dropdowns.nextStep.label),
-    ]);
-  }
-
-  async verifyHwfContent(caseData: CCDCaseData): Promise<void> {
-    await Promise.all([
-      super.expectHeading(caseData.caseName),
-      super.expectText(tabs.claimHistory.title),
-      super.expectText(tabs.claimDetails.title),
-      super.expectText(tabs.defendantDetails.title),
       super.expectLabel(dropdowns.nextStep.label),
     ]);
   }
