@@ -1,7 +1,5 @@
 enum CaseworkerEvents {
     LIFT_STAY = 'Lift Stay',
-    PROVIDE_DIRECTIONS = 'Provide Directions',
-    GENERATE_ORDER = 'Generate Order',
     REVIEW_ORDER = 'Review Order',
     ACTION_REVIEW_COMMENTS = 'Action review comments',
     APPROVE_DIRECTIONS_ORDER = 'Approve direction\'s order',

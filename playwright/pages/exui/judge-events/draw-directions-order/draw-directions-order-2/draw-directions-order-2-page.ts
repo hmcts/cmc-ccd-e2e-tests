@@ -1,40 +1,31 @@
+import AxeBuilder from '@axe-core/playwright';
 import BasePage from '../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
-import ExuiEvent from '../../../mixins/exui-event/exui-event';
-import { heading, radioButtons, checkboxes, subHeadings, legends, buttons, inputs, dropdowns } from './draw-directions-order-2-content';
+import ExuiEvent from '../../../exui-event/exui-event';
+import SdoFragment from '../../../fragments/sdo/sdo-fragment';
+import { heading } from './draw-directions-order-2-content';
+import { Page } from 'playwright-core';
 
+@AllMethodsStep
 export default class DrawDirectionsOrder2Page extends ExuiEvent(BasePage){
+  private sdoFragment: SdoFragment;
+
+  constructor(sdoFragment: SdoFragment, page: Page, axeBuilder: AxeBuilder) {
+    super(page, axeBuilder);
+    this.sdoFragment = sdoFragment;
+  }
+
   async verifyContent(caseData: CCDCaseData) {
     await Promise.all([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
-      super.expectOptionChecked(checkboxes.sendDocs.selector),
-      super.expectOptionChecked(checkboxes.sendWitness.selector),
-      super.expectOptionChecked(radioButtons.docsBothParties.selector),
-      super.expectOptionChecked(radioButtons.witnessesBothParties.selector),
-      super.expectSubHeading(subHeadings.addExtraDoc),
-      super.expectText(legends.directions),
-      super.expectText(legends.docUploadParty),
-      super.expectText(legends.docsDeadline),
-      super.expectText(legends.experts),
-      super.expectText(legends.witnessesDeadline),
+      this.sdoFragment.verifyContent(),
     ]);
   }
 
   async enterSdoDetails() {
-    await super.clickBySelector(buttons.addNewExtraDocInstruction.selector);
-    await super.fill('Test', inputs.extraDocUpload.selector);
-    await super.clickBySelector(radioButtons.yesExpert.selector);
-    await super.fill('Test', inputs.expertReport.selector);
-    await super.clickBySelector(buttons.addDirection.selector);
-    await super.selectFromDropdown(dropdowns.extraDirection.options[0], dropdowns.extraDirection.selector);
-    await super.expectLabel(dropdowns.directionParty.label);
-    // await super.expectSubHeading(subHeadings.sendDocsInstructions);
-    await super.selectFromDropdown(dropdowns.directionParty.options[2], dropdowns.directionParty.selector); 
-    await super.clickBySelector(buttons.addNewOtherDirectionsExtraDocInstruction.selector);
-    await super.fill('Test', inputs.otherDirectionsExtraDocUpload.selector);
-    await super.selectFromDropdown(dropdowns.hearingCourt.options[0], dropdowns.hearingCourt.selector);
-    await super.selectFromDropdown(dropdowns.hearingDuration.options[0], dropdowns.hearingDuration.selector);
+    this.sdoFragment.enterSdoDetails();
     await super.clickSubmit();
   }
 

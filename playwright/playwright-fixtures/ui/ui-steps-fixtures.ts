@@ -7,6 +7,7 @@ import { test as base } from './page-factory-fixtures';
 import ClaimantResponseSteps from '../../steps/ui/citizen/claimant-response-steps';
 import DefendantResponseSteps from '../../steps/ui/citizen/defendant-response-steps';
 import JudgeEventsSteps from '../../steps/ui/exui/judge-events-steps';
+import LegalAdvisorEventsSteps from '../../steps/ui/exui/legal-advisor-events-steps';
 
 type UiStepsFixtures = {
   IdamSteps: IdamSteps;
@@ -17,6 +18,7 @@ type UiStepsFixtures = {
   DefendantResponseSteps: DefendantResponseSteps;
   ClaimantResponseSteps: ClaimantResponseSteps;
   JudgeEventsSteps: JudgeEventsSteps;
+  LegalAdvisorEventsSteps: LegalAdvisorEventsSteps;
 };
 
 export const test = base.extend<UiStepsFixtures>({
@@ -43,5 +45,8 @@ export const test = base.extend<UiStepsFixtures>({
   },
   JudgeEventsSteps: async ({_judgeEventsFactory ,_exuiDashboardFactory, _testData}, use: (arg0: JudgeEventsSteps) => any) => {
     await use(new JudgeEventsSteps(_judgeEventsFactory, _exuiDashboardFactory, _testData));
+  },
+  LegalAdvisorEventsSteps: async ({_legalAdvisorEventsFactory, _exuiDashboardFactory, _testData}, use: (arg0: LegalAdvisorEventsSteps) => any) => {
+    await use(new LegalAdvisorEventsSteps(_legalAdvisorEventsFactory, _exuiDashboardFactory, _testData));
   },
 });

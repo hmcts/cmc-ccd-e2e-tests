@@ -35,4 +35,15 @@ export default class JudgeEventsSteps extends BaseSteps {
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
   }
 
+  async ProvideDirections() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(JudgeEvents.PROVIDE_DIRECTIONS);
+
+    const {provideDirectionsPage} = this.judgeEventsFactory;
+    await provideDirectionsPage.verifyContent(this.ccdCaseData);
+    await provideDirectionsPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.PROVIDE_DIRECTIONS);
+  }
+
 }

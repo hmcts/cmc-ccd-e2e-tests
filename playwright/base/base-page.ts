@@ -5,6 +5,7 @@ import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
 import { pageExpect } from '../playwright-fixtures';
 import Timer from '../helpers/timer';
+import { getDomain } from '../config/urls';
 
 export default abstract class BasePage {
   private page: Page;
@@ -45,10 +46,14 @@ export default abstract class BasePage {
 
   @TruthyParams()
   protected async goTo(url: string) {
-    if(this.page.url() !== url) {
-      await this.page.goto(url);
-    }
-  } 
+    await this.page.goto(url);
+  }
+  
+  protected async isDomain(url: string) {
+    const currentDomain = getDomain(this.page.url());
+    const urlDomain = getDomain(url);
+    return urlDomain === currentDomain;
+  }
 
   protected async clickByText(text: string) {
     await this.page.getByText(text).click();

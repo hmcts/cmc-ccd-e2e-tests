@@ -2,7 +2,7 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData, { ApplicantValue, RespondentValue } from '../../../../types/case-data/ccd-case-data';
-import ExuiEvent from '../../mixins/exui-event/exui-event';
+import ExuiEvent from '../../exui-event/exui-event';
 import { heading, radioButtons, subHeadings, claimantInputs, defendantInputs, links } from './change-contact-details-content';
 
 @AllMethodsStep

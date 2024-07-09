@@ -1,4 +1,5 @@
 import BasePageFactory from '../../../base/base-page-factory';
+import StaffDocumentsFragment from '../fragments/staff-documents/staff-documents-fragment';
 import AttachViaBulkScanPage from './attach-via-bulk-scan/attach-via-bulk-scan-page';
 import ChangeContactDetailsPage from './change-contact-details/change-contact-details-page';
 import ClaimNotesPage from './claim-notes/claim-notes-page';
@@ -60,7 +61,8 @@ export default class CaseworkerEventsFactory extends BasePageFactory{
   }
 
   get manageDocumentsPage() {
-    return new ManageDocumentsPage(this.page, this.axeBuilder);
+    const staffDocumentsFragment = new StaffDocumentsFragment(this.page, this.axeBuilder);
+    return new ManageDocumentsPage(staffDocumentsFragment, this.page, this.axeBuilder);
   }
 
   get issuePaperDefenceFormsPage() {
@@ -92,7 +94,8 @@ export default class CaseworkerEventsFactory extends BasePageFactory{
   }
 
   get mediationSuccessful2Page() {
-    return new MediationSuccessful2Page(this.page, this.axeBuilder);
+    const staffDocumentsFragment = new StaffDocumentsFragment(this.page, this.axeBuilder);
+    return new MediationSuccessful2Page(staffDocumentsFragment, this.page, this.axeBuilder);
   }
 
   get mediationUnsuccessfulPage() {

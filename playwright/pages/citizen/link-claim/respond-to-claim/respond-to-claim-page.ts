@@ -1,7 +1,7 @@
 import BasePage from '../../../../base/base-page';
 import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
-import CitizenEvent from '../../mixins/citizen-events/citizen-events';
+import CitizenEvent from '../../citizen-event/citizen-event';
 import { buttons, heading, paragraphs, subHeadings } from './respond-to-claim-content';
 
 @AllMethodsStep

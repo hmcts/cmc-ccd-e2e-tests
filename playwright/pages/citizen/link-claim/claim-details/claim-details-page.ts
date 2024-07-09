@@ -1,5 +1,5 @@
 import BasePage from '../../../../base/base-page';
-import CitizenEvent from '../../mixins/citizen-events/citizen-events';
+import CitizenEvent from '../../citizen-event/citizen-event';
 import { buttons, heading, paragraphs } from './claim-details-content';
 
 export default class ClaimDetailsPage extends CitizenEvent(BasePage) {

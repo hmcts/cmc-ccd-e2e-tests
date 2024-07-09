@@ -64,7 +64,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await manageDocumentsPage.verifyContent(this.ccdCaseData);
 
     await manageDocumentsPage.addDocument();
-    await manageDocumentsPage.enterDocument1Details();
+    await manageDocumentsPage.enterDocumentDetais();
 
     await manageDocumentsPage.addDocument();
     await manageDocumentsPage.enterDocument2Details();
