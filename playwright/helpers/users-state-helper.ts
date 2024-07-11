@@ -49,7 +49,7 @@ export default class UserStateHelper {
     let users: User[];
     try {
       users = FileSystemHelper.readFile(this.statePaths[userType], FileType.JSON);
-      return users
+      return users;
     } catch {
       return null;
     }

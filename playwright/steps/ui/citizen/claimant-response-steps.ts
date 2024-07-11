@@ -18,7 +18,7 @@ export default class ClaimantResponseSteps extends ResponseSteps {
   ) {
     super(responseFactory, testData);
     this.breathingSpaceFactory = breathingSpaceFactory;
-    this.citizenDashboardFactory = citizenDashboardFactory
+    this.citizenDashboardFactory = citizenDashboardFactory;
   }
 
   async EnterBreathingSpace() {

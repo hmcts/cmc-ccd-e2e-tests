@@ -32,9 +32,8 @@ export default class GenerateOrder2Page extends ExuiEvent(BasePage){
     await super.clickSubmit();
   }
 
-
   async submitEvent() {
-    await super.verifyEventSummaryContent()
+    await super.verifyEventSummaryContent();
     await super.fillEventDetails(LegalAdvisorEvents.GENERATE_ORDER);
     await super.clickSubmit();
   }

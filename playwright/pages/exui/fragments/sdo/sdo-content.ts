@@ -117,7 +117,7 @@ export const inputs = {
   otherDirectionsExtraDocUpload: {
     label: '',
     selector: '#otherDirections_0_extraDocUploadList_value',
-    value: 'Test'
+    value: 'Test',
   },
   expertReport: {
     label: 'Direction regarding expert',

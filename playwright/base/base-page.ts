@@ -46,7 +46,7 @@ export default abstract class BasePage {
 
   @TruthyParams('url')
   protected async goTo(url: string,  options: {force?: boolean} = {}) {
-    const {origin, pathname} = new URL(this.page.url())
+    const {origin, pathname} = new URL(this.page.url());
     if(`${origin}${pathname}` !== url || options.force) {
       await this.page.goto(url);
     }
@@ -232,7 +232,7 @@ export default abstract class BasePage {
       () => this.clickBySelector(selector), 
       expects, 
       'Click action failed, trying again', 
-      {retries}
+      {retries},
     );
   }
 
@@ -241,7 +241,7 @@ export default abstract class BasePage {
       () => this.reload(), 
       expects, 
       'Assertion failed, reloading page and trying again', 
-      {retries, assertFirst: true}
+      {retries, assertFirst: true},
     );
   }
 

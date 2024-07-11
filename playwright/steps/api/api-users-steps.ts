@@ -32,7 +32,6 @@ export default class ApiUsersSteps extends BaseApiSteps {
     UserStateHelper.addUsersToState(users);
   }
 
-
   @Step
   async DeleteCitizenUsers(users: User[]) {
     const {idamRequests} = super.requestsFactory;
@@ -43,7 +42,7 @@ export default class ApiUsersSteps extends BaseApiSteps {
   private async setupUser(user: User) {
     const {idamRequests} = super.requestsFactory;
     const accessToken = await idamRequests.getAccessToken(user);
-    user.accessToken = accessToken
+    user.accessToken = accessToken;
     const userId = await idamRequests.getUserId(user);
     user.userId = userId;
   }

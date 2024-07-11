@@ -1,4 +1,4 @@
-export const heading = 'Do you have a Debt Respite Scheme reference number?'
+export const heading = 'Do you have a Debt Respite Scheme reference number?';
 
 export const inputs = {
   refNum: {

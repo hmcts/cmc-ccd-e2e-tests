@@ -1,7 +1,7 @@
-import BasePage from "../../../../base/base-page";
-import { AllMethodsStep } from "../../../../decorators/test-steps";
-import DateHelper from "../../../../helpers/date-helper";
-import CitizenEvent from "../../citizen-event/citizen-event";
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import DateHelper from '../../../../helpers/date-helper';
+import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, inputs, paragraphs } from './respite-start-content';
 
 @AllMethodsStep

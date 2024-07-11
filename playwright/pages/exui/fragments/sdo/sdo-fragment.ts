@@ -1,6 +1,6 @@
-import BasePage from "../../../../base/base-page";
-import ExuiEvent from "../../exui-event/exui-event";
-import { legends, checkboxes, radioButtons, buttons, dropdowns, inputs, subHeadings } from "./sdo-content";
+import BasePage from '../../../../base/base-page';
+import ExuiEvent from '../../exui-event/exui-event';
+import { legends, checkboxes, radioButtons, buttons, dropdowns, inputs, subHeadings } from './sdo-content';
 
 export default class SdoFragment extends ExuiEvent(BasePage) {
   
@@ -32,7 +32,7 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
       super.expectInputValue(inputs.otherDirectionsExtraDocUpload.selector, inputs.otherDirectionsExtraDocUpload.value),
       // super.expectDropdownOption(dropdowns.hearingCourt.selector, dropdowns.hearingCourt.options[0]),
       // super.expectDropdownOption(dropdowns.hearingDuration.selector, dropdowns.hearingDuration.options[0])
-    ])
+    ]);
   }
 
   async enterSdoDetails() {
@@ -52,6 +52,6 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
   }
 
   async submitEvent() {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }

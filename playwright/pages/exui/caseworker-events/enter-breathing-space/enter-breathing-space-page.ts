@@ -23,7 +23,7 @@ export default class EnterBreathingSpacePage extends ExuiEvent(BasePage) {
       super.expectLabel(radioButtons.standardBreathingSpace.label),
       super.expectLabel(radioButtons.mentalHealth.label),
       super.expectText(inputs.respiteEnd.label),
-    ])
+    ]);
   }
 
   async enterBreathingSpaceDetails() {
@@ -37,7 +37,7 @@ export default class EnterBreathingSpacePage extends ExuiEvent(BasePage) {
     await super.retryClick(
       radioButtons.standardBreathingSpace.selector, 
       () => super.expectOptionChecked(radioButtons.standardBreathingSpace.selector, {timeout: 1000}),
-    )
+    );
 
     const endDate = DateHelper.addToToday({months: 1});
     await super.fill(endDate.getDate(), inputs.respiteEnd.day.selector);

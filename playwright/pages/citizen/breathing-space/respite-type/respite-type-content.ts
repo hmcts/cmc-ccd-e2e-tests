@@ -1,4 +1,4 @@
-export const heading = 'What type is it'
+export const heading = 'What type is it';
 
 export const radioButtons = {
   standard: {

@@ -8,8 +8,8 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
-  reporter: 'allure-playwright',
-  // reporter: process.env.CI ? 'html' : 'list',
+  // reporter: 'allure-playwright',
+  reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
     timeout: 30_000,
@@ -23,40 +23,40 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
     launchOptions: {
-      slowMo: !process.env.CI ? 500 : undefined,
+      slowMo: !process.env.CI ? 500 : 200,
     },
   },
   projects: [
     {
-      name: 'citizen-users-teardown',
-      testMatch: '**playwright/tests/bootstrap/users/citizen-users.teardown.ts',
-    },
-    {
-      name: 'citizen-users-setup',
+      name: '#1-citizen-users-setup',
       testMatch: '**playwright/tests/bootstrap/users/citizen-users.setup.ts',
-      teardown: 'citizen-users-teardown',
+      teardown: '#5-citizen-users-teardown',
     },
     {
-      name: 'user-data-setup',
+      name: '#2-user-data-setup',
       testMatch: '**playwright/tests/bootstrap/users/user-data.setup.ts',
-      dependencies: ['citizen-users-setup'],
+      dependencies: ['#1-citizen-users-setup'],
     },
     {
-      name: 'user-auth-setup',
+      name: '#3-user-auth-setup',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/bootstrap/auth/**.setup.ts',
-      dependencies: ['user-data-setup'],
-      teardown: 'user-auth-teardown',
+      dependencies: ['#2-user-data-setup'],
+      teardown: '#4-user-auth-teardown',
     },
     {
-      name: 'user-auth-teardown',
+      name: '#4-user-auth-teardown',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/bootstrap/auth/**.teardown.ts',
     },
     {
+      name: '#5-citizen-users-teardown',
+      testMatch: '**playwright/tests/bootstrap/users/citizen-users.teardown.ts',
+    },
+    {
       name: 'full-functional',
       use: {...devices['Desktop Chrome']  },
-      dependencies: ['user-auth-setup', 'user-auth-setup'],
+      dependencies: ['#3-user-auth-setup'],
     },
   ],
 });

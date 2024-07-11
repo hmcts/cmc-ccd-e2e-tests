@@ -31,7 +31,6 @@ export default class ActionReviewComments2Page extends ExuiEvent(BasePage){
     await super.clickSubmit();
   }
 
-
   async submitEvent() {
     await super.verifyEventSummaryContent();
     await super.fillEventDetails(LegalAdvisorEvents.ACTION_REVIEW_COMMENTS);

@@ -2,9 +2,9 @@ import config from '../../../config/config';
 import { caseworker, claimants, defendants, judge, legalAdvisor } from '../../../config/users';
 import { test as setup } from '../../../playwright-fixtures/index';
 
-setup.describe(`Setting up user data`, () => {
+setup.describe('Setting up user data', () => {
   setup.describe.configure({mode: 'parallel'});
-  if(!config.skipCitizenSetup) {
+  if(config.skipCitizenSetup) {
     setup('Claimant(s)', async ({ApiUsersSteps}) => {
       await ApiUsersSteps.SetupUsersData(claimants);
     });

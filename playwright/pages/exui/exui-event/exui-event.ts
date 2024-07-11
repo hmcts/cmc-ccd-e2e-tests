@@ -23,7 +23,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
         () => super.uploadFile(filePath, selector), 
         () => super.waitForSelectorToDetach('span.error-message', {timeout}), 
         'Uploading document failed, trying again...', 
-        {retries}
+        {retries},
       );
     }
 

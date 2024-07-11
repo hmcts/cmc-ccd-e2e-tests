@@ -26,7 +26,6 @@ export default class DrawDirectionsOrderPage extends ExuiEvent(BasePage){
     ]);
   }
 
-
   async submitEvent() {
     await super.clickSubmit();
     await super.verifyEventSummaryContent();

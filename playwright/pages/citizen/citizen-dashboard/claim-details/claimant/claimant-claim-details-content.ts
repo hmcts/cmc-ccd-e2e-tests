@@ -19,5 +19,5 @@ export const links = {
   claimSettled: {
     title: 'Tell us you’ve settled',
     selector: '',
-  }
+  },
 };

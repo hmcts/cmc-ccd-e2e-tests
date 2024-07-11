@@ -6,7 +6,6 @@ import ExuiEvent from '../../exui-event/exui-event';
 import DateHelper from '../../../../helpers/date-helper';
 import { heading, inputs } from './lift-breathing-space-content';
 
-
 @AllMethodsStep
 export default class LiftBreathingSpacePage extends ExuiEvent(BasePage) {
 

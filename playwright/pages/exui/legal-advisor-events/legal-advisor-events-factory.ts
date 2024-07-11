@@ -7,7 +7,6 @@ import DrawDirectionsOrderPage from './draw-directions-order/draw-directions-ord
 import GenerateOrder1Page from './generate-order/generate-order-1/generate-order-1-page';
 import GenerateOrder2Page from './generate-order/generate-order-2/generate-order-2-page';
 
-
 export default class LegalAdvisorEventsFactory extends BasePageFactory {
   get generateOrder1Page() {
     const sdoFragment = new SdoFragment(this.page, this.axeBuilder);

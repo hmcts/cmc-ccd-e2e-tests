@@ -66,7 +66,7 @@ export default class IdamRequests extends BaseRequest {
   }
 
   async getUserId({accessToken, email}: User): Promise<string> {
-    console.log(`Fetching User ID for user: ${email}`)
+    console.log(`Fetching User ID for user: ${email}`);
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/o/userinfo`,
       headers: {

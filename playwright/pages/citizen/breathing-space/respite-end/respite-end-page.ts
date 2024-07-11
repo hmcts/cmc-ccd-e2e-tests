@@ -1,9 +1,8 @@
-import BasePage from "../../../../base/base-page";
-import { AllMethodsStep } from "../../../../decorators/test-steps";
-import DateHelper from "../../../../helpers/date-helper";
-import CitizenEvent from "../../citizen-event/citizen-event";
-import { paragraphs, heading, inputs } from "./respite-end-content";
-
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import DateHelper from '../../../../helpers/date-helper';
+import CitizenEvent from '../../citizen-event/citizen-event';
+import { paragraphs, heading, inputs } from './respite-end-content';
 
 @AllMethodsStep
 export default class RespiteEndPage extends CitizenEvent(BasePage){

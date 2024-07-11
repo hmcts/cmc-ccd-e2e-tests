@@ -6,13 +6,11 @@ import ExuiEvent from '../../exui-event/exui-event';
 
 export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
   
-  
   async verifyContent() {
     await Promise.all([
       super.expectSubHeading(subHeadings.staffUploadedDocs),
     ]);
   }
-
 
   async addDocument() {
     await super.clickBySelector(buttons.addNewTop.selector);
@@ -58,6 +56,6 @@ export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
   }
 
   async submitEvent() {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }

@@ -15,7 +15,7 @@ test.describe('Breathing Space', () => {
     await ExuiDashboardSteps.GoToCaseDetails();
     // await CaseworkerEventsSteps.VerifyBreathingSpace();
     // await CaseworkerEventsSteps.LiftBreathingSpace();
-  })
+  });
 
   test('Caseworker enters breathing space and lifts breathing space', async ({IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps}) => {
     await IdamSteps.ClaimantLogin();
@@ -29,7 +29,7 @@ test.describe('Breathing Space', () => {
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.EnterBreathingSpace();
     await CaseworkerEventsSteps.LiftBreathingSpace();
-  })
+  });
 
   test('Caseworker cannot enter breathing space when case handed to CCBC', async ({IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps}) => {
     await IdamSteps.ClaimantLogin();
@@ -43,5 +43,5 @@ test.describe('Breathing Space', () => {
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.CaseHandedToCCBC();
     await CaseworkerEventsSteps.EnterBreathingSpaceError();
-  })
-})
+  });
+});

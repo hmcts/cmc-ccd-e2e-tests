@@ -1,4 +1,4 @@
-import CCDCaseData from "../../../../../types/case-data/ccd-case-data";
+import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
 
 export const heading = 'Generate Order';
 

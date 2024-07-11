@@ -1,6 +1,6 @@
-import BasePage from "../../../../base/base-page";
-import { AllMethodsStep } from "../../../../decorators/test-steps";
-import CitizenEvent from "../../citizen-event/citizen-event";
+import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
+import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, radioButtons } from './respite-type-content';
 
 @AllMethodsStep
