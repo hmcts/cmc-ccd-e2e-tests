@@ -1,18 +1,16 @@
 import BasePage from '../../../base/base-page';
-import { AllMethodsStep } from '../../../decorators/test-steps';
 import CCDCaseData from '../../../types/case-data/ccd-case-data';
 import ExuiEvents from '../../../types/exui-events';
 import { eventInputs, buttons } from './exui-event-content';
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
   
-  @AllMethodsStep
   abstract class ExuiEvent extends Base {
-    protected async verifyEventSummaryContent() {
+    protected async verifyEventSummaryContent(options: {timeout: number} = {timeout: 0}) {
       await Promise.all([
-        super.expectLabel(eventInputs.eventSummary.label),
-        super.expectLabel(eventInputs.eventSummary.helperText),
-        super.expectLabel(eventInputs.eventDescription.label),
+        super.expectLabel(eventInputs.eventSummary.label, options),
+        super.expectLabel(eventInputs.eventSummary.helperText, options),
+        super.expectLabel(eventInputs.eventDescription.label, options),
       ]);
     }
 
@@ -21,19 +19,12 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
     }
 
     protected async uploadFile(filePath: string, selector: string, retries = 3, timeout = 5000) {
-      while(retries > 0) {
-        try {
-          await super.uploadFile(filePath, selector);
-          await super.waitForSelectorToDetach('span.error-message', {timeout});
-          break;
-        } catch (error) {
-          retries--;
-          console.log('\n' + '-'.repeat(100));
-          if(retries <= 0) throw error;
-          console.log('Uploading document again');
-          console.log(`Retries: ${retries} remaining`);
-        }
-      }
+      await this.retryAction(
+        () => super.uploadFile(filePath, selector), 
+        () => super.waitForSelectorToDetach('span.error-message', {timeout}), 
+        'Uploading document failed, trying again...', 
+        {retries}
+      );
     }
 
     protected async fillEventDetails(event: ExuiEvents) {
@@ -41,8 +32,12 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
       await super.fill(event, eventInputs.eventDescription.selector);
     }
 
-    protected async clickSubmit() {
-      await super.clickBySelector(buttons.submit.selector);
+    protected async clickSubmit(options: {count?: number} = {}) {
+      await super.clickBySelector(buttons.submit.selector, options);
+    }
+
+    protected async retryClickSubmit(expect: () => Promise<void>) {
+      await super.retryClick(buttons.submit.selector, expect);
     }
 
     abstract submitEvent(...args: any[]): Promise<void>;

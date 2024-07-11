@@ -1,6 +1,6 @@
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
-import ResponseFactory from '../../../pages/citizen/response/common/response-factory';
+import ResponseFactory from '../../../pages/citizen/response/response/response-factory';
 import TestData from '../../../types/test-data';
 
 @AllMethodsStep

@@ -1,12 +1,11 @@
-import { AllMethodsStep } from '../../decorators/test-steps';
+import { Step } from '../../decorators/test-steps';
 import User from '../../types/user';
 import BaseApiSteps from '../../base/base-api-steps';
-import config from '../../config/config';
 import RequestsFactory from '../../requests/requests-factory';
 import TestData from '../../types/test-data';
-import UserRole from '../../enums/user-role';
+import UserStateHelper from '../../helpers/users-state-helper';
+import FileError from '../../errors/file-error';
 
-@AllMethodsStep
 export default class ApiUsersSteps extends BaseApiSteps {
   private isSetupTest: boolean;
 
@@ -15,48 +14,52 @@ export default class ApiUsersSteps extends BaseApiSteps {
     this.isSetupTest = isSetupTest;
   }
 
+  @Step
   async CreateCitizenUsers(users: User[]) {
     const {idamRequests} = super.requestsFactory;
-    await idamRequests.createCitizenUsers(users);
+    const userType = users[0].type;
+    if(UserStateHelper.userStateExists(userType)) {
+      throw new FileError(`Citizen users: ${userType.toUpperCase()} already exists`);
+    }
+    if(!users.every(user => user.type === users[0].type)) {
+      throw new TypeError(`Users in ${users} must all have the same user type`);
+    }
+    users = await Promise.all(users.map(async (user) => {
+      const idamUser = await idamRequests.createCitizenUser(user);
+      const accessToken = await idamRequests.getAccessToken(user);
+      return { userId: idamUser.id, accessToken: accessToken, ...user };
+    }));
+    UserStateHelper.addUsersToState(users);
   }
 
+
+  @Step
   async DeleteCitizenUsers(users: User[]) {
     const {idamRequests} = super.requestsFactory;
-    await idamRequests.deleteUsers(users);
-  }
-    
-  async SetupAccessTokens(users: User[]) {
-    for(const user of users) {
-      console.log(`Setting up access token: ${user.email}`);
-      if(!user.accessToken) {
-        let accessToken: string;
-        if(config.skipAuthSetup || this.isSetupTest) {
-          const {idamRequests} = super.requestsFactory;
-          accessToken = await idamRequests.getAccessToken(user);
-        } else {
-          const {requestsCookiesManager} = super.requestsFactory;
-          accessToken = await requestsCookiesManager.getAccessToken(user);
-        }
-        user.accessToken = accessToken;
-      }
-    }
+    await Promise.all(users.map(user => idamRequests.deleteUser(user)));
+    UserStateHelper.deleteUsersState(users[0].type);
   }
 
-  async SetupUserIds(users: User[]) {
+  private async setupUser(user: User) {
+    const {idamRequests} = super.requestsFactory;
+    const accessToken = await idamRequests.getAccessToken(user);
+    user.accessToken = accessToken
+    const userId = await idamRequests.getUserId(user);
+    user.userId = userId;
+  }
+
+  @Step
+  async SetupUsersData(users: User[]) {
     for(const user of users) {
-      if(!user.userId) {
-        let userId: string;
-        if(config.skipAuthSetup || this.isSetupTest || user.role !== UserRole.CASEWORKER) {
-          const {idamRequests} = super.requestsFactory;
-          userId = await idamRequests.getUserId(user.accessToken);
-        } else {
-          const {requestsCookiesManager} = super.requestsFactory;
-          userId = await requestsCookiesManager.getUserId(user);
-        }
-        user.userId = userId;
-      }
-      return user.userId;
+      await this.setupUser(user);
     }
+    UserStateHelper.addUsersToState(users);
+  }
+
+  @Step
+  async SetupUserData(user: User) {
+    await this.setupUser(user);
+    UserStateHelper.addUserToState(user);
   }
     
 }

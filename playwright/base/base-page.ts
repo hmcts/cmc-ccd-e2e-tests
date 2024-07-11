@@ -18,9 +18,9 @@ export default abstract class BasePage {
 
   abstract verifyContent(...args: any[]): Promise<void>
 
-  @TruthyParams()
-  protected async clickBySelector(selector: string) {
-    await this.page.locator(selector).click();
+  @TruthyParams('selector')
+  protected async clickBySelector(selector: string, options: {count?: number} = {}) {
+    await this.page.locator(selector).click({clickCount: options.count});
   }
 
   protected async clickButtonByName(name: string) {
@@ -44,9 +44,12 @@ export default abstract class BasePage {
     return textContent.includes(content);
   }
 
-  @TruthyParams()
-  protected async goTo(url: string) {
-    await this.page.goto(url);
+  @TruthyParams('url')
+  protected async goTo(url: string,  options: {force?: boolean} = {}) {
+    const {origin, pathname} = new URL(this.page.url())
+    if(`${origin}${pathname}` !== url || options.force) {
+      await this.page.goto(url);
+    }
   }
   
   protected async isDomain(url: string) {
@@ -138,12 +141,12 @@ export default abstract class BasePage {
   }
 
   @TruthyParams('text')
-  protected async expectText(text: string | number, options: {exact?: boolean, container?: string, timeout?: number} = {}) {
+  protected async expectText(text: string | number, options: {exact?: boolean, container?: string, timeout?: number, visible?: boolean} = {}) {
     const locator = options.container
       ? this.page.locator(options.container).getByText(text.toString()) 
       : this.page.getByText(text.toString(), {exact: options.exact});
     
-    await pageExpect(locator).toBeVisible({timeout: options.timeout});
+    await pageExpect(locator).toBeVisible({timeout: options.timeout, visible: options.visible});
   }
 
   protected async expectLabel(label: string, options: {exact?: boolean, timeout?: number} = {exact: false}) {
@@ -201,25 +204,45 @@ export default abstract class BasePage {
     });
   }
 
-  protected async retryExpect(expects: () => Promise<void>[] | Promise<void>, {retries = 1}: { retries?: number } = {}) {
-    let attempts = 0;
-    while(attempts <= retries) {
-      if(attempts > 0) {
-        await this.page.reload();
-      }
-      const promises = expects();
+  protected async retryAction(
+    action: () => Promise<void>, 
+    assertion: () => Promise<void>[] | Promise<void>,
+    message: string,  
+    {retries = 1, assertFirst = false}: { retries?: number, assertFirst?: boolean } = {},
+  ) {
+    while(retries > 0) {
+      if(!assertFirst) await action();
+      const promises = assertion();
       try {
         await (Array.isArray(promises) ? Promise.all(promises) : promises);
         break;
       } catch(error) {
-        console.log('\n' + '-'.repeat(100));
-        if(attempts >= retries) throw error;
-        console.log('Error: ' + error.matcherResult.message);
-        console.log('Reloading page and trying again');
-        console.log(`Retries: ${retries - attempts} remaining`);
+        retries--;
+        if(retries <= 0) throw error;
+        console.log(message);
+        console.log(`Retries: ${retries} remaining`);
+        assertFirst = false;
       }
-      attempts++;
     }
+  }
+
+  @TruthyParams('selector')
+  protected async retryClick(selector: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+    await this.retryAction(
+      () => this.clickBySelector(selector), 
+      expects, 
+      'Click action failed, trying again', 
+      {retries}
+    );
+  }
+
+  protected async retryReload(expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+    await this.retryAction(
+      () => this.reload(), 
+      expects, 
+      'Assertion failed, reloading page and trying again', 
+      {retries, assertFirst: true}
+    );
   }
 
   protected async runAccessibilityTests() {

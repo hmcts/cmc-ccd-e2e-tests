@@ -21,6 +21,9 @@ import TransferCasePage from './transfer-case/transfer-case-page';
 import WaitingToBeTransferredPage from './waiting-to-be-transferred/waiting-to-be-transferred-page';
 import InvalidHwfNumberPage from './hwf-number-invalid/hwf-number-invalid-page';
 import UpdatedHwfNumberPage from './hwf-number-updated/hwf-number-updated-page';
+import EnterBreathingSpacePage from './enter-breathing-space/enter-breathing-space-page';
+import LiftBreathingSpacePage from './lift-breathing-space/lift-breathing-space-page';
+import CaseHandedToCCBC from './case-handed-to-ccbc/case-handed-to-ccbc-page';
 
 export default class CaseworkerEventsFactory extends BasePageFactory{
 
@@ -108,5 +111,17 @@ export default class CaseworkerEventsFactory extends BasePageFactory{
 
   get updatedHwfNumberPage() {
     return new UpdatedHwfNumberPage(this.page, this.axeBuilder);
+  }
+
+  get enterBreathingSpacePage() {
+    return new EnterBreathingSpacePage(this.page, this.axeBuilder);
+  }
+
+  get liftBreathingSpacePage() {
+    return new LiftBreathingSpacePage(this.page, this.axeBuilder);
+  }
+
+  get caseHandedToCCBC() {
+    return new CaseHandedToCCBC(this.page, this.axeBuilder);
   }
 }

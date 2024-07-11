@@ -1,7 +1,4 @@
-export const headings = {
-  pageTitle: 'Invalid HwF Reference',
-  hwfNumberAndCaseTitle: 'HWF-456-789 Mr. Jan Clark Vs Mrs. Mary Richards',
-};
+export const heading = 'Invalid HwF Reference';
 
 export const subheading = 'HwF Details';
 

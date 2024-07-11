@@ -2,17 +2,18 @@ import BasePage from '../../../../base/base-page';
 import DateHelper from '../../../../helpers/date-helper';
 import filePaths from '../../../../config/file-paths';
 import { doc1Dropdowns, doc1Inputs, doc2Dropdowns, doc2Inputs, subHeadings, buttons } from './staff-documents-content';
-import { Step } from '../../../../decorators/test-steps';
+import ExuiEvent from '../../exui-event/exui-event';
 
-export default class StaffDocumentsFragment extends BasePage {
-  @Step
+export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
+  
+  
   async verifyContent() {
     await Promise.all([
       super.expectSubHeading(subHeadings.staffUploadedDocs),
     ]);
   }
 
-  @Step
+
   async addDocument() {
     await super.clickBySelector(buttons.addNewTop.selector);
   }
@@ -43,20 +44,20 @@ export default class StaffDocumentsFragment extends BasePage {
     await super.uploadFile(filePaths.testPdfFile, doc2Inputs.fileUpload.selector);
   }
 
-  @Step
   async enterCorrespondenceDoc1Details() {
     await this.enterDoc1Details(0);
   }
 
-  @Step
   async enterMediationDoc1Details() {
     await this.enterDoc1Details(1);
   } 
 
-
-  @Step
   async enterOtherDoc2Details() {
     await this.enterDoc2Details(2);
     await super.fill(doc2Inputs.otherDocType.value, doc2Inputs.otherDocType.selector);
+  }
+
+  async submitEvent() {
+    throw new Error("Method not implemented.");
   }
 }

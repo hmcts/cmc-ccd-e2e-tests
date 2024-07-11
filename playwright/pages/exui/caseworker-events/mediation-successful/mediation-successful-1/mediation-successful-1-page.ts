@@ -20,7 +20,7 @@ export default class MediationSuccessful1Page extends ExuiEvent(BasePage) {
 
   async enterMediationDate() {
     const date = DateHelper.subtractFromToday({days: 1});
-    await super.fill(date.getDay(), inputs.mediationDay.selector);
+    await super.fill(date.getDate(), inputs.mediationDay.selector);
     await super.fill(date.getMonth(), inputs.mediationMonth.selector);
     await super.fill(date.getFullYear(), inputs.mediationYear.selector);
     await super.clickSubmit();

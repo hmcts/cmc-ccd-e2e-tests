@@ -28,11 +28,12 @@ export default class ManageDocumentsPage extends ExuiEvent(BasePage) {
   async enterDocumentDetais() {
     await this.staffDocumentsFragment.addDocument();
     await this.staffDocumentsFragment.enterCorrespondenceDoc1Details();
+    await this.staffDocumentsFragment.addDocument();
     await this.staffDocumentsFragment.enterOtherDoc2Details();
+    await super.clickSubmit();
   } 
 
   async submitEvent() {
-    await super.clickSubmit();
     await super.verifyEventSummaryContent();
     await super.fillEventDetails(CaseworkerEvents.MANAGE_DOCUMENTS);
     await super.clickSubmit();

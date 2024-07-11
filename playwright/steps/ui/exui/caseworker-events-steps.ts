@@ -18,7 +18,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async ClaimNotes() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.CLAIM_NOTES);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.CLAIM_NOTES);
     
     const {claimNotesPage} = this.caseworkerEventsFactory;
     await claimNotesPage.verifyContent(this.ccdCaseData);
@@ -29,7 +29,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async ChangeClaimantDetails() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
 
     const {changeContactDetailsPage} = this.caseworkerEventsFactory;
     await changeContactDetailsPage.verifyContent(this.ccdCaseData);
@@ -44,7 +44,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async ChangeDefendantDetails() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.CHANGE_CONTACT_DETAILS);
 
     const {changeContactDetailsPage} = this.caseworkerEventsFactory;
     await changeContactDetailsPage.verifyContent(this.ccdCaseData);
@@ -58,7 +58,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async ManageDocuments(){
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MANAGE_DOCUMENTS);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.MANAGE_DOCUMENTS);
 
     const {manageDocumentsPage} = this.caseworkerEventsFactory;
     await manageDocumentsPage.verifyContent(this.ccdCaseData);
@@ -72,7 +72,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async InvalidHwfNumber(){
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.INVALID_HWF_REF);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.INVALID_HWF_REF);
 
     const {invalidHwfNumberPage} = this.caseworkerEventsFactory;
     await invalidHwfNumberPage.verifyContent(this.ccdCaseData);
@@ -83,7 +83,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async UpdateHwfNumber(){
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.UPDATED_HWF_NUM);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.UPDATED_HWF_NUM);
 
     const {updatedHwfNumberPage} = this.caseworkerEventsFactory;
     await updatedHwfNumberPage.verifyContent(this.ccdCaseData);
@@ -95,7 +95,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async ResendRpa() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.RESEND_RPA);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.RESEND_RPA);
 
     const {resendRpaPage} = this.caseworkerEventsFactory;
     await resendRpaPage.verifyContent(this.ccdCaseData);
@@ -107,7 +107,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async ResetPin() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.RESET_PIN);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.RESET_PIN);
     
     const {resetPinPage} = this.caseworkerEventsFactory;
     await resetPinPage.verifyContent(this.ccdCaseData);
@@ -118,7 +118,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async WaitingToBeTransferred() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.WAITING_TO_BE_TRANSFERRED);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.WAITING_TO_BE_TRANSFERRED);
     
     const {waitingToBeTransferredPage} = this.caseworkerEventsFactory;
     await waitingToBeTransferredPage.verifyContent(this.ccdCaseData);
@@ -129,7 +129,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async LinkLetterHolder() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.LINK_LETTER_HOLDER_ID);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.LINK_LETTER_HOLDER_ID);
     
     const {linkLetterHolderPage} = this.caseworkerEventsFactory;
     await linkLetterHolderPage.verifyContent(this.ccdCaseData);
@@ -140,7 +140,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async AttachViaBulkScan() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.ATTACH_VIA_BULK_SCAN);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.ATTACH_VIA_BULK_SCAN);
     
     const {attachViaBulkScanPage} = this.caseworkerEventsFactory;
     await attachViaBulkScanPage.verifyContent(this.ccdCaseData);
@@ -151,7 +151,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async SupportUpdate() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.SUPPORT_UPDATE);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.SUPPORT_UPDATE);
     
     const {supportUpdatePage} = this.caseworkerEventsFactory;
     await supportUpdatePage.verifyContent(this.ccdCaseData);
@@ -162,7 +162,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async TransferCase() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.TRANSFER_CASE);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.TRANSFER_CASE);
     
     const {transferCasePage} = this.caseworkerEventsFactory;
     await transferCasePage.verifyContent(this.ccdCaseData);
@@ -175,7 +175,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async IssuePaperDefenceForms() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.ISSUE_PAPER_DEFENCE_FORMS);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.ISSUE_PAPER_DEFENCE_FORMS);
 
     const {issuePaperDefenceFormsPage: issuePaperDefenceForms} = this.caseworkerEventsFactory;
     await issuePaperDefenceForms.verifyContent(this.ccdCaseData);
@@ -186,7 +186,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async PaperResponseReviewed() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.PAPER_RESP_REVIEWED);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.PAPER_RESP_REVIEWED);
 
     const {paperResponseReviewedPage} = this.caseworkerEventsFactory;
     await paperResponseReviewedPage.verifyContent(this.ccdCaseData);
@@ -200,7 +200,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async ReviewOcon9xPaperResponse() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.REVIEW_OCON9X_RESP);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.REVIEW_OCON9X_RESP);
 
     const {reveiwOcon9xPaperResponsePage} = this.caseworkerEventsFactory;
     await reveiwOcon9xPaperResponsePage.verifyContent(this.ccdCaseData);
@@ -212,7 +212,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async PaperResponseAdmission() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.PAPER_RESP_ADMISSIOON);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.PAPER_RESP_ADMISSIOON);
 
     const {paperResponseAdmissionPage} = this.caseworkerEventsFactory;
     await paperResponseAdmissionPage.verifyContent(this.ccdCaseData);
@@ -224,7 +224,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async PaperResponseDefence() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.PAPER_RESP_DEFENCE);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.PAPER_RESP_DEFENCE);
 
     const {paperResponseDefencePage} = this.caseworkerEventsFactory;
     await paperResponseDefencePage.verifyContent(this.ccdCaseData);
@@ -237,7 +237,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async MediationPending() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.REFERRED_MEDIATION);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.REFERRED_MEDIATION);
     
     const {mediationPendingPage} = this.caseworkerEventsFactory;
     await mediationPendingPage.verifyContent(this.ccdCaseData);
@@ -248,7 +248,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async MediationSuccessful() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MEDIATION_SUCCESSFUL);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.MEDIATION_SUCCESSFUL);
     
     const {mediationSuccessful1Page} = this.caseworkerEventsFactory;
     await mediationSuccessful1Page.verifyContent(this.ccdCaseData);
@@ -256,7 +256,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
     const {mediationSuccessful2Page} = this.caseworkerEventsFactory;
     await mediationSuccessful2Page.verifyContent(this.ccdCaseData);
-    await mediationSuccessful2Page.enterDocumentDetais();
+    await mediationSuccessful2Page.enterDocumentDetails();
     await mediationSuccessful2Page.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_SUCCESSFUL);
@@ -264,7 +264,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
 
   async MediationUnsuccessful() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(CaseworkerEvents.MEDIATION_FAILED);
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.MEDIATION_FAILED);
     
     const {mediationUnsuccessfulPage} = this.caseworkerEventsFactory;
     await mediationUnsuccessfulPage.verifyContent(this.ccdCaseData);
@@ -272,5 +272,51 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await mediationUnsuccessfulPage.submitEvent();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_FAILED);
+  }
+
+  async VerifyBreathingSpace() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.ENTER_BREATHING_SPACE);
+  }
+
+  async EnterBreathingSpace() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.ENTER_BREATHING_SPACE);
+    
+    const {enterBreathingSpacePage} = this.caseworkerEventsFactory;
+    await enterBreathingSpacePage.verifyContent(this.ccdCaseData);
+    await enterBreathingSpacePage.enterBreathingSpaceDetails();
+    await enterBreathingSpacePage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.ENTER_BREATHING_SPACE);
+  }
+
+  async LiftBreathingSpace() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.LIFT_BREATHING_SPACE);
+    
+    const {liftBreathingSpacePage} = this.caseworkerEventsFactory;
+    await liftBreathingSpacePage.verifyContent(this.ccdCaseData);
+    await liftBreathingSpacePage.enterBreathingSpaceDetails();
+    await liftBreathingSpacePage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.LIFT_BREATHING_SPACE);
+  }
+
+  async CaseHandedToCCBC() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.CASE_HANDED_TO_CCBC);
+    
+    const {caseHandedToCCBC} = this.caseworkerEventsFactory;
+    await caseHandedToCCBC.verifyContent(this.ccdCaseData);
+    await caseHandedToCCBC.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CASE_HANDED_TO_CCBC);
+  }
+
+  async EnterBreathingSpaceError() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.chooseNextStep(CaseworkerEvents.ENTER_BREATHING_SPACE);
+    await caseDetailsPage.verifyBreathingSpaceError();
   }
 }

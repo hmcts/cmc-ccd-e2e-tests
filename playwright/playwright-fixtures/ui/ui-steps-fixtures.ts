@@ -40,8 +40,8 @@ export const test = base.extend<UiStepsFixtures>({
   DefendantResponseSteps: async ({_linkClaimFactory, _idamFactory, _citizenDashboardFactory, _responseFactory, _defendantResponseFactory, _testData}, use: (arg0: DefendantResponseSteps) => any) => {
     await use(new DefendantResponseSteps(_linkClaimFactory, _idamFactory, _citizenDashboardFactory, _responseFactory, _defendantResponseFactory, _testData));
   },
-  ClaimantResponseSteps: async ({_responseFactory, _testData}, use: (arg0: ClaimantResponseSteps) => any) => {
-    await use(new ClaimantResponseSteps(_responseFactory, _testData));
+  ClaimantResponseSteps: async ({_breathingSpaceFactory, _citizenDashboardFactory, _responseFactory, _testData}, use: (arg0: ClaimantResponseSteps) => any) => {
+    await use(new ClaimantResponseSteps(_breathingSpaceFactory, _citizenDashboardFactory, _responseFactory, _testData));
   },
   JudgeEventsSteps: async ({_judgeEventsFactory ,_exuiDashboardFactory, _testData}, use: (arg0: JudgeEventsSteps) => any) => {
     await use(new JudgeEventsSteps(_judgeEventsFactory, _exuiDashboardFactory, _testData));

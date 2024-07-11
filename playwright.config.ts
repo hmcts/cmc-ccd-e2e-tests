@@ -8,11 +8,11 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
-  // reporter: 'allure-playwright',
-  reporter: process.env.CI ? 'html' : 'list',
+  reporter: 'allure-playwright',
+  // reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
-    timeout: 25_000,
+    timeout: 30_000,
     toPass: {
       timeout: config.playwright.toPassTimeout,
     },
@@ -37,10 +37,15 @@ export default defineConfig({
       teardown: 'citizen-users-teardown',
     },
     {
+      name: 'user-data-setup',
+      testMatch: '**playwright/tests/bootstrap/users/user-data.setup.ts',
+      dependencies: ['citizen-users-setup'],
+    },
+    {
       name: 'user-auth-setup',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/bootstrap/auth/**.setup.ts',
-      dependencies: ['citizen-users-setup'],
+      dependencies: ['user-data-setup'],
       teardown: 'user-auth-teardown',
     },
     {

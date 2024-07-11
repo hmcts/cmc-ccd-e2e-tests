@@ -25,7 +25,7 @@ export default class DrawDirectionsOrder2Page extends ExuiEvent(BasePage){
   }
 
   async enterSdoDetails() {
-    this.sdoFragment.enterSdoDetails();
+    await this.sdoFragment.enterSdoDetails();
     await super.clickSubmit();
   }
 

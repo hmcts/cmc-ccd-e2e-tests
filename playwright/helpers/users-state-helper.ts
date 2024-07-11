@@ -6,13 +6,16 @@ import UserType from '../enums/user-type';
 import filePaths from '../config/file-paths';
 import config from '../config/config';
 
-export default class CitizenUsersHelper {
+export default class UserStateHelper {
   static readonly statePaths = {
-    claimant: `${filePaths.citizenUsers}/claimant-users.json`,
-    defendant: `${filePaths.citizenUsers}/defendant-users.json`,
+    claimant: `${filePaths.users}/claimant-users.json`,
+    defendant: `${filePaths.users}/defendant-users.json`,
+    caseworker: `${filePaths.users}/caseworker-users.json`,
+    judge: `${filePaths.users}/judge-users.json`,
+    legalAdvisor: `${filePaths.users}/legal-advisor-users.json`,
   };
 
-  private static generateCitizenUsers = (userType: UserType): User[] => {
+  static generateCitizenUsers = (userType: UserType): User[] => {
     return Array.from({length: config.playwright.workers}, (_, index) => (
       { 
         email: `${userType}citizen-${Math.random().toString(36).slice(2, 9).toLowerCase()}@gmail.com`,
@@ -24,21 +27,32 @@ export default class CitizenUsersHelper {
     ));
   };
 
-  static addUsersToState = (users: User[], userType: UserType) => {
-    FileSystemHelper.writeFile(users, this.statePaths[userType], FileType.JSON);
+  static addUsersToState = (users: User[]) => {
+    FileSystemHelper.writeFile(users, this.statePaths[users[0].type], FileType.JSON);
+  };
+
+  static addUserToState = (user: User) => {
+    FileSystemHelper.writeFile(user, this.statePaths[user.type], FileType.JSON);
+  };
+
+  static getUserFromState = (userType: UserType): User => {
+    let user: User;
+    try {
+      user = FileSystemHelper.readFile(this.statePaths[userType], FileType.JSON);
+      return user;
+    } catch {
+      return null;
+    }
   };
 
   static getUsersFromState = (userType: UserType): User[] => {
     let users: User[];
     try {
       users = FileSystemHelper.readFile(this.statePaths[userType], FileType.JSON);
+      return users
     } catch {
-      return this.generateCitizenUsers(userType);
+      return null;
     }
-    if(users && users.length === config.playwright.workers) {
-      return users;
-    }
-    throw new Error(`${config.playwright.workers} user(s) of type ${userType} does not exist in ${this.statePaths[userType]}`);
   };
 
   static userStateExists = (userType: UserType) => {
@@ -50,6 +64,6 @@ export default class CitizenUsersHelper {
   };
 
   static deleteAllUsersState = () => {
-    FileSystemHelper.delete(`${filePaths.citizenUsers}/`);
+    FileSystemHelper.delete(`${filePaths.users}/`);
   };
 }

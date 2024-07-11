@@ -18,7 +18,7 @@ export default class JudgeEventsSteps extends BaseSteps {
 
   async DrawDirectionsOrder() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
 
     const {drawDirectionsOrder1Page} = this.judgeEventsFactory;
     await drawDirectionsOrder1Page.verifyContent(this.ccdCaseData);
@@ -37,7 +37,7 @@ export default class JudgeEventsSteps extends BaseSteps {
 
   async ProvideDirections() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(JudgeEvents.PROVIDE_DIRECTIONS);
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.PROVIDE_DIRECTIONS);
 
     const {provideDirectionsPage} = this.judgeEventsFactory;
     await provideDirectionsPage.verifyContent(this.ccdCaseData);
@@ -48,7 +48,7 @@ export default class JudgeEventsSteps extends BaseSteps {
 
   async ReviewOrder() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(JudgeEvents.REVIEW_ORDER);
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.REVIEW_ORDER);
     
     const {reviewOrderPage} = this.judgeEventsFactory;
     await reviewOrderPage.verifyContent(this.ccdCaseData);
@@ -60,7 +60,7 @@ export default class JudgeEventsSteps extends BaseSteps {
 
   async ApproveDirectionsOrder() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(JudgeEvents.APPROVE_DIRECTIONS_ORDER);
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.APPROVE_DIRECTIONS_ORDER);
     
     const {approveDirectionsOrderPage} = this.judgeEventsFactory;
     await approveDirectionsOrderPage.verifyContent(this.ccdCaseData);

@@ -5,7 +5,7 @@ import FileType from '../enums/file-type';
 import filePaths from '../config/file-paths';
 
 export default class FileSystemHelper {
-  private static writeFileDirs = [`${filePaths.citizenUsers}/`, `${filePaths.userCookies}/`];
+  private static writeFileDirs = [`${filePaths.users}/`, `${filePaths.userCookies}/`];
   
   static exists = (filePath: string) => fs.existsSync(filePath);
 

@@ -18,7 +18,7 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
 
   async GenerateOrder() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(LegalAdvisorEvents.GENERATE_ORDER);
+    await caseDetailsPage.retryChooseNextStep(LegalAdvisorEvents.GENERATE_ORDER);
 
     const {generateOrder1Page} = this.legalAdvisorEventsFactory;
     await generateOrder1Page.verifyContent(this.ccdCaseData);
@@ -34,7 +34,7 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
 
   async ActionReviewComments() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(LegalAdvisorEvents.ACTION_REVIEW_COMMENTS);
+    await caseDetailsPage.retryChooseNextStep(LegalAdvisorEvents.ACTION_REVIEW_COMMENTS);
 
     const {actionReviewComments1Page} = this.legalAdvisorEventsFactory;
     await actionReviewComments1Page.verifyContent(this.ccdCaseData);
@@ -50,7 +50,7 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
 
   async DrawDirectionsOrder() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(LegalAdvisorEvents.DRAW_DIRECTIONS_ORDER);
+    await caseDetailsPage.retryChooseNextStep(LegalAdvisorEvents.DRAW_DIRECTIONS_ORDER);
 
     const {drawDirectionsOrderPage} = this.legalAdvisorEventsFactory;
     await drawDirectionsOrderPage.verifyContent(this.ccdCaseData);

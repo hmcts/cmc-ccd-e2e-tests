@@ -25,13 +25,13 @@ export default class MediationSuccessful2Page extends ExuiEvent(BasePage) {
     ]);
   }
 
-  async enterDocumentDetais() {
+  async enterDocumentDetails() {
     await this.staffDocumentsFragment.addDocument();
     await this.staffDocumentsFragment.enterMediationDoc1Details();
+    await super.clickSubmit();
   } 
 
   async submitEvent() {
-    await super.clickSubmit();
     await super.verifyEventSummaryContent();
     await super.fillEventDetails(CaseworkerEvents.MEDIATION_SUCCESSFUL);
     await super.clickSubmit();

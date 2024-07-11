@@ -1,9 +1,9 @@
 import BasePage from "../../../../base/base-page";
-import { AllMethodsStep } from "../../../../decorators/test-steps";
+import ExuiEvent from "../../exui-event/exui-event";
 import { legends, checkboxes, radioButtons, buttons, dropdowns, inputs, subHeadings } from "./sdo-content";
 
-@AllMethodsStep
-export default class SdoFragment extends BasePage {
+export default class SdoFragment extends ExuiEvent(BasePage) {
+  
   async verifyContent() {
     await Promise.all([
       super.expectOptionChecked(checkboxes.sendDocs.selector),
@@ -49,5 +49,9 @@ export default class SdoFragment extends BasePage {
     await super.fill('Test', inputs.otherDirectionsExtraDocUpload.selector);
     await super.selectFromDropdown(dropdowns.hearingCourt.options[0], dropdowns.hearingCourt.selector);
     await super.selectFromDropdown(dropdowns.hearingDuration.options[0], dropdowns.hearingDuration.selector);
+  }
+
+  async submitEvent() {
+    throw new Error("Method not implemented.");
   }
 }

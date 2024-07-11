@@ -4,7 +4,7 @@ allure-results/
 allure-report/
 playwright-report/
 /playwright/playwright/.cache/
-/playwright/fixtures/.citizen-users/
+/playwright/fixtures/.users/
 /playwright/fixtures/.user-cookies/
 
 
