@@ -62,4 +62,9 @@ export default class ApiCaseEventSteps extends BaseApiSteps {
     await ccdRequests.updateCaseEvent(CaseEvents.ASSIGN_FOR_JUDGE_DIRECTIONS, this.ccdCaseData, claimants[this.workerIndex]);
   }
 
+  async AssignForDirections() {
+    const {ccdRequests} = this.requestsFactory;
+    await ccdRequests.updateCaseEvent(CaseEvents.ASSIGN_FOR_DIRECTIONS, this.ccdCaseData, claimants[this.workerIndex]);
+  }
+
 }

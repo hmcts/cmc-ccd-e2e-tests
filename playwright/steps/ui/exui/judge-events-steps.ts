@@ -18,7 +18,7 @@ export default class JudgeEventsSteps extends BaseSteps {
 
   async DrawDirectionsOrder() {
     const {caseDetailsPage} = this.exuiDashboardFactory;
-    await caseDetailsPage.chooseNextStep(JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
 
     const {drawDirectionsOrder1Page} = this.judgeEventsFactory;
     await drawDirectionsOrder1Page.verifyContent(this.ccdCaseData);
@@ -33,6 +33,40 @@ export default class JudgeEventsSteps extends BaseSteps {
     await drawDirectionsOrder3Page.submitEvent();
     
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
+  }
+
+  async ProvideDirections() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.PROVIDE_DIRECTIONS);
+
+    const {provideDirectionsPage} = this.judgeEventsFactory;
+    await provideDirectionsPage.verifyContent(this.ccdCaseData);
+    await provideDirectionsPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.PROVIDE_DIRECTIONS);
+  }
+
+  async ReviewOrder() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.REVIEW_ORDER);
+    
+    const {reviewOrderPage} = this.judgeEventsFactory;
+    await reviewOrderPage.verifyContent(this.ccdCaseData);
+    await reviewOrderPage.reviewOrder();
+    await reviewOrderPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.REVIEW_ORDER);
+  }
+
+  async ApproveDirectionsOrder() {
+    const {caseDetailsPage} = this.exuiDashboardFactory;
+    await caseDetailsPage.retryChooseNextStep(JudgeEvents.APPROVE_DIRECTIONS_ORDER);
+    
+    const {approveDirectionsOrderPage} = this.judgeEventsFactory;
+    await approveDirectionsOrderPage.verifyContent(this.ccdCaseData);
+    await approveDirectionsOrderPage.submitEvent();
+
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.APPROVE_DIRECTIONS_ORDER);
   }
 
 }

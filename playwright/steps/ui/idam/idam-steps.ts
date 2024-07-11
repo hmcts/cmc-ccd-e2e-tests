@@ -2,11 +2,10 @@ import BaseSteps from '../../../base/base-steps';
 import User from '../../../types/user';
 import config from '../../../config/config';
 import IdamFactory from '../../../pages/idam/idam-factory';
-import { AllMethodsStep } from '../../../decorators/test-steps';
+import { Step } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 import { caseworker, claimants, defendants, judge, legalAdvisor } from '../../../config/users';
 
-@AllMethodsStep
 export default class IdamSteps extends BaseSteps {
   private isSetupTest: boolean;
   private isTeardown: boolean;
@@ -21,24 +20,29 @@ export default class IdamSteps extends BaseSteps {
     this.idamFactory = idamFactory;
   }
 
+  @Step
   async ClaimantLogin(workerIndex?: number) {
     const claimant: User = isNaN(workerIndex) ? claimants[this.workerIndex] : claimants[workerIndex];
     await this.citizenLogin(claimant);
   }
 
+  @Step
   async DefendantLogin(workerIndex?: number) {
     const defendant: User = isNaN(workerIndex) ? defendants[this.workerIndex] : defendants[workerIndex];
     await this.citizenLogin(defendant);
   }
 
+  @Step
   async CaseworkerLogin() {
     await this.exuiLogin(caseworker);
   }
 
+  @Step
   async JudgeLogin() {
     await this.exuiLogin(judge);
   }
 
+  @Step
   async LegalAdvisorLogin() {
     await this.exuiLogin(legalAdvisor);
   }

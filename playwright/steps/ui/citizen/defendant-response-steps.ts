@@ -6,7 +6,7 @@ import DefendantResponseFactory from '../../../pages/citizen/response/defendant/
 import IdamFactory from '../../../pages/idam/idam-factory';
 import TestData from '../../../types/test-data';
 import ResponseSteps from './response-steps';
-import ResponseFactory from '../../../pages/citizen/response/common/response-factory';
+import ResponseFactory from '../../../pages/citizen/response/response/response-factory';
 
 @AllMethodsStep
 export default class DefendantResponseSteps extends ResponseSteps {
@@ -59,12 +59,8 @@ export default class DefendantResponseSteps extends ResponseSteps {
   }
 
   async GoToResponseDashboard() {
-    const {dashboardPage} = this.citizenDashboardFactory;
-    await dashboardPage.gotoClaimDetails(this.claimStoreCaseData.referenceNumber);
-
-    const {claimDetailsPage} = this.citizenDashboardFactory;
-    await claimDetailsPage.verifyContent(this.claimStoreCaseData);
-    await claimDetailsPage.respondToClaim();
+    const {defendantClaimDetailsPage} = this.citizenDashboardFactory;
+    await defendantClaimDetailsPage.respondToClaim();
 
     const {defendantResponseDashboardPage} = this.defendantResponseFactory;
     await defendantResponseDashboardPage.verifyContent(this.claimStoreCaseData);

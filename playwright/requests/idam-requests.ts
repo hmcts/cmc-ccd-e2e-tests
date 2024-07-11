@@ -4,28 +4,13 @@ import { AllMethodsStep } from '../decorators/test-steps';
 import IdamUser from '../types/idam-user';
 import RequestOptions from '../types/request-options';
 import User from '../types/user';
-import CitizenUsersHelper from '../helpers/citizen-users-helper';
+import UserStateHelper from '../helpers/users-state-helper';
 import FileError from '../errors/file-error';
 
 @AllMethodsStep
 export default class IdamRequests extends BaseRequest {
   
-  async createCitizenUsers(users: User[]) {
-    const userType = users[0].type;
-    if(CitizenUsersHelper.userStateExists(userType)) {
-      throw new FileError(`Citizen users: ${userType.toUpperCase()} already exists`);
-    }
-    if(!users.every(user => user.type === users[0].type)) {
-      throw new TypeError(`Users in ${users} must all have the same user type`);
-    }
-    users = await Promise.all(users.map(async (user) => {
-      const idamUser = await this.createCitizenUser(user);
-      return { userId: idamUser.id, ...user };
-    }));
-    CitizenUsersHelper.addUsersToState(users, userType);
-  }
-  
-  private async createCitizenUser({
+  async createCitizenUser({
     email,
     password,
     role,
@@ -49,10 +34,10 @@ export default class IdamRequests extends BaseRequest {
 
   async deleteUsers(users: User[]) {
     await Promise.all(users.map(user => this.deleteUser(user)));
-    CitizenUsersHelper.deleteUsersState(users[0].type);
+    UserStateHelper.deleteUsersState(users[0].type);
   }
 
-  private async deleteUser({email}: User): Promise<void> {
+  async deleteUser({email}: User): Promise<void> {
     console.log(`Delete user: ${email}`);
     const requestOptions: RequestOptions = {
       method: 'DELETE',
@@ -80,7 +65,8 @@ export default class IdamRequests extends BaseRequest {
     return json.access_token;
   }
 
-  async getUserId(accessToken: string): Promise<string> {
+  async getUserId({accessToken, email}: User): Promise<string> {
+    console.log(`Fetching User ID for user: ${email}`);
     const requestOptions: RequestOptions = {
       url: `${urls.idamApi}/o/userinfo`,
       headers: {
@@ -91,6 +77,7 @@ export default class IdamRequests extends BaseRequest {
     };
     const response = await super.retriedRequest(requestOptions);
     const json = await response.json();
+    console.log(`User ID for user: ${email} fetched successfully`);
     return json.uid;
   }
 
@@ -102,8 +89,7 @@ export default class IdamRequests extends BaseRequest {
     };
     const response = await super.retriedRequest(requestOptions);
     const pin = await response.text();
-    console.log('Security pin fetched successfully');
-    console.log(`Security pin: ${pin}`);
+    console.log(`Security pin: ${pin} fetched successfully`);
     return pin;
   }
 }

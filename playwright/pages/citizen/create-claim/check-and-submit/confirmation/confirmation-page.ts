@@ -22,4 +22,11 @@ export default class ConfirmationPage extends BasePage {
     console.log(`Claim created with claim reference: ${claimRefNumber}`);
     return claimRefNumber;
   }
+
+  async getHwfClaimRefNumber() {
+    const claimRefNumberWithHyphens = (await super.getText(headings.claimNumber.selector)).trim();
+    const claimRefNumber = claimRefNumberWithHyphens.replace(/-/g, '');
+    console.log(`Claim created with claim reference: ${claimRefNumber}`);
+    return parseInt(claimRefNumber);
+  }
 }

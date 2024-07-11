@@ -40,6 +40,9 @@ export const containers = {
   eventHistory: {
     selector: '.EventLogTable',
   },
+  errors: {
+    selector: '#errors',
+  },
 };
 
 export const getFormattedClaimNumber = (caseNumber: number) => {
@@ -50,3 +53,7 @@ export const getFormattedClaimNumber = (caseNumber: number) => {
 
 export const getSuccessBannerText = (caseId: number, event: ExuiEvents) => 
   `Case ${getFormattedClaimNumber(caseId)} has been updated with event: ${event}`;
+
+export const errorMessages = {
+  breathingSpace: 'This Event cannot be triggered since the claim is no longer part of the online civil money claims journey',
+};

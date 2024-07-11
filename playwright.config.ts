@@ -12,7 +12,7 @@ export default defineConfig({
   reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
-    timeout: 25_000,
+    timeout: 30_000,
     toPass: {
       timeout: config.playwright.toPassTimeout,
     },
@@ -23,35 +23,40 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
     launchOptions: {
-      slowMo: !process.env.CI ? 500 : undefined,
+      slowMo: !process.env.CI ? 500 : 200,
     },
   },
   projects: [
     {
-      name: 'citizen-users-teardown',
-      testMatch: '**playwright/tests/bootstrap/users/citizen-users.teardown.ts',
-    },
-    {
-      name: 'citizen-users-setup',
+      name: '#1-citizen-users-setup',
       testMatch: '**playwright/tests/bootstrap/users/citizen-users.setup.ts',
-      teardown: 'citizen-users-teardown',
+      teardown: '#5-citizen-users-teardown',
     },
     {
-      name: 'user-auth-setup',
+      name: '#2-user-data-setup',
+      testMatch: '**playwright/tests/bootstrap/users/user-data.setup.ts',
+      dependencies: ['#1-citizen-users-setup'],
+    },
+    {
+      name: '#3-user-auth-setup',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/bootstrap/auth/**.setup.ts',
-      dependencies: ['citizen-users-setup'],
-      teardown: 'user-auth-teardown',
+      dependencies: ['#2-user-data-setup'],
+      teardown: '#4-user-auth-teardown',
     },
     {
-      name: 'user-auth-teardown',
+      name: '#4-user-auth-teardown',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/bootstrap/auth/**.teardown.ts',
     },
     {
+      name: '#5-citizen-users-teardown',
+      testMatch: '**playwright/tests/bootstrap/users/citizen-users.teardown.ts',
+    },
+    {
       name: 'full-functional',
       use: {...devices['Desktop Chrome']  },
-      dependencies: ['user-auth-setup', 'user-auth-setup'],
+      dependencies: ['#3-user-auth-setup'],
     },
   ],
 });

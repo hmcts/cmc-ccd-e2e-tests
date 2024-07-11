@@ -9,6 +9,8 @@ import PageError from '../../errors/page-error';
 import {test} from '../../playwright-fixtures/index';
 import Cookie from '../../types/cookie';
 import FileSystemHelper from '../../helpers/file-system-helper';
+import config from '../../config/config';
+import urls from '../../config/urls';
 
 @AllMethodsStep
 export default class PageCookiesManager extends BasePage {

@@ -1,14 +1,16 @@
 
+import BreathingSpaceFactory from '../../pages/citizen/breathing-space/breathing-space-factory';
 import CitizenDashboardFactory from '../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
 import CreateClaimFactory from '../../pages/citizen/create-claim/create-claim-factory';
 import LinkClaimFactory from '../../pages/citizen/link-claim/link-claim-factory';
-import ResponseFactory from '../../pages/citizen/response/common/response-factory';
+import ResponseFactory from '../../pages/citizen/response/response/response-factory';
 import DefendantResponseFactory from '../../pages/citizen/response/defendant/defendant-response-factory';
 import CaseworkerEventsFactory from '../../pages/exui/caseworker-events/caseworker-events-factory';
 import ExuiDashboardFactory from '../../pages/exui/exui-dashboard/exui-dashboard-factory';
 import JudgeEventsFactory from '../../pages/exui/judge-events/judge-events-factory';
+import LegalAdvisorEventsFactory from '../../pages/exui/legal-advisor-events/legal-advisor-events-factory';
 import IdamFactory from '../../pages/idam/idam-factory';
-import { test as base } from '../utils/test-utils-fixtures';
+import { test as base } from '../api/api-steps-fixtures';
 
 type PageFactoryFixtures = {
   _idamFactory: IdamFactory;
@@ -20,6 +22,8 @@ type PageFactoryFixtures = {
   _responseFactory: ResponseFactory;
   _defendantResponseFactory: DefendantResponseFactory;
   _judgeEventsFactory: JudgeEventsFactory;
+  _legalAdvisorEventsFactory: LegalAdvisorEventsFactory;
+  _breathingSpaceFactory: BreathingSpaceFactory;
 };
 
 export const test = base.extend<PageFactoryFixtures>({
@@ -49,5 +53,11 @@ export const test = base.extend<PageFactoryFixtures>({
   },
   _judgeEventsFactory: async ({page, _axeBuilder}, use: (arg0: JudgeEventsFactory) => any) => {
     await use(new JudgeEventsFactory(page, _axeBuilder));
+  },
+  _legalAdvisorEventsFactory: async ({page, _axeBuilder}, use: (arg0: LegalAdvisorEventsFactory) => any) => {
+    await use(new LegalAdvisorEventsFactory(page, _axeBuilder));
+  },
+  _breathingSpaceFactory: async ({page, _axeBuilder}, use: (arg0: BreathingSpaceFactory) => any) => {
+    await use(new BreathingSpaceFactory(page, _axeBuilder));
   },
 });
