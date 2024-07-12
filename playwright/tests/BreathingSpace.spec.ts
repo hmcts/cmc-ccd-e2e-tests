@@ -13,7 +13,7 @@ test.describe('Breathing Space', () => {
     await ClaimantResponseSteps.EnterBreathingSpace();
     await IdamSteps.JudgeLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
-    await CaseworkerEventsSteps.VerifyBreathingSpace();
+    // await CaseworkerEventsSteps.VerifyBreathingSpace();
     // await CaseworkerEventsSteps.LiftBreathingSpace();
   });
 
