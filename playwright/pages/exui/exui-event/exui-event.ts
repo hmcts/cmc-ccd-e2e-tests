@@ -37,7 +37,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
     }
 
     protected async retryClickSubmit(expect: () => Promise<void>) {
-      await super.retryClick(buttons.submit.selector, expect);
+      await super.retryClickBySelector(buttons.submit.selector, expect);
     }
 
     abstract submitEvent(...args: any[]): Promise<void>;

@@ -111,18 +111,18 @@ export default class DefendantResponseSteps extends ResponseSteps {
     const {defendantResponseDashboardPage} = this.defendantResponseFactory;
     await defendantResponseDashboardPage.whyYouDisagree();
 
-    const {whyYouDisagreePage} = this.defendantResponseFactory;
-    await whyYouDisagreePage.verifyContent();
-    await whyYouDisagreePage.fillDisagreeReason();
+    const {yourDefencePage} = this.defendantResponseFactory;
+    await yourDefencePage.verifyContent();
+    await yourDefencePage.fillDisagreeReason();
 
     const {timelinePage} = this.defendantResponseFactory;
     await timelinePage.verifyContent();
     await timelinePage.fillTimelineDetails();
 
-    const {listYourEvidencePage} = this.defendantResponseFactory;
-    await listYourEvidencePage.addEvidence1();
-    await listYourEvidencePage.addEvidence2();
-    await listYourEvidencePage.addTheirEvidenceComment();
+    const {evidencePage} = this.defendantResponseFactory;
+    await evidencePage.addEvidence1();
+    await evidencePage.addEvidence2();
+    await evidencePage.addTheirEvidenceComment();
   }
 
   async CheckAndSubmit() {

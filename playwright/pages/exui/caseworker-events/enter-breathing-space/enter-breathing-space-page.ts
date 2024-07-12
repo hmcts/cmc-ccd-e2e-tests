@@ -34,7 +34,7 @@ export default class EnterBreathingSpacePage extends ExuiEvent(BasePage) {
     await super.fill(startDate.getMonth(), inputs.respiteStart.month.selector);
     await super.fill(startDate.getFullYear(), inputs.respiteStart.year.selector);
 
-    await super.retryClick(
+    await super.retryClickBySelector(
       radioButtons.standardBreathingSpace.selector, 
       () => super.expectOptionChecked(radioButtons.standardBreathingSpace.selector, {timeout: 1000}),
     );

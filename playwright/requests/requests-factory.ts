@@ -16,8 +16,4 @@ export default class RequestsFactory extends BaseRequestsFactory {
   get idamRequests() {
     return new IdamRequests(this.requestContext);
   }
-
-  get requestsCookiesManager() {
-    return new RequestsCookiesManager();
-  }
 }

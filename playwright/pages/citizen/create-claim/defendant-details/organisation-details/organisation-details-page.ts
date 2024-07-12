@@ -20,10 +20,13 @@ export default class OrganisationDetailsPage extends CitizenEvent(BasePage) {
   }
 
   async enterAddressDetails() {
-    await super.clickLink(links.addressManual.title);
-    await super.fill('1234 Street', inputs.addressLine1.selector);
-    await super.fill('City', inputs.city.selector);
-    await super.fill('E17 6EW', inputs.postcode.selector);
+    await super.retryClickLink(
+      links.addressManual.title, 
+      async () => {
+        await super.fill('1234 Street', inputs.addressLine1.selector, {timeout: 2000});
+        await super.fill('City', inputs.city.selector);
+        await super.fill('E17 6EW', inputs.postcode.selector);
+      });
     await super.clickSaveAndContinue();
   }
 

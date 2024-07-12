@@ -10,9 +10,9 @@ import PhoneNumberPage from './confirm-your-details/phone-number/phone-number-pa
 import ExtraTimeToRespondPage from './decide-if-you-need-more-time/extra-time-to-respond/extra-time-to-respond-page';
 import MoreTimePage from './decide-if-you-need-more-time/more-time-to-respond/more-time-page';
 import DefendantResponseDashboardPage from './defendant-response-dashboard/defendant-response-dashboard-page';
-import ListYourEvidencePage from './why-you-disagree/list-your-evidence/list-your-evidence-page';
+import EvidencePage from './why-you-disagree/evidence/evidence-page';
 import TimelinePage from './why-you-disagree/timeline/timeline-page';
-import WhyYouDisagreePage from './why-you-disagree/why-you-disagree/why-you-disagree-page';
+import YourDefencePage from './why-you-disagree/your-defence/your-defence-page';
 
 export default class DefendantResponseFactory extends BasePageFactory {
 
@@ -48,16 +48,16 @@ export default class DefendantResponseFactory extends BasePageFactory {
     return new WhyYouDontOweMoneyPage(this.page, this.axeBuilder);
   }
 
-  get whyYouDisagreePage() {
-    return new WhyYouDisagreePage(this.page, this.axeBuilder);
+  get yourDefencePage() {
+    return new YourDefencePage(this.page, this.axeBuilder);
   }
 
   get timelinePage() {
     return new TimelinePage(this.page, this.axeBuilder);
   }
 
-  get listYourEvidencePage() {
-    return new ListYourEvidencePage(this.page, this.axeBuilder);
+  get evidencePage() {
+    return new EvidencePage(this.page, this.axeBuilder);
   }
 
   get eligibilityAndDiversityPage() {

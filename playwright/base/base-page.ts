@@ -62,9 +62,9 @@ export default abstract class BasePage {
     await this.page.getByText(text).click();
   }
 
-  @TruthyParams()
-  protected async fill(input: string | number, selector?: string) {
-    await this.page.fill(selector!, input.toString());
+  @TruthyParams('input', 'selector')
+  protected async fill(input: string | number, selector?: string, options: {timeout?: number} = {}) {
+    await this.page.fill(selector!, input.toString(), options);
   }
 
   @TruthyParams()
@@ -72,9 +72,12 @@ export default abstract class BasePage {
     return await this.page.textContent(selector) ?? undefined;
   }
 
-  @TruthyParams()
-  protected async selectFromDropdown(option: string, selector?: string) {
-    await this.page.selectOption(selector, option);
+  @TruthyParams('selector')
+  protected async selectFromDropdown(option: string | number, selector: string) {
+    if(typeof option === 'number') 
+      await this.page.selectOption(selector, {index: option});
+    else
+      await this.page.selectOption(selector, option);
   }
 
   protected async getCookies(): Promise<Cookie[]> {
@@ -227,11 +230,34 @@ export default abstract class BasePage {
   }
 
   @TruthyParams('selector')
-  protected async retryClick(selector: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+  protected async retryClickBySelector(selector: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.clickBySelector(selector), 
       expects, 
       'Click action failed, trying again', 
+      {retries},
+    );
+  }
+
+  @TruthyParams('name')
+  protected async retryClickLink(name: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+    await this.retryAction(
+      () => this.clickLink(name), 
+      expects, 
+      'Click action failed, trying again', 
+      {retries},
+    );
+  }
+
+  @TruthyParams('option', 'selector')
+  protected async retrySelectFromDropdown(option: string, selector: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+    await this.retryAction(
+      async () => {
+        await this.selectFromDropdown(0, selector);
+        await this.selectFromDropdown(option, selector);
+      },
+      expects, 
+      'Select from dropdown action failed, trying again', 
       {retries},
     );
   }
