@@ -7,7 +7,7 @@ import { buttons, heading } from './eligibility-and-diversity-content';
 export default class EligibilityAndDiversityPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
     ]);
   }

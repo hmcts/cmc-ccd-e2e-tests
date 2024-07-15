@@ -7,7 +7,7 @@ import {heading} from './total-amount-content';
 export default class TotalAmountPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
     ]);
   }

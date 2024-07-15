@@ -5,7 +5,7 @@ import { buttons, heading, paragraphs } from './citizen-cookies-banner-content';
 @AllMethodsStep
 export default class CitizenCookiesBanner extends BasePage {
   async verifyContent(): Promise<void> {
-    await Promise.all([
+    await super.runVerifications([
       super.expectSubHeading(heading),
       super.expectText(paragraphs.cookiesDescription1),
       super.expectText(paragraphs.cookiesDescription2),

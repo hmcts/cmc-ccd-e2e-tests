@@ -7,7 +7,7 @@ import { heading, paragraphs, inputs } from './defendant-email-content';
 export default class DefendantEmailPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText),
     ]);

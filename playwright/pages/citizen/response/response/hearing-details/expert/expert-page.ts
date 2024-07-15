@@ -7,7 +7,7 @@ import { buttons, heading, paragraphs } from './expert-content';
 export default class ExpertPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText1),
       super.expectText(paragraphs.descriptionText2),

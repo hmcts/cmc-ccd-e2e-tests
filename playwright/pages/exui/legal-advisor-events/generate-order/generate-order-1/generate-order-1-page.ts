@@ -17,7 +17,7 @@ export default class GenerateOrder1Page extends ExuiEvent(BasePage){
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       this.sdoFragment.verifyContent(),

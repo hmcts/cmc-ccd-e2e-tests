@@ -7,7 +7,7 @@ import {heading, inputs, radioButtons } from './help-with-fees-ref-content';
 export default class HelpWithFeesRefPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
     ]);
   }

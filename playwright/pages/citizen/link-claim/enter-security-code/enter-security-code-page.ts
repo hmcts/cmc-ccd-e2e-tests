@@ -6,7 +6,7 @@ import { heading, inputs, paragraphs } from './enter-security-code-content';
 @AllMethodsStep
 export default class EnterSecurityCodePage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText),
       super.expectLabel(inputs.securityCode.label),

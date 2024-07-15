@@ -6,7 +6,7 @@ import { heading, radioButtons } from './more-time-content';
 @AllMethodsStep
 export default class MoreTimePage extends CitizenEvent(BasePage){
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(radioButtons.moreTimeYes.label),
       super.expectText(radioButtons.moreTimeNo.label),

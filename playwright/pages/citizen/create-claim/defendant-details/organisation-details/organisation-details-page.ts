@@ -7,7 +7,7 @@ import { heading, inputs, links } from './organisation-details-content';
 export default class OrganisationDetailsPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectLabel(inputs.name.label),
       super.expectLabel(inputs.contactName.label),

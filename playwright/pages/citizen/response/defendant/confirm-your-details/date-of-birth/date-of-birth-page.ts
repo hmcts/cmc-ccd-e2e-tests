@@ -7,7 +7,7 @@ import { heading, inputs } from './date-of-birth-content';
 export default class DateOfBirthPage extends CitizenEvent(BasePage){
   
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectLabel(inputs.day.label),
       super.expectLabel(inputs.month.label),

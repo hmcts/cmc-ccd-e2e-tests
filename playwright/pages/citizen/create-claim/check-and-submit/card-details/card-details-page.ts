@@ -7,7 +7,7 @@ import User from '../../../../../types/user';
 @AllMethodsStep
 export default class CardDetailsPage extends BasePage{
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       this.verifyPaymentSummaryContent(),
       this.verifyBillingAddressContent(),
@@ -16,7 +16,7 @@ export default class CardDetailsPage extends BasePage{
   }
 
   private async verifyPaymentSummaryContent() {
-    await Promise.all([
+    await super.runVerifications([
       // super.expectSubHeadingToBeVisible(subHeadings.paymentSummary),
       super.expectLabel(inputs.cardNumber.label),
       super.expectLabel(inputs.expiryMonth.label),
@@ -27,7 +27,7 @@ export default class CardDetailsPage extends BasePage{
   }
 
   async verifyBillingAddressContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectSubHeading(subHeadings.billingAddress),
       super.expectLabel(inputs.addressLine1.label),
       super.expectLabel(inputs.addressLine2.label),

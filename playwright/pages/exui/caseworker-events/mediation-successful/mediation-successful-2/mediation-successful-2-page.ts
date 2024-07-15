@@ -18,7 +18,7 @@ export default class MediationSuccessful2Page extends ExuiEvent(BasePage) {
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       this.staffDocumentsFragment.verifyContent(),

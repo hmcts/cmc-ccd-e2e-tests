@@ -8,7 +8,7 @@ import { buttons, heading, paragraphs, subHeadings } from './respond-to-claim-co
 export default class RespondToClaimPage extends CitizenEvent(BasePage){
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.dontRespond),
       super.expectSubHeading(subHeadings.email),

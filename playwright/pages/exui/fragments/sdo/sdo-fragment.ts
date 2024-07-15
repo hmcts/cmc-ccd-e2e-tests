@@ -5,7 +5,7 @@ import { legends, checkboxes, radioButtons, buttons, dropdowns, inputs, subHeadi
 export default class SdoFragment extends ExuiEvent(BasePage) {
   
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectOptionChecked(checkboxes.sendDocs.selector),
       super.expectOptionChecked(checkboxes.sendWitness.selector),
       super.expectOptionChecked(radioButtons.docsBothParties.selector),
@@ -20,7 +20,7 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
   }
 
   async verifyEnteredSdoDetails() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectOptionChecked(checkboxes.sendDocs.selector),
       super.expectOptionChecked(checkboxes.sendWitness.selector),
       super.expectOptionChecked(radioButtons.docsBothParties.selector),

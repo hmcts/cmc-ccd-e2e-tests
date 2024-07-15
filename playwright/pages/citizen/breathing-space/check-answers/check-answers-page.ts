@@ -5,8 +5,9 @@ import { heading, tableHeadings } from './check-answers-content';
 
 @AllMethodsStep
 export default class CheckAnswersPage extends CitizenEvent(BasePage){
+  
   async verifyContent(){
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(tableHeadings.refNum, {exact: true}),
       super.expectText(tableHeadings.respiteStart),

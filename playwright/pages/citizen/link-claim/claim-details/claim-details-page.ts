@@ -4,7 +4,7 @@ import { buttons, heading, paragraphs } from './claim-details-content';
 
 export default class ClaimDetailsPage extends CitizenEvent(BasePage) {
   async verifyContent(claimRef: string) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.claimNumber),
       super.expectText(claimRef),

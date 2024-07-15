@@ -4,7 +4,7 @@ import { dropdowns, heading, inputs, paragraphs, subHeadings } from './evidence-
 
 export default class EvidencePage extends CitizenEvent(BasePage){
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.listYourEvidence),
       super.expectText(paragraphs.yourEvidence),

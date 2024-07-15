@@ -9,7 +9,7 @@ import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 export default class MediationUnsuccessfulPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       super.expectSubHeading(subHeadings.defendants),

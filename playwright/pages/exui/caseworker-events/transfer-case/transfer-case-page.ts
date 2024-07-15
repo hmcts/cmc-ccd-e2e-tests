@@ -9,14 +9,14 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 export default class TransferCasePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
     ]);
   }
 
   private async verifyAddressInputs() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectLabel(inputs.addressLine1.label),
       super.expectLabel(inputs.addressLine2.label),
       super.expectLabel(inputs.addressLine3.label),

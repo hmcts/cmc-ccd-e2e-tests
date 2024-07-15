@@ -6,7 +6,7 @@ import { heading, paragraphs } from './extra-time-to-respond-content';
 @AllMethodsStep
 export default class ExtraTimeToRespondPage extends CitizenEvent(BasePage){
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText1),
       super.expectText(paragraphs.descriptionText2),

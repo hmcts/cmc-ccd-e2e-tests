@@ -9,7 +9,7 @@ import { heading, radioButtons, subHeadings, claimantInputs, defendantInputs, li
 export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData){
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       super.expectLabel(radioButtons.claimant.label, {exact: true}),
@@ -22,7 +22,7 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
   }
 
   async verifyClaimantContent(claimantDetails: ApplicantValue) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectSubHeading(subHeadings.claimants),
       // super.expectTextToBeVisible(claimantDetails.partyName),
       super.expectInputValue(claimantInputs.email.selector, 
@@ -51,7 +51,7 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
   }
 
   async verifyDefendantContent(defendantDetails: RespondentValue) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectSubHeading(subHeadings.defendants),
       // super.expectTextToBeVisible(claimantDetails.partyName),
       super.expectInputValue(defendantInputs.email.selector, 

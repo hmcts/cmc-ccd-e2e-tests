@@ -1,11 +1,11 @@
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
-import {links} from './citizen-nav-bar-content';
+import {heading, links} from './citizen-nav-bar-content';
 
 @AllMethodsStep
 export default class CitizenNavBar extends BasePage {
-  async verifyContent(): Promise<void> {
-    await this.expectHeading;
+  async verifyContent() {
+    await this.expectHeading(heading);
   }
   
   async clickSignOut() {

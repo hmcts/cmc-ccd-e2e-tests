@@ -8,7 +8,7 @@ import { heading, subHeadings, inputs } from './confirm-your-details-content';
 export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){
   
   async verifyContent(caseData: ClaimStoreCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.title),
       super.expectSubHeading(subHeadings.firstName),

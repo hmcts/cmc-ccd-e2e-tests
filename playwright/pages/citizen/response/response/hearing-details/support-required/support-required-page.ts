@@ -7,7 +7,7 @@ import { checkboxes, heading, inputs } from './support-required-content';
 export default class SupportRequiredPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectLabel(checkboxes.disabledAccess.label),
       super.expectLabel(checkboxes.hearingLoop.label),

@@ -7,7 +7,7 @@ import { checkBoxes, heading, subHeadings } from './check-your-answers-content';
 export default class CheckYourAnswersPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.yourDetails),
       super.expectSubHeading(subHeadings.yourResponse),

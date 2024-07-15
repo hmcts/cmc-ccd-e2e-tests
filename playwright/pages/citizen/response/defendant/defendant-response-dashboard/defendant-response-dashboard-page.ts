@@ -8,7 +8,7 @@ import { heading, links, subHeadings } from './defendant-response-dashboard-cont
 @AllMethodsStep
 export default class DefendantResponseDashboardPage extends BasePage {
   async verifyContent(caseData: ClaimStoreCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.applicationIncomplete),
       super.expectSubHeading(subHeadings.prepareYourResponse),
@@ -21,7 +21,7 @@ export default class DefendantResponseDashboardPage extends BasePage {
   }
 
   async verifyContentAfterDisputeAll() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectSubHeading(subHeadings.resolveClaim),
       super.expectSubHeading(subHeadings.hearingDetails),
     ]);

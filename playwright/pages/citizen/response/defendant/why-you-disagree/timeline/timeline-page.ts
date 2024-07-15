@@ -6,7 +6,7 @@ import { heading, subHeadings, inputs } from './timeline-content';
 @AllMethodsStep
 export default class TimelinePage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.addTimeline),
       // super.expectSubHeading(subHeadings.theirTimeline),

@@ -7,7 +7,7 @@ import { heading, inputs } from './mediation-phone-number-content';
 export default class MediationPhoneNumberPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectLabel(inputs.phoneNumber.label),
     ]);

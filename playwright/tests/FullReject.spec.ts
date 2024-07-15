@@ -20,6 +20,7 @@ test.describe('Full reject', async () => {
     await DefendantResponseSteps.CheckAndSubmit();
     await IdamSteps.JudgeLogin();
     await ApiCaseDataSteps.FetchCCDCaseData();
+    await ExuiDashboardSteps.GoToCaseDetails();
     await ExuiDashboardSteps.VerifyDefendantFullReject();
   });
 });

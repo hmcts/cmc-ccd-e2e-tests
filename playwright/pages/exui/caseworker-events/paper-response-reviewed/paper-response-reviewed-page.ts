@@ -10,7 +10,7 @@ import filePaths from '../../../../config/file-paths';
 export default class PaperResponseReviewedPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
     ]);

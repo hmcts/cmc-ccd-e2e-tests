@@ -7,7 +7,7 @@ import { buttons, heading, links, subHeadings } from './free-telephone-mediation
 export default class FreeTelephoneMediationPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.howMediationWorks),
       super.expectSubHeading(subHeadings.settlement),

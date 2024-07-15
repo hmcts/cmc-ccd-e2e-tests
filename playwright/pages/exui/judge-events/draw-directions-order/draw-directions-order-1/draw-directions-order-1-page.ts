@@ -7,7 +7,7 @@ import { heading, paragraphs, radioButtons } from './draw-directions-order-1-con
 @AllMethodsStep
 export default class DrawDirectionsOrder1Page extends ExuiEvent(BasePage){
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       super.expectText(paragraphs.descriptionText),

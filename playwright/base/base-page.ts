@@ -16,8 +16,6 @@ export default abstract class BasePage {
     this.axeBuilder = axeBuilder;
   }
 
-  abstract verifyContent(...args: any[]): Promise<void>
-
   @TruthyParams('selector')
   protected async clickBySelector(selector: string, options: {count?: number} = {}) {
     await this.page.locator(selector).click({clickCount: options.count});
@@ -122,6 +120,17 @@ export default abstract class BasePage {
     await this.page.waitForTimeout(time);
   }
 
+  abstract verifyContent(...args: any[]): Promise<void>
+
+  protected async runVerifications(expects: Promise<void> | Promise<void>[], {accessibility = true}: {accessibility?: boolean} = {}) {
+    Array.isArray(expects) ? await Promise.all(expects) : await expects
+
+    if(config.runAccessibilityTests && this.axeBuilder && accessibility) {
+      const results = await this.axeBuilder.analyze();
+      pageExpect.soft(results.violations).toHaveLength(0);
+    }
+  }
+
   protected async expectDomain(domain: string, options: {timeout?: number} = {}) {
     await pageExpect(this.page).toHaveURL(new RegExp(`https?://${domain}.*`), {...options});
   }
@@ -209,13 +218,13 @@ export default abstract class BasePage {
 
   protected async retryAction(
     action: () => Promise<void>, 
-    assertion: () => Promise<void>[] | Promise<void>,
+    assertions: () => Promise<void>[] | Promise<void>,
     message: string,  
     {retries = 1, assertFirst = false}: { retries?: number, assertFirst?: boolean } = {},
   ) {
     while(retries > 0) {
       if(!assertFirst) await action();
-      const promises = assertion();
+      const promises = assertions();
       try {
         await (Array.isArray(promises) ? Promise.all(promises) : promises);
         break;
@@ -230,51 +239,44 @@ export default abstract class BasePage {
   }
 
   @TruthyParams('selector')
-  protected async retryClickBySelector(selector: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+  protected async retryClickBySelector(selector: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.clickBySelector(selector), 
-      expects, 
+      assertions, 
       'Click action failed, trying again', 
       {retries},
     );
   }
 
   @TruthyParams('name')
-  protected async retryClickLink(name: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+  protected async retryClickLink(name: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.clickLink(name), 
-      expects, 
+      assertions, 
       'Click action failed, trying again', 
       {retries},
     );
   }
 
   @TruthyParams('option', 'selector')
-  protected async retrySelectFromDropdown(option: string, selector: string, expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+  protected async retrySelectFromDropdown(option: string, selector: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       async () => {
         await this.selectFromDropdown(0, selector);
         await this.selectFromDropdown(option, selector);
       },
-      expects, 
+      assertions, 
       'Select from dropdown action failed, trying again', 
       {retries},
     );
   }
 
-  protected async retryReload(expects: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
+  protected async retryReload(assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.reload(), 
-      expects, 
+      assertions, 
       'Assertion failed, reloading page and trying again', 
       {retries, assertFirst: true},
     );
-  }
-
-  protected async runAccessibilityTests() {
-    if(config.runAccessibilityTests && this.axeBuilder) {
-      const results = await this.axeBuilder.analyze();
-      pageExpect.soft(results.violations).toHaveLength(0);
-    }
   }
 }
