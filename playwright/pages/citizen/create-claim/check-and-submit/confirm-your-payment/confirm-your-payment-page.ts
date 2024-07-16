@@ -7,12 +7,6 @@ export default class ConfirmYourPaymentPage extends BasePage{
   async verifyContent(): Promise<void> {
     await super.runVerifications([
       super.expectHeading(heading),
-      this.verifyPaymentSummary(),
-    ]);
-  }
-
-  private async verifyPaymentSummary() {
-    await super.runVerifications([
       super.expectSubHeading(subHeadings.paymentSummary),
       super.expectText(tableHeadings.cardNumber),
       super.expectText(tableHeadings.expiryDate),

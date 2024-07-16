@@ -66,14 +66,10 @@ withNightlyPipeline("nodejs", product, component) {
                   allowMissing: true,
                   alwaysLinkToLastBuild: true,
                   keepAll: true,
-                  reportDir: "playwright-report",
+                  reportDir: "allure-report",
                   reportFiles: 'index.html',
                   reportName: 'Full Functional Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
-    }
-
-    afterAlways('crossBrowserTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 }
