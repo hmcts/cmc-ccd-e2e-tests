@@ -12,7 +12,7 @@
     "test:full-functional": "npx playwright test --project full-functional",
     "test:functional": "npx playwright test --project full-functional",
     "test:fullfunctional": "yarn playwright install && (yarn test:functional ; yarn test:functional:report)",
-    "test:functional:report": "allure generate ./allure-results --clean && allure open ./allure-report"
+    "test:functional:report": "allure generate ./allure-results --clean"
   },
   "repository": {
     "type": "git",
