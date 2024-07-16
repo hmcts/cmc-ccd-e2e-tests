@@ -10,10 +10,9 @@
     "lint:fix": "eslint . --fix",
     "test:debug": "npx playwright test --project full-functional --grep @debug",
     "test:full-functional": "npx playwright test --project full-functional",
-    "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run-multiple parallel -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
-    "test:fullfunctional": "yarn playwright install && npx playwright test --project full-functional ",
-    "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c src/test/end-to-end/saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
-    "test:crossbrowser": "BROWSER_GROUP=chrome ./bin/run-crossbrowser-tests.sh"
+    "test:functional": "npx playwright test --project full-functional",
+    "test:fullfunctional": "yarn playwright install && (yarn test:functional ; yarn test:functional:report)",
+    "test:functional:report": "allure generate ./allure-results --clean && allure open ./allure-report"
   },
   "repository": {
     "type": "git",

@@ -123,7 +123,7 @@ export default abstract class BasePage {
   abstract verifyContent(...args: any[]): Promise<void>
 
   protected async runVerifications(expects: Promise<void> | Promise<void>[], {accessibility = true}: {accessibility?: boolean} = {}) {
-    Array.isArray(expects) ? await Promise.all(expects) : await expects
+    Array.isArray(expects) ? await Promise.all(expects) : await expects;
 
     if(config.runAccessibilityTests && this.axeBuilder && accessibility) {
       const results = await this.axeBuilder.analyze();

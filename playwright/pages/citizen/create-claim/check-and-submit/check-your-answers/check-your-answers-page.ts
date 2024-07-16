@@ -3,7 +3,6 @@ import { Step } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 
-
 export default class CheckYourAnswersPage extends CitizenEvent(BasePage){
 
   @Step
