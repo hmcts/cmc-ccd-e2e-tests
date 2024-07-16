@@ -13,8 +13,8 @@ properties([
                 string(name: 'DM_STORE_URL', defaultValue: 'http://dm-store-aat.service.core-compute-aat.internal', description: 'The URL of dm store'),
                 string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
                 string(name: 'CCD_DATA_STORE_URL', defaultValue: 'http://ccd-data-store-api-aat.service.core-compute-aat.internal', description: 'The URL of ccd data store'),
-                string(name: 'CLAIM_STORE_URL', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Claim store url')
-                string(name: 'SKIP_AUTH_SETUP', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Skip users authentication setup')
+                string(name: 'CLAIM_STORE_URL', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Claim store url'),
+                string(name: 'SKIP_AUTH_SETUP', defaultValue: 'false', description: 'Skip users authentication setup')
         ])
 ])
 
