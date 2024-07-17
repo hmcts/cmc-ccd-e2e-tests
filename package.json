@@ -13,7 +13,7 @@
     "test:setup:user-auth": "npx playwright test --project user-auth-setup ",
     "test:teardown:user-auth": "npx playwright test --project user-auth-teardown",
     "test:teardown:citizen-user": "npx playwright test --project citizen-users-teardown",
-    "test:setup": "yarn test:citizen-users-setup && yarn test:user-data-setup && yarn test:user-auth-setup",
+    "test:setup": "yarn test:setup:citizen-users && yarn test:setup:user-data && yarn test:setup:user-auth",
     "test:teardown": "yarn test:user-auth-teardown && yarn test:citizen-user-teardown",
     "test:debug": "npx playwright test --project full-functional --grep @debug",
     "test:functional": "npx playwright test --project full-functional",
