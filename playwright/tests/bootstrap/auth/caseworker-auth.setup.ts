@@ -2,7 +2,6 @@ import config from '../../../config/config';
 import {judge, caseworker, legalAdvisor} from '../../../config/users';
 import { test as setup } from '../../../playwright-fixtures/index';
 
-
 setup.describe('Authenticating exui users and saving cookies', () => {
   setup.skip(config.skipAuthSetup, 'Skip authenticate exui users and save cookies setup');
   setup.describe.configure({mode: 'parallel'});

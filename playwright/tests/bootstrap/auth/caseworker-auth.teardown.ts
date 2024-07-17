@@ -1,7 +1,6 @@
 import config from '../../../config/config';
 import { test as teardown } from '../../../playwright-fixtures/index';
 
-
 teardown.describe('Signing out exui users', () => {
   teardown.describe.configure({mode: 'parallel'});
   teardown.skip(config.skipAuthSetup);

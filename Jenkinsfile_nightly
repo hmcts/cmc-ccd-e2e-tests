@@ -66,7 +66,7 @@ withNightlyPipeline("nodejs", product, component) {
       stage('Setup') {
         try {
           yarnBuilder.yarn('test:setup')
-        } (Error) {
+        } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
@@ -78,7 +78,7 @@ withNightlyPipeline("nodejs", product, component) {
       stage('Teardown') {
         try {
           yarnBuilder.yarn('test:teardown')
-        } (Error) {
+        } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
@@ -86,7 +86,7 @@ withNightlyPipeline("nodejs", product, component) {
          try {
             yarnBuilder.yarn('test:functional:report')
             yarnBuilder.yarn('test:bootstrap:report')
-          } (Error) {
+          } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
             publishHTML([
@@ -116,14 +116,14 @@ withNightlyPipeline("nodejs", product, component) {
       stage('Teardown') {
         try {
           yarnBuilder.yarn('test:teardown')
-        } (Error) {
+        } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
       stage('Generate reports') {
          try {
             yarnBuilder.yarn('test:bootstrap:report')
-          } (Error) {
+          } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
             publishHTML([

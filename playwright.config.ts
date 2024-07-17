@@ -11,11 +11,11 @@ export default defineConfig({
   // reporter: process.env.CI ? 'allure-playwright' : 'list',
   reporter: process.env.CI ? [
     [
-      "allure-playwright",
+      'allure-playwright',
       {
         detail: true,
-        outputFolder: process.env.FUNCTIONAL === "true" ? "allure-functional-results" : "allure-bootstrap-results",
-      }
+        outputFolder: process.env.FUNCTIONAL === 'true' ? 'allure-functional-results' : 'allure-bootstrap-results',
+      },
     ],
   ] : 'list',
   timeout: 8 * 30 * 1000,
