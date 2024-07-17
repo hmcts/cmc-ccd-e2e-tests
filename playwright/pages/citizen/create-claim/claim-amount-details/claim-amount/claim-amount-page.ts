@@ -7,7 +7,7 @@ import { heading, inputs } from './claim-amount-content';
 export default class ClaimAmountPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
     ]);
   }

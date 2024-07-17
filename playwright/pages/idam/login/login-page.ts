@@ -1,14 +1,14 @@
 import urls from '../../../config/urls';
 import User from '../../../types/user';
 import BasePage from '../../../base/base-page';
-import { heading, inputs, buttons } from './login-page-content';
+import { inputs, buttons } from './login-page-content';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 
 @AllMethodsStep
 export default class LoginPage extends BasePage {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       // super.expectText(heading),
       super.expectLabel(inputs.email.label),
       super.expectLabel(inputs.password.label),

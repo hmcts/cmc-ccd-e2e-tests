@@ -47,7 +47,7 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyNewClaimantDetails() {
     await super.clickByText(tabs.claimantDetails.title);
-    await Promise.all([
+    await super.runVerifications([
       super.expectText(claimantChangeDetailsInputs.email.value),
       super.expectText(claimantChangeDetailsInputs.addressLine1.value),
       super.expectText(claimantChangeDetailsInputs.addressLine2.value),
@@ -59,7 +59,7 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyNewDefendantDetails() {
     await super.clickByText(tabs.defendantDetails.title);
-    await Promise.all([
+    await super.runVerifications([
       super.expectText(defendantChangeDetailsInputs.email.value),
       super.expectText(defendantChangeDetailsInputs.addressLine1.value),
       super.expectText(defendantChangeDetailsInputs.addressLine2.value),
@@ -71,7 +71,7 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyUploadedDocuments() {
     await super.clickByText(tabs.claimDocs.title);
-    await Promise.all([
+    await super.runVerifications([
       super.expectText(doc1Dropdowns.docType.options[0]),
       super.expectText(doc1Dropdowns.docType.options[2]),
       // super.expectText(doc1Inputs.docName.value),

@@ -6,7 +6,7 @@ import { buttons, heading, subHeadings } from './confirmation-content';
 @AllMethodsStep
 export default class ConfirmationPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectSubHeading(subHeadings.happensNext),
       super.expectSubHeading(subHeadings.settleOutCourt),

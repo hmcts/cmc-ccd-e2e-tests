@@ -10,7 +10,7 @@ import DateHelper from '../../../../../helpers/date-helper';
 export default class MediationSuccessful1Page extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       super.expectSubHeading(subHeadings.defendants),

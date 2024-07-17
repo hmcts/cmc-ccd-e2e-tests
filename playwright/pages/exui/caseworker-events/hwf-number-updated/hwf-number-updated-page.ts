@@ -9,7 +9,7 @@ import ExuiEvent from '../../exui-event/exui-event';
 export default class UpdatedHwfNumberPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(headings.pageTitle),
       super.verifyCaseTitle(caseData),
       super.expectHeading(headings.hwfNumberAndCaseTitle),

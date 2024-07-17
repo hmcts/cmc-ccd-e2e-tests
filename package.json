@@ -10,10 +10,9 @@
     "lint:fix": "eslint . --fix",
     "test:debug": "npx playwright test --project full-functional --grep @debug",
     "test:full-functional": "npx playwright test --project full-functional",
-    "test:functional": "NODE_PATH=. node ./node_modules/codeceptjs/bin/codecept.js run-multiple parallel -c ./src/test/end-to-end/ --steps --reporter mocha-multi",
-    "test:fullfunctional": "yarn playwright install && npx playwright test --project full-functional",
-    "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c src/test/end-to-end/saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
-    "test:crossbrowser": "BROWSER_GROUP=chrome ./bin/run-crossbrowser-tests.sh"
+    "test:functional": "npx playwright test --project full-functional",
+    "test:fullfunctional": "yarn playwright install && (yarn test:functional ; yarn test:functional:report)",
+    "test:functional:report": "allure generate ./allure-results --clean"
   },
   "repository": {
     "type": "git",
@@ -49,6 +48,7 @@
     "eslint-plugin-codeceptjs": "^1.3.0",
     "infinite-sequence-generator": "^1.1.0",
     "launchdarkly-node-server-sdk": "^5.13.1",
+    "npm-run-all": "^4.1.5",
     "puppeteer": "^22.7.1",
     "randomstring": "^1.1.5",
     "sinon": "^5.0.7",
@@ -64,5 +64,6 @@
   "bugs": {
     "url": "https://github.com/hmcts/cmc-ccd-e2e-tests/issues"
   },
-  "homepage": "https://github.com/hmcts/cmc-ccd-e2e-tests#readme"
+  "homepage": "https://github.com/hmcts/cmc-ccd-e2e-tests#readme",
+  "packageManager": "yarn@3.2.4"
 }

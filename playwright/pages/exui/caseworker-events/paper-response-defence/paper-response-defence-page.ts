@@ -10,7 +10,7 @@ export default class PaperResponseDefencePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
     const respondentAddress = caseData.respondents[0].value.claimantProvidedDetail.primaryAddress;
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       super.expectSubHeading(subHeadings.defendantDetails),

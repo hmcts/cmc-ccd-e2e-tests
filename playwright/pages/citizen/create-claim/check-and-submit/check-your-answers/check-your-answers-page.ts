@@ -1,13 +1,13 @@
 import BasePage from '../../../../../base/base-page';
-import { AllMethodsStep } from '../../../../../decorators/test-steps';
+import { Step } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 
-@AllMethodsStep
 export default class CheckYourAnswersPage extends CitizenEvent(BasePage){
 
+  @Step
   async verifyContent(): Promise<void> {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       this.verifyYourDetails(),
       this.verifyTheirDetails(),
@@ -48,6 +48,7 @@ export default class CheckYourAnswersPage extends CitizenEvent(BasePage){
     //verify the rest of content
   }
 
+  @Step
   async checkAndSubmit() {
     await super.clickBySelector(checkboxes.signedTrue.selector);
     await super.clickSubmit();

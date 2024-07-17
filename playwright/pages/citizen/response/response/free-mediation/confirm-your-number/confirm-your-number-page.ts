@@ -7,7 +7,7 @@ import { heading, inputs, paragraphs, radioButtons } from './confirm-your-number
 export default class ConfirmYourNumberPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText),
     ]);

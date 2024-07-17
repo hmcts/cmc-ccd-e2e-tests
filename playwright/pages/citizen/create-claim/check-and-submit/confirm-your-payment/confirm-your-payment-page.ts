@@ -5,14 +5,8 @@ import { buttons, heading, subHeadings, tableHeadings } from './confirm-your-pay
 @AllMethodsStep
 export default class ConfirmYourPaymentPage extends BasePage{
   async verifyContent(): Promise<void> {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
-      this.verifyPaymentSummary(),
-    ]);
-  }
-
-  private async verifyPaymentSummary() {
-    await Promise.all([
       super.expectSubHeading(subHeadings.paymentSummary),
       super.expectText(tableHeadings.cardNumber),
       super.expectText(tableHeadings.expiryDate),

@@ -7,7 +7,7 @@ import ExuiEvent from '../../exui-event/exui-event';
 export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
   
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectSubHeading(subHeadings.staffUploadedDocs),
     ]);
   }

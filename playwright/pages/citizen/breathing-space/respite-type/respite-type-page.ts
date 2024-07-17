@@ -6,7 +6,7 @@ import { heading, radioButtons } from './respite-type-content';
 @AllMethodsStep
 export default class RespiteTypePage extends CitizenEvent(BasePage){
   async verifyContent(){
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectLabel(radioButtons.standard.label),
       super.expectLabel(radioButtons.mentalHealth.label),

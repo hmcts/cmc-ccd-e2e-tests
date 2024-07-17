@@ -7,7 +7,7 @@ import { heading, inputs } from './defendant-phone-number-content';
 export default class DefendantPhoneNumberPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
     ]);
   }

@@ -10,7 +10,7 @@ import { dropdowns, heading, subHeadings } from './review-ocon9x-paper-response-
 export default class ReviewOcon9xPaperResponsePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       super.expectSubHeading(subHeadings.scannedDocs),

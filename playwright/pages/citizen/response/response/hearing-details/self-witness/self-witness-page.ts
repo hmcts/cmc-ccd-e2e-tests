@@ -6,7 +6,7 @@ import { heading, paragraphs, radioButtons } from './self-witness-content';
 @AllMethodsStep
 export default class SelfWitnessPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText),
       super.expectLabel(radioButtons.yesGiveEvidence.label),

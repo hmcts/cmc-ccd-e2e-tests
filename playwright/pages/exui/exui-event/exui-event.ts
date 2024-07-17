@@ -7,7 +7,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
   
   abstract class ExuiEvent extends Base {
     protected async verifyEventSummaryContent(options: {timeout: number} = {timeout: 0}) {
-      await Promise.all([
+      await super.runVerifications([
         super.expectLabel(eventInputs.eventSummary.label, options),
         super.expectLabel(eventInputs.eventSummary.helperText, options),
         super.expectLabel(eventInputs.eventDescription.label, options),

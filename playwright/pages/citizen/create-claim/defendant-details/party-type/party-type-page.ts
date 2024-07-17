@@ -7,7 +7,7 @@ import { heading, radioButtons } from './party-type-content';
 export default class PartyTypePage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectLabel(radioButtons.individual.label),
       super.expectLabel(radioButtons.soleTrader.label),

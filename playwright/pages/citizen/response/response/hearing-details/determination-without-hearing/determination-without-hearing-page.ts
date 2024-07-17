@@ -7,7 +7,7 @@ import { heading, inputs, paragraphs, radioButtons } from './determination-witho
 export default class DeterminationWithoutHearingPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText1),
       super.expectText(paragraphs.descriptionText2),

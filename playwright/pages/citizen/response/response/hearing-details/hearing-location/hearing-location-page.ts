@@ -7,7 +7,7 @@ import { heading, paragraphs, radioButtons } from './hearing-location-content';
 export default class HearingLocationPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText1),
       super.expectText(paragraphs.descriptionText2),

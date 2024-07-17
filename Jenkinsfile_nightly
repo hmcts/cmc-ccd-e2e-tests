@@ -13,7 +13,8 @@ properties([
                 string(name: 'DM_STORE_URL', defaultValue: 'http://dm-store-aat.service.core-compute-aat.internal', description: 'The URL of dm store'),
                 string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
                 string(name: 'CCD_DATA_STORE_URL', defaultValue: 'http://ccd-data-store-api-aat.service.core-compute-aat.internal', description: 'The URL of ccd data store'),
-                string(name: 'CLAIM_STORE_URL', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Claim store url')
+                string(name: 'CLAIM_STORE_URL', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Claim store url'),
+                string(name: 'SKIP_AUTH_SETUP', defaultValue: 'false', description: 'Skip users authentication setup')
         ])
 ])
 
@@ -58,6 +59,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.TEST_ENV = params.ENVIRONMENT
     env.RUN_FULL_REGRESSION_SUITE = params.RUN_FULL_REGRESSION_SUITE
     env.WORKERS = params.WORKERS
+    env.SKIP_AUTH_SETUP = params.SKIP_AUTH_SETUP
     loadVaultSecrets(secrets)
     enableFullFunctionalTest(120)
     
@@ -66,14 +68,10 @@ withNightlyPipeline("nodejs", product, component) {
                   allowMissing: true,
                   alwaysLinkToLastBuild: true,
                   keepAll: true,
-                  reportDir: "playwright-report",
+                  reportDir: "allure-report",
                   reportFiles: 'index.html',
                   reportName: 'Full Functional Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
-    }
-
-    afterAlways('crossBrowserTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
     }
 }

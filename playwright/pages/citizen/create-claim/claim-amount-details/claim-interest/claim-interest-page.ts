@@ -7,7 +7,7 @@ import { heading, radioButtons } from './claim-interest-content';
 export default class ClaimInterestPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
     ]);
   }

@@ -7,7 +7,7 @@ import { paragraphs, heading, inputs } from './respite-end-content';
 @AllMethodsStep
 export default class RespiteEndPage extends CitizenEvent(BasePage){
   async verifyContent(){
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.descriptionText),
       super.expectLabel(inputs.day.label),

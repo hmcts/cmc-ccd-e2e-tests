@@ -6,7 +6,7 @@ import { dropdowns, legends } from './draft-order-content';
 export default class DraftOrderFragment extends ExuiEvent(BasePage) {
   
   async verifyContent(ccdCaseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectLink(ccdCaseData.previousServiceCaseReference),
       super.expectText(legends.draftOrder),
     ]);

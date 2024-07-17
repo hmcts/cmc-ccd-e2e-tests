@@ -7,7 +7,7 @@ import { heading, radioButtons } from './hearing-dates-content';
 export default class HearingDatesPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(radioButtons.yesHearingDates.label),
       super.expectText(radioButtons.noHearingDates.label, {exact: true}),

@@ -8,8 +8,8 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
-  // reporter: 'allure-playwright',
-  reporter: process.env.CI ? 'html' : 'list',
+  reporter: process.env.CI ? 'allure-playwright' : 'list',
+  // reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
     timeout: 30_000,
@@ -56,6 +56,21 @@ export default defineConfig({
     {
       name: 'full-functional',
       use: {...devices['Desktop Chrome']  },
+      dependencies: ['#3-user-auth-setup'],
+    },
+    {
+      name: 'cross-browser-firefox',
+      use: {...devices['Desktop Firefox']  },
+      dependencies: ['#3-user-auth-setup'],
+    },
+    {
+      name: 'cross-browser-edge',
+      use: {...devices['Desktop Edge']},
+      dependencies: ['#3-user-auth-setup'],
+    },
+    {
+      name: 'cross-browser-safari',
+      use: {...devices['Desktop Safari']},
       dependencies: ['#3-user-auth-setup'],
     },
   ],

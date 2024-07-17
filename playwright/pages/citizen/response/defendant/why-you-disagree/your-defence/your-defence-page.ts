@@ -6,7 +6,7 @@ import { heading, inputs, paragraphs } from './your-defence-content';
 @AllMethodsStep
 export default class YourDefencePage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.expectText(paragraphs.theirReasons),
       super.expectText(inputs.disagreeReason.label),

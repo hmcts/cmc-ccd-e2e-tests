@@ -17,7 +17,7 @@ export default class DrawDirectionsOrder3Page extends ExuiEvent(BasePage){
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       this.draftOrderFragment.verifyContent(caseData),

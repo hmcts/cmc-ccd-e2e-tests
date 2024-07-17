@@ -17,7 +17,7 @@ export default class ActionReviewComments1Page extends ExuiEvent(BasePage){
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await Promise.all([
+    await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
       this.sdoFragment.verifyEnteredSdoDetails(),
