@@ -24,10 +24,10 @@ const deleteUsers = async (userType: UserType) => {
 };
 
 const globalTeardown = async () => {
-  await deleteUsers(UserType.CLAIMANT);
-  await deleteUsers(UserType.DEFENDANT);
-  UserStateHelper.deleteAllUsersState();
-  FileSystemHelper.delete(`${filePaths.userCookies}/`);
+  // await deleteUsers(UserType.CLAIMANT);
+  // await deleteUsers(UserType.DEFENDANT);
+  // UserStateHelper.deleteAllUsersState();
+  // FileSystemHelper.delete(`${filePaths.userCookies}/`);
 };
 
 export default globalTeardown;

@@ -4,8 +4,6 @@ import ApiUsersSteps from '../../steps/api/api-users-steps';
 import ApiCaseEventSteps from '../../steps/api/api-case-events-steps';
 
 type ApiStepsFixtures = {
-  _setupUserIds: void;
-  _setupAuthTokens: void;
   ApiUsersSteps: ApiUsersSteps;
   ApiCaseDataSteps: ApiCaseDataSteps;
   ApiCaseEventsSteps: ApiCaseEventSteps;

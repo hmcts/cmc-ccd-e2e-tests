@@ -2,6 +2,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       CI: string,
+      FUNCTIONAL:string,
       ENVIRONMENT: string,
       CITIZEN_APP_URL: string,
       EXUI_URL: string,

@@ -8,11 +8,18 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --fix",
+    "test:setup:citizen-users": "npx playwright test --project citizen-users-setup ",
+    "test:setup:user-data": "npx playwright test --project user-data-setup",
+    "test:setup:user-auth": "npx playwright test --project user-auth-setup ",
+    "test:teardown:user-auth": "npx playwright test --project user-auth-teardown",
+    "test:teardown:citizen-user": "npx playwright test --project citizen-users-teardown",
+    "test:setup": "yarn test:citizen-users-setup && yarn test:user-data-setup && yarn test:user-auth-setup",
+    "test:teardown": "yarn test:user-auth-teardown && yarn test:citizen-user-teardown",
     "test:debug": "npx playwright test --project full-functional --grep @debug",
-    "test:full-functional": "npx playwright test --project full-functional",
     "test:functional": "npx playwright test --project full-functional",
-    "test:fullfunctional": "yarn playwright install && (yarn test:functional ; yarn test:functional:report)",
-    "test:functional:report": "allure generate ./allure-results --clean"
+    "test:fullfunctional": "npx playwright test --project full-functional --env FUNCTIONAL=true",
+    "test:functional:report": "allure generate allure-functional-results --clean -o allure-functional-report",
+    "test:bootstrap:report": "allure generate allure-bootstrap-results --clean -o allure-bootstrap-report"
   },
   "repository": {
     "type": "git",
@@ -48,7 +55,6 @@
     "eslint-plugin-codeceptjs": "^1.3.0",
     "infinite-sequence-generator": "^1.1.0",
     "launchdarkly-node-server-sdk": "^5.13.1",
-    "npm-run-all": "^4.1.5",
     "puppeteer": "^22.7.1",
     "randomstring": "^1.1.5",
     "sinon": "^5.0.7",
