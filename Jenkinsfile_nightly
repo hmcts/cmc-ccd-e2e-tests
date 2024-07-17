@@ -62,74 +62,17 @@ withNightlyPipeline("nodejs", product, component) {
     env.WORKERS = params.WORKERS
     env.SKIP_AUTH_SETUP = params.SKIP_AUTH_SETUP
     loadVaultSecrets(secrets)
-
-    boolean setupPassed=true
-   
-    afterAlways('DependencyCheckNightly') {
-      stage('Test Setup') {
-        try {
-          yarnBuilder.yarn('test:setup:playwright-install')
-          yarnBuilder.yarn('test:setup:ci')
-        } catch (Error) {
-          setupPassed=false
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
-
-      if(setupPassed) {
-        stage('Cross browser test') {
-          try {
-            yarnBuilder.yarn('test:crossbrowser:ci')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          }
-        }
-
-        stage('Full functional test') {
-          try {
-            yarnBuilder.yarn('test:functional:ci')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          }
-        }
-      }
-
-      stage('Test Teardown') {
-        try {
-          yarnBuilder.yarn('test:teardown:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
-
-      stage('Generate Reports') {
-        try {
-          yarnBuilder.yarn('test:bootstrap:generate-report')
-          if(setupPassed) {
-            yarnBuilder.yarn('test:functional:generate-report')
-          }
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: 'allure-bootstrap-report',
-              reportFiles: 'index.html',
-              reportName: 'Allure Bootstrap Report'
+    enableFullFunctionalTest(120)
+    
+    afterAlways('fullFunctionalTest') {
+        publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "allure-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Full Functional Test Report'
           ])
-          if(setupPassed) {
-            publishHTML([
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: 'allure-functional-report',
-              reportFiles: 'index.html',
-              reportName: 'Allure Functional Report'
-            ])
-          }
-        }
-      } 
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
     }
 }

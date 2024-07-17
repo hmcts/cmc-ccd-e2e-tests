@@ -4,9 +4,8 @@ import {heading, subHeadings,inputs, dropdowns, buttons} from './card-details-co
 import { Step } from '../../../../../decorators/test-steps';
 import User from '../../../../../types/user';
 
-const classKey = 'CardDetailsPage';
-
 export default class CardDetailsPage extends BasePage{
+  @Step
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -42,7 +41,7 @@ export default class CardDetailsPage extends BasePage{
     await super.expectSubHeading(subHeadings.contactDetails);
   }
 
-  @Step(classKey)
+  @Step
   async fillCardDetails() {
     const date = DateHelper.addToToday({years: 1});
     await super.inputText('4444333322221111', inputs.cardNumber.selector);
@@ -52,19 +51,19 @@ export default class CardDetailsPage extends BasePage{
     await super.inputText('456', inputs.securityCode.selector);
   }
 
-  @Step(classKey)
+  @Step
   async fillBillingAddressDetails() {
     await super.inputText('123 Street', inputs.addressLine1.selector);
     await super.inputText('London', inputs.city.selector);
     await super.inputText('E4 6ry', inputs.postcode.selector);
   }
-  
-  @Step(classKey)
+
+  @Step
   async fillContactDetails({email}: User) {
     await super.inputText(email, inputs.confirmationEmail.selector);
   }
 
-  @Step(classKey)
+  @Step
   async continue() {
     await super.clickBySelector(buttons.continue.selector);
   }

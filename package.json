@@ -8,23 +8,11 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --fix",
-    "test:setup:playwright-install": "yarn playwright install",
-    "test:setup:citizen-users:ci": "npx playwright test --project citizen-users-setup --pass-with-no-tests --no-deps",
-    "test:setup:user-data:ci": "npx playwright test --project user-data-setup --pass-with-no-tests --no-deps",
-    "test:setup:user-auth:ci": "npx playwright test --project user-auth-setup --pass-with-no-tests --no-deps",
-    "test:setup:ci": "yarn test:setup:citizen-users:ci && yarn test:setup:user-data:ci && yarn test:setup:user-auth:ci",
-    "test:crossbrowser:ci": "FUNCTIONAL=true npx playwright test --project cross-browser-firefox cross-browser-edge cross-browser-safari --no-deps --grep @crossbrowser",
-    "test:functional:ci": "FUNCTIONAL=true npx playwright test --project full-functional --no-deps",
-    "test:teardown:user-auth:ci": "npx playwright test --project user-auth-teardown --pass-with-no-tests --no-deps",
-    "test:teardown:citizen-users:ci": "npx playwright test --project citizen-users-teardown --pass-with-no-tests --no-deps",
-    "test:teardown:ci": "yarn test:teardown:user-auth:ci || true ; yarn test:teardown:citizen-users:ci",
-    "test:functional:generate-report": "allure generate allure-functional-results --clean -o allure-functional-report",
-    "test:bootstrap:generate-report": "allure generate allure-bootstrap-results --clean -o allure-bootstrap-report",
-    "test:functional:open-report": "allure open allure-functional-report",
-    "test:bootstrap:open-report": "allure open allure-bootstrap-report",
-    "test:debug:local": "npx playwright test --project full-functional --grep @debug",
-    "test:functional:local": "npx playwright test --project full-functional",
-    "test:crossbrowser:local": "npx playwright test --project cross-browser-firefox cross-browser-edge cross-browser-safari --grep @crossbrowser"
+    "test:debug": "npx playwright test --project full-functional --grep @debug",
+    "test:full-functional": "npx playwright test --project full-functional",
+    "test:functional": "npx playwright test --project full-functional",
+    "test:fullfunctional": "yarn playwright install && (yarn test:functional ; yarn test:functional:report)",
+    "test:functional:report": "allure generate ./allure-results --clean"
   },
   "repository": {
     "type": "git",

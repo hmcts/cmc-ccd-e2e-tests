@@ -8,14 +8,8 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
-  reporter: process.env.CI ? [
-    [
-      'allure-playwright',
-      {
-        outputFolder: process.env.FUNCTIONAL === 'true' ? 'allure-functional-results' : 'allure-bootstrap-results',
-      },
-    ],
-  ] : 'list',
+  reporter: process.env.CI ? 'allure-playwright' : 'list',
+  // reporter: process.env.CI ? 'html' : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
     timeout: 30_000,
