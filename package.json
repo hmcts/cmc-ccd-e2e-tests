@@ -11,15 +11,17 @@
     "test:setup:citizen-users": "npx playwright test --project citizen-users-setup --pass-with-no-tests",
     "test:setup:user-data": "npx playwright test --project user-data-setup --pass-with-no-tests",
     "test:setup:user-auth": "npx playwright test --project user-auth-setup --pass-with-no-tests",
+    "test:setup": "yarn test:setup:citizen-users && yarn test:setup:user-data && yarn test:setup:user-auth",
+    "test:crossbrowser": "",
+    "test:fullfunctional": "FUNCTIONAL=true npx playwright test --project full-functional",
     "test:teardown:user-auth": "npx playwright test --project user-auth-teardown --pass-with-no-tests",
     "test:teardown:citizen-user": "npx playwright test --project citizen-users-teardown --pass-with-no-tests",
-    "test:setup": "yarn test:setup:citizen-users && yarn test:setup:user-data && yarn test:setup:user-auth",
-    "test:teardown": "yarn test:user-auth-teardown && yarn test:citizen-user-teardown",
-    "test:debug": "npx playwright test --project full-functional --grep @debug",
-    "test:functional": "npx playwright test --project full-functional",
-    "test:fullfunctional": "npx playwright test --project full-functional --env FUNCTIONAL=true",
+    "test:teardown": "yarn test:teardown:user-auth && yarn test:teardown:citizen-user",
     "test:functional:report": "allure generate allure-functional-results --clean -o allure-functional-report",
-    "test:bootstrap:report": "allure generate allure-bootstrap-results --clean -o allure-bootstrap-report"
+    "test:bootstrap:report": "allure generate allure-bootstrap-results --clean -o allure-bootstrap-report",
+    "test:debug": "npx playwright test --project full-functional --grep @debug",
+    "test:fullfunctional:local": "",
+    "test:crossbrowser:local": ""
   },
   "repository": {
     "type": "git",
