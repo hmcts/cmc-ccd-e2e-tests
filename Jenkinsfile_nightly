@@ -71,44 +71,42 @@ withNightlyPipeline("nodejs", product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
-    }
-
-    afterSuccess('Setup') {
-      enableFullFunctionalTest(120)
-      afterAlways('fullFunctionalTest') {
-        stage('Teardown') {
-          try {
-            yarnBuilder.yarn('test:teardown')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          }
-        }
-        stage('Generate reports') {
-          try {
-              yarnBuilder.yarn('test:functional:generate-report')
-              yarnBuilder.yarn('test:bootstrap:generate-report')
+      afterSuccess('Setup') {
+        enableFullFunctionalTest(120)
+        afterAlways('fullFunctionalTest') {
+          stage('Teardown') {
+            try {
+              yarnBuilder.yarn('test:teardown')
             } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-            } finally {
-              publishHTML([
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: "allure-bootstrap-report",
-                    reportFiles: 'index.html',
-                    reportName: 'Bootstrap Test Report'
-              ])
-
-              publishHTML([
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: "allure-functional-report",
-                    reportFiles: 'index.html',
-                    reportName: 'Functional Test Report'
-              ])
+              unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
             }
           }
+          stage('Generate reports') {
+            try {
+                yarnBuilder.yarn('test:functional:generate-report')
+                yarnBuilder.yarn('test:bootstrap:generate-report')
+              } catch (Error) {
+              unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+              } finally {
+                publishHTML([
+                      allowMissing: true,
+                      alwaysLinkToLastBuild: true,
+                      keepAll: true,
+                      reportDir: "allure-bootstrap-report",
+                      reportFiles: 'index.html',
+                      reportName: 'Bootstrap Test Report'
+                ])
+
+                publishHTML([
+                      allowMissing: true,
+                      alwaysLinkToLastBuild: true,
+                      keepAll: true,
+                      reportDir: "allure-functional-report",
+                      reportFiles: 'index.html',
+                      reportName: 'Functional Test Report'
+                ])
+              }
+            }
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
       }
     }
@@ -139,4 +137,7 @@ withNightlyPipeline("nodejs", product, component) {
         }
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
     }
+  }
 }
+
+    
