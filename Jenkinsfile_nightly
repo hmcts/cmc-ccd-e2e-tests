@@ -66,6 +66,7 @@ withNightlyPipeline("nodejs", product, component) {
     afterAlways('DependencyCheckNightly') {
       stage('Setup') {
         try {
+          yarnBuilder.yarn('test:setup:playwright-install')
           yarnBuilder.yarn('test:setup')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())

@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --fix",
+    "test:setup:playwright-install": "yarn playwright install",
     "test:setup:citizen-users": "npx playwright test --project citizen-users-setup --pass-with-no-tests",
     "test:setup:user-data": "npx playwright test --project user-data-setup --pass-with-no-tests",
     "test:setup:user-auth": "npx playwright test --project user-auth-setup --pass-with-no-tests",
