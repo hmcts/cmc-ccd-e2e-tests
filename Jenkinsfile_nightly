@@ -76,14 +76,6 @@ withNightlyPipeline("nodejs", product, component) {
         }
       }
 
-      afterSuccess('Setup') {
-        echo 'Setup Passed'
-      }
-
-      afterFailure('Setup') {
-        echo 'Setup Passed'
-      }
-
       stage('Teardown') {
         try {
           yarnBuilder.yarn('test:teardown')

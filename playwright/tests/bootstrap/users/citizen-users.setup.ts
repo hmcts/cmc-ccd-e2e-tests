@@ -7,9 +7,11 @@ if(!config.skipCitizenSetup) {
     setup.describe.configure({mode: 'parallel'});
     setup('Claimant(s)', async ({ApiUsersSteps: ApiCitizenUsersSteps}) => {
       await ApiCitizenUsersSteps.CreateCitizenUsers(claimants);
+      throw new Error();
     });
     setup('Defendant(s)', async ({ApiUsersSteps: ApiCitizenUsersSteps}) => {
       await ApiCitizenUsersSteps.CreateCitizenUsers(defendants);
+      throw new Error();
     });
   });
 }
