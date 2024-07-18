@@ -17,8 +17,10 @@
     "test:teardown:user-auth": "npx playwright test --project user-auth-teardown --pass-with-no-tests",
     "test:teardown:citizen-user": "npx playwright test --project citizen-users-teardown --pass-with-no-tests",
     "test:teardown": "yarn test:teardown:user-auth && yarn test:teardown:citizen-user",
-    "test:functional:report": "allure generate allure-functional-results --clean -o allure-functional-report",
-    "test:bootstrap:report": "allure generate allure-bootstrap-results --clean -o allure-bootstrap-report",
+    "test:functional:generate-report": "allure generate allure-functional-results --clean -o allure-functional-report",
+    "test:bootstrap:generate-report": "allure generate allure-bootstrap-results --clean -o allure-bootstrap-report",
+    "test:functional:open-report": "allure open allure-functional-report",
+    "test:bootstrap:open-report": "allure open allure-bootstrap-report",
     "test:debug": "npx playwright test --project full-functional --grep @debug",
     "test:fullfunctional:local": "",
     "test:crossbrowser:local": ""

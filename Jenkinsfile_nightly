@@ -85,8 +85,8 @@ withNightlyPipeline("nodejs", product, component) {
         }
         stage('Generate reports') {
           try {
-              yarnBuilder.yarn('test:functional:report')
-              yarnBuilder.yarn('test:bootstrap:report')
+              yarnBuilder.yarn('test:functional:generate-report')
+              yarnBuilder.yarn('test:bootstrap:generate-report')
             } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
             } finally {
