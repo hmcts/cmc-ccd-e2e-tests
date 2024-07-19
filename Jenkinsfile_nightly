@@ -5,7 +5,8 @@ properties([
         parameters([
                 string(name: 'ENVIRONMENT', defaultValue: 'aat', description: 'Environment to test'),
                 string(name: 'WORKERS', defaultValue: '5', description: 'Number of workers'),
-                string(name: 'RUN_FULL_REGRESSION_SUITE', defaultValue: 'NO', description: 'Environment to test'),
+                string(name: 'RUN_ACCESSIBILITY_TESTS', defaultValue: 'false', description: 'Runs accessibility tests during test execution')
+                string(name: 'SKIP_AUTH_SETUP', defaultValue: 'false', description: 'Skip users authentication setup')
                 string(name: 'ExUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net/', description: 'The exui URL you want to run cmc end to end tests against'),
                 string(name: 'CMC_URL_TO_TEST', defaultValue: 'https://moneyclaims.aat.platform.hmcts.net/', description: 'The cmc citizen frontend URL you want to run cmc end to end tests against'),
                 string(name: 'IDAM_WEB_URL', defaultValue: 'https://idam-web.aat.platform.hmcts.net', description: 'The URL of idam web'),
@@ -14,7 +15,6 @@ properties([
                 string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
                 string(name: 'CCD_DATA_STORE_URL', defaultValue: 'http://ccd-data-store-api-aat.service.core-compute-aat.internal', description: 'The URL of ccd data store'),
                 string(name: 'CLAIM_STORE_URL', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Claim store url'),
-                string(name: 'SKIP_AUTH_SETUP', defaultValue: 'false', description: 'Skip users authentication setup')
         ])
 ])
 
@@ -58,7 +58,6 @@ withNightlyPipeline("nodejs", product, component) {
     env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
     env.CLAIM_STORE_URL = params.CLAIM_STORE_URL
     env.TEST_ENV = params.ENVIRONMENT
-    env.RUN_FULL_REGRESSION_SUITE = params.RUN_FULL_REGRESSION_SUITE
     env.WORKERS = params.WORKERS
     env.SKIP_AUTH_SETUP = params.SKIP_AUTH_SETUP
     loadVaultSecrets(secrets)
@@ -69,7 +68,7 @@ withNightlyPipeline("nodejs", product, component) {
       stage('Test Setup') {
         try {
           yarnBuilder.yarn('test:setup:playwright-install')
-          yarnBuilder.yarn('test:setup')
+          yarnBuilder.yarn('test:setup:ci')
         } catch (Error) {
           setupPassed=false
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
@@ -77,9 +76,17 @@ withNightlyPipeline("nodejs", product, component) {
       }
 
       if(setupPassed) {
+        stage('Cross browser test') {
+          try {
+            yarnBuilder.yarn('test:crossbrowser:ci')
+          } catch (Error) {
+            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+          }
+        }
+
         stage('Full functional test') {
           try {
-            yarnBuilder.yarn('test:fullfunctional')
+            yarnBuilder.yarn('test:functional:ci')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           }
@@ -88,13 +95,13 @@ withNightlyPipeline("nodejs", product, component) {
 
       stage('Test Teardown') {
           try {
-            yarnBuilder.yarn('test:teardown')
+            yarnBuilder.yarn('test:teardown:ci')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           }
         }
 
-      stage('Generate Report') {
+      stage('Generate Reports') {
         try {
           yarnBuilder.yarn('test:bootstrap:generate-report')
           if(setupPassed) {
