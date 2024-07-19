@@ -4,8 +4,6 @@ import { AllMethodsStep } from '../decorators/test-steps';
 import IdamUser from '../types/idam-user';
 import RequestOptions from '../types/request-options';
 import User from '../types/user';
-import UserStateHelper from '../helpers/users-state-helper';
-import FileError from '../errors/file-error';
 
 @AllMethodsStep
 export default class IdamRequests extends BaseRequest {
@@ -30,11 +28,6 @@ export default class IdamRequests extends BaseRequest {
     const response = await this.request(requestOptions, 201);
     console.log(`User with email: ${email} successfully created`);
     return await response.json();
-  }
-
-  async deleteUsers(users: User[]) {
-    await Promise.all(users.map(user => this.deleteUser(user)));
-    UserStateHelper.deleteUsersState(users[0].type);
   }
 
   async deleteUser({email}: User): Promise<void> {

@@ -62,7 +62,6 @@ withNightlyPipeline("nodejs", product, component) {
     env.WORKERS = params.WORKERS
     env.SKIP_AUTH_SETUP = params.SKIP_AUTH_SETUP
     loadVaultSecrets(secrets)
-    enableFullFunctionalTest(120)
 
     boolean setupPassed=true
     
@@ -76,27 +75,31 @@ withNightlyPipeline("nodejs", product, component) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
-    }
 
-    before('fullFunctionalTest') {
-      if(!setupPassed) {
-        throw new Exception('Setup Failed')
-      }
-    }
-
-    afterAlways('fullFunctionalTest') {
-      stage('Test Teardown') {
-        try {
-          yarnBuilder.yarn('test:teardown')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      if(setupPassed) {
+        stage('Full functional test') {
+          try {
+            yarnBuilder.yarn('test:fullfunctional')
+          } catch (Error) {
+            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+          }
         }
       }
+
+      stage('Test Teardown') {
+          try {
+            yarnBuilder.yarn('test:teardown')
+          } catch (Error) {
+            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+          }
+        }
 
       stage('Generate Report') {
         try {
           yarnBuilder.yarn('test:bootstrap:generate-report')
-          yarnBuilder.yarn('test:functional:generate-report')
+          if(setupPassed) {
+            yarnBuilder.yarn('test:functional:generate-report')
+          }
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -106,19 +109,20 @@ withNightlyPipeline("nodejs", product, component) {
               keepAll: true,
               reportDir: 'allure-bootstrap-report',
               reportFiles: 'index.html',
-              reportName: 'Bootstrap Report'
+              reportName: 'Allure Bootstrap Report'
           ])
-          publishHTML([
+          if(setupPassed) {
+            publishHTML([
               allowMissing: true,
               alwaysLinkToLastBuild: true,
               keepAll: true,
-              reportDir: 'allure-fucntional-report',
+              reportDir: 'allure-functional-report',
               reportFiles: 'index.html',
-              reportName: 'Functional Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
+              reportName: 'Allure Functional Report'
+            ])
+          }
         }
-      }
+      } 
     }
   }
 
