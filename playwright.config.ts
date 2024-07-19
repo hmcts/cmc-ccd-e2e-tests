@@ -8,7 +8,6 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
-  // reporter: process.env.CI ? 'allure-playwright' : 'list',
   reporter: process.env.CI ? [
     [
       'allure-playwright',
@@ -38,15 +37,18 @@ export default defineConfig({
     {
       name: 'citizen-users-setup',
       testMatch: '**playwright/tests/bootstrap/users/citizen-users.setup.ts',
+      retries: 0,
     },
     {
       name: 'user-data-setup',
       testMatch: '**playwright/tests/bootstrap/users/user-data.setup.ts',
+      retries: 0,
     },
     {
       name: 'user-auth-setup',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**playwright/tests/bootstrap/auth/**.setup.ts',
+      retries: 0,
     },
     {
       name: 'user-auth-teardown',
