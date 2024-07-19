@@ -76,17 +76,9 @@ withNightlyPipeline("nodejs", product, component) {
       }
 
       if(setupPassed) {
-        stage('Cross browser test') {
+        stage('Full functional and cross browser test') {
           try {
-            yarnBuilder.yarn('test:crossbrowser:ci')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          }
-        }
-
-        stage('Full functional test') {
-          try {
-            yarnBuilder.yarn('test:functional:ci')
+            yarnBuilder.yarn('test:functional-crossbrowser:ci')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           }
@@ -94,12 +86,12 @@ withNightlyPipeline("nodejs", product, component) {
       }
 
       stage('Test Teardown') {
-          try {
-            yarnBuilder.yarn('test:teardown:ci')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          }
+        try {
+          yarnBuilder.yarn('test:teardown:ci')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
+      }
 
       stage('Generate Reports') {
         try {
