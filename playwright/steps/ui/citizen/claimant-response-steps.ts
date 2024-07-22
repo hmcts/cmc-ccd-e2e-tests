@@ -5,7 +5,7 @@ import ResponseFactory from '../../../pages/citizen/response/response/response-f
 import TestData from '../../../types/test-data';
 import ResponseSteps from './response-steps';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ClaimantResponseSteps extends ResponseSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;
   private breathingSpaceFactory: BreathingSpaceFactory;

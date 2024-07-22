@@ -4,7 +4,7 @@ import TestData from '../../types/test-data';
 import { claimants, judge, legalAdvisor } from '../../config/users';
 import BaseApiSteps from '../../base/base-api-steps';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ApiCaseDataSteps extends BaseApiSteps {
 
   constructor(requestsFactory: RequestsFactory, isSetupTest: boolean, testData: TestData) {

@@ -6,7 +6,7 @@ import ExuiEvent from '../../exui-event/exui-event';
 import { heading, inputs, radioButtons } from './enter-breathing-space-content';
 import DateHelper from '../../../../helpers/date-helper';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class EnterBreathingSpacePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
@@ -27,12 +27,12 @@ export default class EnterBreathingSpacePage extends ExuiEvent(BasePage) {
   }
 
   async enterBreathingSpaceDetails() {
-    await super.fill('Ref-1234', inputs.refNum.selector);
+    await super.inputText('Ref-1234', inputs.refNum.selector);
 
     const startDate = DateHelper.subtractFromToday({days: 1});
-    await super.fill(startDate.getDate(), inputs.respiteStart.day.selector);
-    await super.fill(startDate.getMonth(), inputs.respiteStart.month.selector);
-    await super.fill(startDate.getFullYear(), inputs.respiteStart.year.selector);
+    await super.inputText(startDate.getDate(), inputs.respiteStart.day.selector);
+    await super.inputText(startDate.getMonth(), inputs.respiteStart.month.selector);
+    await super.inputText(startDate.getFullYear(), inputs.respiteStart.year.selector);
 
     await super.retryClickBySelector(
       radioButtons.standardBreathingSpace.selector, 
@@ -40,9 +40,9 @@ export default class EnterBreathingSpacePage extends ExuiEvent(BasePage) {
     );
 
     const endDate = DateHelper.addToToday({months: 1});
-    await super.fill(endDate.getDate(), inputs.respiteEnd.day.selector);
-    await super.fill(endDate.getMonth(), inputs.respiteEnd.month.selector);
-    await super.fill(endDate.getFullYear(), inputs.respiteEnd.year.selector);
+    await super.inputText(endDate.getDate(), inputs.respiteEnd.day.selector);
+    await super.inputText(endDate.getMonth(), inputs.respiteEnd.month.selector);
+    await super.inputText(endDate.getFullYear(), inputs.respiteEnd.year.selector);
   }
 
   async submitEvent() {

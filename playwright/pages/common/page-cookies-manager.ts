@@ -12,7 +12,7 @@ import FileSystemHelper from '../../helpers/file-system-helper';
 import config from '../../config/config';
 import urls from '../../config/urls';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class PageCookiesManager extends BasePage {
   async verifyContent(): Promise<void> {
     throw new Error('Method not implemented.');

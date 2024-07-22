@@ -5,7 +5,7 @@ import CaseworkerEventsFactory from '../../../pages/exui/caseworker-events/casew
 import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
 import CaseworkerEvents from '../../../enums/events/caseworker-events';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CaseworkerEventsSteps extends BaseSteps {
   private caseworkerEventsFactory: CaseworkerEventsFactory;
   private exuiDashboardFactory: ExuiDashboardFactory;

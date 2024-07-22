@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, inputs, paragraphs } from './enter-security-code-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class EnterSecurityCodePage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
@@ -14,7 +14,7 @@ export default class EnterSecurityCodePage extends CitizenEvent(BasePage) {
   }
 
   async fillSecurityCode(securityCode: string) {
-    await super.fill(securityCode, inputs.securityCode.selector);
+    await super.inputText(securityCode, inputs.securityCode.selector);
     await super.clickContinue();
   }
 }

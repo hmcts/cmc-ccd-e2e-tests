@@ -8,7 +8,7 @@ import TestData from '../../../types/test-data';
 import ResponseSteps from './response-steps';
 import ResponseFactory from '../../../pages/citizen/response/response/response-factory';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DefendantResponseSteps extends ResponseSteps {
   private linkClaimFactory: LinkClaimFactory;
   private idamFactory: IdamFactory;

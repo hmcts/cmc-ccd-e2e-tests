@@ -6,7 +6,7 @@ import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import filePaths from '../../../../config/file-paths';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class PaperResponseReviewedPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {

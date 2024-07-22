@@ -5,7 +5,7 @@ import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashbo
 import LegalAdvisorEventsFactory from '../../../pages/exui/legal-advisor-events/legal-advisor-events-factory';
 import TestData from '../../../types/test-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class LegalAdvisorEventsSteps extends BaseSteps {
   private legalAdvisorEventsFactory: LegalAdvisorEventsFactory;
   private exuiDashboardFactory: ExuiDashboardFactory;

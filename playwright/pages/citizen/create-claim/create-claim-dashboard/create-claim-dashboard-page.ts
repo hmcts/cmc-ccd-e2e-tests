@@ -2,7 +2,7 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { heading, links, subHeadings } from './create-claim-dashboard-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CreateClaimDashboardPage extends BasePage {
 
   async verifyContent() {

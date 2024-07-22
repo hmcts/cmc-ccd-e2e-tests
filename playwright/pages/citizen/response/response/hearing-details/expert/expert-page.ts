@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { buttons, heading, paragraphs } from './expert-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ExpertPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {

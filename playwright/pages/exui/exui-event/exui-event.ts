@@ -28,8 +28,8 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
     }
 
     protected async fillEventDetails(event: ExuiEvents) {
-      await super.fill(event, eventInputs.eventSummary.selector);
-      await super.fill(event, eventInputs.eventDescription.selector);
+      await super.inputText(event, eventInputs.eventSummary.selector);
+      await super.inputText(event, eventInputs.eventDescription.selector);
     }
 
     protected async clickSubmit(options: {count?: number} = {}) {

@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, paragraphs, radioButtons } from './witnesses-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class WitnessesPage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([

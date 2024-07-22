@@ -9,6 +9,8 @@ import CaseEvents from '../enums/events/case-events';
 import CCDCaseData from '../types/case-data/ccd-case-data';
 import User from '../types/user';
 
+
+const classKey = 'CcdRequests'
 export default class CcdRequests extends BaseRequest {
 
   private static s2sToken: string;
@@ -26,7 +28,6 @@ export default class CcdRequests extends BaseRequest {
     };
   }
 
-  @Step
   private async fetchS2sToken() {
     if(!CcdRequests.s2sToken) {
       console.log('Fetching s2s token...');
@@ -45,8 +46,8 @@ export default class CcdRequests extends BaseRequest {
     return CcdRequests.s2sToken;
   }
 
-  @Step
-  @TruthyParams()
+  @Step(classKey)
+  @TruthyParams(classKey, 'caseId')
   async fetchCcdCaseData(caseId: number, user: User) {
     console.log('Fetching CCD case data...');
     const requestOptions: RequestOptions = {
@@ -58,7 +59,7 @@ export default class CcdRequests extends BaseRequest {
     return caseData;
   }
 
-  @Step
+  @Step(classKey)
   private async startEvent(
     event: CaseEvents, 
     user: User,  
@@ -80,7 +81,7 @@ export default class CcdRequests extends BaseRequest {
     return response.token;
   }
 
-  @Step
+  @Step(classKey)
   private async submitEvent(
     event: CaseEvents, 
     caseData: CCDCaseData, 
@@ -109,7 +110,6 @@ export default class CcdRequests extends BaseRequest {
     return responseJson;
   }
 
-  @Step
   async updateCaseEvent(
     event: CaseEvents,
     caseData: CCDCaseData,  

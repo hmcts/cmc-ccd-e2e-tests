@@ -13,7 +13,7 @@ export default class EnterClaimNumberPage extends CitizenEvent(BasePage) {
   }
 
   async fillClaimNumber(claimNumber: string) {
-    await super.fill(claimNumber, inputs.claimNumber.selector);
+    await super.inputText(claimNumber, inputs.claimNumber.selector);
     await super.clickContinue();
   }
 

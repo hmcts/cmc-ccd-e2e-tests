@@ -1,10 +1,12 @@
 import BaseRequest from '../base/base-requests';
 import urls from '../config/urls';
-import { Step } from '../decorators/test-steps';
+import { AllMethodsStep } from '../decorators/test-steps';
 import { TruthyParams } from '../decorators/truthy-params';
 import RequestOptions from '../types/request-options';
 import User from '../types/user';
 
+const classKey = 'ClaimStoreRequests';
+@AllMethodsStep({methodNamesToIgnore: ['getRequestHeaders']})
 export default class ClaimStoreRequests extends BaseRequest {
   private getRequestHeaders(accessToken: string) {
     return {
@@ -13,8 +15,7 @@ export default class ClaimStoreRequests extends BaseRequest {
     };
   }
 
-  @Step
-  @TruthyParams()
+  @TruthyParams(classKey, 'claimRef')
   async fetchClaimStoreCaseData({accessToken}: User, claimRef?: string) {
     console.log('Fetching claim store case data...');
     const requestOptions: RequestOptions = {
@@ -28,7 +29,6 @@ export default class ClaimStoreRequests extends BaseRequest {
     return caseData;
   }
 
-  @Step
   async fetchClaimStoreCaseDataWithLetterId({accessToken}: User, claimRef?: string) {
     console.log('Fetching claim store case data with letter id...');
     const requestOptions: RequestOptions = {

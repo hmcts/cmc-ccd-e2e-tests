@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { buttons, heading, links, subHeadings } from './free-telephone-mediation-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class FreeTelephoneMediationPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {

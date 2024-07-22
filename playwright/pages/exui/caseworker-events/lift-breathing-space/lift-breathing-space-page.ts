@@ -6,7 +6,7 @@ import ExuiEvent from '../../exui-event/exui-event';
 import DateHelper from '../../../../helpers/date-helper';
 import { heading, inputs } from './lift-breathing-space-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class LiftBreathingSpacePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
@@ -24,9 +24,9 @@ export default class LiftBreathingSpacePage extends ExuiEvent(BasePage) {
 
   async enterBreathingSpaceDetails() {
     const endDate = DateHelper.addToToday({months: 1});
-    await super.fill(endDate.getDate(), inputs.respiteEnd.day.selector);
-    await super.fill(endDate.getMonth(), inputs.respiteEnd.month.selector);
-    await super.fill(endDate.getFullYear(), inputs.respiteEnd.year.selector);
+    await super.inputText(endDate.getDate(), inputs.respiteEnd.day.selector);
+    await super.inputText(endDate.getMonth(), inputs.respiteEnd.month.selector);
+    await super.inputText(endDate.getFullYear(), inputs.respiteEnd.year.selector);
   }
 
   async submitEvent() {

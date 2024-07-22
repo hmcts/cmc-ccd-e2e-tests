@@ -5,7 +5,7 @@ import CCDCaseData, { ApplicantValue, RespondentValue } from '../../../../types/
 import ExuiEvent from '../../exui-event/exui-event';
 import { heading, radioButtons, subHeadings, claimantInputs, defendantInputs, links } from './change-contact-details-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData){
@@ -37,12 +37,12 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
   }
 
   async changeClaimantDetails() {
-    await super.fill(claimantInputs.email.value, claimantInputs.email.selector);
-    await super.fill(claimantInputs.addressLine1.value, claimantInputs.addressLine1.selector);
-    await super.fill(claimantInputs.addressLine2.value, claimantInputs.addressLine2.selector);
-    await super.fill(claimantInputs.addressLine3.value, claimantInputs.addressLine3.selector);
-    await super.fill(claimantInputs.city.value, claimantInputs.city.selector);
-    await super.fill(claimantInputs.postcode.value, claimantInputs.postcode.selector);
+    await super.inputText(claimantInputs.email.value, claimantInputs.email.selector);
+    await super.inputText(claimantInputs.addressLine1.value, claimantInputs.addressLine1.selector);
+    await super.inputText(claimantInputs.addressLine2.value, claimantInputs.addressLine2.selector);
+    await super.inputText(claimantInputs.addressLine3.value, claimantInputs.addressLine3.selector);
+    await super.inputText(claimantInputs.city.value, claimantInputs.city.selector);
+    await super.inputText(claimantInputs.postcode.value, claimantInputs.postcode.selector);
     await super.clickSubmit();
   }
 
@@ -67,12 +67,12 @@ export default class ChangeContactDetailsPage extends ExuiEvent(BasePage) {
 
   async enterDefendantDetails() {
     await super.clickLink(links.manualAddress.title, {index: links.manualAddress.index});
-    await super.fill(defendantInputs.email.value, defendantInputs.email.selector);
-    await super.fill(defendantInputs.addressLine1.value, defendantInputs.addressLine1.selector);
-    await super.fill(defendantInputs.addressLine2.value, defendantInputs.addressLine2.selector);
-    await super.fill(defendantInputs.addressLine3.value, defendantInputs.addressLine3.selector);
-    await super.fill(defendantInputs.city.value, defendantInputs.city.selector);
-    await super.fill(defendantInputs.postcode.value, defendantInputs.postcode.selector);
+    await super.inputText(defendantInputs.email.value, defendantInputs.email.selector);
+    await super.inputText(defendantInputs.addressLine1.value, defendantInputs.addressLine1.selector);
+    await super.inputText(defendantInputs.addressLine2.value, defendantInputs.addressLine2.selector);
+    await super.inputText(defendantInputs.addressLine3.value, defendantInputs.addressLine3.selector);
+    await super.inputText(defendantInputs.city.value, defendantInputs.city.selector);
+    await super.inputText(defendantInputs.postcode.value, defendantInputs.postcode.selector);
     await super.clickSubmit();
   }
 

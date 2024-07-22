@@ -37,16 +37,16 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
 
   async enterSdoDetails() {
     await super.clickBySelector(buttons.addNewExtraDocInstruction.selector);
-    await super.fill(inputs.extraDocUpload.value, inputs.extraDocUpload.selector);
+    await super.inputText(inputs.extraDocUpload.value, inputs.extraDocUpload.selector);
     await super.clickBySelector(radioButtons.yesExpert.selector);
-    await super.fill(inputs.expertReport.value, inputs.expertReport.selector);
+    await super.inputText(inputs.expertReport.value, inputs.expertReport.selector);
     await super.clickBySelector(buttons.addDirection.selector);
     await super.selectFromDropdown(dropdowns.extraDirection.options[0], dropdowns.extraDirection.selector);
     await super.expectLabel(dropdowns.directionParty.label);
     // await super.expectSubHeading(subHeadings.sendDocsInstructions);
     await super.selectFromDropdown(dropdowns.directionParty.options[2], dropdowns.directionParty.selector); 
     await super.clickBySelector(buttons.addNewOtherDirectionsExtraDocInstruction.selector);
-    await super.fill('Test', inputs.otherDirectionsExtraDocUpload.selector);
+    await super.inputText('Test', inputs.otherDirectionsExtraDocUpload.selector);
     await super.selectFromDropdown(dropdowns.hearingCourt.options[0], dropdowns.hearingCourt.selector);
     await super.selectFromDropdown(dropdowns.hearingDuration.options[0], dropdowns.hearingDuration.selector);
   }

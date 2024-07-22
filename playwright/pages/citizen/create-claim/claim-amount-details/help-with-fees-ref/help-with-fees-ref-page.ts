@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import {heading, inputs, radioButtons } from './help-with-fees-ref-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class HelpWithFeesRefPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -14,7 +14,7 @@ export default class HelpWithFeesRefPage extends CitizenEvent(BasePage) {
 
   async selectYesToHwf() {
     await super.clickBySelector(radioButtons.yesToHwf.selector);
-    await super.fill(inputs.helpWithFeesNumber.text, inputs.helpWithFeesNumber.selector);
+    await super.inputText(inputs.helpWithFeesNumber.text, inputs.helpWithFeesNumber.selector);
     await super.clickSaveAndContinue();
   }
 }

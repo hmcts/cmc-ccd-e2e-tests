@@ -2,7 +2,7 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import {heading, links} from './citizen-nav-bar-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CitizenNavBar extends BasePage {
   async verifyContent() {
     await this.expectHeading(heading);

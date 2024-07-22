@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, inputs } from './date-of-birth-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DateOfBirthPage extends CitizenEvent(BasePage){
   
   async verifyContent() {
@@ -16,9 +16,9 @@ export default class DateOfBirthPage extends CitizenEvent(BasePage){
   }
 
   async fillDateOfBirth() {
-    await super.fill('10', inputs.day.selector);
-    await super.fill('12', inputs.month.selector);
-    await super.fill('2000', inputs.year.selector);
+    await super.inputText('10', inputs.day.selector);
+    await super.inputText('12', inputs.month.selector);
+    await super.inputText('2000', inputs.year.selector);
     await super.clickSaveAndContinue();
   }
 }

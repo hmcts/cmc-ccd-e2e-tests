@@ -5,7 +5,7 @@ import ExuiEvent from '../../exui-event/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class IssuePaperDefenceFormsPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {

@@ -5,7 +5,7 @@ import ClaimStoreCaseData from '../../../../../types/case-data/claim-store-case-
 import ResponseDashboardPage from '../../common/response-dashboard/response-dashboard-page';
 import { heading, links, subHeadings } from './defendant-response-dashboard-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DefendantResponseDashboardPage extends BasePage {
   async verifyContent(caseData: ClaimStoreCaseData) {
     await super.runVerifications([

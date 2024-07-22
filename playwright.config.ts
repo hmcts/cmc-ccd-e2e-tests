@@ -12,7 +12,6 @@ export default defineConfig({
     [
       'allure-playwright',
       {
-        detail: true,
         outputFolder: process.env.FUNCTIONAL === 'true' ? 'allure-functional-results' : 'allure-bootstrap-results',
       },
     ],

@@ -5,7 +5,7 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { dropdowns, heading, subHeadings } from './mediation-unsuccessful-content';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class MediationUnsuccessfulPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {

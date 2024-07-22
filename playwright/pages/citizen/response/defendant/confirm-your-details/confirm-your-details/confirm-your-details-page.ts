@@ -4,7 +4,7 @@ import ClaimStoreCaseData from '../../../../../../types/case-data/claim-store-ca
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, subHeadings, inputs } from './confirm-your-details-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){
   
   async verifyContent(caseData: ClaimStoreCaseData) {

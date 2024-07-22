@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { buttons, heading } from './eligibility-and-diversity-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class EligibilityAndDiversityPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {

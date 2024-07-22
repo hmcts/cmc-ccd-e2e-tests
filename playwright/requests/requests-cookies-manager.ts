@@ -5,7 +5,7 @@ import { AllMethodsStep } from '../decorators/test-steps';
 import UserRole from '../enums/user-role';
 import Cookie from '../types/cookie';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class RequestsCookiesManager {
   async getAccessToken({cookiesPath, role, email}: User) {
     console.log(`Getting access token from cookies: ${email} ${cookiesPath}`);

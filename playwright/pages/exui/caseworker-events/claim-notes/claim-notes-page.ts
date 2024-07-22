@@ -6,7 +6,7 @@ import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import { TruthyParams } from '../../../../decorators/truthy-params';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ClaimNotesPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
@@ -17,7 +17,6 @@ export default class ClaimNotesPage extends ExuiEvent(BasePage) {
     ]);
   }
 
-  @TruthyParams()
   async submitEvent() {
     await super.fillEventDetails(CaseworkerEvents.CLAIM_NOTES);
     await super.clickSubmit();

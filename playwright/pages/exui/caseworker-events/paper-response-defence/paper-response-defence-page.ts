@@ -5,7 +5,7 @@ import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { heading, inputs, radioButtons, subHeadings } from './paper-response-defence-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class PaperResponseDefencePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {

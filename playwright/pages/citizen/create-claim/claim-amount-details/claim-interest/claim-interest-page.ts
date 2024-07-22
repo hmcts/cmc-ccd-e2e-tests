@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import { heading, radioButtons } from './claim-interest-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ClaimInterestPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {

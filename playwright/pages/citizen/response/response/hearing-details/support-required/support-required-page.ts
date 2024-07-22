@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { checkboxes, heading, inputs } from './support-required-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class SupportRequiredPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -21,11 +21,11 @@ export default class SupportRequiredPage extends CitizenEvent(BasePage) {
     await super.clickBySelector(checkboxes.disabledAccess.selector);
     await super.clickBySelector(checkboxes.hearingLoop.selector);
     await super.clickBySelector(checkboxes.signLanguageInterpreter.selector);
-    await super.fill('BSL', inputs.signLanguageInterpreter.selector);
+    await super.inputText('BSL', inputs.signLanguageInterpreter.selector);
     await super.clickBySelector(checkboxes.languageInterpreter.selector);
-    await super.fill('Russian', inputs.languageInterpreter.selector);
+    await super.inputText('Russian', inputs.languageInterpreter.selector);
     await super.clickBySelector(checkboxes.otherSupport.selector);
-    await super.fill('Nothing', inputs.otherSupport.selector);
+    await super.inputText('Nothing', inputs.otherSupport.selector);
     await super.clickSaveAndContinue();
   }
 }

@@ -6,7 +6,9 @@ import { TruthyParams } from '../decorators/truthy-params';
 import { pageExpect } from '../playwright-fixtures';
 import Timer from '../helpers/timer';
 import { getDomain } from '../config/urls';
+import { DetailedStep, Step } from '../decorators/test-steps';
 
+const classKey = 'BasePage'
 export default abstract class BasePage {
   private page: Page;
   private axeBuilder?: AxeBuilder;
@@ -16,33 +18,41 @@ export default abstract class BasePage {
     this.axeBuilder = axeBuilder;
   }
 
-  @TruthyParams('selector')
+  @DetailedStep(classKey, 'selector')
+  @TruthyParams(classKey, 'selector')
   protected async clickBySelector(selector: string, options: {count?: number} = {}) {
     await this.page.locator(selector).click({clickCount: options.count});
   }
 
+  @DetailedStep(classKey, 'name')
+  @TruthyParams(classKey, 'name')
   protected async clickButtonByName(name: string) {
     await this.page.getByRole('button', {name}).click();
   }
 
+  @DetailedStep(classKey, 'name')
+  @TruthyParams(classKey, 'name')
   protected async clickLink(name: string, {index} = {index: 0}) {
     await this.page.getByRole('link', {name}).nth(index).click();
   }
 
-  @TruthyParams()
+  @DetailedStep(classKey, 'selector')
+  @TruthyParams(classKey)
   protected async selectorExists(selector?: string): Promise<boolean> {
     await this.page.waitForSelector(selector!, {state: 'visible'});
     return await this.page.locator(selector!).isVisible();
   }
 
-  @TruthyParams()
+  @DetailedStep(classKey, 'content', 'selector')
+  @TruthyParams(classKey)
   protected async elementIncludes(content: string, selector?: string): Promise<boolean> {
     const textContent = await this.page.locator(selector!).textContent();
     if(!textContent) return false;
     return textContent.includes(content);
   }
 
-  @TruthyParams('url')
+  @DetailedStep(classKey, 'url')
+  @TruthyParams(classKey, 'url')
   protected async goTo(url: string,  options: {force?: boolean} = {}) {
     const {origin, pathname} = new URL(this.page.url());
     if(`${origin}${pathname}` !== url || options.force) {
@@ -56,21 +66,31 @@ export default abstract class BasePage {
     return urlDomain === currentDomain;
   }
 
+  @DetailedStep(classKey, 'text')
+  @TruthyParams(classKey, 'text')
   protected async clickByText(text: string) {
     await this.page.getByText(text).click();
   }
 
-  @TruthyParams('input', 'selector')
-  protected async fill(input: string | number, selector?: string, options: {timeout?: number} = {}) {
-    await this.page.fill(selector!, input.toString(), options);
+  @DetailedStep(classKey, 'input', 'selector')
+  @TruthyParams(classKey, 'input', 'selector')
+  protected async inputText(input: string | number, selector?: string, options: {timeout?: number} = {}) {
+    await this.page.fill(selector!, input.toString(), {timeout: options.timeout});
   }
 
-  @TruthyParams()
+  @Step(classKey)
+  @TruthyParams(classKey, 'input', 'selector')
+  protected async inputSensitiveText(input: string | number, selector?: string, options: {timeout?: number, hideInput?: boolean} = {}) {
+    await this.page.fill(selector!, input.toString(), {timeout: options.timeout});
+  }
+
+  @TruthyParams(classKey)
   protected async getText(selector?: string) {
     return await this.page.textContent(selector) ?? undefined;
   }
 
-  @TruthyParams('selector')
+  @DetailedStep(classKey, 'option', 'selector')
+  @TruthyParams(classKey, 'selector')
   protected async selectFromDropdown(option: string | number, selector: string) {
     if(typeof option === 'number') 
       await this.page.selectOption(selector, {index: option});
@@ -78,34 +98,42 @@ export default abstract class BasePage {
       await this.page.selectOption(selector, option);
   }
 
+  @Step(classKey)
   protected async getCookies(): Promise<Cookie[]> {
     return await this.page.context().cookies();
   }
 
+  @Step(classKey)
   protected async reload() {
     await this.page.reload();
   }
 
+  @Step(classKey)
   protected async clearCookies() {
     await this.page.context().clearCookies();
   }
 
+  @Step(classKey)
   protected async addCookies(cookies: Cookie[]) {
     await this.page.context().addCookies(cookies);
   }
 
-  @TruthyParams()
+  @DetailedStep(classKey, 'filePath', 'selector')
+  @TruthyParams(classKey)
   protected async uploadFile(filePath: string, selector: string) {
     await this.page.locator(selector).setInputFiles([]);
     await this.page.locator(selector).setInputFiles([filePath]);
   }
 
+  @DetailedStep(classKey, 'selector')
   protected async waitForSelectorToDetach(selector: string, options: {timeout?: number} = {}) {
     const locator = this.page.locator(selector);
     await locator.waitFor({state: 'attached'});
     await locator.waitFor({state: 'detached', ...options});
   }
 
+  @DetailedStep(classKey, 'text')
+  @TruthyParams(classKey, 'text')
   protected async waitForTextToDetach(text: string, options: {timeout?: number} = {}) {
     const locator = this.page.getByText(text);
     await locator.waitFor({state: 'attached'});
@@ -131,28 +159,34 @@ export default abstract class BasePage {
     }
   }
 
+  @DetailedStep(classKey, 'domain')
   protected async expectDomain(domain: string, options: {timeout?: number} = {}) {
     await pageExpect(this.page).toHaveURL(new RegExp(`https?://${domain}.*`), {...options});
   }
 
+  @DetailedStep(classKey, 'path')
   protected async expectUrlStart(path: string, options: {timeout?: number} = {}) {
     await pageExpect(this.page).toHaveURL(new RegExp(`^${path}`), {...options});
   }
 
+  @DetailedStep(classKey, 'endpoints')
   protected async expectUrlEnd(endpoints: string | string[], options: {timeout?: number} = {}) {
     const regex = new RegExp(Array.isArray(endpoints) ? `(${endpoints.join('|')})$` : `${endpoints}$`);
     await pageExpect(this.page).toHaveURL(regex, {...options});
   }
 
+  @DetailedStep(classKey, 'text')
   protected async expectHeading(text: string, options?: {timeout?: number}) {
     await pageExpect(this.page.locator('h1', {hasText: text})).toBeVisible(options);
   }
 
+  @DetailedStep(classKey, 'text')
   protected async expectSubHeading(text: string, options?: {timeout?: number}) {
     await pageExpect(this.page.locator('h2', {hasText: text})).toBeVisible(options);
   }
 
-  @TruthyParams('text')
+  @DetailedStep(classKey, 'text')
+  @TruthyParams(classKey, 'text')
   protected async expectText(text: string | number, options: {exact?: boolean, container?: string, timeout?: number, visible?: boolean} = {}) {
     const locator = options.container
       ? this.page.locator(options.container).getByText(text.toString()) 
@@ -161,30 +195,36 @@ export default abstract class BasePage {
     await pageExpect(locator).toBeVisible({timeout: options.timeout, visible: options.visible});
   }
 
+  @DetailedStep(classKey, 'label')
   protected async expectLabel(label: string, options: {exact?: boolean, timeout?: number} = {exact: false}) {
     await pageExpect(this.page.getByLabel(label, {exact: options.exact})).toBeVisible({timeout: options.timeout});
   }
 
+  @DetailedStep(classKey, 'name')
   protected async expectLink(name: string, options: {exact?: boolean, timeout?: number} = {exact: false}) {
     await pageExpect(this.page.getByRole('link', {name, exact: options.exact})).toBeVisible({timeout: options.timeout});
   }
 
-  @TruthyParams('selector')
+  @DetailedStep(classKey, 'selector')
+  @TruthyParams(classKey, 'selector')
   protected async expectOptionChecked(selector: string, options?: {timeout?: number}) {
     await pageExpect(this.page.locator(selector)).toBeChecked(options);
   }
 
-  @TruthyParams('selector', 'text')
+  @DetailedStep(classKey, 'selector', 'text')
+  @TruthyParams(classKey, 'selector', 'text')
   protected async expectInputValue(selector: string, text: string, options?: {timeout?: number}) {
     await pageExpect(this.page.locator(selector)).toHaveValue(text, options);
   }
 
-  @TruthyParams('selector', 'option')
+  @DetailedStep(classKey, 'selector', 'option')
+  @TruthyParams(classKey, 'selector', 'option')
   protected async expectDropdownOption(selector: string, option: string, options?: {timeout?: number}) {
     await pageExpect(this.page.locator(selector)).toHaveText(option, options);
   }
 
-  @TruthyParams('text', 'selector')
+  @DetailedStep(classKey, 'text', 'selector')
+  @TruthyParams(classKey, 'text', 'selector')
   protected async expectTableRowValue(text: string, selector: string, options: {rowNum: number, timeout?: number, tableName?: string} = {rowNum: 0}) {
     await pageExpect(this.page.locator(`${selector} >> tr`)
       .nth(options.rowNum).getByText(text)).toBeVisible({timeout: options.timeout});
@@ -238,7 +278,7 @@ export default abstract class BasePage {
     }
   }
 
-  @TruthyParams('selector')
+  @TruthyParams(classKey, 'selector')
   protected async retryClickBySelector(selector: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.clickBySelector(selector), 
@@ -248,7 +288,7 @@ export default abstract class BasePage {
     );
   }
 
-  @TruthyParams('name')
+  @TruthyParams(classKey, 'name')
   protected async retryClickLink(name: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.clickLink(name), 
@@ -258,7 +298,7 @@ export default abstract class BasePage {
     );
   }
 
-  @TruthyParams('option', 'selector')
+  @TruthyParams(classKey, 'option', 'selector')
   protected async retrySelectFromDropdown(option: string, selector: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       async () => {

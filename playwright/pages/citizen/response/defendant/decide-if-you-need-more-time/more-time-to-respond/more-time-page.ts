@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, radioButtons } from './more-time-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class MoreTimePage extends CitizenEvent(BasePage){
   async verifyContent() {
     await super.runVerifications([

@@ -2,7 +2,7 @@ import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import { headings, subHeadings, links } from './confirmation-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ConfirmationPage extends BasePage {
   
   async verifyContent(): Promise<void> {

@@ -4,7 +4,7 @@ import DateHelper from '../../../../helpers/date-helper';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, inputs, paragraphs } from './respite-start-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class RespiteStartPage extends CitizenEvent(BasePage){
   async verifyContent(){
     await super.runVerifications([
@@ -18,9 +18,9 @@ export default class RespiteStartPage extends CitizenEvent(BasePage){
 
   async enterRespiteStartDate() {
     const date = DateHelper.subtractFromToday({days: 1});
-    await super.fill(date.getDate(), inputs.day.selector);
-    await super.fill(date.getMonth(), inputs.month.selector);
-    await super.fill(date.getFullYear(), inputs.year.selector);
+    await super.inputText(date.getDate(), inputs.day.selector);
+    await super.inputText(date.getMonth(), inputs.month.selector);
+    await super.inputText(date.getFullYear(), inputs.year.selector);
     await super.clickSaveAndContinue();
   }
 

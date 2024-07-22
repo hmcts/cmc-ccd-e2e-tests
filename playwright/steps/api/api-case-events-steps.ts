@@ -9,7 +9,7 @@ import BaseApiSteps from '../../base/base-api-steps';
 import CaseDataHelper from '../../helpers/case-data-helper';
 import CCDCaseData from '../../types/case-data/ccd-case-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ApiCaseEventSteps extends BaseApiSteps {
   private caseDataFactory: CaseDataFactory;
 

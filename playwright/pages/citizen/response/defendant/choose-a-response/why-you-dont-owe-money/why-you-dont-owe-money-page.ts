@@ -4,7 +4,7 @@ import ClaimStoreCaseData from '../../../../../../types/case-data/claim-store-ca
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { getHeading, radioButtons } from './why-you-dont-owe-money-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class WhyYouDontOweMoneyPage extends CitizenEvent(BasePage){
   async verifyContent(caseData: ClaimStoreCaseData){
     await super.runVerifications([

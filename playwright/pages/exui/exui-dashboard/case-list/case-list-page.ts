@@ -2,7 +2,7 @@ import urls from '../../../../config/urls';
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep, Step } from '../../../../decorators/test-steps';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CaseListPage extends BasePage {
   
   async verifyContent(): Promise<void> {

@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, inputs, paragraphs, radioButtons } from './determination-without-hearing-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DeterminationWithoutHearingPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -16,7 +16,7 @@ export default class DeterminationWithoutHearingPage extends CitizenEvent(BasePa
 
   async chooseNoDeterminationWithoutHearing() {
     await super.clickBySelector(radioButtons.noDeterminationWithoutHearing.selector);
-    await super.fill('No reason', inputs.why.selector);
+    await super.inputText('No reason', inputs.why.selector);
     await super.clickSaveAndContinue();
   }
 }

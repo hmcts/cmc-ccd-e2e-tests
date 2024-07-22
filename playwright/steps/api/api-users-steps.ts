@@ -1,4 +1,4 @@
-import { Step } from '../../decorators/test-steps';
+import { AllMethodsStep, Step } from '../../decorators/test-steps';
 import User from '../../types/user';
 import BaseApiSteps from '../../base/base-api-steps';
 import RequestsFactory from '../../requests/requests-factory';
@@ -6,6 +6,7 @@ import TestData from '../../types/test-data';
 import UserStateHelper from '../../helpers/users-state-helper';
 import FileError from '../../errors/file-error';
 
+AllMethodsStep()
 export default class ApiUsersSteps extends BaseApiSteps {
   private isSetupTest: boolean;
 
@@ -14,7 +15,6 @@ export default class ApiUsersSteps extends BaseApiSteps {
     this.isSetupTest = isSetupTest;
   }
 
-  @Step
   async CreateCitizenUsers(users: User[]) {
     const {idamRequests} = super.requestsFactory;
     const userType = users[0].type;
@@ -32,7 +32,6 @@ export default class ApiUsersSteps extends BaseApiSteps {
     UserStateHelper.addUsersToState(users);
   }
 
-  @Step
   async DeleteCitizenUsers(users: User[]) {
     const {idamRequests} = super.requestsFactory;
     await Promise.all(users.map(user => idamRequests.deleteUser(user)));
@@ -47,7 +46,6 @@ export default class ApiUsersSteps extends BaseApiSteps {
     user.userId = userId;
   }
 
-  @Step
   async SetupUsersData(users: User[]) {
     for(const user of users) {
       await this.setupUser(user);
@@ -55,7 +53,6 @@ export default class ApiUsersSteps extends BaseApiSteps {
     UserStateHelper.addUsersToState(users);
   }
 
-  @Step
   async SetupUserData(user: User) {
     await this.setupUser(user);
     UserStateHelper.addUserToState(user);

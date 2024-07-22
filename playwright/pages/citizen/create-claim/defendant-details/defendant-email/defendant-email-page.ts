@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import { heading, paragraphs, inputs } from './defendant-email-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DefendantEmailPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -14,7 +14,7 @@ export default class DefendantEmailPage extends CitizenEvent(BasePage) {
   }
 
   async enterEmail(email: string) {
-    await super.fill(email, inputs.email.selector);
+    await super.inputText(email, inputs.email.selector);
     await super.clickSaveAndContinue();
   }
 

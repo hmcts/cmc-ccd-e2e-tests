@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import { heading, inputs } from './defendant-phone-number-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DefendantPhoneNumberPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -13,7 +13,7 @@ export default class DefendantPhoneNumberPage extends CitizenEvent(BasePage) {
   }
 
   async enterPhoneNumber() {
-    await super.fill('07976116532', inputs.phoneNumber.selector);
+    await super.inputText('07976116532', inputs.phoneNumber.selector);
     await super.clickSaveAndContinue();
   }
 

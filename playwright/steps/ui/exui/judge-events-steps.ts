@@ -5,7 +5,7 @@ import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashbo
 import JudgeEventsFactory from '../../../pages/exui/judge-events/judge-events-factory';
 import TestData from '../../../types/test-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class JudgeEventsSteps extends BaseSteps {
   private judgeEventsFactory: JudgeEventsFactory;
   private exuiDashboardFactory: ExuiDashboardFactory;

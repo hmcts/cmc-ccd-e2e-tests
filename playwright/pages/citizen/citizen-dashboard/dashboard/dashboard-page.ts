@@ -3,7 +3,7 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { links } from './dashboard-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DashboardPage extends BasePage {
 
   async verifyContent() {

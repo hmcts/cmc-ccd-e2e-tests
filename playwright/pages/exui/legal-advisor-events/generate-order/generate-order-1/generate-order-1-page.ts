@@ -7,7 +7,7 @@ import SdoFragment from '../../../fragments/sdo/sdo-fragment';
 import { Page } from 'playwright-core';
 import { heading } from './generate-order-1-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class GenerateOrder1Page extends ExuiEvent(BasePage){
   private sdoFragment: SdoFragment;
 

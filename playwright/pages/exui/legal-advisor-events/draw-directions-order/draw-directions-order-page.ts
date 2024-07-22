@@ -8,7 +8,7 @@ import { Page } from 'playwright-core';
 import AxeBuilder from '@axe-core/playwright';
 import { heading } from './draw-directions-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DrawDirectionsOrderPage extends ExuiEvent(BasePage){
 
   private draftOrderFragment: DraftOrderFragment;

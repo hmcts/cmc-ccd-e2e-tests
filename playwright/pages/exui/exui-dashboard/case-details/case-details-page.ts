@@ -8,7 +8,8 @@ import {claimantInputs as claimantChangeDetailsInputs, defendantInputs as defend
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { doc1Dropdowns } from '../../fragments/staff-documents/staff-documents-content';
 
-@AllMethodsStep
+const classKey = 'CaseDetailsPage'
+@AllMethodsStep()
 export default class CaseDetailsPage extends BasePage {
   async verifyContent(caseData: CCDCaseData): Promise<void> {
     await super.retryReload(() =>[
@@ -20,7 +21,7 @@ export default class CaseDetailsPage extends BasePage {
     ]);
   }
 
-  @TruthyParams()
+  @TruthyParams(classKey, 'caseId')
   async goToCaseDetails(caseId: number) {
     console.log(`Navigating to case with ccd case id: ${caseId}`);
     await super.goTo(`${urls.manageCase}/cases/case-details/${caseId}`, {force: true});

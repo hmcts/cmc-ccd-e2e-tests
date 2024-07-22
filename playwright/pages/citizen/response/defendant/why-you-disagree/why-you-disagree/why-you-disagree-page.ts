@@ -1,12 +1,12 @@
 import BasePage from '../../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
-import { heading, inputs, paragraphs } from './your-defence-content';
+import { heading, inputs, paragraphs } from './why-you-disagree-content';
 
 @AllMethodsStep()
-export default class YourDefencePage extends CitizenEvent(BasePage) {
+export default class WhyYouDisagreePage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([
+    await Promise.all([
       super.expectHeading(heading),
       super.expectText(paragraphs.theirReasons),
       super.expectText(inputs.disagreeReason.label),

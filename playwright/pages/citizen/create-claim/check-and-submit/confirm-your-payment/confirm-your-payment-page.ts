@@ -2,7 +2,7 @@ import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import { buttons, heading, subHeadings, tableHeadings } from './confirm-your-payment-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ConfirmYourPaymentPage extends BasePage{
   async verifyContent(): Promise<void> {
     await super.runVerifications([

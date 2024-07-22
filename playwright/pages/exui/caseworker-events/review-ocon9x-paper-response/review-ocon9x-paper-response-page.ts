@@ -6,7 +6,7 @@ import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import filePaths from '../../../../config/file-paths';
 import { dropdowns, heading, subHeadings } from './review-ocon9x-paper-response-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ReviewOcon9xPaperResponsePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {

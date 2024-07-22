@@ -8,7 +8,7 @@ import StaffDocumentsFragment from '../../../fragments/staff-documents/staff-doc
 import AxeBuilder from '@axe-core/playwright';
 import { Page } from 'playwright-core';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class MediationSuccessful2Page extends ExuiEvent(BasePage) {
   private staffDocumentsFragment: StaffDocumentsFragment;
 

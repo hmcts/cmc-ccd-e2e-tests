@@ -4,7 +4,7 @@ import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
 import ExuiEvent from '../../../exui-event/exui-event';
 import { heading, paragraphs, radioButtons } from './draw-directions-order-1-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DrawDirectionsOrder1Page extends ExuiEvent(BasePage){
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([

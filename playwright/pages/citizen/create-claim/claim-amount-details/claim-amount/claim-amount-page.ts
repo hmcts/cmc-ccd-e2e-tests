@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import { heading, inputs } from './claim-amount-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ClaimAmountPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -13,8 +13,8 @@ export default class ClaimAmountPage extends CitizenEvent(BasePage) {
   }
 
   async enterAdditionalAmount() {
-    await super.fill(inputs.reason.text, inputs.reason.selector);
-    await super.fill(inputs.amount.text, inputs.amount.selector);
+    await super.inputText(inputs.reason.text, inputs.reason.selector);
+    await super.inputText(inputs.amount.text, inputs.amount.selector);
     await super.clickSaveAndContinue();
   }
 }

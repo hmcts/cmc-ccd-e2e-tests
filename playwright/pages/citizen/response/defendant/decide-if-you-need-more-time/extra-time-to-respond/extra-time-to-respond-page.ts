@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, paragraphs } from './extra-time-to-respond-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ExtraTimeToRespondPage extends CitizenEvent(BasePage){
   async verifyContent() {
     await super.runVerifications([

@@ -4,7 +4,7 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 import User from '../../../types/user';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CitizenDashboardSteps extends BaseSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;
 

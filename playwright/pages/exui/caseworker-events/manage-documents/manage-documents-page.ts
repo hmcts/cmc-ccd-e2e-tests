@@ -8,7 +8,7 @@ import StaffDocumentsFragment from '../../fragments/staff-documents/staff-docume
 import AxeBuilder from '@axe-core/playwright';
 import { Page } from 'playwright-core';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ManageDocumentsPage extends ExuiEvent(BasePage) {
   private staffDocumentsFragment: StaffDocumentsFragment;
 

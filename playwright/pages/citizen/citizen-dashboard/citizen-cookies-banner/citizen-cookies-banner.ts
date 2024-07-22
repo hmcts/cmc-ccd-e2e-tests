@@ -2,7 +2,7 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { buttons, heading, paragraphs } from './citizen-cookies-banner-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CitizenCookiesBanner extends BasePage {
   async verifyContent(): Promise<void> {
     await super.runVerifications([

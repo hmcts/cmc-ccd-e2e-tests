@@ -5,7 +5,7 @@ import IdamUser from '../types/idam-user';
 import RequestOptions from '../types/request-options';
 import User from '../types/user';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class IdamRequests extends BaseRequest {
   
   async createCitizenUser({

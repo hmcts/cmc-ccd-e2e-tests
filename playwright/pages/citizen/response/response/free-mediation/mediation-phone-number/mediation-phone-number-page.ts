@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, inputs } from './mediation-phone-number-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class MediationPhoneNumberPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -14,7 +14,7 @@ export default class MediationPhoneNumberPage extends CitizenEvent(BasePage) {
   }
 
   async fillPhoneNumber() {
-    await super.fill('0788788788', inputs.phoneNumber.selector);
+    await super.inputText('0788788788', inputs.phoneNumber.selector);
     await super.clickSaveAndContinue();
   }
 

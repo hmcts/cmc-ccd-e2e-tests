@@ -8,7 +8,7 @@ import DraftOrderFragment from '../../fragments/draft-order/draft-order-fragment
 import { Page } from 'playwright-core';
 import AxeBuilder from '@axe-core/playwright';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ReviewOrderPage extends ExuiEvent(BasePage) {
   private draftOrderFragment: DraftOrderFragment;
 

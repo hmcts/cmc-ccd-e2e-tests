@@ -2,7 +2,7 @@ import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { buttons, heading, paragraphs } from './exui-cookies-banner-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ExuiCookiesBanner extends BasePage {
   
   async verifyContent(): Promise<void> {

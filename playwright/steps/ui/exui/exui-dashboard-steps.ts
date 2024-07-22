@@ -3,7 +3,7 @@ import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ExuiDashboardSteps extends BaseSteps{
   private exuiDashboardFactory: ExuiDashboardFactory;
 

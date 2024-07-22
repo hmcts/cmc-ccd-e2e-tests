@@ -5,7 +5,7 @@ import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import ExuiEvent from '../../exui-event/exui-event';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class UpdatedHwfNumberPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
@@ -17,7 +17,7 @@ export default class UpdatedHwfNumberPage extends ExuiEvent(BasePage) {
   }
 
   async enterHwfNumber() {
-    super.fill(inputs.helpWithFeesNumber.text, inputs.helpWithFeesNumber.selector);
+    super.inputText(inputs.helpWithFeesNumber.text, inputs.helpWithFeesNumber.selector);
   }
 
   async submitEvent() {

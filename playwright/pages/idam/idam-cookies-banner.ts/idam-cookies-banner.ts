@@ -2,7 +2,7 @@ import BasePage from '../../../base/base-page';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import { buttons, heading, paragraphs } from './idam-cookies-banner-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class IdamCookiesBanner extends BasePage{
   async verifyContent(): Promise<void> {
     await super.runVerifications([

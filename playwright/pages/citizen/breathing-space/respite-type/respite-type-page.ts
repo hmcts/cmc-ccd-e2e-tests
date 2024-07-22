@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, radioButtons } from './respite-type-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class RespiteTypePage extends CitizenEvent(BasePage){
   async verifyContent(){
     await super.runVerifications([

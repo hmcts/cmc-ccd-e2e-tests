@@ -3,10 +3,9 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 import BasePage from '../../../../base/base-page';
 import ExuiEvent from '../../exui-event/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
-import { TruthyParams } from '../../../../decorators/truthy-params';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class AttachViaBulkScanPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
@@ -17,7 +16,6 @@ export default class AttachViaBulkScanPage extends ExuiEvent(BasePage) {
     ]);
   }
 
-  @TruthyParams()
   async submitEvent() {
     await super.fillEventDetails(CaseworkerEvents.ATTACH_VIA_BULK_SCAN);
     await super.clickSubmit();

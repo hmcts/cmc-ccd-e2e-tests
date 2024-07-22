@@ -5,7 +5,7 @@ import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import ExuiEvent from '../../exui-event/exui-event';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class InvalidHwfNumberPage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {

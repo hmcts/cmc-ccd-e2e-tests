@@ -5,7 +5,7 @@ import ExuiEvent from '../../exui-event/exui-event';
 import CaseworkerEvents from '../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class TransferCasePage extends ExuiEvent(BasePage) {
 
   async verifyContent(caseData: CCDCaseData) {
@@ -28,17 +28,17 @@ export default class TransferCasePage extends ExuiEvent(BasePage) {
   }
 
   async fillCourtDetails() {
-    await super.fill('Waverley Court', inputs.countyCourt.selector);
+    await super.inputText('Waverley Court', inputs.countyCourt.selector);
     await super.clickLink(links.manualAddress.title);
     await this.verifyAddressInputs();
-    await super.fill('1 New Street', inputs.addressLine1.selector);
-    await super.fill('City', inputs.city.selector);
+    await super.inputText('1 New Street', inputs.addressLine1.selector);
+    await super.inputText('City', inputs.city.selector);
   } 
 
   async chooseTransferOption() {
     await super.clickBySelector(radioButtons.other.selector);
     await super.expectOptionChecked(radioButtons.other.selector);
-    await super.fill('Some Reason', inputs.otherReason.selector);
+    await super.inputText('Some Reason', inputs.otherReason.selector);
   }
 
   async submitEvent() {

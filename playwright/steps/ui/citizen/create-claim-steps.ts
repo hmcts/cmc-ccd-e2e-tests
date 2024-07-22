@@ -5,7 +5,7 @@ import TestData from '../../../types/test-data';
 import { claimants, defendants } from '../../../config/users';
 import CitizenDashboardFactory from '../../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CreateClaimSteps extends BaseSteps{
   private createClaimFactory: CreateClaimFactory;
   private citizenDashboardFactory: CitizenDashboardFactory;

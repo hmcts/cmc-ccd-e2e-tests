@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, tableHeadings } from './check-answers-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CheckAnswersPage extends CitizenEvent(BasePage){
   
   async verifyContent(){

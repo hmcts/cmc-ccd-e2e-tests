@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, radioButtons } from './hearing-dates-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class HearingDatesPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {

@@ -7,7 +7,7 @@ import SdoFragment from '../../../fragments/sdo/sdo-fragment';
 import { heading } from './draw-directions-order-2-content';
 import { Page } from 'playwright-core';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class DrawDirectionsOrder2Page extends ExuiEvent(BasePage){
   private sdoFragment: SdoFragment;
 

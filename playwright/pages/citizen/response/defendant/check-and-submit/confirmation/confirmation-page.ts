@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { buttons, heading, subHeadings } from './confirmation-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ConfirmationPage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([

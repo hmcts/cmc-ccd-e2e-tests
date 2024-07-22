@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import ResponseFactory from '../../../pages/citizen/response/response/response-factory';
 import TestData from '../../../types/test-data';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default abstract class ResponseSteps extends BaseSteps {
   private responseFactory: ResponseFactory;
 

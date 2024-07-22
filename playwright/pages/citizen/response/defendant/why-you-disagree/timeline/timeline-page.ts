@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, subHeadings, inputs } from './timeline-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class TimelinePage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
@@ -16,11 +16,11 @@ export default class TimelinePage extends CitizenEvent(BasePage) {
   }
 
   async fillTimelineDetails() {
-    await super.fill('10 December 2023', inputs.date1.selector);
-    await super.fill('Nothing happened', inputs.timeline1.selector);
-    await super.fill('15 December 2023', inputs.date2.selector);
-    await super.fill('Nothing happened', inputs.timeline2.selector);
-    await super.fill('No comment', inputs.comment.selector);
+    await super.inputText('10 December 2023', inputs.date1.selector);
+    await super.inputText('Nothing happened', inputs.timeline1.selector);
+    await super.inputText('15 December 2023', inputs.date2.selector);
+    await super.inputText('Nothing happened', inputs.timeline2.selector);
+    await super.inputText('No comment', inputs.comment.selector);
     await super.clickSaveAndContinue();
   }
 }

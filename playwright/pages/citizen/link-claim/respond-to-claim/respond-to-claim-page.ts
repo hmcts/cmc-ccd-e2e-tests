@@ -4,7 +4,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { buttons, heading, paragraphs, subHeadings } from './respond-to-claim-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class RespondToClaimPage extends CitizenEvent(BasePage){
 
   async verifyContent() {

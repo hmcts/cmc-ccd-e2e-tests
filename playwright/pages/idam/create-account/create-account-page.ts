@@ -2,7 +2,7 @@ import BasePage from '../../../base/base-page';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import { heading, links, subHeadings } from './create-account-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class CreateAccountPage extends BasePage {
   async verifyContent() {
     await super.runVerifications([

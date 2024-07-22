@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, inputs } from './reference-number-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ReferenceNumberPage extends CitizenEvent(BasePage){
   async verifyContent(){
     await super.runVerifications([
@@ -13,7 +13,7 @@ export default class ReferenceNumberPage extends CitizenEvent(BasePage){
   }
 
   async enterReferenceNumber() {
-    await super.fill('Ref-1234', inputs.refNum.selector);
+    await super.inputText('Ref-1234', inputs.refNum.selector);
     await super.clickContinue();
   }
 

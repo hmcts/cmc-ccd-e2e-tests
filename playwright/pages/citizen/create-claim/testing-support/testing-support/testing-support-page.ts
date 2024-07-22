@@ -3,7 +3,7 @@ import BasePage from '../../../../../base/base-page';
 import {heading, links} from './testing-support-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class TestingSupportPage extends BasePage{
   
   async open() {

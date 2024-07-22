@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CitizenEvent from '../../../citizen-event/citizen-event';
 import { heading, inputs, links } from './organisation-details-content';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class OrganisationDetailsPage extends CitizenEvent(BasePage) {
 
   async verifyContent() {
@@ -15,17 +15,17 @@ export default class OrganisationDetailsPage extends CitizenEvent(BasePage) {
   }
 
   async enterOrganisationDetails() {
-    await super.fill('Organisation A', inputs.name.selector);
-    await super.fill('Test Name', inputs.contactName.selector);
+    await super.inputText('Organisation A', inputs.name.selector);
+    await super.inputText('Test Name', inputs.contactName.selector);
   }
 
   async enterAddressDetails() {
     await super.retryClickLink(
       links.addressManual.title, 
       async () => {
-        await super.fill('1234 Street', inputs.addressLine1.selector, {timeout: 2000});
-        await super.fill('City', inputs.city.selector);
-        await super.fill('E17 6EW', inputs.postcode.selector);
+        await super.inputText('1234 Street', inputs.addressLine1.selector, {timeout: 2000});
+        await super.inputText('City', inputs.city.selector);
+        await super.inputText('E17 6EW', inputs.postcode.selector);
       });
     await super.clickSaveAndContinue();
   }

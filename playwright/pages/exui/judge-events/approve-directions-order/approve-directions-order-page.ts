@@ -7,7 +7,7 @@ import DraftOrderFragment from '../../fragments/draft-order/draft-order-fragment
 import AxeBuilder from '@axe-core/playwright';
 import { heading } from './approve-directions-order-contents';
 
-@AllMethodsStep
+@AllMethodsStep()
 export default class ApproveDirectionsOrderPage extends ExuiEvent(BasePage){
   private draftOrderFragment: DraftOrderFragment;
 
