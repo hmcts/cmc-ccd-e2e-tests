@@ -6,7 +6,7 @@ import TestData from '../../types/test-data';
 import UserStateHelper from '../../helpers/users-state-helper';
 import FileError from '../../errors/file-error';
 
-AllMethodsStep()
+AllMethodsStep();
 export default class ApiUsersSteps extends BaseApiSteps {
   private isSetupTest: boolean;
 

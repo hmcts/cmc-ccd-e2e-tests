@@ -1,4 +1,4 @@
-import DecoratorError from "../errors/decorator-error";
+import DecoratorError from '../errors/decorator-error';
 
 export default class DecoratorHelper {
   private static methodNameToMethodParams = {};
@@ -18,6 +18,7 @@ export default class DecoratorHelper {
     return className.charAt(0).toLowerCase() + className.slice(1);
   };
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   static getParamNamesFromMethod = (classKey: string, methodName: string, target: Function) => {
     let methodParams = this.methodNameToMethodParams[classKey]?.[methodName];
     if(!methodParams) {
@@ -31,9 +32,9 @@ export default class DecoratorHelper {
 
       if (!this.methodNameToMethodParams[classKey]) {
         this.methodNameToMethodParams[classKey] = {}; 
-    }
+      }
 
-      this.methodNameToMethodParams[classKey][methodName] = methodParams
+      this.methodNameToMethodParams[classKey][methodName] = methodParams;
     }
     return methodParams;
   };

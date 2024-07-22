@@ -8,7 +8,7 @@ import Timer from '../helpers/timer';
 import { getDomain } from '../config/urls';
 import { DetailedStep, Step } from '../decorators/test-steps';
 
-const classKey = 'BasePage'
+const classKey = 'BasePage';
 export default abstract class BasePage {
   private page: Page;
   private axeBuilder?: AxeBuilder;

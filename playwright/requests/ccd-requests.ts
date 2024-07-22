@@ -9,8 +9,7 @@ import CaseEvents from '../enums/events/case-events';
 import CCDCaseData from '../types/case-data/ccd-case-data';
 import User from '../types/user';
 
-
-const classKey = 'CcdRequests'
+const classKey = 'CcdRequests';
 export default class CcdRequests extends BaseRequest {
 
   private static s2sToken: string;

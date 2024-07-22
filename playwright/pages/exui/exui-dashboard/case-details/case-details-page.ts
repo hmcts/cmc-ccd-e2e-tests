@@ -8,7 +8,7 @@ import {claimantInputs as claimantChangeDetailsInputs, defendantInputs as defend
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { doc1Dropdowns } from '../../fragments/staff-documents/staff-documents-content';
 
-const classKey = 'CaseDetailsPage'
+const classKey = 'CaseDetailsPage';
 @AllMethodsStep()
 export default class CaseDetailsPage extends BasePage {
   async verifyContent(caseData: CCDCaseData): Promise<void> {

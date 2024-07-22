@@ -3,7 +3,6 @@ import DecoratorError from '../errors/decorator-error';
 import DecoratorHelper from '../helpers/decorator-helper';
 import {test} from '../playwright-fixtures/index';
 
-
 //DO NOT APPLY AllMethodStep Decorator with Step decorator!!!!!
 
 const stepFlag = '__allMethodsStepApplied';
@@ -17,22 +16,22 @@ const verifyMethodNamesToIgnore = (methodsNamesToIgnore: string[], classMethodNa
       throw new DecoratorError(`${methodName} is not a method name in class: ${className}`);
     }
   }
-}
+};
 
-const getStepDetailed = (paramNamesToDetail: string[], methodParamNames: string[], argsValues: any[], className: string, methodName: string,) => {
+const getStepDetailed = (paramNamesToDetail: string[], methodParamNames: string[], argsValues: any[], className: string, methodName: string) => {
   const detailedParams: string[] = [];
 
   for(const [index, methodParamName] of methodParamNames.entries()) {
     if(paramNamesToDetail.includes(methodParamName)) {
-      detailedParams.push(`${methodParamName}: ${DecoratorHelper.formatArg(argsValues[index])}`)
+      detailedParams.push(`${methodParamName}: ${DecoratorHelper.formatArg(argsValues[index])}`);
     }
   }
 
-  return `${className}.${(methodName)}${ paramNamesToDetail.length === 0 ? '' : `(${detailedParams.join(', ')})`}`
-}
-
+  return `${className}.${(methodName)}${ paramNamesToDetail.length === 0 ? '' : `(${detailedParams.join(', ')})`}`;
+};
 
 export const Step = function(classKey: string) {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   return function (target: Function, context: ClassMethodDecoratorContext) {
     const methodName = context.name as string;
     const className = DecoratorHelper.formatClassName(classKey);
@@ -50,10 +49,7 @@ export const Step = function(classKey: string) {
       });
     };
   };
-}
-
-
-
+};
 
 export const DetailedStep = function (classKey: string, ...paramNamesToDetail: string[]) {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -73,14 +69,13 @@ export const DetailedStep = function (classKey: string, ...paramNamesToDetail: s
     DecoratorHelper.verifyParamNames(className, methodName, methodParamNames, paramNamesToDetail);
 
     return async function replacementMethod(this: any, ...args: any[]) {
-      const stepName = getStepDetailed(paramNamesToDetail, methodParamNames, args, className, methodName)
+      const stepName = getStepDetailed(paramNamesToDetail, methodParamNames, args, className, methodName);
       return await test.step(stepName, async () => {
         return await target.call(this, ...args);
       });
     };
   };
-}
-
+};
 
 export const AllMethodsStep = ({methodNamesToIgnore = []} = {}) => {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -104,5 +99,5 @@ export const AllMethodsStep = ({methodNamesToIgnore = []} = {}) => {
         };
       }
     }
-  }
+  };
 };

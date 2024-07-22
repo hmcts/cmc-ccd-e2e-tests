@@ -23,10 +23,6 @@ export default class MediationSuccessful1Page extends ExuiEvent(BasePage) {
     await super.clickSubmit();
   }
 
-  private async privateMethod() {
-
-  }
-
   async submitEvent() {
     throw new Error('Method not implemented.');
   }
