@@ -14,7 +14,7 @@ export default class IdamRequests extends BaseRequest {
     role,
   }: User): Promise<IdamUser> {
     console.log(`Creating user with email: ${email}`);
-    const url = `${urls.idamApi}/testing-support/accounts`
+    const url = `${urls.idamApi}/testing-support/accounts`;
     const requestOptions: RequestOptions = {
       method: 'POST',
       body: {

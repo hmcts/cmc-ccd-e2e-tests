@@ -30,7 +30,7 @@ export default abstract class BaseRequest {
       body,
       method = 'GET',
       params,
-      }: RequestOptions,
+    }: RequestOptions,
     expectedStatus = 200, 
     expectedBodyPaths: string[] = [], 
   ): Promise<APIResponse> {

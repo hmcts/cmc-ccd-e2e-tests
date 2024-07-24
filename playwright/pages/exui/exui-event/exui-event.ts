@@ -4,7 +4,7 @@ import CCDCaseData from '../../../types/case-data/ccd-case-data';
 import ExuiEvents from '../../../types/exui-events';
 import { eventInputs, buttons } from './exui-event-content';
 
-const classKey = 'ExuiEvent'
+const classKey = 'ExuiEvent';
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
   

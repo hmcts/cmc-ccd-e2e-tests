@@ -49,8 +49,8 @@ export default class DecoratorHelper {
   private static cleanMethodParams(paramsString: string) : string[] {
     const cleanParamsString = this.removeParamsInCurlyBraces(paramsString);
     const cleanParamsList = this.splitParamsString(cleanParamsString)
-    .filter(part => !part.includes('=') && !part.includes('options') && part.length !== 0);
-    return cleanParamsList
+      .filter(part => !part.includes('=') && !part.includes('options') && part.length !== 0);
+    return cleanParamsList;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -58,10 +58,9 @@ export default class DecoratorHelper {
   
     let cleanParamList: string[] = this.methodNameToMethodParams[className]?.[methodName];
     if (!cleanParamList) {
-      let paramsString = this.getParamsStringFromMethodString(target.toString());
+      const paramsString = this.getParamsStringFromMethodString(target.toString());
       const paramsList = this.splitParamsString(paramsString);
       cleanParamList = this.cleanMethodParams(paramsString);
-      
 
       for(let i = 0; i < cleanParamList.length; i++) {
         if(cleanParamList[i] !== paramsList[i]){
@@ -70,21 +69,19 @@ export default class DecoratorHelper {
       }
 
       if (!this.methodNameToMethodParams[className]) {
-          this.methodNameToMethodParams[className] = {};
+        this.methodNameToMethodParams[className] = {};
       }
       
       this.methodNameToMethodParams[className][methodName] = cleanParamList;
     }
     return cleanParamList;
-  }
-
-
+  };
 
   static formatArg = (arg: any) => {
     if(typeof arg === 'string') {
       return `'${arg}'`;
     } else if (Array.isArray(arg)) {
-      `[${arg.join(', ')}]`
+      `[${arg.join(', ')}]`;
     }
     return arg;
   };
@@ -97,7 +94,6 @@ export default class DecoratorHelper {
         return [item];
       }
     }).flat();
-  }
-  
+  };
   
 }

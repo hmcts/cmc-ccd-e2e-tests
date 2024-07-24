@@ -13,7 +13,7 @@ export default class ApiCaseDataSteps extends BaseApiSteps {
 
   async FetchClaimStoreCaseData() {
     const {claimsStoreRequests} = this.requestsFactory;
-    this.setClaimStoreCaseData = await claimsStoreRequests.fetchClaimStoreCaseData(this.claimStoreCaseData.referenceNumber, claimants[this.workerIndex],);
+    this.setClaimStoreCaseData = await claimsStoreRequests.fetchClaimStoreCaseData(this.claimStoreCaseData.referenceNumber, claimants[this.workerIndex]);
   }
 
   async FetchClaimStoreCaseDataWithLetterId() {
