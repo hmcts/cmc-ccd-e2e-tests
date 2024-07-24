@@ -50,85 +50,86 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 withNightlyPipeline("nodejs", product, component) {
-    env.EXUI_URL = params.ExUI_URL_TO_TEST
-    env.CITIZEN_APP_URL = params.CMC_URL_TO_TEST
-    env.DM_STORE_URL=params.DM_STORE_URL
-    env.IDAM_API_URL=params.IDAM_API_URL
-    env.IDAM_WEB_URL=params.IDAM_WEB_URL
-    env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
-    env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
-    env.CLAIM_STORE_URL = params.CLAIM_STORE_URL
-    env.TEST_ENV = params.ENVIRONMENT
-    env.WORKERS = params.WORKERS
-    env.SKIP_AUTH_SETUP = params.SKIP_AUTH_SETUP
-    loadVaultSecrets(secrets)
+  env.EXUI_URL = params.ExUI_URL_TO_TEST
+  env.CITIZEN_APP_URL = params.CMC_URL_TO_TEST
+  env.DM_STORE_URL=params.DM_STORE_URL
+  env.IDAM_API_URL=params.IDAM_API_URL
+  env.IDAM_WEB_URL=params.IDAM_WEB_URL
+  env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
+  env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
+  env.CLAIM_STORE_URL = params.CLAIM_STORE_URL
+  env.TEST_ENV = params.ENVIRONMENT
+  env.WORKERS = params.WORKERS
+  env.SKIP_AUTH_SETUP = params.SKIP_AUTH_SETUP
+  loadVaultSecrets(secrets)
 
-    boolean setupPassed=true
-   
-    afterAlways('DependencyCheckNightly') {
-      stage('Test Setup') {
-        try {
-          yarnBuilder.yarn('test:setup:playwright-install')
-          yarnBuilder.yarn('test:setup:ci')
-        } catch (Error) {
-          setupPassed=false
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
+  boolean setupPassed=true
+  
+  afterAlways('DependencyCheckNightly') {
+    stage('Test Setup') {
+      try {
+        yarnBuilder.yarn('test:setup:playwright-install')
+        yarnBuilder.yarn('test:setup:ci')
+      } catch (Error) {
+        setupPassed=false
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
-
-      if(setupPassed) {
-        stage('Cross browser test') {
-          try {
-            yarnBuilder.yarn('test:crossbrowser:ci')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          }
-        }
-
-        stage('Full functional test') {
-          try {
-            yarnBuilder.yarn('test:functional:ci')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          }
-        }
-      }
-
-      stage('Test Teardown') {
-        try {
-          yarnBuilder.yarn('test:teardown:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
-
-      stage('Generate Reports') {
-        try {
-          yarnBuilder.yarn('test:bootstrap:generate-report')
-          if(setupPassed) {
-            yarnBuilder.yarn('test:functional:generate-report')
-          }
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: 'allure-bootstrap-report',
-              reportFiles: 'index.html',
-              reportName: 'Allure Bootstrap Report'
-          ])
-          if(setupPassed) {
-            publishHTML([
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: 'allure-functional-report',
-              reportFiles: 'index.html',
-              reportName: 'Allure Functional Report'
-            ])
-          }
-        }
-      } 
     }
+
+    if(setupPassed) {
+      stage('Cross browser test') {
+        try {
+          yarnBuilder.yarn('test:crossbrowser:ci')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        }
+      }
+
+      stage('Full functional test') {
+        try {
+          yarnBuilder.yarn('test:functional:ci')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        }
+      }
+    }
+
+    stage('Test Teardown') {
+      try {
+        yarnBuilder.yarn('test:teardown:ci')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      }
+    }
+
+    stage('Generate Reports') {
+      try {
+        yarnBuilder.yarn('test:bootstrap:generate-report')
+        if(setupPassed) {
+          yarnBuilder.yarn('test:functional:generate-report')
+        }
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      } finally {
+        publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'allure-bootstrap-report',
+            reportFiles: 'index.html',
+            reportName: 'Allure Bootstrap Report'
+        ])
+        if(setupPassed) {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'allure-functional-report',
+            reportFiles: 'index.html',
+            reportName: 'Allure Functional Report'
+          ])
+        }
+      }
+    } 
+  }
+}
