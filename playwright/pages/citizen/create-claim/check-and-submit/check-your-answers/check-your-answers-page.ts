@@ -4,9 +4,8 @@ import CitizenEvent from '../../../citizen-event/citizen-event';
 import {heading, subHeadings, checkboxes} from './check-your-answers-content';
 
 const classKey = 'CheckYourAnswersPage';
-export default class CheckYourAnswersPage extends CitizenEvent(BasePage){
 
-  @Step(classKey)
+export default class CheckYourAnswersPage extends CitizenEvent(BasePage){
   async verifyContent(): Promise<void> {
     await super.runVerifications([
       super.expectHeading(heading),

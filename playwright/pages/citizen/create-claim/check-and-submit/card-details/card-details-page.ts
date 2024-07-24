@@ -5,8 +5,8 @@ import { Step } from '../../../../../decorators/test-steps';
 import User from '../../../../../types/user';
 
 const classKey = 'CardDetailsPage';
+
 export default class CardDetailsPage extends BasePage{
-  @Step(classKey)
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -58,7 +58,7 @@ export default class CardDetailsPage extends BasePage{
     await super.inputText('London', inputs.city.selector);
     await super.inputText('E4 6ry', inputs.postcode.selector);
   }
-
+  
   @Step(classKey)
   async fillContactDetails({email}: User) {
     await super.inputText(email, inputs.confirmationEmail.selector);
