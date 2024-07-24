@@ -18,7 +18,8 @@ export default abstract class BasePage {
     this.axeBuilder = axeBuilder;
   }
 
-  @TruthyParams('selector')
+  @DetailedStep(classKey, 'selector')
+  @TruthyParams(classKey, 'selector')
   protected async clickBySelector(selector: string, options: {count?: number} = {}) {
     await this.page.locator(selector).click({clickCount: options.count});
   }
@@ -158,6 +159,7 @@ export default abstract class BasePage {
     }
   }
 
+  @DetailedStep(classKey, 'domain')
   protected async expectDomain(domain: string, options: {timeout?: number} = {}) {
     await pageExpect(this.page).toHaveURL(new RegExp(`https?://${domain}.*`), {...options});
   }
@@ -276,7 +278,7 @@ export default abstract class BasePage {
     }
   }
 
-  @TruthyParams('selector')
+  @TruthyParams(classKey, 'selector')
   protected async retryClickBySelector(selector: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.clickBySelector(selector), 
@@ -286,7 +288,7 @@ export default abstract class BasePage {
     );
   }
 
-  @TruthyParams('name')
+  @TruthyParams(classKey, 'name')
   protected async retryClickLink(name: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       () => this.clickLink(name), 
@@ -296,7 +298,7 @@ export default abstract class BasePage {
     );
   }
 
-  @TruthyParams('option', 'selector')
+  @TruthyParams(classKey, 'option', 'selector')
   protected async retrySelectFromDropdown(option: string, selector: string, assertions: () => Promise<void>[] | Promise<void>, {retries = 2}: { retries?: number } = {}) {
     await this.retryAction(
       async () => {
