@@ -51,7 +51,6 @@ export default defineConfig({
       testMatch: '**playwright/tests/bootstrap/auth/**.setup.ts',
       dependencies: ['user-data-setup'],
       teardown: 'user-auth-teardown',
-      retries: 0,
     },
     {
       name: 'user-auth-teardown',

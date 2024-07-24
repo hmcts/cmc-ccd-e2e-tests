@@ -38,8 +38,8 @@ export default abstract class BasePage {
 
   @DetailedStep(classKey, 'selector')
   @TruthyParams(classKey)
-  protected async selectorExists(selector?: string): Promise<boolean> {
-    await this.page.waitForSelector(selector!, {state: 'visible'});
+  protected async selectorExists(selector: string): Promise<boolean> {
+    await this.page.waitForSelector(selector, {state: 'visible'});
     return await this.page.locator(selector!).isVisible();
   }
 
@@ -74,18 +74,18 @@ export default abstract class BasePage {
 
   @DetailedStep(classKey, 'input', 'selector')
   @TruthyParams(classKey, 'input', 'selector')
-  protected async inputText(input: string | number, selector?: string, options: {timeout?: number} = {}) {
-    await this.page.fill(selector!, input.toString(), {timeout: options.timeout});
+  protected async inputText(input: string | number, selector: string, options: {timeout?: number} = {}) {
+    await this.page.fill(selector, input.toString(), {timeout: options.timeout});
   }
 
-  @Step(classKey)
+  @DetailedStep(classKey, 'selector')
   @TruthyParams(classKey, 'input', 'selector')
-  protected async inputSensitiveText(input: string | number, selector?: string, options: {timeout?: number, hideInput?: boolean} = {}) {
-    await this.page.fill(selector!, input.toString(), {timeout: options.timeout});
+  protected async inputSensitiveText(input: string | number, selector: string, options: {timeout?: number, hideInput?: boolean} = {}) {
+    await this.page.fill(selector, input.toString(), {timeout: options.timeout});
   }
 
   @TruthyParams(classKey)
-  protected async getText(selector?: string) {
+  protected async getText(selector: string) {
     return await this.page.textContent(selector) ?? undefined;
   }
 

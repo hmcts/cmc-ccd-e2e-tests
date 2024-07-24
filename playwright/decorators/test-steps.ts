@@ -64,12 +64,13 @@ export const DetailedStep = function (classKey: string, ...paramNamesToDetail: s
       throw new DecoratorError(`${className}.${methodName} must be asynchronous to use @${Step.name} decorator`);
     }
 
-    const methodParamNames = DecoratorHelper.getParamNamesFromMethod(className, methodName, target);
+    const methodParamNames = DecoratorHelper.getParamNamesFromMethod(className, methodName, DetailedStep.name, target);
 
-    DecoratorHelper.verifyParamNames(className, methodName, methodParamNames, paramNamesToDetail);
+    DecoratorHelper.verifyParamNames(className, methodName, DetailedStep.name, methodParamNames, paramNamesToDetail);
 
     return async function replacementMethod(this: any, ...args: any[]) {
-      const stepName = getStepDetailed(paramNamesToDetail, methodParamNames, args, className, methodName);
+      const formattedArgs = DecoratorHelper.formatArgsList(args);
+      const stepName = getStepDetailed(paramNamesToDetail, methodParamNames, formattedArgs, className, methodName);
       return await test.step(stepName, async () => {
         return await target.call(this, ...args);
       });

@@ -1,7 +1,9 @@
 import { APIRequestContext, APIResponse } from 'playwright-core';
 import RequestOptions from '../types/request-options';
 import { expect } from '../playwright-fixtures';
+import { DetailedStep, Step } from '../decorators/test-steps';
 
+const classKey = 'BaseRequests';
 export default abstract class BaseRequest {
   private requestContext: APIRequestContext; 
   private MAX_RETRY_TIMEOUT = 30000;
@@ -20,14 +22,17 @@ export default abstract class BaseRequest {
     expect(nestedKeyValue, `Expected response body to contain path: ${keys.join(' => ')}, url: ${url}`).toBeDefined();
   }
 
-  protected async request({url,
-    headers = { 'Content-Type': 'application/json' },
-    body,
-    method = 'GET',
-    params,
-  }: RequestOptions, 
-  expectedStatus = 200, 
-  expectedBodyPaths: string[] = [],
+  @DetailedStep(classKey, 'url')
+  protected async request(
+    url: string,
+    {
+      headers = { 'Content-Type': 'application/json' },
+      body,
+      method = 'GET',
+      params,
+      }: RequestOptions,
+    expectedStatus = 200, 
+    expectedBodyPaths: string[] = [], 
   ): Promise<APIResponse> {
     const response = await this.requestContext.fetch(url, {
       method,
@@ -44,7 +49,9 @@ export default abstract class BaseRequest {
     return response;
   }
 
-  protected async retriedRequest(requestOptions: RequestOptions, 
+  protected async retriedRequest(
+    url: string,
+    requestOptions: RequestOptions,
     expectedStatus = 200, 
     remainingRetries = 3,
     expectedBodyPaths: string[] = [],
@@ -56,7 +63,7 @@ export default abstract class BaseRequest {
     while (remainingRetries > 0) {
       remainingRetries--;
       try {
-        const response = await this.request(requestOptions, expectedStatus, expectedBodyPaths);
+        const response = await this.request(url, requestOptions, expectedStatus, expectedBodyPaths);
         return response;
       } catch (error: any) {
         if(!remainingRetries) throw error;

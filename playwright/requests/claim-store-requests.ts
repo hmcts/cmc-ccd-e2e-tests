@@ -16,27 +16,28 @@ export default class ClaimStoreRequests extends BaseRequest {
   }
 
   @TruthyParams(classKey, 'claimRef')
-  async fetchClaimStoreCaseData({accessToken}: User, claimRef?: string) {
+  async fetchClaimStoreCaseData(claimRef: string, {accessToken}: User) {
     console.log('Fetching claim store case data...');
+    const url = `${urls.claimStore}/claims/${claimRef}`;
     const requestOptions: RequestOptions = {
-      url: `${urls.claimStore}/claims/${claimRef}`,
       headers: this.getRequestHeaders(accessToken),
       method: 'GET',
     };
-    const response = await super.retriedRequest(requestOptions);
+    const response = await super.retriedRequest(url, requestOptions);
     const caseData = await response.json();
     console.log('Claim store case data fetched successfully');
     return caseData;
   }
 
-  async fetchClaimStoreCaseDataWithLetterId({accessToken}: User, claimRef?: string) {
+  @TruthyParams(classKey, 'claimRef')
+  async fetchClaimStoreCaseDataWithLetterId(claimRef: string, {accessToken}: User) {
     console.log('Fetching claim store case data with letter id...');
+    const url = `${urls.claimStore}/claims/${claimRef}`;
     const requestOptions: RequestOptions = {
-      url: `${urls.claimStore}/claims/${claimRef}`,
       headers: this.getRequestHeaders(accessToken),
       method: 'GET',
     };
-    const response = await super.retriedRequest(requestOptions, 200, 5, ['letterHolderId'] );
+    const response = await super.retriedRequest(url, requestOptions, 200, 5, ['letterHolderId'] );
     const caseData = await response.json();
     console.log('Claim store case data with letter id fetched successfully');
     return caseData;

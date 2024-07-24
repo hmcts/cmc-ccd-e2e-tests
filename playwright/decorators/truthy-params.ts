@@ -33,8 +33,8 @@ export const TruthyParams = (classKey: string, ...paramNamesToCheck: string[]) =
     const methodName = context.name as string;
     const className = DecoratorHelper.formatClassName(classKey);
 
-    const methodParamNames = DecoratorHelper.getParamNamesFromMethod(className, methodName, target);
-    DecoratorHelper.verifyParamNames(className, methodName, methodParamNames, paramNamesToCheck);
+    const methodParamNames = DecoratorHelper.getParamNamesFromMethod(className, methodName, TruthyParams.name, target);
+    DecoratorHelper.verifyParamNames(className, methodName, TruthyParams.name, methodParamNames, paramNamesToCheck);
     
     if(isAsyncFunction(target)) {
       return async function asyncReplacementMethod(this: any, ...args: any[]) {

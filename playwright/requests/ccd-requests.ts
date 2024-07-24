@@ -30,15 +30,15 @@ export default class CcdRequests extends BaseRequest {
   private async fetchS2sToken() {
     if(!CcdRequests.s2sToken) {
       console.log('Fetching s2s token...');
+      const url = `${urls.authProviderApi}/lease`;
       const requestOptions: RequestOptions = {
-        url: `${urls.authProviderApi}/lease`,
         method: 'POST',
         body: {
           microservice: config.s2s.microservice,
           oneTimePassword: TOTP.generate(config.s2s.secret).otp,
         },
       };
-      const response = await super.retriedRequest(requestOptions);
+      const response = await super.retriedRequest(url, requestOptions);
       console.log('s2s token fetched successfully');
       CcdRequests.s2sToken = await response.text();
     }
@@ -49,11 +49,11 @@ export default class CcdRequests extends BaseRequest {
   @TruthyParams(classKey, 'caseId')
   async fetchCcdCaseData(caseId: number, user: User) {
     console.log('Fetching CCD case data...');
+    const url = `${this.getCcdDataStoreBaseUrl(user)}/cases/${caseId}`;
     const requestOptions: RequestOptions = {
-      url: `${this.getCcdDataStoreBaseUrl(user)}/cases/${caseId}`,
       headers: await this.getRequestHeaders(user),
     };
-    const caseData = (await (await super.retriedRequest(requestOptions)).json()).case_data;
+    const caseData = (await (await super.retriedRequest(url, requestOptions)).json()).case_data;
     console.log('CCD case data fetched successfully');
     return caseData;
   }
@@ -72,10 +72,9 @@ export default class CcdRequests extends BaseRequest {
     url += `/event-triggers/${event}/token`;
     
     const requestOptions: RequestOptions = {
-      url,
       headers: await this.getRequestHeaders(user),
     };
-    const response =  await (await super.retriedRequest(requestOptions)).json();
+    const response =  await (await super.retriedRequest(url, requestOptions)).json();
     console.log(`Event: ${event} started successfully`);
     return response.token;
   }
@@ -94,7 +93,6 @@ export default class CcdRequests extends BaseRequest {
     }
 
     const requestOptions: RequestOptions = {
-      url,
       headers: await this.getRequestHeaders(user),
       body: {
         data: caseData,
@@ -104,7 +102,7 @@ export default class CcdRequests extends BaseRequest {
       },
       method: 'POST',
     };
-    const responseJson = await (await super.retriedRequest(requestOptions, 201)).json();
+    const responseJson = await (await super.retriedRequest(url, requestOptions, 201)).json();
     console.log(`Event: ${event} submitted successfully`);
     return responseJson;
   }

@@ -1,7 +1,10 @@
 import BasePage from '../../../base/base-page';
+import { DetailedStep } from '../../../decorators/test-steps';
 import CCDCaseData from '../../../types/case-data/ccd-case-data';
 import ExuiEvents from '../../../types/exui-events';
 import { eventInputs, buttons } from './exui-event-content';
+
+const classKey = 'ExuiEvent'
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
   
@@ -18,6 +21,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
       await super.expectHeading(caseData.caseName);
     }
 
+    @DetailedStep(classKey, 'filePath', 'selector')
     protected async uploadFile(filePath: string, selector: string, retries = 3, timeout = 5000) {
       await this.retryAction(
         () => super.uploadFile(filePath, selector), 

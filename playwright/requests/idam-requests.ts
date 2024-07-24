@@ -14,9 +14,9 @@ export default class IdamRequests extends BaseRequest {
     role,
   }: User): Promise<IdamUser> {
     console.log(`Creating user with email: ${email}`);
+    const url = `${urls.idamApi}/testing-support/accounts`
     const requestOptions: RequestOptions = {
       method: 'POST',
-      url: `${urls.idamApi}/testing-support/accounts`,
       body: {
         email: email,
         password: password,
@@ -25,19 +25,19 @@ export default class IdamRequests extends BaseRequest {
         roles: [{ code: role.toString() }],
       },
     };
-    const response = await this.request(requestOptions, 201);
+    const response = await this.request(url, requestOptions, 201);
     console.log(`User with email: ${email} successfully created`);
     return await response.json();
   }
 
   async deleteUser({email}: User): Promise<void> {
     console.log(`Delete user: ${email}`);
+    const url = `${urls.idamApi}/testing-support/accounts/${email}`;
     const requestOptions: RequestOptions = {
       method: 'DELETE',
-      url: `${urls.idamApi}/testing-support/accounts/${email}`,
     };
     try {
-      await this.request(requestOptions, 204);
+      await this.request(url, requestOptions, 204);
       console.log(`User: ${email} successfully deleted`);
     } catch(error) {
       console.log(`error deleting user: ${email}` + error);
@@ -46,13 +46,13 @@ export default class IdamRequests extends BaseRequest {
   
   async getAccessToken({email, password}: User): Promise<string> {
     console.log(`Fetching access token for user: ${email}...`);
+    const url = `${urls.idamApi}/loginUser`;
     const requestOptions: RequestOptions = {
-      url: `${urls.idamApi}/loginUser`,
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       params: {username: email, password: password},
       method: 'POST',
     };
-    const response = await super.retriedRequest(requestOptions);
+    const response = await super.retriedRequest(url, requestOptions);
     const json = await response.json();
     console.log(`Access token for user: ${email} fetched successfully`);
     return json.access_token;
@@ -60,15 +60,15 @@ export default class IdamRequests extends BaseRequest {
 
   async getUserId({accessToken, email}: User): Promise<string> {
     console.log(`Fetching User ID for user: ${email}`);
+    const url = `${urls.idamApi}/o/userinfo`;
     const requestOptions: RequestOptions = {
-      url: `${urls.idamApi}/o/userinfo`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': `Bearer ${accessToken}`,
       },
       method: 'GET',
     };
-    const response = await super.retriedRequest(requestOptions);
+    const response = await super.retriedRequest(url, requestOptions);
     const json = await response.json();
     console.log(`User ID for user: ${email} fetched successfully`);
     return json.uid;
@@ -76,11 +76,11 @@ export default class IdamRequests extends BaseRequest {
 
   async getSecurityPin(letterHolderId: string) {
     console.log('Fetching security pin for claim...');
+    const url = `${urls.idamApi}/testing-support/accounts/pin/${letterHolderId}`;
     const requestOptions: RequestOptions = {
-      url: `${urls.idamApi}/testing-support/accounts/pin/${letterHolderId}`,
       method: 'GET',
     };
-    const response = await super.retriedRequest(requestOptions);
+    const response = await super.retriedRequest(url, requestOptions);
     const pin = await response.text();
     console.log(`Security pin: ${pin} fetched successfully`);
     return pin;
