@@ -85,17 +85,17 @@ export default defineConfig({
     {
       name: 'cross-browser-firefox',
       use: {...devices['Desktop Firefox']  },
-      dependencies: ['#3-user-auth-setup'],
+      dependencies: ['user-auth-setup'],
     },
     {
       name: 'cross-browser-edge',
       use: {...devices['Desktop Edge']},
-      dependencies: ['#3-user-auth-setup'],
+      dependencies: ['user-auth-setup'],
     },
     {
       name: 'cross-browser-safari',
       use: {...devices['Desktop Safari']},
-      dependencies: ['#3-user-auth-setup'],
+      dependencies: ['user-auth-setup'],
     },
   ],
 });
