@@ -23,9 +23,7 @@ export const components = {
     selector: '.spinner-container',
   },
   error: {
-    selector: 'div.error-summary.ng-star-inserted'
-  }
+    selector: 'div.error-summary.ng-star-inserted',
+  },
 };
-
-
 

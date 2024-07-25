@@ -61,7 +61,7 @@ export default abstract class BasePage {
   }
 
   protected async waitForUrl() {
-    this.page.waitForResponse
+    this.page.waitForResponse;
   }
   
   protected async isDomain(url: string) {
@@ -132,6 +132,7 @@ export default abstract class BasePage {
   @DetailedStep(classKey, 'selector')
   protected async waitForSelectorToDetach(selector: string, options: {timeout?: number} = {timeout: 25_000}) {
     const locator = this.page.locator(selector);
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     await locator.waitFor({state: 'attached', timeout: 500}).catch(err => {});
     await locator.waitFor({state: 'detached', ...options});
   }
@@ -192,6 +193,7 @@ export default abstract class BasePage {
   @DetailedStep(classKey, 'selector')
   protected async expectSelector(selector: string, options?: {timeout?: number, visible?: boolean}) {
     if(options.visible === false) {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       await this.expectSelector(selector, {timeout: 500}).catch(err => {});
     }
     await pageExpect(this.page.locator(selector)).toBeVisible(options);
