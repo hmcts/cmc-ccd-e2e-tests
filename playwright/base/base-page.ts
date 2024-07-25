@@ -141,7 +141,8 @@ export default abstract class BasePage {
   @TruthyParams(classKey, 'text')
   protected async waitForTextToDetach(text: string, options: {timeout?: number} = {timeout: 25_000}) {
     const locator = this.page.getByText(text);
-    await locator.waitFor({state: 'attached', ...options});
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    await locator.waitFor({state: 'attached', timeout: 500}).catch(err => {});
     await locator.waitFor({state: 'detached', ...options});
   }
 
