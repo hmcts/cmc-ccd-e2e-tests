@@ -59,6 +59,10 @@ export default abstract class BasePage {
       await this.page.goto(url);
     }
   }
+
+  protected async waitForUrl() {
+    this.page.waitForResponse
+  }
   
   protected async isDomain(url: string) {
     const currentDomain = getDomain(this.page.url());
@@ -126,17 +130,17 @@ export default abstract class BasePage {
   }
 
   @DetailedStep(classKey, 'selector')
-  protected async waitForSelectorToDetach(selector: string, options: {timeout?: number} = {}) {
+  protected async waitForSelectorToDetach(selector: string, options: {timeout?: number} = {timeout: 25_000}) {
     const locator = this.page.locator(selector);
-    await locator.waitFor({state: 'attached'});
+    await locator.waitFor({state: 'attached', timeout: 500}).catch(err => {});
     await locator.waitFor({state: 'detached', ...options});
   }
 
   @DetailedStep(classKey, 'text')
   @TruthyParams(classKey, 'text')
-  protected async waitForTextToDetach(text: string, options: {timeout?: number} = {}) {
+  protected async waitForTextToDetach(text: string, options: {timeout?: number} = {timeout: 25_000}) {
     const locator = this.page.getByText(text);
-    await locator.waitFor({state: 'attached'});
+    await locator.waitFor({state: 'attached', ...options});
     await locator.waitFor({state: 'detached', ...options});
   }
 
@@ -185,11 +189,19 @@ export default abstract class BasePage {
     await pageExpect(this.page.locator('h2', {hasText: text})).toBeVisible(options);
   }
 
+  @DetailedStep(classKey, 'selector')
+  protected async expectSelector(selector: string, options?: {timeout?: number, visible?: boolean}) {
+    if(options.visible === false) {
+      await this.expectSelector(selector, {timeout: 500}).catch(err => {});
+    }
+    await pageExpect(this.page.locator(selector)).toBeVisible(options);
+  }
+
   @DetailedStep(classKey, 'text')
   @TruthyParams(classKey, 'text')
-  protected async expectText(text: string | number, options: {exact?: boolean, container?: string, timeout?: number, visible?: boolean} = {}) {
-    const locator = options.container
-      ? this.page.locator(options.container).getByText(text.toString()) 
+  protected async expectText(text: string | number, options: {exact?: boolean, selector?: string, timeout?: number, visible?: boolean} = {}) {
+    const locator = options.selector
+      ? this.page.locator(options.selector).getByText(text.toString()) 
       : this.page.getByText(text.toString(), {exact: options.exact});
     
     await pageExpect(locator).toBeVisible({timeout: options.timeout, visible: options.visible});
@@ -283,7 +295,7 @@ export default abstract class BasePage {
     await this.retryAction(
       () => this.clickBySelector(selector), 
       assertions, 
-      'Click action failed, trying again', 
+      `Click action failed, selector: ${selector}, trying again`, 
       {retries},
     );
   }
@@ -293,7 +305,7 @@ export default abstract class BasePage {
     await this.retryAction(
       () => this.clickLink(name), 
       assertions, 
-      'Click action failed, trying again', 
+      `Click action failed, link: ${name} trying again`, 
       {retries},
     );
   }
@@ -306,7 +318,7 @@ export default abstract class BasePage {
         await this.selectFromDropdown(option, selector);
       },
       assertions, 
-      'Select from dropdown action failed, trying again', 
+      `Select from dropdown action failed, option: ${option}, selector: ${selector} trying again`, 
       {retries},
     );
   }

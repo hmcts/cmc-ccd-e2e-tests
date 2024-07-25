@@ -2,7 +2,7 @@ import BasePage from '../../../base/base-page';
 import { DetailedStep } from '../../../decorators/test-steps';
 import CCDCaseData from '../../../types/case-data/ccd-case-data';
 import ExuiEvents from '../../../types/exui-events';
-import { eventInputs, buttons } from './exui-event-content';
+import { eventInputs, buttons, components } from './exui-event-content';
 
 const classKey = 'ExuiEvent';
 
@@ -38,10 +38,16 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
 
     protected async clickSubmit(options: {count?: number} = {}) {
       await super.clickBySelector(buttons.submit.selector, options);
+      await super.waitForSelectorToDetach(components.loading.selector);
     }
 
     protected async retryClickSubmit(expect: () => Promise<void>) {
-      await super.retryClickBySelector(buttons.submit.selector, expect);
+      await super.retryClickBySelector(buttons.submit.selector, 
+        async () => {
+          await super.waitForSelectorToDetach(components.loading.selector);
+          await super.expectSelector(components.error.selector, {visible: false});
+          await expect();
+        });
     }
 
     abstract submitEvent(...args: any[]): Promise<void>;

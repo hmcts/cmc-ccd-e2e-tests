@@ -29,7 +29,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
     launchOptions: {
-      slowMo: !process.env.CI ? 500 : 200,
+      slowMo: process.env.CI ? 200 : 500,
     },
   },
   projects: [

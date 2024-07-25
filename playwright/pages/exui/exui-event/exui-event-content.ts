@@ -17,3 +17,15 @@ export const eventInputs = {
   },
 };
 
+export const components = {
+  loading: {
+    name: 'Loading',
+    selector: '.spinner-container',
+  },
+  error: {
+    selector: 'div.error-summary.ng-star-inserted'
+  }
+};
+
+
+

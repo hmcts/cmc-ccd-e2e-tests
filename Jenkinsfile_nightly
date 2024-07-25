@@ -15,7 +15,6 @@ properties([
                 string(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', defaultValue: 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', description: 'The URL of service auth provider'),
                 string(name: 'CCD_DATA_STORE_URL', defaultValue: 'http://ccd-data-store-api-aat.service.core-compute-aat.internal', description: 'The URL of ccd data store'),
                 string(name: 'CLAIM_STORE_URL', defaultValue: 'http://cmc-claim-store-aat.service.core-compute-aat.internal', description: 'Claim store url'),
-                string(name: 'SKIP_AUTH_SETUP', defaultValue: 'false', description: 'Skip users authentication setup')
         ])
 ])
 
@@ -66,7 +65,7 @@ withNightlyPipeline("nodejs", product, component) {
   boolean setupPassed=true
   
   afterAlways('DependencyCheckNightly') {
-    stage('Test Setup') {
+    stage('Test setup') {
       try {
         yarnBuilder.yarn('test:setup:playwright-install')
         yarnBuilder.yarn('test:setup:ci')
@@ -77,7 +76,7 @@ withNightlyPipeline("nodejs", product, component) {
     }
 
     if(setupPassed) {
-      stage('Cross browser test') {
+      stage('Cross browser tests') {
         try {
           yarnBuilder.yarn('test:crossbrowser:ci')
         } catch (Error) {
@@ -85,7 +84,7 @@ withNightlyPipeline("nodejs", product, component) {
         }
       }
 
-      stage('Full functional test') {
+      stage('Full functional tests') {
         try {
           yarnBuilder.yarn('test:functional:ci')
         } catch (Error) {
@@ -94,7 +93,7 @@ withNightlyPipeline("nodejs", product, component) {
       }
     }
 
-    stage('Test Teardown') {
+    stage('Test teardown') {
       try {
         yarnBuilder.yarn('test:teardown:ci')
       } catch (Error) {
@@ -102,7 +101,7 @@ withNightlyPipeline("nodejs", product, component) {
       }
     }
 
-    stage('Generate Reports') {
+    stage('Generate reports') {
       try {
         yarnBuilder.yarn('test:bootstrap:generate-report')
         if(setupPassed) {

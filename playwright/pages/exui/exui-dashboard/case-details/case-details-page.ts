@@ -86,6 +86,6 @@ export default class CaseDetailsPage extends BasePage {
   }
 
   async verifyBreathingSpaceError() {
-    await super.expectText(errorMessages.breathingSpace, {container: containers.errors.selector});
+    await super.expectText(errorMessages.breathingSpace, {selector: containers.errors.selector});
   }
 }
