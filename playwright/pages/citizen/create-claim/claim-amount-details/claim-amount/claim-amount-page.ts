@@ -5,11 +5,8 @@ import { heading, inputs } from './claim-amount-content';
 
 @AllMethodsStep()
 export default class ClaimAmountPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
-    await super.runVerifications([
-      super.expectHeading(heading),
-    ]);
+    await super.runVerifications([super.expectHeading(heading)]);
   }
 
   async enterAdditionalAmount() {

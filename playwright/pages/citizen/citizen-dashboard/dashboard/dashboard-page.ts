@@ -5,7 +5,6 @@ import { links } from './dashboard-content';
 
 @AllMethodsStep()
 export default class DashboardPage extends BasePage {
-
   async verifyContent() {
     throw new Error('Method not implemented.');
   }

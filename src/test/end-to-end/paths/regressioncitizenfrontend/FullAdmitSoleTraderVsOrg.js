@@ -11,63 +11,63 @@ let pinValue;
 let claim;
 
 Scenario('Full Admit SoleTrader Vs Org', async ({I}) => {
-    //claimant steps
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
-    const claimRef = await I.createClaimantAsSoleTraderDefendantAsOrg();
-    await I.click('Sign out');
+  //claimant steps
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
+  const claimRef = await I.createClaimantAsSoleTraderDefendantAsOrg();
+  await I.click('Sign out');
 
+  claim = await apiRequest.retrieveByReferenceNumber(claimRef);
+  const caseId = claim.ccdCaseId;
+  const externalId = claim.externalId;
+
+  logger.info({message: 'Claimant created a case with id: ', caseId});
+
+  if (typeof claim.letterHolderId === 'undefined') {
+    await I.wait(5);
     claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    const caseId = claim.ccdCaseId;
-    const externalId = claim.externalId;
+  }
 
-    logger.info({message: 'Claimant created a case with id: ', caseId});
+  pinValue = await idamHelper.getPin(claim.letterHolderId);
 
-    if (typeof claim.letterHolderId === 'undefined') {
-        await I.wait(5);
-        claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    }
+  await I.linkDefendant(claimRef, pinValue);
 
-    pinValue = await idamHelper.getPin(claim.letterHolderId);
+  //Defendant steps
 
-    await I.linkDefendant(claimRef, pinValue);
+  await I.waitInUrl('first-contact/claim-summary');
+  await I.click('Respond to claim');
 
-    //Defendant steps
+  await I.wait(10);
+  await I.click('Sign in to your account.');
+  await I.wait(5);
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    await I.waitInUrl('first-contact/claim-summary');
-    await I.click('Respond to claim');
+  await I.waitInUrl('/dashboard');
+  await I.see(claimRef);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
+  await I.click('Respond to claim');
 
-    await I.wait(10);
-    await I.click('Sign in to your account.');
-    await I.wait(5);
-    await I.authenticateWithIdam(userType.CITIZEN, true);
+  //Prepare your response
+  await I.confirmDefendantDetails('ORG');
+  await I.defendantExtraTimeNeeded('no');
 
-    await I.waitInUrl('/dashboard');
-    await I.see(claimRef);
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
-    await I.click('Respond to claim');
+  //Respond to claim
+  await I.chooseDefendantResponse('FULL_ADMISSION');
+  await I.decideHowToPay('specificDate');
+  await I.shareDefendantFinancialDetails('ORG');
+  //Submit
+  await I.submitDefendantResponse('FULL_ADMISSION', 'ORG');
+  await I.click('Sign out');
+  await I.wait(5);
 
-    //Prepare your response
-    await I.confirmDefendantDetails('ORG');
-    await I.defendantExtraTimeNeeded('no');
+  //Claimant response
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    //Respond to claim
-    await I.chooseDefendantResponse('FULL_ADMISSION');
-    await I.decideHowToPay('specificDate');
-    await I.shareDefendantFinancialDetails('ORG');
-    //Submit
-    await I.submitDefendantResponse('FULL_ADMISSION', 'ORG');
-    await I.click('Sign out');
-    await I.wait(5);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
+  await I.click('View and respond to the offer');
 
-    //Claimant response
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
-
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
-    await I.click('View and respond to the offer');
-
-    //How they responded
-    await I.viewDefendantResponse();
-    await I.acceptOrRejectResponse();
+  //How they responded
+  await I.viewDefendantResponse();
+  await I.acceptOrRejectResponse();
 }).retry(testConfig.TestRetryScenarios);

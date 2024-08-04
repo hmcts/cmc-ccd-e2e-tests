@@ -17,44 +17,57 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
   }
 
   async GenerateOrder() {
-    const {caseDetailsPage} = this.exuiDashboardFactory;
+    const { caseDetailsPage } = this.exuiDashboardFactory;
     await caseDetailsPage.retryChooseNextStep(LegalAdvisorEvents.GENERATE_ORDER);
 
-    const {generateOrder1Page} = this.legalAdvisorEventsFactory;
+    const { generateOrder1Page } = this.legalAdvisorEventsFactory;
     await generateOrder1Page.verifyContent(this.ccdCaseData);
     await generateOrder1Page.enterSdoDetails();
+    await generateOrder1Page.submit();
 
-    const {generateOrder2Page} = this.legalAdvisorEventsFactory;
+    const { generateOrder2Page } = this.legalAdvisorEventsFactory;
     await generateOrder2Page.verifyContent(this.ccdCaseData);
     await generateOrder2Page.chooseJudgeReviewFirst();
-    await generateOrder2Page.submitEvent();
+    await generateOrder2Page.submit();
+
+    const { generateOrderSubmitPage } = this.legalAdvisorEventsFactory;
+    await generateOrderSubmitPage.verifyContent(this.ccdCaseData);
+    await generateOrderSubmitPage.submit();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, LegalAdvisorEvents.GENERATE_ORDER);
   }
 
   async ActionReviewComments() {
-    const {caseDetailsPage} = this.exuiDashboardFactory;
+    const { caseDetailsPage } = this.exuiDashboardFactory;
     await caseDetailsPage.retryChooseNextStep(LegalAdvisorEvents.ACTION_REVIEW_COMMENTS);
 
-    const {actionReviewComments1Page} = this.legalAdvisorEventsFactory;
+    const { actionReviewComments1Page } = this.legalAdvisorEventsFactory;
     await actionReviewComments1Page.verifyContent(this.ccdCaseData);
-    await actionReviewComments1Page.confirmSdoDetails();
+    await actionReviewComments1Page.submit();
 
-    const {actionReviewComments2Page} = this.legalAdvisorEventsFactory;
+    const { actionReviewComments2Page } = this.legalAdvisorEventsFactory;
     await actionReviewComments2Page.verifyContent(this.ccdCaseData);
     await actionReviewComments2Page.assign();
-    await actionReviewComments2Page.submitEvent();
+    await actionReviewComments2Page.submit();
+
+    const { actionReviewCommentsSubmitPage } = this.legalAdvisorEventsFactory;
+    await actionReviewCommentsSubmitPage.verifyContent(this.ccdCaseData);
+    await actionReviewCommentsSubmitPage.submit();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, LegalAdvisorEvents.ACTION_REVIEW_COMMENTS);
   }
 
   async DrawDirectionsOrder() {
-    const {caseDetailsPage} = this.exuiDashboardFactory;
+    const { caseDetailsPage } = this.exuiDashboardFactory;
     await caseDetailsPage.retryChooseNextStep(LegalAdvisorEvents.DRAW_DIRECTIONS_ORDER);
 
-    const {drawDirectionsOrderPage} = this.legalAdvisorEventsFactory;
+    const { drawDirectionsOrderPage } = this.legalAdvisorEventsFactory;
     await drawDirectionsOrderPage.verifyContent(this.ccdCaseData);
-    await drawDirectionsOrderPage.submitEvent();
+    await drawDirectionsOrderPage.submit();
+
+    const { drawDirectionsOrderSubmitPage } = this.legalAdvisorEventsFactory;
+    await drawDirectionsOrderSubmitPage.verifyContent(this.ccdCaseData);
+    await drawDirectionsOrderSubmitPage.submit();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, LegalAdvisorEvents.DRAW_DIRECTIONS_ORDER);
   }

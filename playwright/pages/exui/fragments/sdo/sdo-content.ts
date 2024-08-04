@@ -6,7 +6,7 @@ export const subHeadings = {
 export const legends = {
   directions: 'Directions (Optional)',
   docsDeadline: 'Send documents before 4PM (Optional)',
-  docUploadParty: 'Apply \'Send documents\' direction to: (Optional)',
+  docUploadParty: "Apply 'Send documents' direction to: (Optional)",
   witnessesDeadline: 'Send witness statements before 4 PM (Optional)',
   experts: 'Grant permission for expert?',
 };
@@ -60,15 +60,15 @@ export const checkboxes = {
 export const buttons = {
   addNewExtraDocInstruction: {
     title: 'Add new',
-    selector: 'div[id=\'extraDocUploadList\'] button[type=\'button\']',
+    selector: "div[id='extraDocUploadList'] button[type='button']",
   },
   addDirection: {
     title: 'Add new',
-    selector: 'div[id=\'otherDirections\'] button[type=\'button\']',
+    selector: "div[id='otherDirections'] button[type='button']",
   },
   addNewOtherDirectionsExtraDocInstruction: {
     title: 'Add new',
-    selector: 'div[id=\'otherDirections_0_extraDocUploadList\'] button[type=\'button\']',
+    selector: "div[id='otherDirections_0_extraDocUploadList'] button[type='button']",
   },
 };
 
@@ -124,7 +124,6 @@ export const inputs = {
     selector: '#expertReportInstruction',
     value: 'Test',
   },
-
 };
 
 export const dropdowns = {

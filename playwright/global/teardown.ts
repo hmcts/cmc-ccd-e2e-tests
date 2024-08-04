@@ -6,19 +6,18 @@ import FileSystemHelper from '../helpers/file-system-helper';
 //This is last resort teardown for citizen users if test execution gets interupted in local.
 
 const deleteUsers = async (userType: UserType) => {
-  if(UserStateHelper.userStateExists(userType)) {
+  if (UserStateHelper.userStateExists(userType)) {
     try {
       const users = UserStateHelper.getUsersFromState(userType);
-      for(const user of users) {
-        const response = await fetch(`${urls.idamApi}/testing-support/accounts/${user.email}`, {method: 'DELETE'});
-        if(response.status !== 204) {
+      for (const user of users) {
+        const response = await fetch(`${urls.idamApi}/testing-support/accounts/${user.email}`, { method: 'DELETE' });
+        if (response.status !== 204) {
           throw new Error(`Error deleting user: ${user.email}`);
         }
         console.log(`User with email: ${user.email} successfully deleted`);
       }
-    } catch(error) {
-      if(error.name !== 'FileError') 
-        console.log(error);
+    } catch (error) {
+      if (error.name !== 'FileError') console.log(error);
     }
   }
 };

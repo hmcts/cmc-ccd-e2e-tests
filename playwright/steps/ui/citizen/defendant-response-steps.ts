@@ -15,92 +15,84 @@ export default class DefendantResponseSteps extends ResponseSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;
   private defendantResponseFactory: DefendantResponseFactory;
 
-  constructor(
-    linkClaimFactory: LinkClaimFactory, 
-    idamFactory: IdamFactory, 
-    citizenDashboardFactory: CitizenDashboardFactory, 
-    responseFactory: ResponseFactory,
-    defendantResponseFactory: DefendantResponseFactory, 
-    testData: TestData) {
-
+  constructor(linkClaimFactory: LinkClaimFactory, idamFactory: IdamFactory, citizenDashboardFactory: CitizenDashboardFactory, responseFactory: ResponseFactory, defendantResponseFactory: DefendantResponseFactory, testData: TestData) {
     super(responseFactory, testData);
     this.linkClaimFactory = linkClaimFactory;
     this.idamFactory = idamFactory;
     this.citizenDashboardFactory = citizenDashboardFactory;
     this.defendantResponseFactory = defendantResponseFactory;
-
   }
 
   async LinkClaim() {
-    const {respondToClaimPage} = this.linkClaimFactory;
+    const { respondToClaimPage } = this.linkClaimFactory;
     await respondToClaimPage.goToFirstContact();
     await respondToClaimPage.verifyContent();
     await respondToClaimPage.start();
 
-    const {enterClaimNumberPage} = this.linkClaimFactory;
+    const { enterClaimNumberPage } = this.linkClaimFactory;
     await enterClaimNumberPage.verifyContent();
     await enterClaimNumberPage.fillClaimNumber(this.claimStoreCaseData.referenceNumber);
 
-    const {enterSecurityCodePage} = this.linkClaimFactory;
+    const { enterSecurityCodePage } = this.linkClaimFactory;
     await enterSecurityCodePage.verifyContent();
     await enterSecurityCodePage.fillSecurityCode(this.claimSecurityPin);
 
-    const {claimDetailsPage} = this.linkClaimFactory;
+    const { claimDetailsPage } = this.linkClaimFactory;
     await claimDetailsPage.verifyContent(this.claimStoreCaseData.referenceNumber);
     await claimDetailsPage.clickRespondToClaim();
 
-    const {createAccountPage} = this.idamFactory;
+    const { createAccountPage } = this.idamFactory;
     await createAccountPage.verifyContent();
     await createAccountPage.clickSignIn();
 
-    const {loginPage} = this.idamFactory;
+    const { loginPage } = this.idamFactory;
     await loginPage.verifyContent();
     await loginPage.citizenLogin(defendants[this.workerIndex]);
   }
 
   async GoToResponseDashboard() {
-    const {defendantClaimDetailsPage} = this.citizenDashboardFactory;
+    const { defendantClaimDetailsPage } = this.citizenDashboardFactory;
     await defendantClaimDetailsPage.respondToClaim();
 
-    const {defendantResponseDashboardPage} = this.defendantResponseFactory;
+    const { defendantResponseDashboardPage } = this.defendantResponseFactory;
     await defendantResponseDashboardPage.verifyContent(this.claimStoreCaseData);
   }
 
   async ConfirmYourDetails() {
-    const {defendantResponseDashboardPage} = this.defendantResponseFactory;
+    const { defendantResponseDashboardPage } = this.defendantResponseFactory;
     await defendantResponseDashboardPage.confirmYourDetails();
 
-    const {confirmYourDetailsPage} = this.defendantResponseFactory;
+    const { confirmYourDetailsPage } = this.defendantResponseFactory;
     await confirmYourDetailsPage.verifyContent(this.claimStoreCaseData);
     await confirmYourDetailsPage.saveAndContinue();
 
-    const {dateOfBirthPage} = this.defendantResponseFactory;
+    const { dateOfBirthPage } = this.defendantResponseFactory;
     await dateOfBirthPage.verifyContent();
     await dateOfBirthPage.fillDateOfBirth();
 
-    const {phoneNumberPage} = this.defendantResponseFactory;
+    const { phoneNumberPage } = this.defendantResponseFactory;
     await phoneNumberPage.verifyContent();
     await phoneNumberPage.fillPhoneNumber();
   }
 
   async DecideIfYouNeedMoreTime() {
-    const {defendantResponseDashboardPage} = this.defendantResponseFactory;
+    const { defendantResponseDashboardPage } = this.defendantResponseFactory;
     await defendantResponseDashboardPage.needMoreTime();
 
-    const {moreTimePage} = this.defendantResponseFactory;
+    const { moreTimePage } = this.defendantResponseFactory;
     await moreTimePage.verifyContent();
     await moreTimePage.chooseNo();
   }
 
   async ChooseResponse() {
-    const {defendantResponseDashboardPage} = this.defendantResponseFactory;
+    const { defendantResponseDashboardPage } = this.defendantResponseFactory;
     await defendantResponseDashboardPage.chooseResponse();
 
-    const {howDoYouWantToRespondToClaimPage} = this.defendantResponseFactory;
+    const { howDoYouWantToRespondToClaimPage } = this.defendantResponseFactory;
     await howDoYouWantToRespondToClaimPage.verifyContent();
     await howDoYouWantToRespondToClaimPage.rejectAll();
 
-    const {whyYouDontOweMoneyPage} = this.defendantResponseFactory;
+    const { whyYouDontOweMoneyPage } = this.defendantResponseFactory;
     await whyYouDontOweMoneyPage.verifyContent(this.claimStoreCaseData);
     await whyYouDontOweMoneyPage.disputeAll();
 
@@ -108,37 +100,37 @@ export default class DefendantResponseSteps extends ResponseSteps {
   }
 
   async WhyYouDisagree() {
-    const {defendantResponseDashboardPage} = this.defendantResponseFactory;
+    const { defendantResponseDashboardPage } = this.defendantResponseFactory;
     await defendantResponseDashboardPage.whyYouDisagree();
 
-    const {yourDefencePage} = this.defendantResponseFactory;
+    const { yourDefencePage } = this.defendantResponseFactory;
     await yourDefencePage.verifyContent();
     await yourDefencePage.fillDisagreeReason();
 
-    const {timelinePage} = this.defendantResponseFactory;
+    const { timelinePage } = this.defendantResponseFactory;
     await timelinePage.verifyContent();
     await timelinePage.fillTimelineDetails();
 
-    const {evidencePage} = this.defendantResponseFactory;
+    const { evidencePage } = this.defendantResponseFactory;
     await evidencePage.addEvidence1();
     await evidencePage.addEvidence2();
     await evidencePage.addTheirEvidenceComment();
   }
 
   async CheckAndSubmit() {
-    const {defendantResponseDashboardPage} = this.defendantResponseFactory;
+    const { defendantResponseDashboardPage } = this.defendantResponseFactory;
     await defendantResponseDashboardPage.checkAndSubmit();
 
-    const {eligibilityAndDiversityPage} = this.defendantResponseFactory;
+    const { eligibilityAndDiversityPage } = this.defendantResponseFactory;
     await eligibilityAndDiversityPage.verifyContent();
     await eligibilityAndDiversityPage.chooseNoEligibiltyQuestions();
 
-    const {checkYourAnswersPage} = this.defendantResponseFactory;
-    await checkYourAnswersPage.verifyContent();
-    await checkYourAnswersPage.submit();
+    const { defendantResponseCheckYourAnswersPage } = this.defendantResponseFactory;
+    await defendantResponseCheckYourAnswersPage.verifyContent();
+    await defendantResponseCheckYourAnswersPage.submit();
 
-    const {confirmationPage} = this.defendantResponseFactory;
-    await confirmationPage.verifyContent();
-    await confirmationPage.goToAccount();
+    const { defendantResponseConfirmationPage } = this.defendantResponseFactory;
+    await defendantResponseConfirmationPage.verifyContent();
+    await defendantResponseConfirmationPage.goToAccount();
   }
 }

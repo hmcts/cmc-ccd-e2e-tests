@@ -66,29 +66,29 @@ type Timeline = {
 type Claim = {
   externalId: string;
   claimants: Array<{
-      type: string;
-      id: string;
-      name: string;
-      address: Address;
-      phone?: string;
-      dateOfBirth?: string;
+    type: string;
+    id: string;
+    name: string;
+    address: Address;
+    phone?: string;
+    dateOfBirth?: string;
   }>;
   defendants: Array<{
-      type: string;
-      id: string;
-      name: string;
-      address: Address;
-      email?: string;
-      claimantProvidedAddress?: Address;
-      title?: string;
-      firstName?: string;
-      lastName?: string;
+    type: string;
+    id: string;
+    name: string;
+    address: Address;
+    email?: string;
+    claimantProvidedAddress?: Address;
+    title?: string;
+    firstName?: string;
+    lastName?: string;
   }>;
   payment: Payment;
   amount: ClaimAmount;
   feeAmountInPennies: number;
   interest?: {
-      type: string;
+    type: string;
   };
   timeline: Timeline;
   reason: string;

@@ -8,7 +8,7 @@ import { Page } from 'playwright-core';
 import { heading } from './action-review-comments-1-content';
 
 @AllMethodsStep()
-export default class ActionReviewComments1Page extends ExuiEvent(BasePage){
+export default class ActionReviewComments1Page extends ExuiEvent(BasePage) {
   private sdoFragment: SdoFragment;
 
   constructor(sdoFragment: SdoFragment, page: Page, axeBuilder: AxeBuilder) {
@@ -17,18 +17,10 @@ export default class ActionReviewComments1Page extends ExuiEvent(BasePage){
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      super.verifyCaseTitle(caseData),
-      this.sdoFragment.verifyEnteredSdoDetails(),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), this.sdoFragment.verifyEnteredSdoDetails()]);
   }
 
-  async confirmSdoDetails() {
-    await super.clickSubmit();
-  }
-
-  async submitEvent() {
-    throw new Error('Method not implemented.');
+  async submit() {
+    await super.retryClickSubmit();
   }
 }

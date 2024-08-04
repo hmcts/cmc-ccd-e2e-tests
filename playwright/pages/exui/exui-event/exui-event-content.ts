@@ -26,4 +26,3 @@ export const components = {
     selector: 'div.error-summary.ng-star-inserted',
   },
 };
-

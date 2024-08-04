@@ -1,12 +1,12 @@
-const testConfig = require("../../../config");
-const commonConfig = require("../common/commonConfig");
+const testConfig = require('../../../config');
+const commonConfig = require('../common/commonConfig');
 
 module.exports = async function (claimNumber) {
   const I = this;
   if (testConfig.TestForCrossBrowser) {
     await I.wait(5);
   }
-  await I.waitInUrl("ActionReviewComments2", testConfig.TestTimeToWaitForText);
+  await I.waitInUrl('ActionReviewComments2', testConfig.TestTimeToWaitForText);
   await I.runAccessibilityTest();
   const linkXPath = `//a[contains(text(), '${claimNumber}-Legal-Adviser-Directions-Order.pdf')]`;
   await I.waitForClickable(linkXPath, testConfig.TestTimeToWaitForText);

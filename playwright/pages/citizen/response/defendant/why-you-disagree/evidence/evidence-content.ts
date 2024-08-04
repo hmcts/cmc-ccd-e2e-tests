@@ -10,11 +10,11 @@ export const paragraphs = {
 
 export const dropdowns = {
   evidenceType1: {
-    selector: 'select[id=\'rows[0][type]\']',
-    options:  ['Contracts and agreements'],
+    selector: "select[id='rows[0][type]']",
+    options: ['Contracts and agreements'],
   },
   evidenceType2: {
-    selector: 'select[id=\'rows[1][type]\']',
+    selector: "select[id='rows[1][type]']",
     options: ['Expert witness'],
   },
 };
@@ -22,11 +22,11 @@ export const dropdowns = {
 export const inputs = {
   evidence1Description: {
     label: 'Describe this evidence in more detail (optional). For example, a signed contract.',
-    selector: 'textarea[id=\'rows[0][description]\']',
+    selector: "textarea[id='rows[0][description]']",
   },
   evidence2Description: {
-    label: 'Describe this evidence in more detail (optional). For example, a surveyor\'s report.',
-    selector: 'textarea[id=\'rows[1][description]\']',
+    label: "Describe this evidence in more detail (optional). For example, a surveyor's report.",
+    selector: "textarea[id='rows[1][description]']",
   },
   theirEvidenceComments: {
     label: 'List any parts of their evidence you disagree with (optional)',
@@ -37,6 +37,6 @@ export const inputs = {
 export const buttons = {
   addEvidence: {
     title: 'Add more evidence',
-    selector: 'input[id=\'action[addRow]\']',
+    selector: "input[id='action[addRow]']",
   },
 };

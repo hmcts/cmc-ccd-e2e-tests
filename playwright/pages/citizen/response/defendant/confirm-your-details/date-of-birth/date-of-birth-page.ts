@@ -4,15 +4,9 @@ import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, inputs } from './date-of-birth-content';
 
 @AllMethodsStep()
-export default class DateOfBirthPage extends CitizenEvent(BasePage){
-  
+export default class DateOfBirthPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      super.expectLabel(inputs.day.label),
-      super.expectLabel(inputs.month.label),
-      super.expectLabel(inputs.year.label),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), super.expectLabel(inputs.day.label), super.expectLabel(inputs.month.label), super.expectLabel(inputs.year.label)]);
   }
 
   async fillDateOfBirth() {

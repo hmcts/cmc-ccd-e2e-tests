@@ -1,8 +1,8 @@
 const Helper = codecept_helper;
-const helperName = "Puppeteer";
-const testConfig = require("src/test/config.js");
+const helperName = 'Puppeteer';
+const testConfig = require('src/test/config.js');
 
-const { runAccessibility } = require("./accessibility/runner");
+const { runAccessibility } = require('./accessibility/runner');
 
 class PuppeteerHelper extends Helper {
   async waitForNavigationToComplete(locator) {
@@ -12,8 +12,8 @@ class PuppeteerHelper extends Helper {
     promises.push(
       page.waitForNavigation({
         timeout: 1200000,
-        waitUntil: ["domcontentloaded"],
-      })
+        waitUntil: ['domcontentloaded'],
+      }),
     ); // The promise resolves after navigation has finished
 
     if (locator) {
@@ -58,7 +58,7 @@ class PuppeteerHelper extends Helper {
 
   async amOnCitizenAppPage(path) {
     await this.helpers[helperName].amOnPage(
-      `${testConfig.TestFrontEndUrl}${path}`
+      `${testConfig.TestFrontEndUrl}${path}`,
     );
   }
 }

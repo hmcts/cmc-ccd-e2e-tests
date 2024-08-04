@@ -1,31 +1,37 @@
 import BasePageFactory from '../../../base/base-page-factory';
 import DraftOrderFragment from '../fragments/draft-order/draft-order-fragment';
 import SdoFragment from '../fragments/sdo/sdo-fragment';
-import ApproveDirectionsOrderPage from './approve-directions-order/approve-directions-order-page';
-import DrawDirectionsOrder1Page from './draw-directions-order/draw-directions-order-1/draw-directions-order-1-page';
-import DrawDirectionsOrder2Page from './draw-directions-order/draw-directions-order-2/draw-directions-order-2-page';
-import DrawDirectionsOrder3Page from './draw-directions-order/draw-directions-order-3/draw-directions-order-3-page';
-import ProvideDirectionsPage from './provide-directions/provide-directions-page';
-import ReviewOrderPage from './review-order/review-order-page';
+import ApproveDirectionsOrderSubmitPage from './approve-directions-order/approve-directions-order-submit/approve-directions-order-submit-page';
+import ApproveDirectionsOrderPage from './approve-directions-order/approve-directions-order/approve-directions-order-page';
+import JudgeDrawDirectionsOrder1Page from './judge-draw-directions-order/judge-draw-directions-order-1/judge-draw-directions-order-1-page';
+import JudgeDrawDirectionsOrder2Page from './judge-draw-directions-order/judge-draw-directions-order-2/judge-draw-directions-order-2-page';
+import JudgeDrawDirectionsOrder3Page from './judge-draw-directions-order/judge-draw-directions-order-3/judge-draw-directions-order-3-page';
+import JudgeDrawDirectionsOrderSubmitPage from './judge-draw-directions-order/judge-draw-directions-order-submit/judge-draw-directions-order-submit-page';
+import ProvideDirectionsSubmitPage from './provide-directions/provide-directions-submit/provide-directions-submit-page';
+import ReviewOrderSubmitPage from './review-order/review-order-submit/review-order-submit-page';
+import ReviewOrderPage from './review-order/review-order/review-order-page';
 
 export default class JudgeEventsFactory extends BasePageFactory {
-
-  get drawDirectionsOrder1Page() {
-    return new DrawDirectionsOrder1Page(this.page, this.axeBuilder);
+  get judgeDrawDirectionsOrder1Page() {
+    return new JudgeDrawDirectionsOrder1Page(this.page, this.axeBuilder);
   }
 
-  get drawDirectionsOrder2Page() {
+  get judgeDrawDirectionsOrder2Page() {
     const sdoFragment = new SdoFragment(this.page, this.axeBuilder);
-    return new DrawDirectionsOrder2Page(sdoFragment, this.page, this.axeBuilder);
+    return new JudgeDrawDirectionsOrder2Page(sdoFragment, this.page, this.axeBuilder);
   }
 
-  get drawDirectionsOrder3Page() {
+  get judgeDrawDirectionsOrder3Page() {
     const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
-    return new DrawDirectionsOrder3Page(draftOrderFragment, this.page, this.axeBuilder);
+    return new JudgeDrawDirectionsOrder3Page(draftOrderFragment, this.page, this.axeBuilder);
   }
 
-  get provideDirectionsPage() {
-    return new ProvideDirectionsPage(this.page, this.axeBuilder);
+  get judgeDrawDirectionsOrderSubmitPage() {
+    return new JudgeDrawDirectionsOrderSubmitPage(this.page, this.axeBuilder);
+  }
+
+  get provideDirectionsSubmitPage() {
+    return new ProvideDirectionsSubmitPage(this.page, this.axeBuilder);
   }
 
   get reviewOrderPage() {
@@ -33,9 +39,16 @@ export default class JudgeEventsFactory extends BasePageFactory {
     return new ReviewOrderPage(draftOrderFragment, this.page, this.axeBuilder);
   }
 
+  get reviewOrderSubmitPage() {
+    return new ReviewOrderSubmitPage(this.page, this.axeBuilder);
+  }
+
   get approveDirectionsOrderPage() {
     const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
     return new ApproveDirectionsOrderPage(draftOrderFragment, this.page, this.axeBuilder);
   }
 
+  get approveDirectionsOrdeSubmitPage() {
+    return new ApproveDirectionsOrderSubmitPage(this.page, this.axeBuilder);
+  }
 }

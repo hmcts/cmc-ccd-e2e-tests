@@ -1,0 +1,13 @@
+{
+  "printWidth": 250,
+  "overrides": [
+    {
+      "files": "*.spec.ts",
+      "options": {
+        "arrowParens": "always",
+        "trailingComma": "none",
+        "printWidth": 300
+      }
+    }
+  ]
+}

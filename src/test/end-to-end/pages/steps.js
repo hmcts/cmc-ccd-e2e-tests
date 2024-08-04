@@ -1,4 +1,4 @@
-const requireDirectory = require("require-directory");
+const requireDirectory = require('require-directory');
 const steps = requireDirectory(module);
 
 module.exports = function () {

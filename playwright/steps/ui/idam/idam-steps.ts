@@ -6,13 +6,13 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 import { caseworker, claimants, defendants, judge, legalAdvisor } from '../../../config/users';
 
-@AllMethodsStep({methodNamesToIgnore: ['exuiLogin', 'citizenLogin']})
+@AllMethodsStep({ methodNamesToIgnore: ['exuiLogin', 'citizenLogin'] })
 export default class IdamSteps extends BaseSteps {
   private isSetupTest: boolean;
   private isTeardown: boolean;
   private verifyCookiesBanner: boolean;
   private idamFactory: IdamFactory;
-  
+
   constructor(idamFactory: IdamFactory, isSetupTest: boolean, isTeardownTest: boolean, verifyCookiesBanner: boolean, testData: TestData) {
     super(testData);
     this.isSetupTest = isSetupTest;
@@ -46,11 +46,11 @@ export default class IdamSteps extends BaseSteps {
   private async exuiLogin(user: User) {
     const { pageCookiesManager } = this.idamFactory;
 
-    if(config.skipAuthSetup || this.isSetupTest) {
+    if (config.skipAuthSetup || this.isSetupTest) {
       const { loginPage } = this.idamFactory;
       await pageCookiesManager.cookiesSignOut();
 
-      if(this.isSetupTest && this.verifyCookiesBanner) {
+      if (this.isSetupTest && this.verifyCookiesBanner) {
         const { idamsCookiesBanner } = this.idamFactory;
         await loginPage.openManageCase();
         await idamsCookiesBanner.verifyContent();
@@ -59,26 +59,23 @@ export default class IdamSteps extends BaseSteps {
         await pageCookiesManager.addIdamCookies();
         await pageCookiesManager.addExuiCookies(user);
         await loginPage.openManageCase();
-      } 
+      }
 
       await loginPage.verifyContent();
       await loginPage.caseworkerLogin(user);
-
-    } 
-    else {
+    } else {
       await pageCookiesManager.cookiesLogin(user, this.isTeardown);
     }
   }
 
   private async citizenLogin(user: User) {
-    
     const { pageCookiesManager } = this.idamFactory;
 
-    if(config.skipAuthSetup || this.isSetupTest) {
+    if (config.skipAuthSetup || this.isSetupTest) {
       const { loginPage } = this.idamFactory;
       await pageCookiesManager.cookiesSignOut();
 
-      if(this.isSetupTest && this.verifyCookiesBanner) {
+      if (this.isSetupTest && this.verifyCookiesBanner) {
         const { idamsCookiesBanner } = this.idamFactory;
         await loginPage.openCitizenFrontEnd();
         await idamsCookiesBanner.verifyContent();
@@ -87,13 +84,11 @@ export default class IdamSteps extends BaseSteps {
         await pageCookiesManager.addIdamCookies();
         await pageCookiesManager.addCitizenCookies();
         await loginPage.openCitizenFrontEnd();
-      } 
+      }
 
       await loginPage.verifyContent();
       await loginPage.citizenLogin(user);
-
-    } 
-    else {
+    } else {
       await pageCookiesManager.cookiesLogin(user, this.isTeardown);
     }
   }

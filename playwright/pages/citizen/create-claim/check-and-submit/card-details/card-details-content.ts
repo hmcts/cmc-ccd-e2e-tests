@@ -16,7 +16,7 @@ export const dropdowns = {
 
 export const inputs = {
   cardNumber: {
-    label: 'Card number', 
+    label: 'Card number',
     selector: '#card-no',
   },
   expiryDate: {
@@ -54,7 +54,7 @@ export const inputs = {
   postcode: {
     label: 'Postcode',
     selector: '#address-postcode',
-  }, 
+  },
   confirmationEmail: {
     label: 'Email',
     selector: '#email',

@@ -1,19 +1,15 @@
 import DateHelper from '../../../../../helpers/date-helper';
 import BasePage from '../../../../../base/base-page';
-import {heading, subHeadings,inputs, dropdowns, buttons} from './card-details-content';
+import { heading, subHeadings, inputs, dropdowns, buttons } from './card-details-content';
 import { Step } from '../../../../../decorators/test-steps';
 import User from '../../../../../types/user';
 
 const classKey = 'CardDetailsPage';
 
-export default class CardDetailsPage extends BasePage{
+export default class CardDetailsPage extends BasePage {
+  @Step(classKey)
   async verifyContent() {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      this.verifyPaymentSummaryContent(),
-      this.verifyBillingAddressContent(),
-      this.verifyContactDetails(),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), this.verifyPaymentSummaryContent(), this.verifyBillingAddressContent(), this.verifyContactDetails()]);
   }
 
   private async verifyPaymentSummaryContent() {
@@ -44,7 +40,7 @@ export default class CardDetailsPage extends BasePage{
 
   @Step(classKey)
   async fillCardDetails() {
-    const date = DateHelper.addToToday({years: 1});
+    const date = DateHelper.addToToday({ years: 1 });
     await super.inputText('4444333322221111', inputs.cardNumber.selector);
     await super.inputText(DateHelper.getTwoDigitMonth(date), inputs.expiryMonth.selector);
     await super.inputText(DateHelper.getTwoDigitYear(date), inputs.expiryYear.selector);
@@ -58,9 +54,9 @@ export default class CardDetailsPage extends BasePage{
     await super.inputText('London', inputs.city.selector);
     await super.inputText('E4 6ry', inputs.postcode.selector);
   }
-  
+
   @Step(classKey)
-  async fillContactDetails({email}: User) {
+  async fillContactDetails({ email }: User) {
     await super.inputText(email, inputs.confirmationEmail.selector);
   }
 

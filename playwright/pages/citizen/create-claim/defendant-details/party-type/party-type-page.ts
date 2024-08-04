@@ -5,7 +5,6 @@ import { heading, radioButtons } from './party-type-content';
 
 @AllMethodsStep()
 export default class PartyTypePage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -20,5 +19,4 @@ export default class PartyTypePage extends CitizenEvent(BasePage) {
     await super.clickBySelector(radioButtons.organisation.selector);
     await super.clickSaveAndContinue();
   }
-
 }

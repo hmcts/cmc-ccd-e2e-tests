@@ -11,23 +11,23 @@ export const subHeadings = {
 export const inputs = {
   addressLine1: {
     label: 'Building and street',
-    selector: 'input[id=\'address[line1]\']',
+    selector: "input[id='address[line1]']",
   },
   addressLine2: {
     label: 'Building and street line 2 of 3',
-    selector: 'input[id=\'address[line2]\']',
+    selector: "input[id='address[line2]']",
   },
   addressLine3: {
     label: 'Building and street line 3 of 3',
-    selector: 'input[id=\'address[line3]\']',
+    selector: "input[id='address[line3]']",
   },
   city: {
     label: 'Town or city',
-    selector: 'input[id=\'address[city]\']',
+    selector: "input[id='address[city]']",
   },
   postcode: {
     label: 'Postcode',
-    selector: 'input[id=\'address[postcode]\']',
+    selector: "input[id='address[postcode]']",
   },
 };
 

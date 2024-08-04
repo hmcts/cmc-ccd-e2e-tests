@@ -8,30 +8,24 @@ import { heading, inputs } from './lift-breathing-space-content';
 
 @AllMethodsStep()
 export default class LiftBreathingSpacePage extends ExuiEvent(BasePage) {
-
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      super.verifyCaseTitle(caseData),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)]);
 
-    await super.clickSubmit();
+    await super.retryClickSubmit();
 
-    await super.runVerifications([
-      super.expectText(inputs.respiteEnd.label),
-    ]);
+    await super.runVerifications([super.expectText(inputs.respiteEnd.label)]);
   }
 
   async enterBreathingSpaceDetails() {
-    const endDate = DateHelper.addToToday({months: 1});
+    const endDate = DateHelper.addToToday({ months: 1 });
     await super.inputText(endDate.getDate(), inputs.respiteEnd.day.selector);
     await super.inputText(endDate.getMonth(), inputs.respiteEnd.month.selector);
     await super.inputText(endDate.getFullYear(), inputs.respiteEnd.year.selector);
   }
 
-  async submitEvent() {
-    await super.retryClickSubmit(() => super.verifyEventSummaryContent({timeout: 2000}));
+  async submit() {
+    await super.retryretryClickSubmit(() => super.verifyEventSummaryContent({ timeout: 2000 }));
     await super.fillEventDetails(CaseworkerEvents.LIFT_BREATHING_SPACE);
-    await super.clickSubmit();
+    await super.retryretryClickSubmit();
   }
 }

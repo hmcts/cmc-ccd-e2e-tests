@@ -12,28 +12,24 @@ import { Page } from 'playwright-core';
 export default class MediationSuccessful2Page extends ExuiEvent(BasePage) {
   private staffDocumentsFragment: StaffDocumentsFragment;
 
-  constructor(staffDocumentsFragment: StaffDocumentsFragment, page: Page,  axeBuilder: AxeBuilder) {
+  constructor(staffDocumentsFragment: StaffDocumentsFragment, page: Page, axeBuilder: AxeBuilder) {
     super(page, axeBuilder);
     this.staffDocumentsFragment = staffDocumentsFragment;
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      super.verifyCaseTitle(caseData),
-      this.staffDocumentsFragment.verifyContent(),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), this.staffDocumentsFragment.verifyContent()]);
   }
 
   async enterDocumentDetails() {
     await this.staffDocumentsFragment.addDocument();
     await this.staffDocumentsFragment.enterMediationDoc1Details();
-    await super.clickSubmit();
-  } 
+    await super.retryClickSubmit();
+  }
 
-  async submitEvent() {
+  async submit() {
     await super.verifyEventSummaryContent();
     await super.fillEventDetails(CaseworkerEvents.MEDIATION_SUCCESSFUL);
-    await super.clickSubmit();
+    await super.retryClickSubmit();
   }
 }

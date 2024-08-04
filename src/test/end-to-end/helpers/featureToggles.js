@@ -1,7 +1,7 @@
-const testConfig = require("src/test/config.js");
-const LaunchDarkly = require("./launchDarkly");
+const testConfig = require('src/test/config.js');
+const LaunchDarkly = require('./launchDarkly');
 
-const logger = require("@hmcts/nodejs-logging").Logger.getLogger(__filename);
+const logger = require('@hmcts/nodejs-logging').Logger.getLogger(__filename);
 
 class FeatureToggle {
   constructor() {
@@ -12,7 +12,7 @@ class FeatureToggle {
     const featureToggleKey = testConfig.featureToggles.flags[key];
     const roles = [];
     const ldUser = {
-      key: "cmc-ccd-e2e-tests",
+      key: 'cmc-ccd-e2e-tests',
       custom: {
         roles,
       },
@@ -23,10 +23,10 @@ class FeatureToggle {
       return this.launchDarkly.variation(
         featureToggleKey,
         ldUser,
-        ldDefaultValue
+        ldDefaultValue,
       );
     } catch (error) {
-      logger.info("launch darkly check toggle errors..", error);
+      logger.info('launch darkly check toggle errors..', error);
     }
   }
 

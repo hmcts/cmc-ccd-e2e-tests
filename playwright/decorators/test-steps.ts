@@ -1,18 +1,19 @@
 import { isAsyncFunction } from 'util/types';
 import DecoratorError from '../errors/decorator-error';
 import DecoratorHelper from '../helpers/decorator-helper';
-import {test} from '../playwright-fixtures/index';
+import { test } from '../playwright-fixtures/index';
+import ClassMethodHelper from '../helpers/class-method-helper';
 
 //DO NOT APPLY AllMethodStep Decorator with Step decorator!!!!!
 
 const stepFlag = '__allMethodsStepApplied';
 
 const verifyMethodNamesToIgnore = (methodsNamesToIgnore: string[], classMethodNames: string[], className: string) => {
-  for(const methodName of methodsNamesToIgnore) {
-    if(methodName === stepFlag) {
+  for (const methodName of methodsNamesToIgnore) {
+    if (methodName === stepFlag) {
       throw new DecoratorError(`Invalid method name to ignore: ${methodName}, class: ${className}`);
     }
-    if(!classMethodNames.includes(methodName)) {
+    if (!classMethodNames.includes(methodName)) {
       throw new DecoratorError(`${methodName} is not a method name in class: ${className}`);
     }
   }
@@ -21,29 +22,28 @@ const verifyMethodNamesToIgnore = (methodsNamesToIgnore: string[], classMethodNa
 const getStepDetailed = (paramNamesToDetail: string[], methodParamNames: string[], argsValues: any[], className: string, methodName: string) => {
   const detailedParams: string[] = [];
 
-  for(const [index, methodParamName] of methodParamNames.entries()) {
-    if(paramNamesToDetail.includes(methodParamName)) {
+  for (const [index, methodParamName] of methodParamNames.entries()) {
+    if (paramNamesToDetail.includes(methodParamName)) {
       detailedParams.push(`${methodParamName}: ${DecoratorHelper.formatArg(argsValues[index])}`);
     }
   }
 
-  return `${className}.${(methodName)}${ paramNamesToDetail.length === 0 ? '' : `(${detailedParams.join(', ')})`}`;
+  return `${className}.${methodName}${paramNamesToDetail.length === 0 ? '' : `(${detailedParams.join(', ')})`}`;
 };
 
-export const Step = function(classKey: string) {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+export const Step = function (classKey: string) {
   return function (target: Function, context: ClassMethodDecoratorContext) {
     const methodName = context.name as string;
-    const className = DecoratorHelper.formatClassName(classKey);
+    const className = ClassMethodHelper.formatClassName(classKey);
     if (target.prototype && target.prototype[stepFlag]) {
       throw new DecoratorError(`${Step.name} decorator cannot be applied when @${AllMethodsStep.name} decorator is already applied.`);
     }
-    if(!isAsyncFunction(target)) {
+    if (!isAsyncFunction(target)) {
       throw new DecoratorError(`${className}.${methodName} must be asynchronous to use @${Step.name} decorator`);
     }
-  
+
     return async function replacementMethod(this: any, ...args: any) {
-      const stepName = `${className}.${methodName}`; 
+      const stepName = `${className}.${methodName}`;
       return await test.step(stepName, async () => {
         return await target.call(this, ...args);
       });
@@ -52,15 +52,14 @@ export const Step = function(classKey: string) {
 };
 
 export const DetailedStep = function (classKey: string, ...paramNamesToDetail: string[]) {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   return function (target: Function, context: ClassMethodDecoratorContext) {
     const methodName = context.name as string;
-    const className = DecoratorHelper.formatClassName(classKey);
+    const className = ClassMethodHelper.formatClassName(classKey);
 
     if (target.prototype && target.prototype[stepFlag]) {
       throw new DecoratorError(`${Step.name} decorator cannot be applied when @${AllMethodsStep.name} decorator is already applied.`);
     }
-    if(!isAsyncFunction(target)) {
+    if (!isAsyncFunction(target)) {
       throw new DecoratorError(`${className}.${methodName} must be asynchronous to use @${Step.name} decorator`);
     }
 
@@ -78,8 +77,7 @@ export const DetailedStep = function (classKey: string, ...paramNamesToDetail: s
   };
 };
 
-export const AllMethodsStep = ({methodNamesToIgnore = []} = {}) => {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+export const AllMethodsStep = ({ methodNamesToIgnore = [] as string[] } = {}) => {
   return function (target: Function, context: ClassDecoratorContext) {
     const targetClass = target;
     const classMethodNames = Object.getOwnPropertyNames(targetClass.prototype);
@@ -89,11 +87,11 @@ export const AllMethodsStep = ({methodNamesToIgnore = []} = {}) => {
     for (const methodName of classMethodNames) {
       const method = targetClass.prototype[methodName];
       if (typeof method === 'function' && methodName !== 'constructor' && !methodNamesToIgnore.includes(methodName)) {
-        const stepName = DecoratorHelper.formatClassName(targetClass.name) + '.' + methodName;
-        if(!isAsyncFunction(method)) {
+        const stepName = ClassMethodHelper.formatClassName(targetClass.name) + '.' + methodName;
+        if (!isAsyncFunction(method)) {
           throw new DecoratorError(`All methods defined in ${targetClass.name} must be asynchronous to use @${AllMethodsStep.name} decorator`);
         }
-        targetClass.prototype[methodName] = async function(...args: any[]) {
+        targetClass.prototype[methodName] = async function (...args: any[]) {
           return await test.step(stepName, async () => {
             return await method.apply(this, args);
           });

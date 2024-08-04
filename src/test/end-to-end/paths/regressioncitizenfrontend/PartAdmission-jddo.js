@@ -12,75 +12,75 @@ let claim;
 
 Scenario('Create CCJ flow', async ({I}) => {
 
-    //claimant steps
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
-    const claimRef = await I.createClaimantWithGivenAmount('600');
-    await I.click('Sign out');
-    logger.info('claimref is..', claimRef);
+  //claimant steps
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
+  const claimRef = await I.createClaimantWithGivenAmount('600');
+  await I.click('Sign out');
+  logger.info('claimref is..', claimRef);
 
+  claim = await apiRequest.retrieveByReferenceNumber(claimRef);
+  const caseId = claim.ccdCaseId;
+  const externalId = claim.externalId;
+
+  logger.info({message: 'Claimant created a case with id: ', caseId});
+
+  if (typeof claim.letterHolderId === 'undefined') {
+    await I.wait(5);
     claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    const caseId = claim.ccdCaseId;
-    const externalId = claim.externalId;
+  }
 
-    logger.info({message: 'Claimant created a case with id: ', caseId});
+  pinValue = await idamHelper.getPin(claim.letterHolderId);
 
-    if (typeof claim.letterHolderId === 'undefined') {
-        await I.wait(5);
-        claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    }
+  await I.linkDefendant(claimRef, pinValue);
 
-    pinValue = await idamHelper.getPin(claim.letterHolderId);
+  //Defendant steps
 
-    await I.linkDefendant(claimRef, pinValue);
+  await I.waitInUrl('first-contact/claim-summary');
+  await I.click('Respond to claim');
 
-    //Defendant steps
+  await I.wait(10);
+  await I.click('Sign in to your account.');
+  await I.wait(5);
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    await I.waitInUrl('first-contact/claim-summary');
-    await I.click('Respond to claim');
+  await I.waitInUrl('/dashboard');
+  await I.see(claimRef);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
+  await I.wait(10);
+  await I.click('Respond to claim');
 
-    await I.wait(10);
-    await I.click('Sign in to your account.');
-    await I.wait(5);
-    await I.authenticateWithIdam(userType.CITIZEN, true);
+  //Prepare your response
+  await I.confirmDefendantDetails();
+  await I.defendantExtraTimeNeeded('no');
 
-    await I.waitInUrl('/dashboard');
-    await I.see(claimRef);
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
-    await I.wait(10);
-    await I.click('Respond to claim');
+  //Respond to claim
+  await I.chooseDefendantResponse('PART_ADMISSION');
+  await I.moneyOweAndDisagreement('specificDate');
+  await I.shareDefendantFinancialDetails();
+  await I.selectMediationOptions('yes');
+  await I.hearingDetails();
 
-    //Prepare your response
-    await I.confirmDefendantDetails();
-    await I.defendantExtraTimeNeeded('no');
+  //Submit
+  await I.submitDefendantResponse('PART_ADMISSION');
+  await I.click('Sign out');
+  await I.wait(5);
 
-    //Respond to claim
-    await I.chooseDefendantResponse('PART_ADMISSION');
-    await I.moneyOweAndDisagreement('specificDate');
-    await I.shareDefendantFinancialDetails();
-    await I.selectMediationOptions('yes');
-    await I.hearingDetails();
+  //Claimant response
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    //Submit
-    await I.submitDefendantResponse('PART_ADMISSION');
-    await I.click('Sign out');
-    await I.wait(5);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
+  await I.click('View and respond');
 
-    //Claimant response
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
+  //How they responded
+  await I.viewDefendantResponse('PART_ADMISSION');
+  await I.acceptOrRejectResponse('', 'PART_ADMISSION', 'yes');
 
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
-    await I.click('View and respond');
+  await I.selectMediationOptions('no');
+  await I.hearingDetails('INDIVIDUAL', 'yes');
 
-    //How they responded
-    await I.viewDefendantResponse('PART_ADMISSION');
-    await I.acceptOrRejectResponse('', 'PART_ADMISSION', 'yes');
-
-    await I.selectMediationOptions('no');
-    await I.hearingDetails('INDIVIDUAL', 'yes');
-
-    await I.checkAndSumbitResponse('yes');
-    await I.waitInUrl('claimant-response/confirmation');
+  await I.checkAndSumbitResponse('yes');
+  await I.waitInUrl('claimant-response/confirmation');
 
 }).retry(testConfig.TestRetryScenarios);

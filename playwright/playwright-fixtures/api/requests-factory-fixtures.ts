@@ -1,4 +1,3 @@
-
 import RequestsFactory from '../../requests/requests-factory';
 import { test as base } from '../utils/test-utils-fixtures';
 
@@ -7,7 +6,7 @@ type RequestsFactoryFixtures = {
 };
 
 export const test = base.extend<RequestsFactoryFixtures>({
-  _requestsFactory: async ({request}, use: (arg0: RequestsFactory) => any) => {
+  _requestsFactory: async ({ request }, use) => {
     await use(new RequestsFactory(request));
   },
 });

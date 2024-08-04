@@ -2,9 +2,11 @@ import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashbo
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
+import FileSystemHelper from '../../../helpers/file-system-helper';
+import User from '../../../types/user';
 
 @AllMethodsStep()
-export default class ExuiDashboardSteps extends BaseSteps{
+export default class ExuiDashboardSteps extends BaseSteps {
   private exuiDashboardFactory: ExuiDashboardFactory;
 
   constructor(exuiDashboardFactory: ExuiDashboardFactory, testData: TestData) {
@@ -18,9 +20,13 @@ export default class ExuiDashboardSteps extends BaseSteps{
     await exuiCookiesBanner.acceptCookies();
   }
 
-  async SaveCookies(filePath: string) {
+  async SaveCookies({ cookiesPath }: User) {
     const { pageCookiesManager } = this.exuiDashboardFactory;
-    await pageCookiesManager.saveCookies(filePath);
+    await pageCookiesManager.saveCookies(cookiesPath);
+  }
+
+  async DeleteCookies({ cookiesPath }: User) {
+    FileSystemHelper.delete(cookiesPath);
   }
 
   async GoToCaseList() {
@@ -29,18 +35,18 @@ export default class ExuiDashboardSteps extends BaseSteps{
   }
 
   async GoToCaseDetails() {
-    const {caseDetailsPage} = this.exuiDashboardFactory;
+    const { caseDetailsPage } = this.exuiDashboardFactory;
     await caseDetailsPage.goToCaseDetails(this.ccdCaseData.id);
     await caseDetailsPage.verifyContent(this.ccdCaseData);
   }
 
   async VerifyDefendantFullReject() {
-    const {caseDetailsPage} = this.exuiDashboardFactory;
+    const { caseDetailsPage } = this.exuiDashboardFactory;
     await caseDetailsPage.verifyFullReject();
   }
-  
+
   async SignOut() {
-    const {navBar} = this.exuiDashboardFactory;
+    const { navBar } = this.exuiDashboardFactory;
     await navBar.clickSignOut();
   }
 }

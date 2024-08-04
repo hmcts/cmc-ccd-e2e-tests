@@ -4,9 +4,8 @@ import BasePage from '../../../base/base-page';
 import { inputs, buttons } from './login-page-content';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 
-@AllMethodsStep({methodNamesToIgnore: ['login']})
+@AllMethodsStep({ methodNamesToIgnore: ['login'] })
 export default class LoginPage extends BasePage {
-
   async verifyContent() {
     await super.runVerifications([
       // super.expectText(heading),
@@ -15,9 +14,7 @@ export default class LoginPage extends BasePage {
     ]);
   }
 
-  private async login(
-    {email, password},
-  ) {
+  private async login({ email, password }) {
     console.log(`Authenticating user with email ${email} by Idam`);
     await super.inputText(email, inputs.email.selector);
     await super.inputSensitiveText(password, inputs.password.selector);

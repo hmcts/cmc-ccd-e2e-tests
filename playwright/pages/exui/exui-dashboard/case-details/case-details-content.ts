@@ -32,7 +32,7 @@ export const dropdowns = {
 export const buttons = {
   go: {
     title: 'go',
-    selector: 'button[type=\'submit\']',
+    selector: "button[type='submit']",
   },
 };
 
@@ -51,8 +51,7 @@ export const getFormattedClaimNumber = (caseNumber: number) => {
   return formattedString;
 };
 
-export const getSuccessBannerText = (caseId: number, event: ExuiEvents) => 
-  `Case ${getFormattedClaimNumber(caseId)} has been updated with event: ${event}`;
+export const getSuccessBannerText = (caseId: number, event: ExuiEvents) => `Case ${getFormattedClaimNumber(caseId)} has been updated with event: ${event}`;
 
 export const errorMessages = {
   breathingSpace: 'This Event cannot be triggered since the claim is no longer part of the online civil money claims journey',

@@ -5,7 +5,7 @@ enum UserType {
   RESPONDENT = 'respondent',
   CASEWORKER = 'caseworker',
   JUDGE = 'judge',
-  LEGALADVISOR = 'legalAdvisor'
+  LEGALADVISOR = 'legalAdvisor',
 }
 
 export default UserType;

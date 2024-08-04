@@ -6,7 +6,7 @@ const config = {
   skipAuthSetup: process.env.SKIP_AUTH_SETUP === 'true',
   skipCitizenSetup: process.env.SKIP_CITIZEN_SETUP === 'true',
   showBrowserWindow: process.env.SHOW_BROWSER_WINDOW === 'true',
-  runAccessibilityTests: process.env.RUN_ACCESSIBILITY_TESTS ==='true',
+  runAxeTests: process.env.RUN_ACCESSIBILITY_TESTS === 'true',
   definition: {
     jurisdiction: 'CMC',
     caseType: 'MoneyClaimCase',
@@ -14,7 +14,7 @@ const config = {
   s2s: {
     microservice: process.env.S2S_MICROSERVICE_KEY_CMC,
     secret: process.env.S2S_MICROSERVICE_KEY_PWD,
-  }, 
+  },
   playwright: {
     softExpect: process.env.UI_SOFT_EXPECT === 'true',
     toPassTimeout: 10_000,
@@ -23,4 +23,3 @@ const config = {
 };
 
 export default config;
-

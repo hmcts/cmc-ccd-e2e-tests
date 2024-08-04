@@ -4,18 +4,11 @@ export default class DecoratorHelper {
   private static methodNameToMethodParams = {};
 
   static verifyParamNames = (className: string, methodName: string, decoratorName: string, actualParamNames: string[], paramNamesToCheck: string[]) => {
-    for(const paramName of paramNamesToCheck) {
-      if(!actualParamNames.includes(paramName)) {
+    for (const paramName of paramNamesToCheck) {
+      if (!actualParamNames.includes(paramName)) {
         throw new DecoratorError(`To use decorator: @${decoratorName}, ${paramName} must be a required parameter on ${className}.${methodName}`);
       }
     }
-  };
-
-  static formatClassName = (className: string) => {
-    if(className.endsWith('Steps')) {
-      return className;
-    }
-    return className.charAt(0).toLowerCase() + className.slice(1);
   };
 
   private static getParamsStringFromMethodString(originalMethodString: string) {
@@ -24,7 +17,7 @@ export default class DecoratorHelper {
   }
 
   private static splitParamsString(paramsString: string): string[] {
-    return paramsString.split(',').map(str => str.replace(/[\n\t\s]+/g, ''));
+    return paramsString.split(',').map((str) => str.replace(/[\n\t\s]+/g, ''));
   }
 
   private static removeParamsInCurlyBraces(paramsString: string) {
@@ -32,13 +25,13 @@ export default class DecoratorHelper {
     let curlyBrace = 0;
 
     for (let i = 0; i < paramsString.length; i++) {
-      if(paramsString[i] === '{') {
+      if (paramsString[i] === '{') {
         curlyBrace++;
       }
-      if(curlyBrace <= 0) {
+      if (curlyBrace <= 0) {
         result += paramsString[i];
       }
-      if(paramsString[i] === '}') {
+      if (paramsString[i] === '}') {
         curlyBrace--;
       }
     }
@@ -46,24 +39,21 @@ export default class DecoratorHelper {
     return result;
   }
 
-  private static cleanMethodParams(paramsString: string) : string[] {
+  private static cleanMethodParams(paramsString: string): string[] {
     const cleanParamsString = this.removeParamsInCurlyBraces(paramsString);
-    const cleanParamsList = this.splitParamsString(cleanParamsString)
-      .filter(part => !part.includes('=') && !part.includes('options') && part.length !== 0);
+    const cleanParamsList = this.splitParamsString(cleanParamsString).filter((part) => !part.includes('=') && !part.includes('options') && part.length !== 0);
     return cleanParamsList;
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
   static getParamNamesFromMethod = (className: string, methodName: string, decoratorName: string, target: Function) => {
-  
     let cleanParamList: string[] = this.methodNameToMethodParams[className]?.[methodName];
     if (!cleanParamList) {
       const paramsString = this.getParamsStringFromMethodString(target.toString());
       const paramsList = this.splitParamsString(paramsString);
       cleanParamList = this.cleanMethodParams(paramsString);
 
-      for(let i = 0; i < cleanParamList.length; i++) {
-        if(cleanParamList[i] !== paramsList[i]){
+      for (let i = 0; i < cleanParamList.length; i++) {
+        if (cleanParamList[i] !== paramsList[i]) {
           throw new DecoratorError(`To use decorator: @${decoratorName}, ${cleanParamList[i]} must be defined before any default or destructured parameters on method: ${className}.${methodName}`);
         }
       }
@@ -71,29 +61,30 @@ export default class DecoratorHelper {
       if (!this.methodNameToMethodParams[className]) {
         this.methodNameToMethodParams[className] = {};
       }
-      
+
       this.methodNameToMethodParams[className][methodName] = cleanParamList;
     }
     return cleanParamList;
   };
 
   static formatArg = (arg: any) => {
-    if(typeof arg === 'string') {
+    if (typeof arg === 'string') {
       return `'${arg}'`;
     } else if (Array.isArray(arg)) {
-      `[${arg.join(', ')}]`;
+      return `[${arg.join(', ')}]`;
     }
     return arg;
   };
 
   static formatArgsList = (args: string[]) => {
-    return args.map(item => {
-      if (typeof item === 'object' && !Array.isArray(item)) {
-        return Object.values(item);
-      } else {
-        return [item];
-      }
-    }).flat();
+    return args
+      .map((item) => {
+        if (typeof item === 'object' && !Array.isArray(item)) {
+          return Object.values(item);
+        } else {
+          return [item];
+        }
+      })
+      .flat();
   };
-  
 }

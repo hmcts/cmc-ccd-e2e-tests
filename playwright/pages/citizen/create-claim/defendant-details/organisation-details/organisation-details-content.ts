@@ -19,36 +19,36 @@ export const inputs = {
   },
   addressLine1: {
     label: 'Building and street',
-    selector: 'input[id=\'address[line1]\']',
+    selector: "input[id='address[line1]']",
   },
   addressLine2: {
     label: 'Building and street',
-    selector: 'input[id=\'address[line2]\']',
+    selector: "input[id='address[line2]']",
   },
   addressLine3: {
     label: 'Building and street',
-    selector: 'input[id=\'address[line3]\']',
+    selector: "input[id='address[line3]']",
   },
   city: {
     label: 'Town or city',
-    selector: 'input[id=\'address[city]\']',
+    selector: "input[id='address[city]']",
   },
   postcode: {
     label: 'Postcode',
-    selector: 'input[id=\'address[postcode]\']',
+    selector: "input[id='address[postcode]']",
   },
 };
 
 export const buttons = {
   findAddress: {
     title: 'Find address',
-    selector: 'a[id=\'address[find-button]\']',
+    selector: "a[id='address[find-button]']",
   },
 };
 
 export const links = {
   addressManual: {
     title: 'Enter address manually',
-    selector: 'a[id=\'address[enterManually]\']',
+    selector: "a[id='address[enterManually]']",
   },
 };

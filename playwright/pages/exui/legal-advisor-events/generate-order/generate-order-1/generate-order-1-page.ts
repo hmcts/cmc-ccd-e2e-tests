@@ -8,7 +8,7 @@ import { Page } from 'playwright-core';
 import { heading } from './generate-order-1-content';
 
 @AllMethodsStep()
-export default class GenerateOrder1Page extends ExuiEvent(BasePage){
+export default class GenerateOrder1Page extends ExuiEvent(BasePage) {
   private sdoFragment: SdoFragment;
 
   constructor(sdoFragment: SdoFragment, page: Page, axeBuilder: AxeBuilder) {
@@ -17,19 +17,14 @@ export default class GenerateOrder1Page extends ExuiEvent(BasePage){
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      super.verifyCaseTitle(caseData),
-      this.sdoFragment.verifyContent(),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), this.sdoFragment.verifyContent()]);
   }
 
   async enterSdoDetails() {
     await this.sdoFragment.enterSdoDetails();
-    await super.clickSubmit();
   }
 
-  async submitEvent() {
-    throw new Error('Method not implemented.');
+  async submit() {
+    await super.retryClickSubmit();
   }
 }

@@ -1,4 +1,3 @@
-
 import BasePageFactory from '../../../base/base-page-factory';
 import CheckAnswersPage from './check-answers/check-answers-page';
 import ReferenceNumberPage from './reference-number/reference-number-page';
@@ -7,7 +6,6 @@ import RespiteStartPage from './respite-start/respite-start-page';
 import RespiteTypePage from './respite-type/respite-type-page';
 
 export default class BreathingSpaceFactory extends BasePageFactory {
-
   get referenceNumberPage() {
     return new ReferenceNumberPage(this.page, this.axeBuilder);
   }

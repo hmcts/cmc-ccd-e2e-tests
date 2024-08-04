@@ -10,6 +10,6 @@ export const paragraphs = {
 export const buttons = {
   respond: {
     title: 'Respond to claim',
-    selector: 'input[value=\'Respond to claim\']',
+    selector: "input[value='Respond to claim']",
   },
 };

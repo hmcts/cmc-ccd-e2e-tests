@@ -5,13 +5,8 @@ import { buttons, heading, links, subHeadings } from './free-telephone-mediation
 
 @AllMethodsStep()
 export default class FreeTelephoneMediationPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.howMediationWorks),
-      super.expectSubHeading(subHeadings.settlement),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), super.expectSubHeading(subHeadings.howMediationWorks), super.expectSubHeading(subHeadings.settlement)]);
   }
 
   async noMediation() {
@@ -21,5 +16,4 @@ export default class FreeTelephoneMediationPage extends CitizenEvent(BasePage) {
   async yesMediation() {
     await super.clickBySelector(buttons.yesMediation.selector);
   }
-
 }

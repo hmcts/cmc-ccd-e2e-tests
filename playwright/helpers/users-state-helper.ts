@@ -16,15 +16,13 @@ export default class UserStateHelper {
   };
 
   static generateCitizenUsers = (userType: UserType): User[] => {
-    return Array.from({length: config.playwright.workers}, (_, index) => (
-      { 
-        email: `${userType}citizen-${Math.random().toString(36).slice(2, 9).toLowerCase()}@gmail.com`,
-        password: process.env.SMOKE_TEST_USER_PASSWORD,
-        role: UserRole.CITIZEN,
-        type: userType,
-        cookiesPath: `${filePaths.userCookies}/${userType}-${index + 1}.json`,
-      }
-    ));
+    return Array.from({ length: config.playwright.workers }, (_, index) => ({
+      email: `${userType}citizen-${Math.random().toString(36).slice(2, 9).toLowerCase()}@gmail.com`,
+      password: process.env.SMOKE_TEST_USER_PASSWORD,
+      role: UserRole.CITIZEN,
+      type: userType,
+      cookiesPath: `${filePaths.userCookies}/${userType}-${index + 1}.json`,
+    }));
   };
 
   static addUsersToState = (users: User[]) => {

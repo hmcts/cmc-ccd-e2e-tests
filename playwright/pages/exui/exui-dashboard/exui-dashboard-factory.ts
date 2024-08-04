@@ -6,7 +6,6 @@ import ExuiCookiesBanner from './exui-cookies-banner/exui-cookies-banner';
 import ExuiNavBar from './exui-nav-bar/exui-nav-bar';
 
 export default class ExuiDashboardFactory extends BasePageFactory {
-  
   get pageCookiesManager() {
     return new PageCookiesManager(this.page);
   }
@@ -18,7 +17,7 @@ export default class ExuiDashboardFactory extends BasePageFactory {
   get navBar() {
     return new ExuiNavBar(this.page, this.axeBuilder);
   }
-  
+
   get caseListPage() {
     return new CaseListPage(this.page, this.axeBuilder);
   }

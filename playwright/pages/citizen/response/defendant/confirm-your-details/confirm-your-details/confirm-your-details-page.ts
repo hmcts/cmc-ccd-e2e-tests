@@ -5,8 +5,7 @@ import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, subHeadings, inputs } from './confirm-your-details-content';
 
 @AllMethodsStep()
-export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){
-  
+export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage) {
   async verifyContent(caseData: ClaimStoreCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -28,5 +27,4 @@ export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){
   async saveAndContinue() {
     await super.clickSaveAndContinue();
   }
-
 }

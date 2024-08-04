@@ -6,11 +6,9 @@ import { acceptIdamCookies } from '../../fixtures/cookies/idam-cookies';
 import { generateAcceptExuiCookies } from '../../fixtures/cookies/exui-cookies';
 import { acceptCitizenCookies } from '../../fixtures/cookies/citizen-cookies';
 import PageError from '../../errors/page-error';
-import {test} from '../../playwright-fixtures/index';
+import { test } from '../../playwright-fixtures/index';
 import Cookie from '../../types/cookie';
 import FileSystemHelper from '../../helpers/file-system-helper';
-import config from '../../config/config';
-import urls from '../../config/urls';
 
 @AllMethodsStep()
 export default class PageCookiesManager extends BasePage {
@@ -28,8 +26,8 @@ export default class PageCookiesManager extends BasePage {
     let cookies: Cookie[];
     try {
       cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
-    } catch(error) {
-      if(isTeardown) test.skip(error.message);
+    } catch (error) {
+      if (isTeardown) test.skip(error.message);
       else throw error;
     }
     await super.clearCookies();
@@ -44,8 +42,8 @@ export default class PageCookiesManager extends BasePage {
     await super.addCookies(acceptCitizenCookies);
   }
 
-  async addExuiCookies({userId, email}: User) {
-    if(!userId) {
+  async addExuiCookies({ userId, email }: User) {
+    if (!userId) {
       throw new PageError(`UserId for user with email ${email} is invalid`);
     }
     await super.addCookies(generateAcceptExuiCookies(userId));

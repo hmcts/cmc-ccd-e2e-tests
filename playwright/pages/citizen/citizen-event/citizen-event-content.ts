@@ -5,7 +5,7 @@ export const buttons = {
   },
   continue: {
     title: 'Continue',
-    selector: 'input[value=\'Continue\']',
+    selector: "input[value='Continue']",
   },
   saveAndContinue: {
     title: 'Save and Continue',

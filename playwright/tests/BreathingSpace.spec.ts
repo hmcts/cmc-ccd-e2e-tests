@@ -1,7 +1,7 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Breathing Space', () => {
-  test('Claimant enters breathing space and caseworker lifts breathing space', async ({IdamSteps, CreateClaimSteps, ApiCaseDataSteps, CitizenDashboardSteps, ClaimantResponseSteps, ExuiDashboardSteps, CaseworkerEventsSteps}) => {
+  test('Claimant enters breathing space and caseworker lifts breathing space', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, CitizenDashboardSteps, ClaimantResponseSteps, ExuiDashboardSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
@@ -17,7 +17,7 @@ test.describe('Breathing Space', () => {
     // await CaseworkerEventsSteps.LiftBreathingSpace();
   });
 
-  test('Caseworker enters breathing space and lifts breathing space', async ({IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps}) => {
+  test('Caseworker enters breathing space and lifts breathing space', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
@@ -31,7 +31,7 @@ test.describe('Breathing Space', () => {
     await CaseworkerEventsSteps.LiftBreathingSpace();
   });
 
-  test('Caseworker cannot enter breathing space when case handed to CCBC', async ({IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps}) => {
+  test('Caseworker unable to enter breathing space when case is handed to CCBC', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();

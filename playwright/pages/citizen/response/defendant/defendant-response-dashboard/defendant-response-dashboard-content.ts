@@ -26,4 +26,3 @@ export const links = {
     title: 'Check and submit your response',
   },
 };
-

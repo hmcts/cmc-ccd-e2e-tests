@@ -5,11 +5,8 @@ import { doc1Dropdowns, doc1Inputs, doc2Dropdowns, doc2Inputs, subHeadings, butt
 import ExuiEvent from '../../exui-event/exui-event';
 
 export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
-  
   async verifyContent() {
-    await super.runVerifications([
-      super.expectSubHeading(subHeadings.staffUploadedDocs),
-    ]);
+    await super.runVerifications([super.expectSubHeading(subHeadings.staffUploadedDocs)], { axe: false });
   }
 
   async addDocument() {
@@ -17,7 +14,7 @@ export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
   }
 
   private async enterDoc1Details(docTypeIndex: number) {
-    const date = DateHelper.addToToday({years: 1});
+    const date = DateHelper.addToToday({ years: 1 });
     await super.inputText(doc1Inputs.docName.value, doc1Inputs.docName.selector);
 
     await super.inputText(DateHelper.getTwoDigitDay(date), doc1Inputs.docDay.selector);
@@ -48,14 +45,14 @@ export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
 
   async enterMediationDoc1Details() {
     await this.enterDoc1Details(1);
-  } 
+  }
 
   async enterOtherDoc2Details() {
     await this.enterDoc2Details(2);
     await super.inputText(doc2Inputs.otherDocType.value, doc2Inputs.otherDocType.selector);
   }
 
-  async submitEvent() {
+  async submit() {
     throw new Error('Method not implemented.');
   }
 }

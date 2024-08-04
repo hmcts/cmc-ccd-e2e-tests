@@ -7,12 +7,7 @@ import User from '../types/user';
 
 @AllMethodsStep()
 export default class IdamRequests extends BaseRequest {
-  
-  async createCitizenUser({
-    email,
-    password,
-    role,
-  }: User): Promise<IdamUser> {
+  async createCitizenUser({ email, password, role }: User): Promise<IdamUser> {
     console.log(`Creating user with email: ${email}`);
     const url = `${urls.idamApi}/testing-support/accounts`;
     const requestOptions: RequestOptions = {
@@ -30,7 +25,7 @@ export default class IdamRequests extends BaseRequest {
     return await response.json();
   }
 
-  async deleteUser({email}: User): Promise<void> {
+  async deleteUser({ email }: User): Promise<void> {
     console.log(`Delete user: ${email}`);
     const url = `${urls.idamApi}/testing-support/accounts/${email}`;
     const requestOptions: RequestOptions = {
@@ -39,17 +34,17 @@ export default class IdamRequests extends BaseRequest {
     try {
       await this.request(url, requestOptions, 204);
       console.log(`User: ${email} successfully deleted`);
-    } catch(error) {
+    } catch (error) {
       console.log(`error deleting user: ${email}` + error);
     }
   }
-  
-  async getAccessToken({email, password}: User): Promise<string> {
+
+  async getAccessToken({ email, password }: User): Promise<string> {
     console.log(`Fetching access token for user: ${email}...`);
     const url = `${urls.idamApi}/loginUser`;
     const requestOptions: RequestOptions = {
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      params: {username: email, password: password},
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      params: { username: email, password: password },
       method: 'POST',
     };
     const response = await super.retriedRequest(url, requestOptions);
@@ -58,13 +53,13 @@ export default class IdamRequests extends BaseRequest {
     return json.access_token;
   }
 
-  async getUserId({accessToken, email}: User): Promise<string> {
+  async getUserId({ accessToken, email }: User): Promise<string> {
     console.log(`Fetching User ID for user: ${email}`);
     const url = `${urls.idamApi}/o/userinfo`;
     const requestOptions: RequestOptions = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       method: 'GET',
     };
