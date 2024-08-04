@@ -63,7 +63,7 @@ export default defineConfig({
       dependencies: ['users-auth-setup'],
     },
     {
-      name: 'firefox-full-functional',
+      name: "firefox-full-functional",
       use: { ...devices['Desktop Firefox'] },
       dependencies: ['users-auth-setup'],
     },
