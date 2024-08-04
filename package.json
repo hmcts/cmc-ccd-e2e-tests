@@ -6,7 +6,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "lint": "eslint",
+    "lint": "yarn lint",
     "lint:fix": "prettier -w . && eslint . --fix",
     "test:setup:playwright-install": "yarn playwright install",
     "test:setup:users:ci": "npx playwright test --project users-setup --pass-with-no-tests --no-deps",
@@ -74,7 +74,10 @@
     "webdriverio": "^6.11.3"
   },
   "lint-staged": {
-    "*": "eslint"
+    "*": [
+      "prettier -w .",
+      "eslint"
+    ]
   },
   "resolutions": {
     "jackspeak": "2.1.1"
