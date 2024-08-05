@@ -27,16 +27,16 @@ export const expect = baseExpect
 
       const message = pass
         ? () =>
-          this.utils.matcherHint(assertionName, undefined, undefined, {
-            isNot: this.isNot,
-          }) +
+            this.utils.matcherHint(assertionName, undefined, undefined, {
+              isNot: this.isNot,
+            }) +
             '\n\n' +
             `Expected: ${this.isNot ? 'not ' : ''}an array with ${expected} violation(s)\n` +
             `Received: an array with ${expected} violation(s)`
         : () =>
-          this.utils.matcherHint(assertionName, undefined, undefined, {
-            isNot: this.isNot,
-          }) +
+            this.utils.matcherHint(assertionName, undefined, undefined, {
+              isNot: this.isNot,
+            }) +
             '\n\n' +
             `Expected: an array with ${expected} violation(s)\n` +
             `Received: an array with ${violations.length} violation(s), please check attached file: ${accessibilityViolationsJson}, for more details`;

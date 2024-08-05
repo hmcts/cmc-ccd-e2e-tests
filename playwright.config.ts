@@ -10,13 +10,13 @@ export default defineConfig({
   workers: config.playwright.workers,
   reporter: process.env.CI
     ? [
-      [
-        'allure-playwright',
-        {
-          outputFolder: process.env.FUNCTIONAL === 'true' ? 'allure-functional-results' : 'allure-bootstrap-results',
-        },
-      ],
-    ]
+        [
+          'allure-playwright',
+          {
+            outputFolder: process.env.FUNCTIONAL === 'true' ? 'allure-functional-results' : 'allure-bootstrap-results',
+          },
+        ],
+      ]
     : 'list',
   timeout: 8 * 30 * 1000,
   expect: {
