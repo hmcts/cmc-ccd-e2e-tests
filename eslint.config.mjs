@@ -22,7 +22,7 @@ export default [
       'src/*',
       'coverage',
       '*.min.js',
-      'plugins/*',
+      '**/*.js',
     ],
   },
   {
