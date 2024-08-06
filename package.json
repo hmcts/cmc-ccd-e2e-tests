@@ -58,7 +58,7 @@
     "allure-commandline": "^2.29.0",
     "allure-playwright": "2.4.0",
     "codeceptjs": "^3.3.7",
-    "custom-eslint-plugin": "file:plugins/custom-eslint-plugins",
+    "custom-eslint-plugin": "file:plugin/custom-eslint-plugins",
     "eslint": "9.x",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.8.0",

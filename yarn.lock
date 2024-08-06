@@ -3979,7 +3979,7 @@ __metadata:
     allure-playwright: 2.4.0
     axios: ^1.6.0
     codeceptjs: ^3.3.7
-    custom-eslint-plugin: "file:plugins/custom-eslint-plugins"
+    custom-eslint-plugin: "file:plugin/custom-eslint-plugins"
     dependency-check: ^4.1.0
     dotenv: ^16.4.5
     eslint: 9.x
@@ -4411,10 +4411,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"custom-eslint-plugin@file:plugins/custom-eslint-plugins::locator=cmc-ccd-e2e-tests%40workspace%3A.":
+"custom-eslint-plugin@file:plugin/custom-eslint-plugins::locator=cmc-ccd-e2e-tests%40workspace%3A.":
   version: 1.0.0
-  resolution: "custom-eslint-plugin@file:plugins/custom-eslint-plugins#plugins/custom-eslint-plugins::hash=7d9a49&locator=cmc-ccd-e2e-tests%40workspace%3A."
-  checksum: bcc0ff625d2cce8c089d9b5ceec374b07c5adc9a489ada092e17e0c3312d42aff48fc16e02f03c10267f6f465e2715ab3ae17db80aa07d76e316557db6f0b7f9
+  resolution: "custom-eslint-plugin@file:plugin/custom-eslint-plugins#plugin/custom-eslint-plugins::hash=e38136&locator=cmc-ccd-e2e-tests%40workspace%3A."
+  checksum: a5738f744b7b9227c45c15ff093c075576b44151dbe9bb2881ac85de07910044797c0e210ef6c1372a996eef783eb8d2c832765ecd9ca7dbb800b0884dd2c937
   languageName: node
   linkType: hard
 
