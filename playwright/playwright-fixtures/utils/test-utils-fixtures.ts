@@ -3,6 +3,7 @@ import TestData from '../../types/test-data';
 import AxeBuilder from '@axe-core/playwright';
 import config from '../../config/config';
 import CaseDataFactory from '../../fixtures/case-data/case-data-factory';
+import FileSystemHelper from '../../helpers/file-system-helper';
 
 type TestDataFixture = {
   _axeBuilder?: AxeBuilder;
@@ -14,6 +15,15 @@ type TestDataFixture = {
 };
 
 export const test = base.extend<TestDataFixture>({
+  page: async ({ page }, use, testInfo) => {
+    await use(page);
+    if (testInfo.errors.every((error) => error.value === 'accessibility')) {
+      const failedScreenshotAttachment = testInfo.attachments.find((attachment) => attachment.name === 'screenshot');
+      FileSystemHelper.delete(failedScreenshotAttachment.path, { force: true });
+      FileSystemHelper.delete(await page.video().path(), { force: true });
+    }
+    testInfo.errors.reverse();
+  },
   _axeBuilder: async ({ page }, use) => {
     let axeBuilder: AxeBuilder | undefined;
     if (config.runAxeTests) {

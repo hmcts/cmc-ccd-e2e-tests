@@ -1,12 +1,11 @@
-import { expect as baseExpect } from '@playwright/test';
+import test, { expect as baseExpect, Page } from '@playwright/test';
 import config from '../../config/config';
-import { test } from '../index';
 
 export const expect = baseExpect
   .extend({
-    async toHaveAxeViolations(violations: any[], expected = 0, pageName: string) {
+    async toHaveAxeViolations(violations: any[], expected = 0, pageName: string, page: Page) {
       const assertionName = 'toHaveAxeViolations';
-      const accessibilityViolationsJson = `${pageName}-Accessibility-Violations.json`;
+      const accessibilityViolationsName = `${pageName}-Accessibility-Violations.json`;
       let pass: boolean;
       let matcherResult: any;
 
@@ -18,11 +17,13 @@ export const expect = baseExpect
         pass = false;
       }
 
-      if (violations.length) {
-        await test.info().attach(accessibilityViolationsJson, {
+      if (violations.length !== expected) {
+        await test.info().attach(accessibilityViolationsName, {
           body: JSON.stringify(violations, null, 2),
           contentType: 'application/json',
         });
+        const screenshot = await page.screenshot({ fullPage: true });
+        await test.info().attach(`${pageName}-Accessibility-Failure.png`, { body: screenshot, contentType: 'image/png' });
       }
 
       const message = pass
@@ -39,7 +40,7 @@ export const expect = baseExpect
             }) +
             '\n\n' +
             `Expected: an array with ${expected} violation(s)\n` +
-            `Received: an array with ${violations.length} violation(s), please check attached file: ${accessibilityViolationsJson}, for more details`;
+            `Received: an array with ${violations.length} violation(s), please check attached file: ${accessibilityViolationsName}, for more details`;
 
       return {
         message,

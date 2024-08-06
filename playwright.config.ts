@@ -27,8 +27,8 @@ export default defineConfig({
   },
   use: {
     headless: !config.showBrowserWindow,
-    video: 'retain-on-failure',
-    screenshot: 'only-on-failure',
+    video: { mode: 'retain-on-failure', size: { width: 640, height: 480 } },
+    screenshot: { mode: 'only-on-failure', fullPage: true },
     launchOptions: {
       slowMo: process.env.CI ? 200 : 500,
     },

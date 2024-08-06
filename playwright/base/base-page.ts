@@ -174,12 +174,11 @@ export default abstract class BasePage {
     const results = await axeBuilder.analyze();
     const violations = results.violations;
 
-    await pageExpect.soft(violations).toHaveAxeViolations(expectedAxeViolations, this.constructor.name);
-    if (this.constructor.name === 'CardDetailsPage') {
-      console.log(test.info().attachments);
-      console.log(test.info().errors);
-      console.log(test.info().outputDir);
-      console.log(test.info().outputPath);
+    await pageExpect.soft(violations).toHaveAxeViolations(expectedAxeViolations, this.constructor.name, this.page);
+
+    if (expectedAxeViolations !== violations.length) {
+      const errors = test.info().errors;
+      errors[errors.length - 1].value = 'accessibility';
     }
   }
 

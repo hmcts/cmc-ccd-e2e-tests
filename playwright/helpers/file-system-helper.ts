@@ -6,7 +6,7 @@ import FileType from '../enums/file-type';
 import filePaths from '../config/file-paths';
 
 export default class FileSystemHelper {
-  private static writeFileDirs = [`${filePaths.users}/`, `${filePaths.userCookies}/`, `${filePaths.axe}/`];
+  private static writeFileDirs = [`${filePaths.users}/`, `${filePaths.userCookies}/`, `${filePaths.axe}/`, 'test-resu'];
 
   static exists = (filePath: string) => fs.existsSync(filePath);
 
@@ -86,13 +86,15 @@ export default class FileSystemHelper {
     await fsAsync.writeFile(filePath, data);
   };
 
-  static delete = (path = '') => {
+  static delete = (path = '', { force }: { force?: boolean } = { force: false }) => {
     try {
-      if (!path) {
-        throw new FileError('Folder/File path cannot be an empty string');
-      }
-      if (!this.canWrite(path)) {
-        throw new FileError(`Cannot delete folder/file from path ${path}`);
+      if (!force) {
+        if (!path) {
+          throw new FileError('Folder/File path cannot be an empty string');
+        }
+        if (!this.canWrite(path)) {
+          throw new FileError(`Cannot delete folder/file from path ${path}`);
+        }
       }
       const stats = fs.lstatSync(path);
 
