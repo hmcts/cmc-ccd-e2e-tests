@@ -315,9 +315,9 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await mediationSuccessful2Page.enterDocumentDetails();
     await mediationSuccessful2Page.submit();
 
-    const { mediationPendingSubmitPage } = this.caseworkerEventsFactory;
-    await mediationPendingSubmitPage.verifyContent(this.ccdCaseData);
-    await mediationPendingSubmitPage.submit();
+    const { mediationSuccessfulSubmitPage } = this.caseworkerEventsFactory;
+    await mediationSuccessfulSubmitPage.verifyContent(this.ccdCaseData);
+    await mediationSuccessfulSubmitPage.submit();
 
     await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_SUCCESSFUL);
   }

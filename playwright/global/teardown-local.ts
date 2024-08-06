@@ -3,6 +3,7 @@ import urls from '../config/urls';
 import UserType from '../enums/user-type';
 import UserStateHelper from '../helpers/users-state-helper';
 import FileSystemHelper from '../helpers/file-system-helper';
+
 //This is last resort teardown for citizen users if test execution gets interupted in local.
 
 const deleteUsers = async (userType: UserType) => {
@@ -22,11 +23,11 @@ const deleteUsers = async (userType: UserType) => {
   }
 };
 
-const globalTeardown = async () => {
+const globalTeardownLocal = async () => {
   await deleteUsers(UserType.CLAIMANT);
   await deleteUsers(UserType.DEFENDANT);
   UserStateHelper.deleteAllUsersState();
   FileSystemHelper.delete(`${filePaths.userCookies}/`);
 };
 
-export default globalTeardown;
+export default globalTeardownLocal;

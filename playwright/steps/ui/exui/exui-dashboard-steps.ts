@@ -25,10 +25,6 @@ export default class ExuiDashboardSteps extends BaseSteps {
     await pageCookiesManager.saveCookies(cookiesPath);
   }
 
-  async DeleteCookies({ cookiesPath }: User) {
-    FileSystemHelper.delete(cookiesPath);
-  }
-
   async GoToCaseList() {
     const { caseListPage } = this.exuiDashboardFactory;
     await caseListPage.openCaseList();

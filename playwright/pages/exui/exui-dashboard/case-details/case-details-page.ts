@@ -32,11 +32,14 @@ export default class CaseDetailsPage extends BasePage {
   async retryChooseNextStep(event: ExuiEvents) {
     console.log(`Starting event: ${event}`);
     await super.selectFromDropdown(event, dropdowns.nextStep.selector);
-    await super.retryClickBySelector(buttons.go.selector, () =>
-      super.expectText(tabs.claimHistory.title, {
-        timeout: 5000,
-        visible: false,
-      }),
+    await super.retryClickBySelector(
+      buttons.go.selector,
+      () =>
+        super.expectText(tabs.claimHistory.title, {
+          timeout: 5000,
+          visible: false,
+        }),
+      { retries: 3 },
     );
   }
 

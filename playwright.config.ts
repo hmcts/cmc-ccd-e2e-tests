@@ -3,7 +3,7 @@ import config from './playwright/config/config';
 
 export default defineConfig({
   testDir: './playwright/tests',
-  globalTeardown: process.env.CI ? undefined : './playwright/global/teardown',
+  globalTeardown: process.env.CI ? undefined : './playwright/global/teardown-local',
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
   retries: process.env.CI ? 0 : 0,
@@ -27,7 +27,7 @@ export default defineConfig({
   },
   use: {
     headless: !config.showBrowserWindow,
-    video: { mode: 'retain-on-failure', size: { width: 640, height: 480 } },
+    video: { mode: 'retain-on-failure' },
     screenshot: { mode: 'only-on-failure', fullPage: true },
     launchOptions: {
       slowMo: process.env.CI ? 200 : 500,
