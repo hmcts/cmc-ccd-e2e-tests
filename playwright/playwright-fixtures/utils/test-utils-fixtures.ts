@@ -17,7 +17,7 @@ type TestDataFixture = {
 export const test = base.extend<TestDataFixture>({
   page: async ({ page }, use, testInfo) => {
     await use(page);
-    if (testInfo.errors.every((error) => error.value === 'accessibility')) {
+    if (testInfo.errors.length > 0 && testInfo.errors.every((error) => error.value === 'accessibility')) {
       const failedScreenshotAttachment = testInfo.attachments.find((attachment) => attachment.name === 'screenshot');
       FileSystemHelper.delete(failedScreenshotAttachment.path, { force: true });
       FileSystemHelper.delete(await page.video().path(), { force: true });
