@@ -48,28 +48,6 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
-void publishBootstrapReport() {
-    publishHTML([
-            allowMissing: true,
-            alwaysLinkToLastBuild: true,
-            keepAll: true,
-            reportDir: 'allure-bootstrap-report',
-            reportFiles: 'index.html',
-            reportName: 'Allure Bootstrap Report'
-        ])
-  }
-
-  void publishFunctionalReport() {
-    publishHTML([
-            allowMissing: true,
-            alwaysLinkToLastBuild: true,
-            keepAll: true,
-            reportDir: 'allure-functional-report',
-            reportFiles: 'index.html',
-            reportName: 'Allure Functional Report'
-        ])
-  }
-
 withNightlyPipeline("nodejs", product, component) {
   env.EXUI_URL = params.ExUI_URL_TO_TEST
   env.CITIZEN_APP_URL = params.CMC_URL_TO_TEST
@@ -85,7 +63,7 @@ withNightlyPipeline("nodejs", product, component) {
   loadVaultSecrets(secrets)
 
   boolean setupPassed=true
-
+  
   afterAlways('DependencyCheckNightly') {
     stage('Test setup') {
       try {
@@ -94,9 +72,6 @@ withNightlyPipeline("nodejs", product, component) {
       } catch (Error) {
         setupPassed=false
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-      } finally {
-        yarnBuilder.yarn('test:bootstrap:generate-report')
-        publishBootstrapReport()
       }
     }
 
@@ -106,9 +81,6 @@ withNightlyPipeline("nodejs", product, component) {
           yarnBuilder.yarn('test:functional:chrome:ci')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          yarnBuilder.yarn('test:functional:generate-report')
-          publishFunctionalReport()
         }
       }
 
@@ -117,19 +89,14 @@ withNightlyPipeline("nodejs", product, component) {
           yarnBuilder.yarn('test:functional:firefox:ci')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          yarnBuilder.yarn('test:functional:generate-report')
-          publishFunctionalReport()
         }
+      }
 
       stage('Edge full functional test') {
         try {
           yarnBuilder.yarn('test:functional:edge:ci')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          yarnBuilder.yarn('test:functional:generate-report')
-          publishFunctionalReport()
         }
       }
 
@@ -138,23 +105,46 @@ withNightlyPipeline("nodejs", product, component) {
           yarnBuilder.yarn('test:functional:safari:ci')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          yarnBuilder.yarn('test:functional:generate-report')
-          publishFunctionalReport()
         }
       }
     }
 
-      stage('Test teardown') {
-        try {
-          yarnBuilder.yarn('test:teardown:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          yarnBuilder.yarn('test:bootstrap:generate-report')
-          publishBootstrapReport()
-        }
+    stage('Test teardown') {
+      try {
+        yarnBuilder.yarn('test:teardown:ci')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
+
+    stage('Generate reports') {
+      try {
+        yarnBuilder.yarn('test:bootstrap:generate-report')
+        if(setupPassed) {
+          yarnBuilder.yarn('test:functional:generate-report')
+        }
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      } finally {
+        publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'allure-bootstrap-report',
+            reportFiles: 'index.html',
+            reportName: 'Allure Bootstrap Report'
+        ])
+        if(setupPassed) {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'allure-functional-report',
+            reportFiles: 'index.html',
+            reportName: 'Allure Functional Report'
+          ])
+        }
+      }
+    } 
   }
 }
