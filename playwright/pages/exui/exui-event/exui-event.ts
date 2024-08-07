@@ -43,8 +43,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
           await super.waitForSelectorToDetach(components.loading.selector, {
             timeout: 30_000,
           });
-          await super.expectSelector(components.error.selector, {
-            visible: false,
+          await super.expectNoSelector(components.error.selector, {
             timeout: 15_000,
           });
           if (expect) await expect();

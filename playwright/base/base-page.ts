@@ -217,14 +217,22 @@ export default abstract class BasePage {
   }
 
   @DetailedStep(classKey, 'selector')
-  protected async expectSelector(selector: string, options?: { timeout?: number; visible?: boolean }) {
-    if (options.visible === false) {
-      try {
-        await this.expectSelector(selector, { timeout: 500 });
-        // eslint-disable-next-line no-empty
-      } catch (err) {}
-    }
+  protected async expectSelector(selector: string, options: { timeout?: number } = {}) {
     await pageExpect(this.page.locator(selector)).toBeVisible(options);
+  }
+
+  @DetailedStep(classKey, 'selector')
+  protected async expectNoSelector(selector: string, options: { timeout?: number } = {}) {
+    try {
+      await this.expectSelector(selector, { timeout: 500 });
+      // eslint-disable-next-line no-empty
+    } catch (err) {}
+    await pageExpect(this.page.locator(selector)).toBeVisible({ ...options, visible: false });
+  }
+
+  private getTextLocator(text: string | number, exact?: boolean, selector?: string) {
+    const locator = selector ? this.page.locator(selector).getByText(text.toString()) : this.page.getByText(text.toString(), { exact: exact });
+    return locator;
   }
 
   @DetailedStep(classKey, 'text')
@@ -235,14 +243,32 @@ export default abstract class BasePage {
       exact?: boolean;
       selector?: string;
       timeout?: number;
-      visible?: boolean;
     } = {},
   ) {
-    const locator = options.selector ? this.page.locator(options.selector).getByText(text.toString()) : this.page.getByText(text.toString(), { exact: options.exact });
-
+    const locator = this.getTextLocator(text, options.exact, options.selector);
     await pageExpect(locator).toBeVisible({
       timeout: options.timeout,
-      visible: options.visible,
+    });
+  }
+
+  @DetailedStep(classKey, 'text')
+  @TruthyParams(classKey, 'text')
+  protected async expectNoText(
+    text: string | number,
+    options: {
+      exact?: boolean;
+      selector?: string;
+      timeout?: number;
+    } = {},
+  ) {
+    const locator = this.getTextLocator(text, options.exact, options.selector);
+    try {
+      await this.expectText(text, { timeout: 500 });
+      // eslint-disable-next-line no-empty
+    } catch (err) {}
+    await pageExpect(locator).toBeVisible({
+      timeout: options.timeout,
+      visible: false,
     });
   }
 

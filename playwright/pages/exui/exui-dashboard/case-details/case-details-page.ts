@@ -35,9 +35,8 @@ export default class CaseDetailsPage extends BasePage {
     await super.retryClickBySelector(
       buttons.go.selector,
       () =>
-        super.expectText(tabs.claimHistory.title, {
+        super.expectNoText(tabs.claimHistory.title, {
           timeout: 10_000,
-          visible: false,
         }),
       { retries: 3 },
     );

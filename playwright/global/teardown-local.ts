@@ -18,7 +18,7 @@ const deleteUsers = async (userType: UserType) => {
         console.log(`User with email: ${user.email} successfully deleted`);
       }
     } catch (error) {
-      if (error.name !== 'FileError') console.log(error);
+      if (error.name !== 'FileError') console.log(error.message);
     }
   }
 };
