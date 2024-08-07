@@ -17,7 +17,7 @@ test.describe('Ocon9x', async () => {
     await CaseworkerEventsSteps.PaperResponseAdmission();
   });
 
-  test('Paper response defence', { tag: '@debug' }, async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
+  test('Paper response defence', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();

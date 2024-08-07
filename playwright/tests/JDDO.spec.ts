@@ -1,7 +1,7 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Judge Draw Direction Order (JDDO - claim amount > 500)', () => {
-  test('Full Defence → Dispute All → Reject mediation by Defendant → Decide to proceed is Yes (claimant)', async ({ ApiCaseEventsSteps, IdamSteps, ExuiDashboardSteps, JudgeEventsSteps }) => {
+  test('Full Defence → Dispute All → Reject mediation by Defendant → Decide to proceed is Yes (claimant)', { tag: '@debug' }, async ({ ApiCaseEventsSteps, IdamSteps, ExuiDashboardSteps, JudgeEventsSteps }) => {
     await ApiCaseEventsSteps.CreateDisputeAllBothRejectMediationClaim();
     await ApiCaseEventsSteps.ClaimantRejects();
     await ApiCaseEventsSteps.AssignForJudgeDirections();

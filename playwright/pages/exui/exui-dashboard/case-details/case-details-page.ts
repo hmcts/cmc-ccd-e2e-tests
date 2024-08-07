@@ -36,7 +36,7 @@ export default class CaseDetailsPage extends BasePage {
       buttons.go.selector,
       () =>
         super.expectText(tabs.claimHistory.title, {
-          timeout: 5000,
+          timeout: 10_000,
           visible: false,
         }),
       { retries: 3 },

@@ -31,12 +31,12 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
       await super.inputText(event, eventInputs.eventDescription.selector);
     }
 
-    protected async retryClickSubmit(options: { count?: number } = {}) {
+    protected async clickSubmit(options: { count?: number } = {}) {
       await super.clickBySelector(buttons.submit.selector, options);
       await super.waitForSelectorToDetach(components.loading.selector);
     }
 
-    protected async retryretryClickSubmit(expect?: () => Promise<void>) {
+    protected async retryClickSubmit(expect?: () => Promise<void>) {
       await super.retryClickBySelector(buttons.submit.selector, async () => {
         await super.waitForSelectorToDetach(components.loading.selector, {
           timeout: 30_000,
