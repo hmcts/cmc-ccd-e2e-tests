@@ -57,7 +57,6 @@ void publishBootstrapReport() {
             reportFiles: 'index.html',
             reportName: 'Allure Bootstrap Report'
         ])
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test_results/**/*'
   }
 
   void publishFunctionalReport() {
@@ -69,7 +68,6 @@ void publishBootstrapReport() {
             reportFiles: 'index.html',
             reportName: 'Allure Functional Report'
         ])
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'test_results/**/*'
   }
 
 withNightlyPipeline("nodejs", product, component) {
@@ -87,62 +85,86 @@ withNightlyPipeline("nodejs", product, component) {
   loadVaultSecrets(secrets)
 
   boolean setupPassed=true
+  boolean flowInterrupted = false
 
   afterAlways('DependencyCheckNightly') {
     stage('Test setup') {
       try {
         yarnBuilder.yarn('test:setup:playwright-install')
         yarnBuilder.yarn('test:setup:ci')
-      } catch (Error) {
+      } catch (Exception error) {
+        if(error instanceof org.jenkinsci.plugins.workflow.steps.FlowInterruptedException) {
+          flowInterrupted = true
+        }
         setupPassed=false
-        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        unstable(message: "${STAGE_NAME} is unstable: " + error.toString())
       } finally {
-        yarnBuilder.yarn('test:bootstrap:generate-report')
-        publishBootstrapReport()
+        yarnBuilder.yarn('test:bootstrap:generate-report'
       }
     }
 
     if(setupPassed) {
       stage('Chrome full functional test') {
         try {
+          if(flowInterrupted) {
+            throw new org.jenkinsci.plugins.workflow.steps.FlowInterruptedException()
+          }
           yarnBuilder.yarn('test:functional:chrome:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } catch (Exception error) {
+          if(error instanceof org.jenkinsci.plugins.workflow.steps.FlowInterruptedException) {
+            flowInterrupted = true
+          }
+          unstable(message: "${STAGE_NAME} is unstable: " + error.toString())
         } finally {
           yarnBuilder.yarn('test:functional:generate-report')
-          publishFunctionalReport()
         }
       }
 
       stage('Firefox full functional test') {
         try {
+          if(flowInterrupted) {
+            throw new org.jenkinsci.plugins.workflow.steps.FlowInterruptedException()
+          }
           yarnBuilder.yarn('test:functional:firefox:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } catch (Exception error) {
+          if(error instanceof org.jenkinsci.plugins.workflow.steps.FlowInterruptedException) {
+            flowInterrupted = true
+          }
+          unstable(message: "${STAGE_NAME} is unstable: " + error.toString())
         } finally {
           yarnBuilder.yarn('test:functional:generate-report')
-          publishFunctionalReport()
         }
 
       stage('Edge full functional test') {
         try {
+          if(flowInterrupted) {
+            throw new org.jenkinsci.plugins.workflow.steps.FlowInterruptedException()
+          }
           yarnBuilder.yarn('test:functional:edge:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } catch (Exception error) {
+          if(error instanceof org.jenkinsci.plugins.workflow.steps.FlowInterruptedException) {
+            flowInterrupted = true
+          }
+          unstable(message: "${STAGE_NAME} is unstable: " + error.toString())
         } finally {
           yarnBuilder.yarn('test:functional:generate-report')
-          publishFunctionalReport()
         }
       }
 
       stage('Safari full functional test') {
         try {
+          if(flowInterrupted) {
+            throw new org.jenkinsci.plugins.workflow.steps.FlowInterruptedException()
+          }
           yarnBuilder.yarn('test:functional:safari:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } catch (Exception error) {
+          if(error instanceof org.jenkinsci.plugins.workflow.steps.FlowInterruptedException) {
+            flowInterrupted = true
+          }
+          unstable(message: "${STAGE_NAME} is unstable: " + error.toString())
         } finally {
           yarnBuilder.yarn('test:functional:generate-report')
-		      publishFunctionalReport()
+          publishFunctionalReport()
         }
       }
     }
@@ -150,11 +172,11 @@ withNightlyPipeline("nodejs", product, component) {
       stage('Test teardown') {
         try {
           yarnBuilder.yarn('test:teardown:ci')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } catch (Exception error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + error.toString())
         } finally {
           yarnBuilder.yarn('test:bootstrap:generate-report')
-	        publishBootstrapReport()
+          publishBootstrapReport()
         }
       }
     }
