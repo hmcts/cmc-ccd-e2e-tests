@@ -3,7 +3,9 @@ import DateHelper from '../../../../helpers/date-helper';
 import filePaths from '../../../../config/file-paths';
 import { doc1Dropdowns, doc1Inputs, doc2Dropdowns, doc2Inputs, subHeadings, buttons } from './staff-documents-content';
 import ExuiEvent from '../../exui-event/exui-event';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 
+@AllMethodsStep()
 export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([super.expectSubHeading(subHeadings.staffUploadedDocs)], { axe: false });
@@ -25,7 +27,7 @@ export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
     await super.inputText('08', doc1Inputs.docMinute.selector);
     await super.inputText('08', doc1Inputs.docSecond.selector);
 
-    await super.uploadFile(filePaths.testPdfFile, doc1Inputs.fileUpload.selector);
+    await super.retryUploadFile(filePaths.testPdfFile, doc1Inputs.fileUpload.selector);
 
     await super.selectFromDropdown(doc1Dropdowns.docType.options[docTypeIndex], doc1Dropdowns.docType.selector);
   }
@@ -36,7 +38,7 @@ export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
     await super.selectFromDropdown(doc2Dropdowns.docType.options[docTypeIndex], doc2Dropdowns.docType.selector);
     await super.inputText(doc2Inputs.otherDocType.value, doc2Inputs.otherDocType.selector);
 
-    await super.uploadFile(filePaths.testPdfFile, doc2Inputs.fileUpload.selector);
+    await super.retryUploadFile(filePaths.testPdfFile, doc2Inputs.fileUpload.selector);
   }
 
   async enterCorrespondenceDoc1Details() {

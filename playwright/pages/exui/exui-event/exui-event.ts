@@ -1,5 +1,5 @@
 import BasePage from '../../../base/base-page';
-import { DetailedStep } from '../../../decorators/test-steps';
+import { AllMethodsStep } from '../../../decorators/test-steps';
 import CCDCaseData from '../../../types/case-data/ccd-case-data';
 import ExuiEvents from '../../../types/exui-events';
 import { eventInputs, buttons, components } from './exui-event-content';
@@ -7,6 +7,7 @@ import { eventInputs, buttons, components } from './exui-event-content';
 const classKey = 'ExuiEvent';
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
+  @AllMethodsStep()
   abstract class ExuiEvent extends Base {
     protected async verifyEventSummaryContent(options: { timeout: number } = { timeout: 0 }) {
       await super.runVerifications([super.expectLabel(eventInputs.eventSummary.label, options), super.expectLabel(eventInputs.eventSummary.helperText, options), super.expectLabel(eventInputs.eventDescription.label, options)], { axe: false });
@@ -16,10 +17,9 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
       await super.expectHeading(caseData.caseName);
     }
 
-    @DetailedStep(classKey, 'filePath', 'selector')
-    protected async uploadFile(filePath: string, selector: string, retries = 3, timeout = 5000) {
+    protected async retryUploadFile(filePath: string, selector: string, retries = 3, timeout = 5000) {
       await this.retryAction(
-        () => super.uploadFile(filePath, selector),
+        () => super.retryUploadFile(filePath, selector),
         () => super.waitForSelectorToDetach('span.error-message', { timeout }),
         'Uploading document failed, trying again...',
         { retries },

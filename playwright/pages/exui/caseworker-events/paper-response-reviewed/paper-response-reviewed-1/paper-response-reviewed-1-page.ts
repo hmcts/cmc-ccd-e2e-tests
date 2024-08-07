@@ -18,7 +18,7 @@ export default class PaperResponseReviewed1Page extends ExuiEvent(BasePage) {
 
   async enterOcon9xDocDetails() {
     await super.clickBySelector(buttons.addNewBulkOrEmailDoc.selector);
-    await super.uploadFile(filePaths.testPdfFile, inputs.doc1Link.selector);
+    await super.retryUploadFile(filePaths.testPdfFile, inputs.doc1Link.selector);
     await super.selectFromDropdown(dropdowns.doc1DocType.options[0], dropdowns.doc1DocType.selector);
     await super.selectFromDropdown(dropdowns.doc1DocSubType.options[0], dropdowns.doc1DocSubType.selector);
   }
