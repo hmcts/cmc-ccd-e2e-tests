@@ -13,6 +13,6 @@ export default class EnterBreathingSpaceSubmitPage extends ExuiEvent(BasePage) {
 
   async submit() {
     await super.fillEventDetails(CaseworkerEvents.ENTER_BREATHING_SPACE);
-    await super.retryretryClickSubmit();
+    await super.retryClickSubmit();
   }
 }

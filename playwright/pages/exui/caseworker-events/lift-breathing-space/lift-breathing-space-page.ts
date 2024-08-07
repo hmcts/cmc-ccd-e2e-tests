@@ -24,8 +24,8 @@ export default class LiftBreathingSpacePage extends ExuiEvent(BasePage) {
   }
 
   async submit() {
-    await super.retryretryClickSubmit(() => super.verifyEventSummaryContent({ timeout: 2000 }));
+    await super.retryClickSubmit(() => super.verifyEventSummaryContent({ timeout: 2000 }));
     await super.fillEventDetails(CaseworkerEvents.LIFT_BREATHING_SPACE);
-    await super.retryretryClickSubmit();
+    await super.retryClickSubmit();
   }
 }

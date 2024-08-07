@@ -13,6 +13,6 @@ export default class PaperResponseAdmissionSubmitPage extends ExuiEvent(BasePage
 
   async submit() {
     await super.fillEventDetails(CaseworkerEvents.PAPER_RESP_ADMISSIOON);
-    await super.retryretryClickSubmit();
+    await super.retryClickSubmit();
   }
 }

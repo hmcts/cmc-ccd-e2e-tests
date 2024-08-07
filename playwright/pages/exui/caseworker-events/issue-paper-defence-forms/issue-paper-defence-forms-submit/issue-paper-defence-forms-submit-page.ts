@@ -13,6 +13,6 @@ export default class IssuePaperDefenceFormsSubmitPage extends ExuiEvent(BasePage
 
   async submit() {
     await super.fillEventDetails(CaseworkerEvents.ISSUE_PAPER_DEFENCE_FORMS);
-    await super.retryretryClickSubmit();
+    await super.retryClickSubmit();
   }
 }

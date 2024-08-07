@@ -36,6 +36,6 @@ export default class EnterBreathingSpace2Page extends ExuiEvent(BasePage) {
   }
 
   async submit() {
-    await super.retryretryClickSubmit();
+    await super.retryClickSubmit();
   }
 }
