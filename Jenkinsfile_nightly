@@ -134,6 +134,7 @@ withNightlyPipeline("nodejs", product, component) {
         } finally {
           yarnBuilder.yarn('test:functional:generate-report')
         }
+      }
 
       stage('Edge full functional test') {
         try {
@@ -181,4 +182,3 @@ withNightlyPipeline("nodejs", product, component) {
       }
     }
   }
-}
