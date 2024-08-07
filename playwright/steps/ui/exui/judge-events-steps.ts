@@ -38,7 +38,7 @@ export default class JudgeEventsSteps extends BaseSteps {
     await drawDirectionsOrderSubmitPage.verifyContent(this.ccdCaseData);
     await drawDirectionsOrderSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER);
+    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.APPROVE_DIRECTIONS_ORDER);
   }
 
   async ProvideDirections() {

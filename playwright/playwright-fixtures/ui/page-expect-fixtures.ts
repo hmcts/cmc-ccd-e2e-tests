@@ -14,6 +14,7 @@ export const expect = baseExpect
         pass = true;
       } catch (e: any) {
         matcherResult = e.matcherResult;
+        console.log(matcherResult);
         pass = false;
       }
 

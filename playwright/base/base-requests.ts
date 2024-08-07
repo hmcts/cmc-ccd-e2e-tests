@@ -1,7 +1,7 @@
 import { APIRequestContext, APIResponse } from 'playwright-core';
 import RequestOptions from '../types/request-options';
 import { expect } from '../playwright-fixtures';
-import { DetailedStep, Step } from '../decorators/test-steps';
+import { DetailedStep } from '../decorators/test-steps';
 
 const classKey = 'BaseRequests';
 export default abstract class BaseRequest {

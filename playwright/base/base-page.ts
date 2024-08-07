@@ -230,9 +230,9 @@ export default abstract class BasePage {
     await pageExpect(this.page.locator(selector)).toBeVisible({ ...options, visible: false });
   }
 
-  private getTextLocator(text: string | number, exact?: boolean, selector?: string) {
+  private getTextLocator(text: string | number, exact?: boolean, selector?: string, first?: boolean) {
     const locator = selector ? this.page.locator(selector).getByText(text.toString()) : this.page.getByText(text.toString(), { exact: exact });
-    return locator;
+    return first ? locator.first() : locator;
   }
 
   @DetailedStep(classKey, 'text')
@@ -242,10 +242,11 @@ export default abstract class BasePage {
     options: {
       exact?: boolean;
       selector?: string;
+      first?: boolean;
       timeout?: number;
     } = {},
   ) {
-    const locator = this.getTextLocator(text, options.exact, options.selector);
+    const locator = this.getTextLocator(text, options.exact, options.selector, options.first);
     await pageExpect(locator).toBeVisible({
       timeout: options.timeout,
     });
@@ -258,10 +259,11 @@ export default abstract class BasePage {
     options: {
       exact?: boolean;
       selector?: string;
+      first?: boolean;
       timeout?: number;
     } = {},
   ) {
-    const locator = this.getTextLocator(text, options.exact, options.selector);
+    const locator = this.getTextLocator(text, options.exact, options.selector, options.first);
     try {
       await this.expectText(text, { timeout: 500 });
       // eslint-disable-next-line no-empty

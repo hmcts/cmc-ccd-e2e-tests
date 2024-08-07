@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import config from './playwright/config/config';
+import os from 'node:os';
 
 export default defineConfig({
   testDir: './playwright/tests',
@@ -14,6 +15,12 @@ export default defineConfig({
           'allure-playwright',
           {
             outputFolder: process.env.FUNCTIONAL === 'true' ? 'allure-functional-results' : 'allure-bootstrap-results',
+            environmentInfo: {
+              Environment: process.env.ENVIRONMENT,
+              OS: os.platform(),
+              Architecture: os.arch(),
+              NodeVersion: process.version,
+            },
           },
         ],
       ]

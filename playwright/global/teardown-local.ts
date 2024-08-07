@@ -3,16 +3,18 @@ import urls from '../config/urls';
 import UserType from '../enums/user-type';
 import UserStateHelper from '../helpers/users-state-helper';
 import FileSystemHelper from '../helpers/file-system-helper';
+import { request } from 'playwright-core';
 
 //This is last resort teardown for citizen users if test execution gets interupted in local.
 
 const deleteUsers = async (userType: UserType) => {
+  const requestContext = await request.newContext();
   if (UserStateHelper.userStateExists(userType)) {
     try {
       const users = UserStateHelper.getUsersFromState(userType);
       for (const user of users) {
-        const response = await fetch(`${urls.idamApi}/testing-support/accounts/${user.email}`, { method: 'DELETE' });
-        if (response.status !== 204) {
+        const response = await requestContext.delete(`${urls.idamApi}/testing-support/accounts/${user.email}`);
+        if (response.status() !== 204) {
           throw new Error(`Error deleting user: ${user.email}`);
         }
         console.log(`User with email: ${user.email} successfully deleted`);
