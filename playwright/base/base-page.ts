@@ -131,8 +131,10 @@ export default abstract class BasePage {
   @DetailedStep(classKey, 'selector')
   protected async waitForSelectorToDetach(selector: string, options: { timeout?: number } = { timeout: 25_000 }) {
     const locator = this.page.locator(selector);
-
-    await locator.waitFor({ state: 'attached', timeout: 500 }).catch((err) => {});
+    try {
+      await locator.waitFor({ state: 'attached', timeout: 500 });
+      // eslint-disable-next-line no-empty
+    } catch (err) {}
     await locator.waitFor({ state: 'detached', ...options });
   }
 
@@ -140,8 +142,10 @@ export default abstract class BasePage {
   @TruthyParams(classKey, 'text')
   protected async waitForTextToDetach(text: string, options: { timeout?: number } = { timeout: 25_000 }) {
     const locator = this.page.getByText(text);
-
-    await locator.waitFor({ state: 'attached', timeout: 500 }).catch((err) => {});
+    try {
+      await locator.waitFor({ state: 'attached', timeout: 500 });
+      // eslint-disable-next-line no-empty
+    } catch (err) {}
     await locator.waitFor({ state: 'detached', ...options });
   }
 
@@ -215,7 +219,10 @@ export default abstract class BasePage {
   @DetailedStep(classKey, 'selector')
   protected async expectSelector(selector: string, options?: { timeout?: number; visible?: boolean }) {
     if (options.visible === false) {
-      await this.expectSelector(selector, { timeout: 500 }).catch((err) => {});
+      try {
+        await this.expectSelector(selector, { timeout: 500 });
+        // eslint-disable-next-line no-empty
+      } catch (err) {}
     }
     await pageExpect(this.page.locator(selector)).toBeVisible(options);
   }
