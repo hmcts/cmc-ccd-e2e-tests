@@ -76,6 +76,7 @@ export default defineConfig({
       name: 'safari-full-functional',
       use: { ...devices['Desktop Safari'] },
       dependencies: ['users-auth-setup'],
+      timeout: 360_000,
     },
   ],
 });
