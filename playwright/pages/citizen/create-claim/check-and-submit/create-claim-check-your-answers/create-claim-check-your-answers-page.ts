@@ -8,7 +8,15 @@ const classKey = 'CreateClaimCheckYourAnswersPage';
 export default class CreateClaimCheckYourAnswersPage extends CitizenEvent(BasePage) {
   @Step(classKey)
   async verifyContent(): Promise<void> {
-    await super.runVerifications([super.expectHeading(heading), this.verifyYourDetails(), this.verifyTheirDetails(), this.verifyClaimAmount(), this.verifyTotalAmount(), this.verifyClaimDetails(), this.verifyStatementOfTruth()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      this.verifyYourDetails(),
+      this.verifyTheirDetails(),
+      this.verifyClaimAmount(),
+      this.verifyTotalAmount(),
+      this.verifyClaimDetails(),
+      this.verifyStatementOfTruth(),
+    ]);
   }
 
   private async verifyYourDetails() {
@@ -44,6 +52,6 @@ export default class CreateClaimCheckYourAnswersPage extends CitizenEvent(BasePa
   @Step(classKey)
   async checkAndSubmit() {
     await super.clickBySelector(checkboxes.signedTrue.selector);
-    await super.retryClickSubmit();
+    await super.clickSubmit();
   }
 }

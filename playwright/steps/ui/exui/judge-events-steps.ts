@@ -10,7 +10,11 @@ export default class JudgeEventsSteps extends BaseSteps {
   private judgeEventsFactory: JudgeEventsFactory;
   private exuiDashboardFactory: ExuiDashboardFactory;
 
-  constructor(judgeEventsFactory: JudgeEventsFactory, exuiDashboardFactory: ExuiDashboardFactory, testData: TestData) {
+  constructor(
+    judgeEventsFactory: JudgeEventsFactory,
+    exuiDashboardFactory: ExuiDashboardFactory,
+    testData: TestData,
+  ) {
     super(testData);
     this.judgeEventsFactory = judgeEventsFactory;
     this.exuiDashboardFactory = exuiDashboardFactory;
@@ -34,11 +38,15 @@ export default class JudgeEventsSteps extends BaseSteps {
     await drawDirectionsOrder3Page.verifyContent(this.ccdCaseData);
     await drawDirectionsOrder3Page.submit();
 
-    const { judgeDrawDirectionsOrderSubmitPage: drawDirectionsOrderSubmitPage } = this.judgeEventsFactory;
+    const { judgeDrawDirectionsOrderSubmitPage: drawDirectionsOrderSubmitPage } =
+      this.judgeEventsFactory;
     await drawDirectionsOrderSubmitPage.verifyContent(this.ccdCaseData);
     await drawDirectionsOrderSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.APPROVE_DIRECTIONS_ORDER);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      JudgeEvents.JUDGE_DRAW_DIRECTIONS_ORDER,
+    );
   }
 
   async ProvideDirections() {
@@ -80,6 +88,9 @@ export default class JudgeEventsSteps extends BaseSteps {
     await approveDirectionsOrdeSubmitPage.verifyContent(this.ccdCaseData);
     await approveDirectionsOrdeSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, JudgeEvents.APPROVE_DIRECTIONS_ORDER);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      JudgeEvents.APPROVE_DIRECTIONS_ORDER,
+    );
   }
 }

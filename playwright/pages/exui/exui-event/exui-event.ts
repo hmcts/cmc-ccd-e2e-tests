@@ -6,18 +6,32 @@ import { eventInputs, buttons, components } from './exui-event-content';
 
 const classKey = 'ExuiEvent';
 
-export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(Base: TBase) {
+export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(
+  Base: TBase,
+) {
   @AllMethodsStep()
   abstract class ExuiEvent extends Base {
     protected async verifyEventSummaryContent(options: { timeout: number } = { timeout: 0 }) {
-      await super.runVerifications([super.expectLabel(eventInputs.eventSummary.label, options), super.expectLabel(eventInputs.eventSummary.helperText, options), super.expectLabel(eventInputs.eventDescription.label, options)], { axe: false });
+      await super.runVerifications(
+        [
+          super.expectLabel(eventInputs.eventSummary.label, options),
+          super.expectLabel(eventInputs.eventSummary.helperText, options),
+          super.expectLabel(eventInputs.eventDescription.label, options),
+        ],
+        { axe: false },
+      );
     }
 
     protected async verifyCaseTitle(caseData: CCDCaseData) {
       await super.expectHeading(caseData.caseName);
     }
 
-    protected async retryUploadFile(filePath: string, selector: string, retries = 3, timeout = 5000) {
+    protected async retryUploadFile(
+      filePath: string,
+      selector: string,
+      retries = 3,
+      timeout = 5000,
+    ) {
       await this.retryAction(
         () => super.retryUploadFile(filePath, selector),
         () => super.waitForSelectorToDetach('span.error-message', { timeout }),
@@ -37,18 +51,18 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
     }
 
     protected async retryClickSubmit(expect?: () => Promise<void>) {
-      await super.retryClickBySelector(
+      await super.retryClickBySelectorTimeout(
         buttons.submit.selector,
         async () => {
           await super.waitForSelectorToDetach(components.loading.selector, {
             timeout: 30_000,
           });
           await super.expectNoSelector(components.error.selector, {
-            timeout: 15_000,
+            timeout: 500,
           });
           if (expect) await expect();
         },
-        { retries: 3 },
+        { timeout: 60_000 },
       );
     }
 

@@ -42,6 +42,7 @@ export default class ApiUsersSteps extends BaseApiSteps {
   async DeleteCitizenUsers(users: User[]) {
     const { idamRequests } = super.requestsFactory;
     await Promise.all(users.map((user) => idamRequests.deleteUser(user)));
+    UserStateHelper.deleteUsersState(users[0].type);
   }
 
   async SetupUsersData(users: User[]) {

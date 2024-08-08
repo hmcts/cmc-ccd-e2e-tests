@@ -14,7 +14,6 @@ export const expect = baseExpect
         pass = true;
       } catch (e: any) {
         matcherResult = e.matcherResult;
-        console.log(matcherResult);
         pass = false;
       }
 
@@ -24,7 +23,12 @@ export const expect = baseExpect
           contentType: 'application/json',
         });
         const screenshot = await page.screenshot({ fullPage: true });
-        await test.info().attach(`${pageName}-Accessibility-Failure.png`, { body: screenshot, contentType: 'image/png' });
+        await test
+          .info()
+          .attach(`${pageName}-Accessibility-Failure.png`, {
+            body: screenshot,
+            contentType: 'image/png',
+          });
       }
 
       const message = pass

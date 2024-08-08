@@ -27,7 +27,12 @@ export default class EnterBreathingSpace2Page extends ExuiEvent(BasePage) {
     await super.inputText(startDate.getMonth(), inputs.respiteStart.month.selector);
     await super.inputText(startDate.getFullYear(), inputs.respiteStart.year.selector);
 
-    await super.retryClickBySelector(radioButtons.standardBreathingSpace.selector, () => super.expectOptionChecked(radioButtons.standardBreathingSpace.selector, { timeout: 1000 }));
+    await super.retryClickBySelectorTimeout(
+      radioButtons.standardBreathingSpace.selector,
+      () =>
+        super.expectOptionChecked(radioButtons.standardBreathingSpace.selector, { timeout: 500 }),
+      { interval: 1000 },
+    );
 
     const endDate = DateHelper.addToToday({ months: 1 });
     await super.inputText(endDate.getDate(), inputs.respiteEnd.day.selector);

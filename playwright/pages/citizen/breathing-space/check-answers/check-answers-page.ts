@@ -16,6 +16,6 @@ export default class CheckAnswersPage extends CitizenEvent(BasePage) {
   }
 
   async submit() {
-    await super.retryClickSubmit();
+    await super.clickSubmit();
   }
 }

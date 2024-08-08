@@ -20,6 +20,6 @@ export default class DefendantResponseCheckYourAnswersPage extends CitizenEvent(
   async submit() {
     await super.clickBySelector(checkBoxes.signed.selector);
     await super.clickBySelector(checkBoxes.dqSigned.selector);
-    await super.retryClickSubmit();
+    await super.clickSubmit();
   }
 }
