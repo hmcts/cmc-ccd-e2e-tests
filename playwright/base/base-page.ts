@@ -109,22 +109,22 @@ export default abstract class BasePage {
     else await this.page.selectOption(selector, option);
   }
 
-  @Step(classKey)
+  @BoxedDetailedStep(classKey)
   protected async getCookies(): Promise<Cookie[]> {
     return await this.page.context().cookies();
   }
 
-  @Step(classKey)
+  @BoxedDetailedStep(classKey)
   protected async reload() {
     await this.page.reload();
   }
 
-  @Step(classKey)
+  @BoxedDetailedStep(classKey)
   protected async clearCookies() {
     await this.page.context().clearCookies();
   }
 
-  @Step(classKey)
+  @BoxedDetailedStep(classKey)
   protected async addCookies(cookies: Cookie[]) {
     await this.page.context().addCookies(cookies);
   }
