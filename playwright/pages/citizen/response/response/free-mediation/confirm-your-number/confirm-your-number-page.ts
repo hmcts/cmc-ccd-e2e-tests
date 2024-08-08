@@ -6,7 +6,10 @@ import { heading, inputs, paragraphs, radioButtons } from './confirm-your-number
 @AllMethodsStep()
 export default class ConfirmYourNumberPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectText(paragraphs.descriptionText)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectText(paragraphs.descriptionText),
+    ]);
   }
 
   async yesPhoneNumber() {

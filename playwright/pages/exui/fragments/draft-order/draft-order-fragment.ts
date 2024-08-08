@@ -7,7 +7,13 @@ import { dropdowns, legends } from './draft-order-content';
 @AllMethodsStep()
 export default class DraftOrderFragment extends ExuiEvent(BasePage) {
   async verifyContent(ccdCaseData: CCDCaseData) {
-    await super.runVerifications([super.expectLink(ccdCaseData.previousServiceCaseReference), super.expectText(legends.draftOrder)], { axe: false });
+    await super.runVerifications(
+      [
+        super.expectLink(ccdCaseData.previousServiceCaseReference),
+        super.expectText(legends.draftOrder),
+      ],
+      { axe: false },
+    );
   }
 
   async assignTo() {

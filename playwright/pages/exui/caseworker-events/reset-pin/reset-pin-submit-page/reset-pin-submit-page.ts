@@ -8,7 +8,11 @@ import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
 @AllMethodsStep()
 export default class ResetPinSubmitPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.verifyEventSummaryContent()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.verifyEventSummaryContent(),
+    ]);
   }
 
   async submit() {

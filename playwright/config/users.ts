@@ -28,6 +28,10 @@ export const judge: User = UserStateHelper.getUserFromState(UserType.JUDGE) ?? {
   cookiesPath: `${filePaths.userCookies}/judge.json`,
 };
 
-export const claimants: User[] = UserStateHelper.getUsersFromState(UserType.CLAIMANT) ?? UserStateHelper.generateCitizenUsers(UserType.CLAIMANT);
+export const claimants: User[] =
+  UserStateHelper.getUsersFromState(UserType.CLAIMANT) ??
+  UserStateHelper.generateCitizenUsers(UserType.CLAIMANT);
 
-export const defendants: User[] = UserStateHelper.getUsersFromState(UserType.DEFENDANT) ?? UserStateHelper.generateCitizenUsers(UserType.DEFENDANT);
+export const defendants: User[] =
+  UserStateHelper.getUsersFromState(UserType.DEFENDANT) ??
+  UserStateHelper.generateCitizenUsers(UserType.DEFENDANT);

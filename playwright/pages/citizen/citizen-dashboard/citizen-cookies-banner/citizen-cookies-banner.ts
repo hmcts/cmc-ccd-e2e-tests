@@ -5,7 +5,11 @@ import { buttons, heading, paragraphs } from './citizen-cookies-banner-content';
 @AllMethodsStep()
 export default class CitizenCookiesBanner extends BasePage {
   async verifyContent(): Promise<void> {
-    await super.runVerifications([super.expectSubHeading(heading), super.expectText(paragraphs.cookiesDescription1), super.expectText(paragraphs.cookiesDescription2)]);
+    await super.runVerifications([
+      super.expectSubHeading(heading),
+      super.expectText(paragraphs.cookiesDescription1),
+      super.expectText(paragraphs.cookiesDescription2),
+    ]);
   }
 
   async acceptCookies() {
@@ -17,7 +21,8 @@ export default class CitizenCookiesBanner extends BasePage {
   }
 
   async rejectCookies() {
-    if (await super.selectorExists(buttons.reject.selector)) await super.clickBySelector(buttons.reject.selector);
+    if (await super.selectorExists(buttons.reject.selector))
+      await super.clickBySelector(buttons.reject.selector);
     await super.expectText(paragraphs.rejectedCookiesMessage);
     await super.clickButtonByName(buttons.hideMessage.title);
   }

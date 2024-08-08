@@ -1,7 +1,8 @@
 export const heading = 'When did it start?';
 
 export const paragraphs = {
-  descriptionText: 'This is the date it started, not the date you received notification of it (optional).',
+  descriptionText:
+    'This is the date it started, not the date you received notification of it (optional).',
 };
 
 export const inputs = {

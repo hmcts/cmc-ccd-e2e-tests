@@ -9,7 +9,12 @@ const classKey = 'CardDetailsPage';
 export default class CardDetailsPage extends BasePage {
   @Step(classKey)
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), this.verifyPaymentSummaryContent(), this.verifyBillingAddressContent(), this.verifyContactDetails()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      this.verifyPaymentSummaryContent(),
+      this.verifyBillingAddressContent(),
+      this.verifyContactDetails(),
+    ]);
   }
 
   private async verifyPaymentSummaryContent() {

@@ -17,7 +17,11 @@ export default class ActionReviewComments1Page extends ExuiEvent(BasePage) {
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), this.sdoFragment.verifyEnteredSdoDetails()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      this.sdoFragment.verifyEnteredSdoDetails(),
+    ]);
   }
 
   async submit() {

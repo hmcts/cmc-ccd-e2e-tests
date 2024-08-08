@@ -65,7 +65,8 @@ export const inputs = {
   },
   correspondencePostcodeLookup: {
     label: 'Enter a UK postcode',
-    selector: '#respondents_0_partyDetail_correspondenceAddress_correspondenceAddress_postcodeInput',
+    selector:
+      '#respondents_0_partyDetail_correspondenceAddress_correspondenceAddress_postcodeInput',
   },
   email: {
     label: 'Email address (Optional)',

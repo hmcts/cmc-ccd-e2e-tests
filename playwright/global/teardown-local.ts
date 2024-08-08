@@ -13,7 +13,9 @@ const deleteUsers = async (userType: UserType) => {
     try {
       const users = UserStateHelper.getUsersFromState(userType);
       for (const user of users) {
-        const response = await requestContext.delete(`${urls.idamApi}/testing-support/accounts/${user.email}`);
+        const response = await requestContext.delete(
+          `${urls.idamApi}/testing-support/accounts/${user.email}`,
+        );
         if (response.status() !== 204) {
           throw new Error(`Error deleting user: ${user.email}`);
         }

@@ -10,7 +10,12 @@ export default class ClaimantResponseSteps extends ResponseSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;
   private breathingSpaceFactory: BreathingSpaceFactory;
 
-  constructor(breathingSpaceFactory: BreathingSpaceFactory, citizenDashboardFactory: CitizenDashboardFactory, responseFactory: ResponseFactory, testData: TestData) {
+  constructor(
+    breathingSpaceFactory: BreathingSpaceFactory,
+    citizenDashboardFactory: CitizenDashboardFactory,
+    responseFactory: ResponseFactory,
+    testData: TestData,
+  ) {
     super(responseFactory, testData);
     this.breathingSpaceFactory = breathingSpaceFactory;
     this.citizenDashboardFactory = citizenDashboardFactory;

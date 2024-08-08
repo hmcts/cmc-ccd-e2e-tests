@@ -1,7 +1,8 @@
 export const heading = 'Using an expert';
 
 export const paragraphs = {
-  descriptionText1: 'It’s rare for a judge to allow you to use an expert in a small claim. Most small claims don’t need an expert.',
+  descriptionText1:
+    'It’s rare for a judge to allow you to use an expert in a small claim. Most small claims don’t need an expert.',
   descriptionText2: 'An expert is not a legal representative.',
 };
 

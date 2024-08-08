@@ -6,7 +6,11 @@ import { heading, inputs, links } from './organisation-details-content';
 @AllMethodsStep()
 export default class OrganisationDetailsPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectLabel(inputs.name.label), super.expectLabel(inputs.contactName.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectLabel(inputs.name.label),
+      super.expectLabel(inputs.contactName.label),
+    ]);
   }
 
   async enterOrganisationDetails() {

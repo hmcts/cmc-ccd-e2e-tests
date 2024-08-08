@@ -15,7 +15,14 @@ export default class DefendantResponseSteps extends ResponseSteps {
   private citizenDashboardFactory: CitizenDashboardFactory;
   private defendantResponseFactory: DefendantResponseFactory;
 
-  constructor(linkClaimFactory: LinkClaimFactory, idamFactory: IdamFactory, citizenDashboardFactory: CitizenDashboardFactory, responseFactory: ResponseFactory, defendantResponseFactory: DefendantResponseFactory, testData: TestData) {
+  constructor(
+    linkClaimFactory: LinkClaimFactory,
+    idamFactory: IdamFactory,
+    citizenDashboardFactory: CitizenDashboardFactory,
+    responseFactory: ResponseFactory,
+    defendantResponseFactory: DefendantResponseFactory,
+    testData: TestData,
+  ) {
     super(responseFactory, testData);
     this.linkClaimFactory = linkClaimFactory;
     this.idamFactory = idamFactory;

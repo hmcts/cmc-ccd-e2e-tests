@@ -8,7 +8,11 @@ import { heading } from './action-review-comment-submit-content';
 @AllMethodsStep()
 export default class ActionReviewCommentsSubmitPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.verifyEventSummaryContent()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.verifyEventSummaryContent(),
+    ]);
   }
 
   async submit() {

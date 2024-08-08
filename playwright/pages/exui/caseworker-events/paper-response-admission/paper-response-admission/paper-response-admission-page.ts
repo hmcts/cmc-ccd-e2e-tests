@@ -7,7 +7,12 @@ import { heading, radioButtons } from './paper-response-admission-content';
 @AllMethodsStep()
 export default class PaperResponseAdmissionPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.expectLabel(radioButtons.fullAdmit.label), super.expectLabel(radioButtons.partAdmit.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.expectLabel(radioButtons.fullAdmit.label),
+      super.expectLabel(radioButtons.partAdmit.label),
+    ]);
   }
 
   async chooseFullAdmit() {

@@ -10,7 +10,13 @@ const checkTruthy = (paramName: string, argValue: any, falsyParams: string[]) =>
   }
 };
 
-const filterAndValidate = (paramNamesToCheck: string[], methodParamNames: string[], argsValues: any[], methodName: string, className: string) => {
+const filterAndValidate = (
+  paramNamesToCheck: string[],
+  methodParamNames: string[],
+  argsValues: any[],
+  methodName: string,
+  className: string,
+) => {
   const falsyParams: string[] = [];
   if (paramNamesToCheck.length === 0) {
     for (const [index, methodParamName] of methodParamNames.entries()) {
@@ -24,7 +30,9 @@ const filterAndValidate = (paramNamesToCheck: string[], methodParamNames: string
   }
   if (falsyParams.length > 0) {
     className = ClassMethodHelper.formatClassName(className);
-    throw new TypeError(`Params: (${falsyParams.join(', ')}) on '${className}.${methodName}' method are not truthy`);
+    throw new TypeError(
+      `Params: (${falsyParams.join(', ')}) on '${className}.${methodName}' method are not truthy`,
+    );
   }
 };
 
@@ -33,8 +41,19 @@ export const TruthyParams = (classKey: string, ...paramNamesToCheck: string[]) =
     const methodName = context.name as string;
     const className = ClassMethodHelper.formatClassName(classKey);
 
-    const methodParamNames = DecoratorHelper.getParamNamesFromMethod(className, methodName, TruthyParams.name, target);
-    DecoratorHelper.verifyParamNames(className, methodName, TruthyParams.name, methodParamNames, paramNamesToCheck);
+    const methodParamNames = DecoratorHelper.getParamNamesFromMethod(
+      className,
+      methodName,
+      TruthyParams.name,
+      target,
+    );
+    DecoratorHelper.verifyParamNames(
+      className,
+      methodName,
+      TruthyParams.name,
+      methodParamNames,
+      paramNamesToCheck,
+    );
 
     if (isAsyncFunction(target)) {
       return async function asyncReplacementMethod(this: any, ...args: any[]) {

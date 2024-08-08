@@ -59,7 +59,9 @@ export default class CcdRequests extends BaseRequest {
 
   @Step(classKey)
   private async startEvent(event: CaseEvents, user: User, caseId?: number) {
-    console.log(`Starting event: ${event}` + (typeof caseId !== 'undefined' ? ` caseId: ${caseId}` : ''));
+    console.log(
+      `Starting event: ${event}` + (typeof caseId !== 'undefined' ? ` caseId: ${caseId}` : ''),
+    );
     let url = this.getCcdDataStoreBaseUrl(user);
     if (caseId) {
       url += `/cases/${caseId}`;
@@ -75,8 +77,16 @@ export default class CcdRequests extends BaseRequest {
   }
 
   @Step(classKey)
-  private async submit(event: CaseEvents, caseData: CCDCaseData, user: User, ccdEventToken: string) {
-    console.log(`Submitting event: ${event}` + (typeof caseData.id !== 'undefined' ? ` caseId: ${caseData.id}` : ''));
+  private async submit(
+    event: CaseEvents,
+    caseData: CCDCaseData,
+    user: User,
+    ccdEventToken: string,
+  ) {
+    console.log(
+      `Submitting event: ${event}` +
+        (typeof caseData.id !== 'undefined' ? ` caseId: ${caseData.id}` : ''),
+    );
     let url = `${this.getCcdDataStoreBaseUrl(user)}/cases`;
     if (caseData.id) {
       url += `/${caseData.id}/events`;

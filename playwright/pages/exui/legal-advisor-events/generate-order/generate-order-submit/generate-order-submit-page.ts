@@ -8,7 +8,11 @@ import { heading } from './generate-order-submit-content';
 @AllMethodsStep()
 export default class GenerateOrderSubmitPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.verifyEventSummaryContent()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.verifyEventSummaryContent(),
+    ]);
   }
 
   async submit() {

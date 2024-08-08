@@ -5,7 +5,13 @@ import { buttons, heading, subHeadings, tableHeadings } from './confirm-your-pay
 @AllMethodsStep()
 export default class ConfirmYourPaymentPage extends BasePage {
   async verifyContent(): Promise<void> {
-    await super.runVerifications([super.expectHeading(heading), super.expectSubHeading(subHeadings.paymentSummary), super.expectText(tableHeadings.cardNumber), super.expectText(tableHeadings.expiryDate), super.expectText(tableHeadings.nameOnCard)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectSubHeading(subHeadings.paymentSummary),
+      super.expectText(tableHeadings.cardNumber),
+      super.expectText(tableHeadings.expiryDate),
+      super.expectText(tableHeadings.nameOnCard),
+    ]);
   }
 
   async confirm() {

@@ -20,7 +20,10 @@ export default class DefendantResponseDashboardPage extends BasePage {
   }
 
   async verifyContentAfterDisputeAll() {
-    await super.runVerifications([super.expectSubHeading(subHeadings.resolveClaim), super.expectSubHeading(subHeadings.hearingDetails)]);
+    await super.runVerifications([
+      super.expectSubHeading(subHeadings.resolveClaim),
+      super.expectSubHeading(subHeadings.hearingDetails),
+    ]);
   }
 
   async confirmYourDetails() {

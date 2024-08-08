@@ -6,7 +6,11 @@ import { buttons, heading, paragraphs } from './expert-content';
 @AllMethodsStep()
 export default class ExpertPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectText(paragraphs.descriptionText1), super.expectText(paragraphs.descriptionText2)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectText(paragraphs.descriptionText1),
+      super.expectText(paragraphs.descriptionText2),
+    ]);
   }
 
   async chooseNoExpert() {

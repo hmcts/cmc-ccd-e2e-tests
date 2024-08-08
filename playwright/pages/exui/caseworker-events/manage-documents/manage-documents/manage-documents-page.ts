@@ -17,7 +17,11 @@ export default class ManageDocumentsPage extends ExuiEvent(BasePage) {
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), this.staffDocumentsFragment.verifyContent()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      this.staffDocumentsFragment.verifyContent(),
+    ]);
   }
 
   async enterDocumentDetais() {

@@ -8,7 +8,11 @@ import CaseworkerEvents from '../../../../../enums/events/caseworker-events';
 @AllMethodsStep()
 export default class MediationUnsuccessfulSubmitPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.verifyEventSummaryContent()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.verifyEventSummaryContent(),
+    ]);
   }
 
   async submit() {

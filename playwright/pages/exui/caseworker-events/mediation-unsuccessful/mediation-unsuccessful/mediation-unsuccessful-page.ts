@@ -7,7 +7,12 @@ import { dropdowns, heading, subHeadings } from './mediation-unsuccessful-conten
 @AllMethodsStep()
 export default class MediationUnsuccessfulPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.expectSubHeading(subHeadings.defendants), super.expectText(caseData.respondents[0].value.claimantProvidedPartyName, { exact: true })]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.expectSubHeading(subHeadings.defendants),
+      super.expectText(caseData.respondents[0].value.claimantProvidedPartyName, { exact: true }),
+    ]);
   }
 
   async chooseMediationFailedReason() {

@@ -10,7 +10,11 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
   private legalAdvisorEventsFactory: LegalAdvisorEventsFactory;
   private exuiDashboardFactory: ExuiDashboardFactory;
 
-  constructor(legalAdvisorEventsFactory: LegalAdvisorEventsFactory, exuiDashboardFactory: ExuiDashboardFactory, testData: TestData) {
+  constructor(
+    legalAdvisorEventsFactory: LegalAdvisorEventsFactory,
+    exuiDashboardFactory: ExuiDashboardFactory,
+    testData: TestData,
+  ) {
     super(testData);
     this.legalAdvisorEventsFactory = legalAdvisorEventsFactory;
     this.exuiDashboardFactory = exuiDashboardFactory;
@@ -34,7 +38,10 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
     await generateOrderSubmitPage.verifyContent(this.ccdCaseData);
     await generateOrderSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, LegalAdvisorEvents.GENERATE_ORDER);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      LegalAdvisorEvents.GENERATE_ORDER,
+    );
   }
 
   async ActionReviewComments() {
@@ -54,7 +61,10 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
     await actionReviewCommentsSubmitPage.verifyContent(this.ccdCaseData);
     await actionReviewCommentsSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, LegalAdvisorEvents.ACTION_REVIEW_COMMENTS);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      LegalAdvisorEvents.ACTION_REVIEW_COMMENTS,
+    );
   }
 
   async DrawDirectionsOrder() {
@@ -69,6 +79,9 @@ export default class LegalAdvisorEventsSteps extends BaseSteps {
     await drawDirectionsOrderSubmitPage.verifyContent(this.ccdCaseData);
     await drawDirectionsOrderSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, LegalAdvisorEvents.DRAW_DIRECTIONS_ORDER);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      LegalAdvisorEvents.DRAW_DIRECTIONS_ORDER,
+    );
   }
 }

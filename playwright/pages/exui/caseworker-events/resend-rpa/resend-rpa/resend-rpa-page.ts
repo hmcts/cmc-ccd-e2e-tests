@@ -7,7 +7,11 @@ import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
 @AllMethodsStep()
 export default class ResendRpaPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.expectLabel(dropdowns.resendRpa.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.expectLabel(dropdowns.resendRpa.label),
+    ]);
   }
 
   async chooseClaimRpa() {

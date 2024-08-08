@@ -5,7 +5,11 @@ import { headings, subHeadings, links } from './create-claim-confirmation-conten
 @AllMethodsStep()
 export default class CreateClaimConfirmationPage extends BasePage {
   async verifyContent(): Promise<void> {
-    await super.runVerifications([super.expectText(headings.claimSubmitted.title), super.expectSubHeading(subHeadings.whatHappensNext), super.expectSubHeading(subHeadings.defendantPaysYou)]);
+    await super.runVerifications([
+      super.expectText(headings.claimSubmitted.title),
+      super.expectSubHeading(subHeadings.whatHappensNext),
+      super.expectSubHeading(subHeadings.defendantPaysYou),
+    ]);
   }
 
   async goToAccount() {

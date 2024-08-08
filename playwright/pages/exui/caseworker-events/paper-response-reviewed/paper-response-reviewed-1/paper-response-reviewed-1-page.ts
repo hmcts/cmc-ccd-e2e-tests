@@ -1,4 +1,10 @@
-import { buttons, dropdowns, heading, inputs, subHeadings } from './paper-response-reviewed-1-content';
+import {
+  buttons,
+  dropdowns,
+  heading,
+  inputs,
+  subHeadings,
+} from './paper-response-reviewed-1-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import ExuiEvent from '../../../exui-event/exui-event';
@@ -12,15 +18,24 @@ export default class PaperResponseReviewed1Page extends ExuiEvent(BasePage) {
   }
 
   async chooseBulkScanOrEmail() {
-    await super.selectFromDropdown(dropdowns.responseType.options[0], dropdowns.responseType.selector);
+    await super.selectFromDropdown(
+      dropdowns.responseType.options[0],
+      dropdowns.responseType.selector,
+    );
     await super.expectSubHeading(subHeadings.bulkScanOrEmail);
   }
 
   async enterOcon9xDocDetails() {
     await super.clickBySelector(buttons.addNewBulkOrEmailDoc.selector);
     await super.retryUploadFile(filePaths.testPdfFile, inputs.doc1Link.selector);
-    await super.selectFromDropdown(dropdowns.doc1DocType.options[0], dropdowns.doc1DocType.selector);
-    await super.selectFromDropdown(dropdowns.doc1DocSubType.options[0], dropdowns.doc1DocSubType.selector);
+    await super.selectFromDropdown(
+      dropdowns.doc1DocType.options[0],
+      dropdowns.doc1DocType.selector,
+    );
+    await super.selectFromDropdown(
+      dropdowns.doc1DocSubType.options[0],
+      dropdowns.doc1DocSubType.selector,
+    );
   }
 
   async submit() {

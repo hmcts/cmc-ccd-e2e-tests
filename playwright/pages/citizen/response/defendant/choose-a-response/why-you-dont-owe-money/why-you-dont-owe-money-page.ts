@@ -7,7 +7,12 @@ import { getHeading, radioButtons } from './why-you-dont-owe-money-content';
 @AllMethodsStep()
 export default class WhyYouDontOweMoneyPage extends CitizenEvent(BasePage) {
   async verifyContent(caseData: ClaimStoreCaseData) {
-    await super.runVerifications([super.expectHeading(getHeading(caseData)), super.expectLabel(radioButtons.paid.label), super.expectLabel(radioButtons.dispute.label), super.expectLabel(radioButtons.disputeAndCounter.label)]);
+    await super.runVerifications([
+      super.expectHeading(getHeading(caseData)),
+      super.expectLabel(radioButtons.paid.label),
+      super.expectLabel(radioButtons.dispute.label),
+      super.expectLabel(radioButtons.disputeAndCounter.label),
+    ]);
   }
 
   async disputeAll() {

@@ -1,6 +1,7 @@
 import ClaimStoreCaseData from '../../../../../types/case-data/claim-store-case-data';
 
-export const getHeading = (caseData: ClaimStoreCaseData) => `${caseData.claim.claimants[0].name} v ${caseData.claim.defendants[0].name}`;
+export const getHeading = (caseData: ClaimStoreCaseData) =>
+  `${caseData.claim.claimants[0].name} v ${caseData.claim.defendants[0].name}`;
 
 export const tabs = {
   latestUpdate: 'Latest update',

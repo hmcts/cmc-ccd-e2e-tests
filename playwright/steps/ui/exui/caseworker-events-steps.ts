@@ -10,7 +10,11 @@ export default class CaseworkerEventsSteps extends BaseSteps {
   private caseworkerEventsFactory: CaseworkerEventsFactory;
   private exuiDashboardFactory: ExuiDashboardFactory;
 
-  constructor(caseworkerEventsFactory: CaseworkerEventsFactory, exuiDashboardFactory: ExuiDashboardFactory, testData: TestData) {
+  constructor(
+    caseworkerEventsFactory: CaseworkerEventsFactory,
+    exuiDashboardFactory: ExuiDashboardFactory,
+    testData: TestData,
+  ) {
     super(testData);
     this.caseworkerEventsFactory = caseworkerEventsFactory;
     this.exuiDashboardFactory = exuiDashboardFactory;
@@ -46,7 +50,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await changeContactDetailsSubmitPage.verifyContent(this.ccdCaseData);
     await changeContactDetailsSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CHANGE_CONTACT_DETAILS);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.CHANGE_CONTACT_DETAILS,
+    );
     await caseDetailsPage.verifyNewClaimantDetails();
   }
 
@@ -68,7 +75,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await changeContactDetailsSubmitPage.verifyContent(this.ccdCaseData);
     await changeContactDetailsSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CHANGE_CONTACT_DETAILS);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.CHANGE_CONTACT_DETAILS,
+    );
     await caseDetailsPage.verifyNewDefendantDetails();
   }
 
@@ -85,7 +95,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await manageDocumentsSubmitPage.verifyContent(this.ccdCaseData);
     await manageDocumentsSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MANAGE_DOCUMENTS);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.MANAGE_DOCUMENTS,
+    );
     await caseDetailsPage.verifyUploadedDocuments();
   }
 
@@ -155,7 +168,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await waitingToBeTransferredSubmitPage.verifyContent(this.ccdCaseData);
     await waitingToBeTransferredSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.WAITING_TO_BE_TRANSFERRED);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.WAITING_TO_BE_TRANSFERRED,
+    );
   }
 
   async LinkLetterHolder() {
@@ -177,7 +193,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await attachViaBulkScanSubmitPage.verifyContent(this.ccdCaseData);
     await attachViaBulkScanSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.ATTACH_VIA_BULK_SCAN);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.ATTACH_VIA_BULK_SCAN,
+    );
   }
 
   async SupportUpdate() {
@@ -216,7 +235,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await issuePaperDefenceFormsSubmitPage.verifyContent(this.ccdCaseData);
     await issuePaperDefenceFormsSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.ISSUE_PAPER_DEFENCE_FORMS);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.ISSUE_PAPER_DEFENCE_FORMS,
+    );
   }
 
   async PaperResponseReviewed() {
@@ -238,7 +260,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await paperResponseReviewedSubmitPage.verifyContent(this.ccdCaseData);
     await paperResponseReviewedSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.PAPER_RESP_REVIEWED);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.PAPER_RESP_REVIEWED,
+    );
   }
 
   async ReviewOcon9xPaperResponse() {
@@ -254,7 +279,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await reveiwOcon9xPaperResponseSubmitPage.verifyContent(this.ccdCaseData);
     await reveiwOcon9xPaperResponseSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.REVIEW_OCON9X_RESP);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.REVIEW_OCON9X_RESP,
+    );
   }
 
   async PaperResponseAdmission() {
@@ -270,7 +298,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await paperResponseAdmissionSubmitPage.verifyContent(this.ccdCaseData);
     await paperResponseAdmissionSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.PAPER_RESP_ADMISSIOON);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.PAPER_RESP_ADMISSIOON,
+    );
   }
 
   async PaperResponseDefence() {
@@ -287,7 +318,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await paperResponseDefenceSubmitPage.verifyContent(this.ccdCaseData);
     await paperResponseDefenceSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.PAPER_RESP_DEFENCE);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.PAPER_RESP_DEFENCE,
+    );
   }
 
   async MediationPending() {
@@ -298,7 +332,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await mediationPendingSubmitPage.verifyContent(this.ccdCaseData);
     await mediationPendingSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.REFERRED_MEDIATION);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.REFERRED_MEDIATION,
+    );
   }
 
   async MediationSuccessful() {
@@ -319,7 +356,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await mediationSuccessfulSubmitPage.verifyContent(this.ccdCaseData);
     await mediationSuccessfulSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_SUCCESSFUL);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.MEDIATION_SUCCESSFUL,
+    );
   }
 
   async MediationUnsuccessful() {
@@ -335,12 +375,18 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await mediationUnsuccessfulSubmitPage.verifyContent(this.ccdCaseData);
     await mediationUnsuccessfulSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.MEDIATION_FAILED);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.MEDIATION_FAILED,
+    );
   }
 
   async VerifyBreathingSpace() {
     const { caseDetailsPage } = this.exuiDashboardFactory;
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.ENTER_BREATHING_SPACE);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.ENTER_BREATHING_SPACE,
+    );
   }
 
   async EnterBreathingSpace() {
@@ -360,7 +406,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await enterBreathingSpaceSubmitPage.verifyContent(this.ccdCaseData);
     await enterBreathingSpaceSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.ENTER_BREATHING_SPACE);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.ENTER_BREATHING_SPACE,
+    );
   }
 
   async LiftBreathingSpace() {
@@ -372,7 +421,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await liftBreathingSpacePage.enterBreathingSpaceDetails();
     await liftBreathingSpacePage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.LIFT_BREATHING_SPACE);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.LIFT_BREATHING_SPACE,
+    );
   }
 
   async CaseHandedToCCBC() {
@@ -383,7 +435,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await caseHandedToCCBCSubmitPage.verifyContent(this.ccdCaseData);
     await caseHandedToCCBCSubmitPage.submit();
 
-    await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.CASE_HANDED_TO_CCBC);
+    await caseDetailsPage.verifySuccessEvent(
+      this.ccdCaseData.id,
+      CaseworkerEvents.CASE_HANDED_TO_CCBC,
+    );
   }
 
   async EnterBreathingSpaceError() {

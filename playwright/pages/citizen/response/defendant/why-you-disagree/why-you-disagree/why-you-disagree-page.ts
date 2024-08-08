@@ -6,7 +6,11 @@ import { heading, inputs, paragraphs } from './why-you-disagree-content';
 @AllMethodsStep()
 export default class WhyYouDisagreePage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await Promise.all([super.expectHeading(heading), super.expectText(paragraphs.theirReasons), super.expectText(inputs.disagreeReason.label)]);
+    await Promise.all([
+      super.expectHeading(heading),
+      super.expectText(paragraphs.theirReasons),
+      super.expectText(inputs.disagreeReason.label),
+    ]);
   }
 
   async fillDisagreeReason() {

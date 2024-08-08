@@ -4,7 +4,12 @@ import { getSubHeading, links, tabs } from './claimant-claim-details-content';
 
 export default class ClaimantClaimDetailsPage extends BasePage {
   async verifyContent(caseData: ClaimStoreCaseData) {
-    await super.runVerifications([super.expectSubHeading(getSubHeading(caseData)), super.expectText(caseData.referenceNumber), super.expectText(tabs.latestUpdate), super.expectText(tabs.documents, { exact: true })]);
+    await super.runVerifications([
+      super.expectSubHeading(getSubHeading(caseData)),
+      super.expectText(caseData.referenceNumber),
+      super.expectText(tabs.latestUpdate),
+      super.expectText(tabs.documents, { exact: true }),
+    ]);
   }
 
   async breathingSpace() {

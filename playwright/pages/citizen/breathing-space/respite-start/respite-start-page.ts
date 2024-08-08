@@ -7,7 +7,13 @@ import { heading, inputs, paragraphs } from './respite-start-content';
 @AllMethodsStep()
 export default class RespiteStartPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectText(paragraphs.descriptionText), super.expectLabel(inputs.day.label), super.expectLabel(inputs.month.label), super.expectLabel(inputs.year.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectText(paragraphs.descriptionText),
+      super.expectLabel(inputs.day.label),
+      super.expectLabel(inputs.month.label),
+      super.expectLabel(inputs.year.label),
+    ]);
   }
 
   async enterRespiteStartDate() {

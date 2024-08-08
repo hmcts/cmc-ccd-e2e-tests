@@ -4,7 +4,11 @@ import { heading, inputs, paragraphs } from './enter-claim-number-content';
 
 export default class EnterClaimNumberPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectText(paragraphs.descriptionText), super.expectLabel(inputs.claimNumber.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectText(paragraphs.descriptionText),
+      super.expectLabel(inputs.claimNumber.label),
+    ]);
   }
 
   async fillClaimNumber(claimNumber: string) {

@@ -24,5 +24,7 @@ if (!config.skipAuthSetup) {
   });
 } else {
   console.log('SKIP_AUTH_SETUP: Skip authenticate exui users and save cookies setup');
-  console.log('SKIP_AUTH_SETUP: Exui users will be logged in via Idam when needed during each test execution');
+  console.log(
+    'SKIP_AUTH_SETUP: Exui users will be logged in via Idam when needed during each test execution',
+  );
 }

@@ -6,7 +6,10 @@ import { heading, inputs } from './reference-number-content';
 @AllMethodsStep()
 export default class ReferenceNumberPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectLabel(inputs.refNum.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectLabel(inputs.refNum.label),
+    ]);
   }
 
   async enterReferenceNumber() {

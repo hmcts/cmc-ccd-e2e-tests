@@ -1,7 +1,15 @@
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import ExuiEvent from '../../exui-event/exui-event';
-import { legends, checkboxes, radioButtons, buttons, dropdowns, inputs, subHeadings } from './sdo-content';
+import {
+  legends,
+  checkboxes,
+  radioButtons,
+  buttons,
+  dropdowns,
+  inputs,
+  subHeadings,
+} from './sdo-content';
 
 @AllMethodsStep()
 export default class SdoFragment extends ExuiEvent(BasePage) {
@@ -34,7 +42,10 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
         super.expectInputValue(inputs.expertReport.selector, inputs.expertReport.value),
         // super.expectDropdownOption(dropdowns.extraDirection.selector, dropdowns.extraDirection.options[0]),
         // super.expectDropdownOption(dropdowns.directionParty.selector, dropdowns.directionParty.options[0]),
-        super.expectInputValue(inputs.otherDirectionsExtraDocUpload.selector, inputs.otherDirectionsExtraDocUpload.value),
+        super.expectInputValue(
+          inputs.otherDirectionsExtraDocUpload.selector,
+          inputs.otherDirectionsExtraDocUpload.value,
+        ),
         // super.expectDropdownOption(dropdowns.hearingCourt.selector, dropdowns.hearingCourt.options[0]),
         // super.expectDropdownOption(dropdowns.hearingDuration.selector, dropdowns.hearingDuration.options[0])
       ],
@@ -48,14 +59,26 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
     await super.clickBySelector(radioButtons.yesExpert.selector);
     await super.inputText(inputs.expertReport.value, inputs.expertReport.selector);
     await super.clickBySelector(buttons.addDirection.selector);
-    await super.selectFromDropdown(dropdowns.extraDirection.options[0], dropdowns.extraDirection.selector);
+    await super.selectFromDropdown(
+      dropdowns.extraDirection.options[0],
+      dropdowns.extraDirection.selector,
+    );
     await super.expectLabel(dropdowns.directionParty.label);
     // await super.expectSubHeading(subHeadings.sendDocsInstructions);
-    await super.selectFromDropdown(dropdowns.directionParty.options[2], dropdowns.directionParty.selector);
+    await super.selectFromDropdown(
+      dropdowns.directionParty.options[2],
+      dropdowns.directionParty.selector,
+    );
     await super.clickBySelector(buttons.addNewOtherDirectionsExtraDocInstruction.selector);
     await super.inputText('Test', inputs.otherDirectionsExtraDocUpload.selector);
-    await super.selectFromDropdown(dropdowns.hearingCourt.options[0], dropdowns.hearingCourt.selector);
-    await super.selectFromDropdown(dropdowns.hearingDuration.options[0], dropdowns.hearingDuration.selector);
+    await super.selectFromDropdown(
+      dropdowns.hearingCourt.options[0],
+      dropdowns.hearingCourt.selector,
+    );
+    await super.selectFromDropdown(
+      dropdowns.hearingDuration.options[0],
+      dropdowns.hearingDuration.selector,
+    );
   }
 
   async submit() {

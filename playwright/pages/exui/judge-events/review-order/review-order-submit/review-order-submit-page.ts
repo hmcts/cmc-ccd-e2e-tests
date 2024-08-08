@@ -8,7 +8,11 @@ import JudgeEvents from '../../../../../enums/events/judge-events';
 @AllMethodsStep()
 export default class ReviewOrderSubmitPage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.verifyEventSummaryContent()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.verifyEventSummaryContent(),
+    ]);
   }
 
   async submit() {

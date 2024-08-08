@@ -5,7 +5,8 @@ export const subHeadings = {
 };
 
 export const paragraphs = {
-  descriptionText: 'You’ll have to pay an extra fee if you later want to change the name of an organisation involved with the claim.',
+  descriptionText:
+    'You’ll have to pay an extra fee if you later want to change the name of an organisation involved with the claim.',
 };
 
 export const inputs = {

@@ -8,7 +8,12 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 @AllMethodsStep()
 export default class MediationSuccessful1Page extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.expectSubHeading(subHeadings.defendants), super.expectText(caseData.respondents[0].value.claimantProvidedPartyName, { exact: true })]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.expectSubHeading(subHeadings.defendants),
+      super.expectText(caseData.respondents[0].value.claimantProvidedPartyName, { exact: true }),
+    ]);
   }
 
   async enterMediationDate() {

@@ -17,7 +17,11 @@ export default class JudgeDrawDirectionsOrder2Page extends ExuiEvent(BasePage) {
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), this.sdoFragment.verifyContent()]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      this.sdoFragment.verifyContent(),
+    ]);
   }
 
   async enterSdoDetails() {

@@ -13,7 +13,12 @@ import CCDCaseData from '../../types/case-data/ccd-case-data';
 export default class ApiCaseEventSteps extends BaseApiSteps {
   private caseDataFactory: CaseDataFactory;
 
-  constructor(requestsFactory: RequestsFactory, caseDataFactory: CaseDataFactory, isSetupTest: boolean, testData: TestData) {
+  constructor(
+    requestsFactory: RequestsFactory,
+    caseDataFactory: CaseDataFactory,
+    isSetupTest: boolean,
+    testData: TestData,
+  ) {
     super(requestsFactory, isSetupTest, testData);
     this.caseDataFactory = caseDataFactory;
   }
@@ -25,7 +30,11 @@ export default class ApiCaseEventSteps extends BaseApiSteps {
     initiateClaimPaymentCitizen.externalId = uuid();
 
     const { ccdRequests } = this.requestsFactory;
-    const caseData = await ccdRequests.updateCaseEvent(CaseEvents.INITIATE_PAYMENT_CASE, initiateClaimPaymentCitizen, claimant);
+    const caseData = await ccdRequests.updateCaseEvent(
+      CaseEvents.INITIATE_PAYMENT_CASE,
+      initiateClaimPaymentCitizen,
+      claimant,
+    );
 
     testCaseData.id = caseData.id;
 
@@ -54,16 +63,28 @@ export default class ApiCaseEventSteps extends BaseApiSteps {
 
   async ClaimantRejects() {
     const { ccdRequests } = this.requestsFactory;
-    await ccdRequests.updateCaseEvent(CaseEvents.CLAIMANT_REJECTS, this.ccdCaseData, claimants[this.workerIndex]);
+    await ccdRequests.updateCaseEvent(
+      CaseEvents.CLAIMANT_REJECTS,
+      this.ccdCaseData,
+      claimants[this.workerIndex],
+    );
   }
 
   async AssignForJudgeDirections() {
     const { ccdRequests } = this.requestsFactory;
-    await ccdRequests.updateCaseEvent(CaseEvents.ASSIGN_FOR_JUDGE_DIRECTIONS, this.ccdCaseData, claimants[this.workerIndex]);
+    await ccdRequests.updateCaseEvent(
+      CaseEvents.ASSIGN_FOR_JUDGE_DIRECTIONS,
+      this.ccdCaseData,
+      claimants[this.workerIndex],
+    );
   }
 
   async AssignForDirections() {
     const { ccdRequests } = this.requestsFactory;
-    await ccdRequests.updateCaseEvent(CaseEvents.ASSIGN_FOR_DIRECTIONS, this.ccdCaseData, claimants[this.workerIndex]);
+    await ccdRequests.updateCaseEvent(
+      CaseEvents.ASSIGN_FOR_DIRECTIONS,
+      this.ccdCaseData,
+      claimants[this.workerIndex],
+    );
   }
 }

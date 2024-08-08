@@ -13,7 +13,13 @@ export default class IdamSteps extends BaseSteps {
   private verifyCookiesBanner: boolean;
   private idamFactory: IdamFactory;
 
-  constructor(idamFactory: IdamFactory, isSetupTest: boolean, isTeardownTest: boolean, verifyCookiesBanner: boolean, testData: TestData) {
+  constructor(
+    idamFactory: IdamFactory,
+    isSetupTest: boolean,
+    isTeardownTest: boolean,
+    verifyCookiesBanner: boolean,
+    testData: TestData,
+  ) {
     super(testData);
     this.isSetupTest = isSetupTest;
     this.isTeardown = isTeardownTest;
@@ -22,12 +28,16 @@ export default class IdamSteps extends BaseSteps {
   }
 
   async ClaimantLogin(workerIndex?: number) {
-    const claimant: User = isNaN(workerIndex) ? claimants[this.workerIndex] : claimants[workerIndex];
+    const claimant: User = isNaN(workerIndex)
+      ? claimants[this.workerIndex]
+      : claimants[workerIndex];
     await this.citizenLogin(claimant);
   }
 
   async DefendantLogin(workerIndex?: number) {
-    const defendant: User = isNaN(workerIndex) ? defendants[this.workerIndex] : defendants[workerIndex];
+    const defendant: User = isNaN(workerIndex)
+      ? defendants[this.workerIndex]
+      : defendants[workerIndex];
     await this.citizenLogin(defendant);
   }
 

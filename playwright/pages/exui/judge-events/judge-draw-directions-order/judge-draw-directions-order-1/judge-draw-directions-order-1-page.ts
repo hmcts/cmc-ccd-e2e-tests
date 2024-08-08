@@ -7,7 +7,13 @@ import { heading, paragraphs, radioButtons } from './judge-draw-directions-order
 @AllMethodsStep()
 export default class JudgeDrawDirectionsOrder1Page extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.expectText(paragraphs.descriptionText), super.expectLabel(radioButtons.sdo.label), super.expectLabel(radioButtons.bespoke.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.expectText(paragraphs.descriptionText),
+      super.expectLabel(radioButtons.sdo.label),
+      super.expectLabel(radioButtons.bespoke.label),
+    ]);
   }
 
   async chooseSdo() {

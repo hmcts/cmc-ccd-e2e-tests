@@ -6,7 +6,10 @@ import { heading, inputs } from './mediation-phone-number-content';
 @AllMethodsStep()
 export default class MediationPhoneNumberPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectLabel(inputs.phoneNumber.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectLabel(inputs.phoneNumber.label),
+    ]);
   }
 
   async fillPhoneNumber() {

@@ -20,7 +20,9 @@ export const test = base.extend<TestDataFixture>({
     await use(page);
     if (testInfo.errors.length > 0)
       if (testInfo.errors.every((error) => error.value === 'accessibility')) {
-        const failedScreenshotAttachment = testInfo.attachments.find((attachment) => attachment.name === 'screenshot');
+        const failedScreenshotAttachment = testInfo.attachments.find(
+          (attachment) => attachment.name === 'screenshot',
+        );
         FileSystemHelper.delete(failedScreenshotAttachment.path, { force: true });
         FileSystemHelper.delete(await page.video().path(), { force: true });
       }
@@ -29,7 +31,9 @@ export const test = base.extend<TestDataFixture>({
   _axeBuilder: async ({ page }, use) => {
     let axeBuilder: AxeBuilder | undefined;
     if (config.runAxeTests) {
-      axeBuilder = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa']).setLegacyMode(true);
+      axeBuilder = new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa'])
+        .setLegacyMode(true);
     }
     await use(axeBuilder);
   },

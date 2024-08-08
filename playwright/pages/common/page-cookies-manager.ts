@@ -22,7 +22,9 @@ export default class PageCookiesManager extends BasePage {
   }
 
   async cookiesLogin(user: User, isTeardown: boolean) {
-    console.log(`Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`);
+    console.log(
+      `Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`,
+    );
     let cookies: Cookie[];
     try {
       cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);

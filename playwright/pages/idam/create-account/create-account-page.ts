@@ -5,7 +5,11 @@ import { heading, links, subHeadings } from './create-account-content';
 @AllMethodsStep()
 export default class CreateAccountPage extends BasePage {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectSubHeading(subHeadings.createAccount), super.expectSubHeading(subHeadings.haveAccount)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectSubHeading(subHeadings.createAccount),
+      super.expectSubHeading(subHeadings.haveAccount),
+    ]);
   }
 
   async clickSignIn() {

@@ -3,10 +3,18 @@ import DecoratorError from '../errors/decorator-error';
 export default class DecoratorHelper {
   private static methodNameToMethodParams = {};
 
-  static verifyParamNames = (className: string, methodName: string, decoratorName: string, actualParamNames: string[], paramNamesToCheck: string[]) => {
+  static verifyParamNames = (
+    className: string,
+    methodName: string,
+    decoratorName: string,
+    actualParamNames: string[],
+    paramNamesToCheck: string[],
+  ) => {
     for (const paramName of paramNamesToCheck) {
       if (!actualParamNames.includes(paramName)) {
-        throw new DecoratorError(`To use decorator: @${decoratorName}, ${paramName} must be a required parameter on ${className}.${methodName}`);
+        throw new DecoratorError(
+          `To use decorator: @${decoratorName}, ${paramName} must be a required parameter on ${className}.${methodName}`,
+        );
       }
     }
   };
@@ -41,11 +49,18 @@ export default class DecoratorHelper {
 
   private static cleanMethodParams(paramsString: string): string[] {
     const cleanParamsString = this.removeParamsInCurlyBraces(paramsString);
-    const cleanParamsList = this.splitParamsString(cleanParamsString).filter((part) => !part.includes('=') && !part.includes('options') && part.length !== 0);
+    const cleanParamsList = this.splitParamsString(cleanParamsString).filter(
+      (part) => !part.includes('=') && !part.includes('options') && part.length !== 0,
+    );
     return cleanParamsList;
   }
 
-  static getParamNamesFromMethod = (className: string, methodName: string, decoratorName: string, target: Function) => {
+  static getParamNamesFromMethod = (
+    className: string,
+    methodName: string,
+    decoratorName: string,
+    target: Function,
+  ) => {
     let cleanParamList: string[] = this.methodNameToMethodParams[className]?.[methodName];
     if (!cleanParamList) {
       const paramsString = this.getParamsStringFromMethodString(target.toString());
@@ -54,7 +69,9 @@ export default class DecoratorHelper {
 
       for (let i = 0; i < cleanParamList.length; i++) {
         if (cleanParamList[i] !== paramsList[i]) {
-          throw new DecoratorError(`To use decorator: @${decoratorName}, ${cleanParamList[i]} must be defined before any default or destructured parameters on method: ${className}.${methodName}`);
+          throw new DecoratorError(
+            `To use decorator: @${decoratorName}, ${cleanParamList[i]} must be defined before any default or destructured parameters on method: ${className}.${methodName}`,
+          );
         }
       }
 

@@ -6,7 +6,12 @@ import { heading, radioButtons } from './how-do-you-respond-to-claim-content';
 @AllMethodsStep()
 export default class HowDoYouRespondToClaimPage extends CitizenEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectHeading(heading), super.expectText(radioButtons.admitAll.label), super.expectText(radioButtons.partAdmit.label), super.expectText(radioButtons.rejectAll.label)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.expectText(radioButtons.admitAll.label),
+      super.expectText(radioButtons.partAdmit.label),
+      super.expectText(radioButtons.rejectAll.label),
+    ]);
   }
 
   async rejectAll() {

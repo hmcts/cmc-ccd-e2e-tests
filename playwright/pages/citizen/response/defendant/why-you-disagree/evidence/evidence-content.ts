@@ -5,7 +5,8 @@ export const subHeadings = {
 };
 
 export const paragraphs = {
-  yourEvidence: 'Tell us about any evidence you wish to provide. You do not need to send us any evidence now. If your case goes to a court hearing, and is not settled, you will need to provide evidence.',
+  yourEvidence:
+    'Tell us about any evidence you wish to provide. You do not need to send us any evidence now. If your case goes to a court hearing, and is not settled, you will need to provide evidence.',
 };
 
 export const dropdowns = {

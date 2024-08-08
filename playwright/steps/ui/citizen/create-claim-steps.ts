@@ -10,7 +10,11 @@ export default class CreateClaimSteps extends BaseSteps {
   private createClaimFactory: CreateClaimFactory;
   private citizenDashboardFactory: CitizenDashboardFactory;
 
-  constructor(createClaimFactory: CreateClaimFactory, citizenDashboardFactory: CitizenDashboardFactory, testData: TestData) {
+  constructor(
+    createClaimFactory: CreateClaimFactory,
+    citizenDashboardFactory: CitizenDashboardFactory,
+    testData: TestData,
+  ) {
     super(testData);
     this.createClaimFactory = createClaimFactory;
     this.citizenDashboardFactory = citizenDashboardFactory;

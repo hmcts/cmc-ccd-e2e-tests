@@ -7,7 +7,9 @@ import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
 @AllMethodsStep()
 export default class TransferCasePage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)], { axe: false });
+    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)], {
+      axe: false,
+    });
   }
 
   private async verifyAddressInputs() {

@@ -3,8 +3,18 @@ import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { TruthyParams } from '../../../../decorators/truthy-params';
 import ExuiEvents from '../../../../types/exui-events';
-import { tabs, dropdowns, buttons, containers, getSuccessBannerText, errorMessages } from './case-details-content';
-import { claimantInputs as claimantChangeDetailsInputs, defendantInputs as defendantChangeDetailsInputs } from '../../caseworker-events/change-contact-details/change-contact-details-1/change-contact-details-1-content';
+import {
+  tabs,
+  dropdowns,
+  buttons,
+  containers,
+  getSuccessBannerText,
+  errorMessages,
+} from './case-details-content';
+import {
+  claimantInputs as claimantChangeDetailsInputs,
+  defendantInputs as defendantChangeDetailsInputs,
+} from '../../caseworker-events/change-contact-details/change-contact-details-1/change-contact-details-1-content';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { doc1Dropdowns } from '../../fragments/staff-documents/staff-documents-content';
 
@@ -93,7 +103,9 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyFullReject() {
     await super.clickByText(tabs.claimHistory.title);
-    await super.expectTableRowValue('Disputed all', containers.eventHistory.selector, { rowNum: 1 });
+    await super.expectTableRowValue('Disputed all', containers.eventHistory.selector, {
+      rowNum: 1,
+    });
   }
 
   async verifyBreathingSpaceError() {

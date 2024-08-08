@@ -6,7 +6,12 @@ import FileType from '../enums/file-type';
 import filePaths from '../config/file-paths';
 
 export default class FileSystemHelper {
-  private static writeFileDirs = [`${filePaths.users}/`, `${filePaths.userCookies}/`, `${filePaths.axe}/`, 'test-resu'];
+  private static writeFileDirs = [
+    `${filePaths.users}/`,
+    `${filePaths.userCookies}/`,
+    `${filePaths.axe}/`,
+    'test-resu',
+  ];
 
   static exists = (filePath: string) => fs.existsSync(filePath);
 
@@ -56,7 +61,9 @@ export default class FileSystemHelper {
 
   private static validateFile = (filePath = '', fileType: FileType) => {
     if (!this.exists(filePath)) {
-      throw new FileError(`Failed to read ${fileType} with path ${filePath}. File path is invalid or does not exist.`);
+      throw new FileError(
+        `Failed to read ${fileType} with path ${filePath}. File path is invalid or does not exist.`,
+      );
     }
   };
 

@@ -7,7 +7,11 @@ import { dropdowns, heading, subHeadings } from './review-ocon9x-paper-response-
 @AllMethodsStep()
 export default class ReviewOcon9xPaperResponsePage extends ExuiEvent(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData), super.expectSubHeading(subHeadings.scannedDocs)]);
+    await super.runVerifications([
+      super.expectHeading(heading),
+      super.verifyCaseTitle(caseData),
+      super.expectSubHeading(subHeadings.scannedDocs),
+    ]);
   }
 
   async chooseOcon9xDoc() {

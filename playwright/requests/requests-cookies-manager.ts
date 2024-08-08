@@ -19,7 +19,9 @@ export default class RequestsCookiesManager {
   async getUserId({ cookiesPath, role }: User) {
     const cookies: Cookie[] = FileSystemHelper.readFile(cookiesPath, FileType.JSON);
     if (role === UserRole.CITIZEN) {
-      throw new Error('User Id cannot be access via cookies a test project setup process will need to be created to stored this before tests commence.');
+      throw new Error(
+        'User Id cannot be access via cookies a test project setup process will need to be created to stored this before tests commence.',
+      );
     }
     return cookies.find((cookie) => cookie.name === '__userid__')!.value;
   }
