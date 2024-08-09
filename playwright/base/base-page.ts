@@ -3,11 +3,11 @@ import AxeBuilder from '@axe-core/playwright';
 import config from '../config/config';
 import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
-import { pageExpect } from '../playwright-fixtures';
+import { pageExpect, test } from '../playwright-fixtures';
 import Timer from '../helpers/timer';
 import { getDomain } from '../config/urls';
 import { BoxedDetailedStep, Step } from '../decorators/test-steps';
-import { test } from '../playwright-fixtures/index';
+import ClassMethodHelper from '../helpers/class-method-helper';
 
 const classKey = 'BasePage';
 export default abstract class BasePage {
@@ -175,33 +175,31 @@ export default abstract class BasePage {
 
   protected async runVerifications(
     expects?: Promise<void> | Promise<void>[],
-    { axe = true, expectedAxeViolations = 0, axeExclusions = [] } = {},
+    { axe = true, axeExclusions = [] } = {},
   ) {
     if (expects) {
       Array.isArray(expects) ? await Promise.all(expects) : await expects;
     }
 
     if (config.runAxeTests && this.axeBuilder && axe) {
-      await this.expectAxe(expectedAxeViolations, axeExclusions);
+      await this.expectAxeToPass(axeExclusions);
     }
   }
 
-  @BoxedDetailedStep(classKey, 'expectedAxeViolations')
-  private async expectAxe(expectedAxeViolations: number, axeExclusions: string[]) {
+  @BoxedDetailedStep(classKey)
+  private async expectAxeToPass(axeExclusions: string[]) {
     let axeBuilder = this.axeBuilder;
     for (const axeExclusion of axeExclusions) {
       axeBuilder = axeBuilder.exclude(axeExclusion);
     }
-    const results = await axeBuilder.analyze();
-    const violations = results.violations;
+    const pageName = ClassMethodHelper.formatClassName(this.constructor.name);
 
-    await pageExpect
-      .soft(violations)
-      .toHaveAxeViolations(expectedAxeViolations, this.constructor.name, this.page);
+    const errorsNumBefore = test.info().errors.length;
+    await pageExpect.soft(pageName).toHaveNoAxeViolationsCache(axeBuilder, this.page);
+    const errorsAfter = test.info().errors;
 
-    if (expectedAxeViolations !== violations.length) {
-      const errors = test.info().errors;
-      errors[errors.length - 1].value = 'accessibility';
+    if (errorsAfter.length > errorsNumBefore) {
+      errorsAfter[errorsAfter.length - 1].value = 'accessibility';
     }
   }
 
@@ -244,11 +242,12 @@ export default abstract class BasePage {
 
   @BoxedDetailedStep(classKey, 'selector')
   protected async expectNoSelector(selector: string, options: { timeout?: number } = {}) {
+    const locator = this.page.locator(selector);
     try {
-      await this.expectSelector(selector, { timeout: 500 });
+      await locator.waitFor({ state: 'visible', timeout: 500 });
       // eslint-disable-next-line no-empty
     } catch (err) {}
-    await pageExpect(this.page.locator(selector)).toBeHidden(options);
+    await pageExpect(locator).toBeHidden(options);
   }
 
   private getTextLocator(
@@ -293,7 +292,7 @@ export default abstract class BasePage {
   ) {
     const locator = this.getTextLocator(text, options.exact, options.selector, options.first);
     try {
-      await this.expectText(text, { timeout: 500 });
+      await locator.waitFor({ state: 'visible', timeout: 500 });
       // eslint-disable-next-line no-empty
     } catch (err) {}
     await pageExpect(locator).toBeHidden(options);

@@ -4,7 +4,6 @@ import AxeBuilder from '@axe-core/playwright';
 import config from '../../config/config';
 import CaseDataFactory from '../../fixtures/case-data/case-data-factory';
 import FileSystemHelper from '../../helpers/file-system-helper';
-import { error } from 'console';
 
 type TestDataFixture = {
   _axeBuilder?: AxeBuilder;
@@ -16,17 +15,20 @@ type TestDataFixture = {
 };
 
 export const test = base.extend<TestDataFixture>({
-  page: async ({ page }, use, testInfo) => {
+  page: async ({ page, request }, use, testInfo) => {
     await use(page);
-    if (testInfo.errors.length > 0)
-      if (testInfo.errors.every((error) => error.value === 'accessibility')) {
+    if (testInfo.errors.length > 0) {
+      const allErrorsAxe = testInfo.errors.every((error) => error.value === 'accessibility');
+      if (allErrorsAxe) {
         const failedScreenshotAttachment = testInfo.attachments.find(
           (attachment) => attachment.name === 'screenshot',
         );
         FileSystemHelper.delete(failedScreenshotAttachment.path, { force: true });
         FileSystemHelper.delete(await page.video().path(), { force: true });
+        test.fail();
       }
-    testInfo.errors.reverse();
+      testInfo.errors.reverse();
+    }
   },
   _axeBuilder: async ({ page }, use) => {
     let axeBuilder: AxeBuilder | undefined;

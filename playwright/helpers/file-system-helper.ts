@@ -10,7 +10,6 @@ export default class FileSystemHelper {
     `${filePaths.users}/`,
     `${filePaths.userCookies}/`,
     `${filePaths.axe}/`,
-    'test-resu',
   ];
 
   static exists = (filePath: string) => fs.existsSync(filePath);
@@ -25,7 +24,9 @@ export default class FileSystemHelper {
   private static encode = (data: any, fileType: FileType): any => {
     switch (fileType) {
       case FileType.JSON:
-        return JSON.stringify(data);
+        return JSON.stringify(data, null, 2);
+      case FileType.PNG:
+        return data;
     }
   };
 

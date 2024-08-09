@@ -2,7 +2,6 @@ import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashbo
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
-import FileSystemHelper from '../../../helpers/file-system-helper';
 import User from '../../../types/user';
 
 @AllMethodsStep()

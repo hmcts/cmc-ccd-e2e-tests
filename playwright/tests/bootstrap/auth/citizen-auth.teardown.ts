@@ -1,5 +1,4 @@
 import config from '../../../config/config';
-import { claimants, defendants } from '../../../config/users';
 import { test as teardown } from '../../../playwright-fixtures/index';
 
 if (!config.skipAuthSetup) {

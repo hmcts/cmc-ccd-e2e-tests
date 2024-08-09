@@ -3,7 +3,6 @@ import DecoratorError from '../errors/decorator-error';
 import DecoratorHelper from '../helpers/decorator-helper';
 import { test } from '../playwright-fixtures/index';
 import ClassMethodHelper from '../helpers/class-method-helper';
-import allure from 'allure-playwright';
 
 //DO NOT APPLY AllMethodStep Decorator with Step decorator!!!!!
 

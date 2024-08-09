@@ -2,7 +2,7 @@ import { isAsyncFunction } from 'util/types';
 import DecoratorHelper from '../helpers/decorator-helper';
 import ClassMethodHelper from '../helpers/class-method-helper';
 
-const truthyParamsFlag = '__truthyParamsApplied';
+// const truthyParamsFlag = '__truthyParamsApplied';
 
 const checkTruthy = (paramName: string, argValue: any, falsyParams: string[]) => {
   if (!argValue) {

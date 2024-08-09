@@ -32,6 +32,20 @@ export const claimants: User[] =
   UserStateHelper.getUsersFromState(UserType.CLAIMANT) ??
   UserStateHelper.generateCitizenUsers(UserType.CLAIMANT);
 
+// export const claimants: User[] = [{
+//   email: 'cmctest1001@gmail.com',
+//   password: 'Password12!',
+//   role: UserRole.CITIZEN,
+//   type: UserType.DEFENDANT
+//  }];
+
 export const defendants: User[] =
   UserStateHelper.getUsersFromState(UserType.DEFENDANT) ??
   UserStateHelper.generateCitizenUsers(UserType.DEFENDANT);
+
+// export const defendants: User[] = [{
+//  email: 'cmctest1001@gmail.com',
+//  password: 'Password12!',
+//  role: UserRole.CITIZEN,
+//  type: UserType.DEFENDANT
+// }];

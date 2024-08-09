@@ -8,11 +8,11 @@ import config from '../config/config';
 
 export default class UserStateHelper {
   static readonly statePaths = {
-    claimant: `${filePaths.users}/claimant-users.json`,
-    defendant: `${filePaths.users}/defendant-users.json`,
-    caseworker: `${filePaths.users}/caseworker-users.json`,
-    judge: `${filePaths.users}/judge-users.json`,
-    legalAdvisor: `${filePaths.users}/legal-advisor-users.json`,
+    [UserType.CLAIMANT]: `${filePaths.users}/claimant-users.json`,
+    [UserType.DEFENDANT]: `${filePaths.users}/defendant-users.json`,
+    [UserType.CASEWORKER]: `${filePaths.users}/caseworker-users.json`,
+    [UserType.JUDGE]: `${filePaths.users}/judge-users.json`,
+    [UserType.LEGALADVISOR]: `${filePaths.users}/legal-advisor-users.json`,
   };
 
   static generateCitizenUsers = (userType: UserType): User[] => {

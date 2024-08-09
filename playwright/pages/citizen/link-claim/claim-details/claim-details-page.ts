@@ -1,7 +1,9 @@
 import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { buttons, heading, paragraphs } from './claim-details-content';
 
+@AllMethodsStep()
 export default class ClaimDetailsPage extends CitizenEvent(BasePage) {
   async verifyContent(claimRef: string) {
     await super.runVerifications([

@@ -7,7 +7,7 @@ export default defineConfig({
   globalTeardown: process.env.CI ? undefined : './playwright/global/teardown-local',
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
-  retries: process.env.CI ? 0 : 0,
+  retries: process.env.CI ? 2 : 0,
   workers: config.playwright.workers,
   reporter: process.env.CI
     ? [
@@ -20,6 +20,7 @@ export default defineConfig({
                 : 'allure-bootstrap-results',
             environmentInfo: {
               Environment: process.env.ENVIRONMENT,
+              Workers: process.env.WORKERS,
               OS: os.platform(),
               Architecture: os.arch(),
               NodeVersion: process.version,

@@ -1,10 +1,11 @@
-import filePaths from '../config/file-paths';
-import FileSystemHelper from '../helpers/file-system-helper';
+import AxeCacheHelper from '../helpers/axe-cache-helper';
+import CookiesHelper from '../helpers/cookies-helper';
 import UserStateHelper from '../helpers/users-state-helper';
 
 const globalTeardownCI = () => {
   UserStateHelper.deleteAllUsersState();
-  FileSystemHelper.delete(`${filePaths.userCookies}/`);
+  CookiesHelper.deleteAllCookies();
+  AxeCacheHelper.deleteAllCache();
 };
 
 globalTeardownCI();

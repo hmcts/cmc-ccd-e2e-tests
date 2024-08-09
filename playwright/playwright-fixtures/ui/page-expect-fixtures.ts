@@ -1,23 +1,90 @@
 import test, { expect as baseExpect, Page } from '@playwright/test';
 import config from '../../config/config';
+import AxeBuilder from '@axe-core/playwright';
+import AxeCacheHelper from '../../helpers/axe-cache-helper';
+import { PageResult } from '../../types/axe-results';
 
 export const expect = baseExpect
   .extend({
-    async toHaveAxeViolations(violations: any[], expected = 0, pageName: string, page: Page) {
-      const assertionName = 'toHaveAxeViolations';
-      const accessibilityViolationsName = `${pageName}-Accessibility-Violations.json`;
-      let pass: boolean;
+    async toHaveNoAxeViolationsCache(pageName: string, axeBuilder: AxeBuilder, page: Page) {
+      const assertionName = 'toHaveNoAxeViolationsCache';
+      const testInfo = test.info();
       let matcherResult: any;
+      let pageResults: PageResult;
 
-      try {
-        baseExpect(violations).toHaveLength(expected);
-        pass = true;
-      } catch (e: any) {
-        matcherResult = e.matcherResult;
-        pass = false;
+      pageResults = await AxeCacheHelper.getAxePageResult(testInfo.project.name, pageName);
+
+      if (!pageResults) {
+        let pass = true;
+        let screenshot: Buffer;
+        const results = await axeBuilder.analyze();
+        const violations = results.violations;
+        if (violations.length > 0) {
+          pass = false;
+          screenshot = await page.screenshot({ fullPage: true });
+        }
+        pageResults = await AxeCacheHelper.writeAxePageResult(
+          testInfo.project.name,
+          pageName,
+          testInfo.title,
+          pass,
+          violations,
+          screenshot,
+        );
       }
 
-      if (violations.length !== expected) {
+      if (!pageResults.pass) {
+        if (pageResults.violationsInfo)
+          await testInfo.attach(pageResults.violationsInfo.fileName, {
+            path: pageResults.violationsInfo.filePath,
+          });
+        if (pageResults.screenshotInfo)
+          await testInfo.attach(pageResults.screenshotInfo.fileName, {
+            path: pageResults.screenshotInfo.filePath,
+          });
+      }
+
+      try {
+        baseExpect(pageResults.pass ? 0 : pageResults.violationsInfo.length).toBe(0);
+      } catch (e: any) {
+        matcherResult = e.matcherResult;
+      }
+
+      const message = pageResults.pass
+        ? () =>
+            this.utils.matcherHint(assertionName, undefined, undefined, {
+              isNot: this.isNot,
+            }) +
+            '\n\n' +
+            `Expected: ${this.isNot ? 'not ' : ''}${pageName} to have 0 violation(s)\n` +
+            `Received: ${pageName} with 0 violation(s)`
+        : () =>
+            this.utils.matcherHint(assertionName, undefined, undefined, {
+              isNot: this.isNot,
+            }) +
+            '\n\n' +
+            `Expected: ${pageName} to have 0 violation(s)\n` +
+            `Received: ${pageName} with ${pageResults.violationsInfo.length} violation(s), please check attached file: ${pageResults.violationsInfo.fileName}, for more details.`;
+
+      return {
+        message,
+        pass: pageResults.pass,
+        name: assertionName,
+        expected: 0,
+        actual: matcherResult?.actual,
+      };
+    },
+    async toHaveNoAxeViolations(pageName: string, axeBuilder: AxeBuilder, page: Page) {
+      const assertionName = 'toHaveNoAxeViolations';
+      const accessibilityViolationsName = `${pageName}-Accessibility-Violations.json`;
+      let pass = true;
+      let matcherResult: any;
+
+      const results = await axeBuilder.analyze();
+      const violations = results.violations;
+
+      if (violations.length > 0) {
+        pass = false;
         await test.info().attach(accessibilityViolationsName, {
           body: JSON.stringify(violations, null, 2),
           contentType: 'application/json',
@@ -29,27 +96,33 @@ export const expect = baseExpect
         });
       }
 
+      try {
+        baseExpect(pass ? 0 : violations.length).toBe(0);
+      } catch (e: any) {
+        matcherResult = e.matcherResult;
+      }
+
       const message = pass
         ? () =>
             this.utils.matcherHint(assertionName, undefined, undefined, {
               isNot: this.isNot,
             }) +
             '\n\n' +
-            `Expected: ${this.isNot ? 'not ' : ''}an array with ${expected} violation(s)\n` +
-            `Received: an array with ${expected} violation(s)`
+            `Expected: ${this.isNot ? 'not ' : ''}${pageName} to have 0 violation(s)\n` +
+            `Received: ${pageName} with 0 violation(s)`
         : () =>
             this.utils.matcherHint(assertionName, undefined, undefined, {
               isNot: this.isNot,
             }) +
             '\n\n' +
-            `Expected: an array with ${expected} violation(s)\n` +
-            `Received: an array with ${violations.length} violation(s), please check attached file: ${accessibilityViolationsName}, for more details`;
+            `Expected: ${pageName} to have 0 violation(s)\n` +
+            `Received: ${pageName} with ${violations.length} violation(s), please check attached file: ${accessibilityViolationsName}, for more details.`;
 
       return {
         message,
         pass,
         name: assertionName,
-        expected,
+        expected: 0,
         actual: matcherResult?.actual,
       };
     },

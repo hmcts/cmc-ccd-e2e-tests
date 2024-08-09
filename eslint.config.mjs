@@ -45,8 +45,16 @@ export default [
     },
   },
   {
-    files: ['playwright/pages/**/*', 'playwright/steps/**/*'],
+    files: [
+      'playwright/pages/**/*page.ts',
+      'playwright/pages/**/*fragment.ts',
+      'playwright/pages/**/*event.ts',
+      'playwright/steps/**/*steps.ts',
+      'playwright/base/base-page.ts',
+      'playwright/base/base-requests.ts',
+    ],
     rules: {
+      'customEslintPlugin/prefer-step-decorator': 'warn',
       'customEslintPlugin/no-duplicate-class-names': 'error',
     },
   },

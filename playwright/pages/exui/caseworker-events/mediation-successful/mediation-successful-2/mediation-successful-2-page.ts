@@ -3,7 +3,6 @@ import BasePage from '../../../../../base/base-page';
 import ExuiEvent from '../../../exui-event/exui-event';
 import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
 import { heading } from './mediation-successful-2-content';
-import CaseworkerEvents from '../../../../../enums/events/caseworker-events';
 import StaffDocumentsFragment from '../../../fragments/staff-documents/staff-documents-fragment';
 import AxeBuilder from '@axe-core/playwright';
 import { Page } from 'playwright-core';

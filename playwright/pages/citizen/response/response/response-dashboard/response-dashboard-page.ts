@@ -1,6 +1,8 @@
 import BasePage from '../../../../../base/base-page';
+import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import { links } from './response-dashboard-content';
 
+@AllMethodsStep()
 export default class ResponseDashboardPage extends BasePage {
   async verifyContent() {
     throw new Error('Method not implemented.');
