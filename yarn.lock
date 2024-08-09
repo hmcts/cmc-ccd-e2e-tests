@@ -4484,8 +4484,8 @@ __metadata:
 
 "custom-eslint-plugin@file:plugins/custom-eslint-plugins::locator=cmc-ccd-e2e-tests%40workspace%3A.":
   version: 1.0.0
-  resolution: "custom-eslint-plugin@file:plugins/custom-eslint-plugins#plugins/custom-eslint-plugins::hash=06e7cb&locator=cmc-ccd-e2e-tests%40workspace%3A."
-  checksum: e74d6129af2c6d5b32953f2440941a2b35c7d95b571f9f46406b6410f723dd8c51a58b6bd6f42615b9cecf621b543fa252c1eb5ac1abaa66e2f98d8c01e9c42d
+  resolution: "custom-eslint-plugin@file:plugins/custom-eslint-plugins#plugins/custom-eslint-plugins::hash=9827d5&locator=cmc-ccd-e2e-tests%40workspace%3A."
+  checksum: 8fb5fbfe30521edbeca00b94eaeb65cbd56185e51e663c0fe248487999bf25b3d218b6b740bd52a14c5d0ffb725e928c89cb6360e30f2e82354881b93343782d
   languageName: node
   linkType: hard
 
