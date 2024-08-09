@@ -33,7 +33,8 @@ export const inputs = {
     selector: '#languageInterpreted',
   },
   otherSupport: {
-    label: 'The court can\'t guarantee extra support, but it will consider other needs relating to physical or mental health impairments',
+    label:
+      "The court can't guarantee extra support, but it will consider other needs relating to physical or mental health impairments",
     selector: '#otherSupport',
   },
 };

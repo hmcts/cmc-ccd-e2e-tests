@@ -5,11 +5,8 @@ import { buttons, heading } from './eligibility-and-diversity-content';
 
 @AllMethodsStep()
 export default class EligibilityAndDiversityPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
-    await super.runVerifications([
-      super.expectHeading(heading),
-    ]);
+    await super.runVerifications([super.expectHeading(heading)]);
   }
 
   async chooseNoEligibiltyQuestions() {

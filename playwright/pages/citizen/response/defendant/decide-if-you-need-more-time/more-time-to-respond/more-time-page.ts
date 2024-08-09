@@ -4,7 +4,7 @@ import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, radioButtons } from './more-time-content';
 
 @AllMethodsStep()
-export default class MoreTimePage extends CitizenEvent(BasePage){
+export default class MoreTimePage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -17,5 +17,4 @@ export default class MoreTimePage extends CitizenEvent(BasePage){
     await super.clickBySelector(radioButtons.moreTimeNo.selector);
     await super.clickSaveAndContinue();
   }
-
 }

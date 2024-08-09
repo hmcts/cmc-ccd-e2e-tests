@@ -7,14 +7,14 @@ export const paragraphs = {
 export const inputs = {
   day: {
     label: 'Day',
-    selector: 'input[id=\'respiteEnd[day]\']',
+    selector: "input[id='respiteEnd[day]']",
   },
   month: {
     label: 'Month',
-    selector: 'input[id=\'respiteEnd[month]\']',
+    selector: "input[id='respiteEnd[month]']",
   },
   year: {
     label: 'Year',
-    selector: 'input[id=\'respiteEnd[year]\']',
+    selector: "input[id='respiteEnd[year]']",
   },
 };

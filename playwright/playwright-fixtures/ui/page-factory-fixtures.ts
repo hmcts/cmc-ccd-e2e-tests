@@ -1,4 +1,3 @@
-
 import BreathingSpaceFactory from '../../pages/citizen/breathing-space/breathing-space-factory';
 import CitizenDashboardFactory from '../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
 import CreateClaimFactory from '../../pages/citizen/create-claim/create-claim-factory';
@@ -27,37 +26,37 @@ type PageFactoryFixtures = {
 };
 
 export const test = base.extend<PageFactoryFixtures>({
-  _idamFactory: async ({page, _axeBuilder}, use: (arg0: IdamFactory) => any) => {
+  _idamFactory: async ({ page, _axeBuilder }, use) => {
     await use(new IdamFactory(page, _axeBuilder));
   },
-  _citizenDashboardFactory: async ({page, _axeBuilder}, use: (arg0: CitizenDashboardFactory) => any) => {
+  _citizenDashboardFactory: async ({ page, _axeBuilder }, use) => {
     await use(new CitizenDashboardFactory(page, _axeBuilder));
   },
-  _exuiDashboardFactory: async ({page, _axeBuilder}, use: (arg0: ExuiDashboardFactory) => any) => {
+  _exuiDashboardFactory: async ({ page, _axeBuilder }, use) => {
     await use(new ExuiDashboardFactory(page, _axeBuilder));
   },
-  _createClaimFactory: async ({page, _axeBuilder}, use: (arg0: CreateClaimFactory) => any) => {
+  _createClaimFactory: async ({ page, _axeBuilder }, use) => {
     await use(new CreateClaimFactory(page, _axeBuilder));
   },
-  _caseworkerEventsFactory: async ({page, _axeBuilder}, use: (arg0: CaseworkerEventsFactory) => any) => {
+  _caseworkerEventsFactory: async ({ page, _axeBuilder }, use) => {
     await use(new CaseworkerEventsFactory(page, _axeBuilder));
   },
-  _linkClaimFactory: async ({page, _axeBuilder}, use: (arg0: LinkClaimFactory) => any) => {
+  _linkClaimFactory: async ({ page, _axeBuilder }, use) => {
     await use(new LinkClaimFactory(page, _axeBuilder));
   },
-  _responseFactory: async ({page, _axeBuilder}, use: (arg0: ResponseFactory) => any) => {
+  _responseFactory: async ({ page, _axeBuilder }, use) => {
     await use(new ResponseFactory(page, _axeBuilder));
   },
-  _defendantResponseFactory: async ({page, _axeBuilder}, use: (arg0: DefendantResponseFactory) => any) => {
+  _defendantResponseFactory: async ({ page, _axeBuilder }, use) => {
     await use(new DefendantResponseFactory(page, _axeBuilder));
   },
-  _judgeEventsFactory: async ({page, _axeBuilder}, use: (arg0: JudgeEventsFactory) => any) => {
+  _judgeEventsFactory: async ({ page, _axeBuilder }, use) => {
     await use(new JudgeEventsFactory(page, _axeBuilder));
   },
-  _legalAdvisorEventsFactory: async ({page, _axeBuilder}, use: (arg0: LegalAdvisorEventsFactory) => any) => {
+  _legalAdvisorEventsFactory: async ({ page, _axeBuilder }, use) => {
     await use(new LegalAdvisorEventsFactory(page, _axeBuilder));
   },
-  _breathingSpaceFactory: async ({page, _axeBuilder}, use: (arg0: BreathingSpaceFactory) => any) => {
+  _breathingSpaceFactory: async ({ page, _axeBuilder }, use) => {
     await use(new BreathingSpaceFactory(page, _axeBuilder));
   },
 });

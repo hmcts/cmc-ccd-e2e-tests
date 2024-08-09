@@ -5,14 +5,13 @@ import { checkboxes, heading, inputs } from './support-required-content';
 
 @AllMethodsStep()
 export default class SupportRequiredPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
       super.expectLabel(checkboxes.disabledAccess.label),
       super.expectLabel(checkboxes.hearingLoop.label),
       super.expectLabel(checkboxes.signLanguageInterpreter.label),
-      super.expectLabel(checkboxes.languageInterpreter.label, {exact: true}),
+      super.expectLabel(checkboxes.languageInterpreter.label, { exact: true }),
       super.expectLabel(checkboxes.otherSupport.label),
     ]);
   }

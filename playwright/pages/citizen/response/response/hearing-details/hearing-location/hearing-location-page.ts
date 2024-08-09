@@ -5,7 +5,6 @@ import { heading, paragraphs, radioButtons } from './hearing-location-content';
 
 @AllMethodsStep()
 export default class HearingLocationPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),

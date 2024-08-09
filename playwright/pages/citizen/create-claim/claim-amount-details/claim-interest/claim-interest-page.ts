@@ -5,11 +5,8 @@ import { heading, radioButtons } from './claim-interest-content';
 
 @AllMethodsStep()
 export default class ClaimInterestPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
-    await super.runVerifications([
-      super.expectHeading(heading),
-    ]);
+    await super.runVerifications([super.expectHeading(heading)]);
   }
 
   async selectNoInterest() {

@@ -3,14 +3,12 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import { heading, buttons } from './create-claim-draft-content';
 
 @AllMethodsStep()
-export default class CreateClaimDraftPage extends BasePage{
-  
+export default class CreateClaimDraftPage extends BasePage {
   async verifyContent(): Promise<void> {
-    await super.expectHeading(heading);
+    await super.runVerifications(super.expectHeading(heading));
   }
 
   async clickCreateClaimDraft() {
     await super.clickButtonByName(buttons.createClaimDraft);
   }
-  
 }

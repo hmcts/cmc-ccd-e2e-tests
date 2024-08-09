@@ -4,7 +4,6 @@ import { heading, links, subHeadings } from './create-claim-dashboard-content';
 
 @AllMethodsStep()
 export default class CreateClaimDashboardPage extends BasePage {
-
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),

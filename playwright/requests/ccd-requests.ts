@@ -11,24 +11,23 @@ import User from '../types/user';
 
 const classKey = 'CcdRequests';
 export default class CcdRequests extends BaseRequest {
-
   private static s2sToken: string;
 
-  private getCcdDataStoreBaseUrl({userId, role}: User) {
+  private getCcdDataStoreBaseUrl({ userId, role }: User) {
     return `${urls.ccdDataStore}/${role}s/${userId}/jurisdictions/${config.definition.jurisdiction}/case-types/${config.definition.caseType}`;
   }
 
-  private async getRequestHeaders({accessToken}: User) {
+  private async getRequestHeaders({ accessToken }: User) {
     const s2sToken = await this.fetchS2sToken();
     return {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${accessToken}`,
-      'ServiceAuthorization': s2sToken,
+      Authorization: `Bearer ${accessToken}`,
+      ServiceAuthorization: s2sToken,
     };
   }
 
   private async fetchS2sToken() {
-    if(!CcdRequests.s2sToken) {
+    if (!CcdRequests.s2sToken) {
       console.log('Fetching s2s token...');
       const url = `${urls.authProviderApi}/lease`;
       const requestOptions: RequestOptions = {
@@ -59,34 +58,35 @@ export default class CcdRequests extends BaseRequest {
   }
 
   @Step(classKey)
-  private async startEvent(
-    event: CaseEvents, 
-    user: User,  
-    caseId?: number,
-  ) {
-    console.log(`Starting event: ${event}` + (typeof caseId !== 'undefined' ? ` caseId: ${caseId}` : ''));
+  private async startEvent(event: CaseEvents, user: User, caseId?: number) {
+    console.log(
+      `Starting event: ${event}` + (typeof caseId !== 'undefined' ? ` caseId: ${caseId}` : ''),
+    );
     let url = this.getCcdDataStoreBaseUrl(user);
     if (caseId) {
       url += `/cases/${caseId}`;
     }
     url += `/event-triggers/${event}/token`;
-    
+
     const requestOptions: RequestOptions = {
       headers: await this.getRequestHeaders(user),
     };
-    const response =  await (await super.retriedRequest(url, requestOptions)).json();
+    const response = await (await super.retriedRequest(url, requestOptions)).json();
     console.log(`Event: ${event} started successfully`);
     return response.token;
   }
 
   @Step(classKey)
-  private async submitEvent(
-    event: CaseEvents, 
-    caseData: CCDCaseData, 
-    user: User, 
+  private async submit(
+    event: CaseEvents,
+    caseData: CCDCaseData,
+    user: User,
     ccdEventToken: string,
   ) {
-    console.log(`Submitting event: ${event}` + (typeof caseData.id !== 'undefined' ? ` caseId: ${caseData.id}` : ''));
+    console.log(
+      `Submitting event: ${event}` +
+        (typeof caseData.id !== 'undefined' ? ` caseId: ${caseData.id}` : ''),
+    );
     let url = `${this.getCcdDataStoreBaseUrl(user)}/cases`;
     if (caseData.id) {
       url += `/${caseData.id}/events`;
@@ -96,7 +96,7 @@ export default class CcdRequests extends BaseRequest {
       headers: await this.getRequestHeaders(user),
       body: {
         data: caseData,
-        event: {id: event},
+        event: { id: event },
         event_data: caseData,
         event_token: ccdEventToken,
       },
@@ -107,12 +107,8 @@ export default class CcdRequests extends BaseRequest {
     return responseJson;
   }
 
-  async updateCaseEvent(
-    event: CaseEvents,
-    caseData: CCDCaseData,  
-    user: User,
-  ) {
+  async updateCaseEvent(event: CaseEvents, caseData: CCDCaseData, user: User) {
     const ccdEventToken = await this.startEvent(event, user, caseData.id);
-    return await this.submitEvent(event, caseData, user, ccdEventToken);
+    return await this.submit(event, caseData, user, ccdEventToken);
   }
 }

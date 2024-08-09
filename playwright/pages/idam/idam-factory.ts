@@ -1,4 +1,3 @@
-
 import BasePageFactory from '../../base/base-page-factory';
 import PageCookiesManager from '../common/page-cookies-manager';
 import CreateAccountPage from './create-account/create-account-page';
@@ -9,7 +8,7 @@ export default class IdamFactory extends BasePageFactory {
   get pageCookiesManager() {
     return new PageCookiesManager(this.page);
   }
- 
+
   get loginPage() {
     return new LoginPage(this.page, this.axeBuilder);
   }
@@ -21,5 +20,4 @@ export default class IdamFactory extends BasePageFactory {
   get createAccountPage() {
     return new CreateAccountPage(this.page, this.axeBuilder);
   }
-
 }

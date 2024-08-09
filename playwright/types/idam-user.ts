@@ -8,6 +8,6 @@ type IdamUser = {
   roles: string[];
   ssoProvider: string;
   lastModified: string;
-}
+};
 
 export default IdamUser;

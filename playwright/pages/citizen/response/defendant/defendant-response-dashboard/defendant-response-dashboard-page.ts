@@ -2,7 +2,6 @@ import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import DateHelper from '../../../../../helpers/date-helper';
 import ClaimStoreCaseData from '../../../../../types/case-data/claim-store-case-data';
-import ResponseDashboardPage from '../../common/response-dashboard/response-dashboard-page';
 import { heading, links, subHeadings } from './defendant-response-dashboard-content';
 
 @AllMethodsStep()

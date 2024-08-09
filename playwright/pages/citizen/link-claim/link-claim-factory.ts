@@ -5,11 +5,10 @@ import EnterSecurityCodePage from './enter-security-code/enter-security-code-pag
 import RespondToClaimPage from './respond-to-claim/respond-to-claim-page';
 
 export default class LinkClaimFactory extends BasePageFactory {
-
   get respondToClaimPage() {
     return new RespondToClaimPage(this.page, this.axeBuilder);
   }
-  
+
   get enterClaimNumberPage() {
     return new EnterClaimNumberPage(this.page, this.axeBuilder);
   }
@@ -21,5 +20,4 @@ export default class LinkClaimFactory extends BasePageFactory {
   get claimDetailsPage() {
     return new ClaimDetailsPage(this.page, this.axeBuilder);
   }
-
 }

@@ -3,10 +3,10 @@ import Cookie from '../../types/cookie';
 
 export const acceptIdamCookies: Cookie[] = [
   {
-    name: 'seen_cookie_message', 
-    value: 'yes', 
-    domain: getDomain(urls.idamWeb), 
-    path: '/', 
+    name: 'seen_cookie_message',
+    value: 'yes',
+    domain: getDomain(urls.idamWeb),
+    path: '/',
     secure: true,
   },
   {
@@ -17,7 +17,7 @@ export const acceptIdamCookies: Cookie[] = [
     secure: true,
   },
   {
-    name:'cookies_policy',
+    name: 'cookies_policy',
     value: '{"essential":true,"analytics":true,"apm":true}',
     domain: getDomain(urls.idamWeb),
     path: '/',

@@ -1,6 +1,6 @@
 import BasePageFactory from '../../../../base/base-page-factory';
-import CheckYourAnswersPage from './check-and-submit/check-your-answers/check-your-answers-page';
-import ConfirmationPage from './check-and-submit/confirmation/confirmation-page';
+import DefendantResponseCheckYourAnswersPage from './check-and-submit/defendant-response-check-your-answers/defendant-response-check-your-answers-page';
+import DefendantResponseConfirmationPage from './check-and-submit/defendant-response-confirmation/defendant-response-confirmation-page';
 import EligibilityAndDiversityPage from './check-and-submit/eligibility-and-diversity/eligibility-and-diversity-page';
 import HowDoYouRespondToClaimPage from './choose-a-response/how-do-you-respond-to-the-claim/how-do-you-respond-to-the-claim-page';
 import WhyYouDontOweMoneyPage from './choose-a-response/why-you-dont-owe-money/why-you-dont-owe-money-page';
@@ -15,7 +15,6 @@ import TimelinePage from './why-you-disagree/timeline/timeline-page';
 import YourDefencePage from './why-you-disagree/your-defence/your-defence-page';
 
 export default class DefendantResponseFactory extends BasePageFactory {
-
   get defendantResponseDashboardPage() {
     return new DefendantResponseDashboardPage(this.page, this.axeBuilder);
   }
@@ -64,11 +63,11 @@ export default class DefendantResponseFactory extends BasePageFactory {
     return new EligibilityAndDiversityPage(this.page, this.axeBuilder);
   }
 
-  get checkYourAnswersPage() {
-    return new CheckYourAnswersPage(this.page, this.axeBuilder);
+  get defendantResponseCheckYourAnswersPage() {
+    return new DefendantResponseCheckYourAnswersPage(this.page, this.axeBuilder);
   }
 
-  get confirmationPage() {
-    return new ConfirmationPage(this.page, this.axeBuilder);
+  get defendantResponseConfirmationPage() {
+    return new DefendantResponseConfirmationPage(this.page, this.axeBuilder);
   }
 }

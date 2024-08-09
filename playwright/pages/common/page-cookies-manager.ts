@@ -6,11 +6,7 @@ import { acceptIdamCookies } from '../../fixtures/cookies/idam-cookies';
 import { generateAcceptExuiCookies } from '../../fixtures/cookies/exui-cookies';
 import { acceptCitizenCookies } from '../../fixtures/cookies/citizen-cookies';
 import PageError from '../../errors/page-error';
-import {test} from '../../playwright-fixtures/index';
-import Cookie from '../../types/cookie';
-import FileSystemHelper from '../../helpers/file-system-helper';
-import config from '../../config/config';
-import urls from '../../config/urls';
+import CookiesHelper from '../../helpers/cookies-helper';
 
 @AllMethodsStep()
 export default class PageCookiesManager extends BasePage {
@@ -20,18 +16,14 @@ export default class PageCookiesManager extends BasePage {
 
   async saveCookies(filePath = '') {
     const cookies = await super.getCookies();
-    FileSystemHelper.writeFile(cookies, filePath, FileType.JSON);
+    CookiesHelper.writeCookies(cookies, filePath);
   }
 
   async cookiesLogin(user: User, isTeardown: boolean) {
-    console.log(`Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`);
-    let cookies: Cookie[];
-    try {
-      cookies = FileSystemHelper.readFile(user.cookiesPath!, FileType.JSON);
-    } catch(error) {
-      if(isTeardown) test.skip(error.message);
-      else throw error;
-    }
+    console.log(
+      `Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`,
+    );
+    const cookies = await CookiesHelper.getCookies(user.cookiesPath, isTeardown);
     await super.clearCookies();
     await super.addCookies(cookies);
   }
@@ -44,8 +36,8 @@ export default class PageCookiesManager extends BasePage {
     await super.addCookies(acceptCitizenCookies);
   }
 
-  async addExuiCookies({userId, email}: User) {
-    if(!userId) {
+  async addExuiCookies({ userId, email }: User) {
+    if (!userId) {
       throw new PageError(`UserId for user with email ${email} is invalid`);
     }
     await super.addCookies(generateAcceptExuiCookies(userId));

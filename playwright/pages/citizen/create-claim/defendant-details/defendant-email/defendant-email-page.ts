@@ -5,7 +5,6 @@ import { heading, paragraphs, inputs } from './defendant-email-content';
 
 @AllMethodsStep()
 export default class DefendantEmailPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -17,5 +16,4 @@ export default class DefendantEmailPage extends CitizenEvent(BasePage) {
     await super.inputText(email, inputs.email.selector);
     await super.clickSaveAndContinue();
   }
-
 }

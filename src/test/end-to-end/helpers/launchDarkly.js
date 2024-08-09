@@ -1,18 +1,18 @@
-const testConfig = require("src/test/config.js");
-const launchDarkly = require("launchdarkly-node-server-sdk");
+const testConfig = require('src/test/config.js');
+const launchDarkly = require('launchdarkly-node-server-sdk');
 
 class LaunchDarkly {
   constructor() {
     this.ready = false;
     const enabled =
       testConfig.featureToggles.enabled &&
-      testConfig.featureToggles.enabled !== "false";
+      testConfig.featureToggles.enabled !== 'false';
     const options = enabled ? { diagnosticOptOut: true } : { offline: true };
     this.client = launchDarkly.init(
       testConfig.featureToggles.launchDarklyKey,
-      options
+      options,
     );
-    this.client.once("ready", () => {
+    this.client.once('ready', () => {
       this.ready = true;
     });
   }
@@ -22,7 +22,7 @@ class LaunchDarkly {
       return this.client.variation(...params);
     }
 
-    return this.client.once("ready", () => {
+    return this.client.once('ready', () => {
       this.ready = true;
       return this.client.variation(...params);
     });

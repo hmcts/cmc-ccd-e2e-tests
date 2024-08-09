@@ -1,5 +1,3 @@
-import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
-
 export const heading = 'Generate Order';
 
 export const radioButtons = {

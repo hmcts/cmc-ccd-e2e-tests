@@ -5,7 +5,6 @@ import { heading, radioButtons } from './how-do-you-respond-to-claim-content';
 
 @AllMethodsStep()
 export default class HowDoYouRespondToClaimPage extends CitizenEvent(BasePage) {
-  
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -19,5 +18,4 @@ export default class HowDoYouRespondToClaimPage extends CitizenEvent(BasePage) {
     await super.clickBySelector(radioButtons.rejectAll.selector);
     await super.clickSaveAndContinue();
   }
-  
 }

@@ -3,8 +3,18 @@ import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { TruthyParams } from '../../../../decorators/truthy-params';
 import ExuiEvents from '../../../../types/exui-events';
-import { tabs, dropdowns, buttons, containers, getSuccessBannerText, errorMessages } from './case-details-content';
-import {claimantInputs as claimantChangeDetailsInputs, defendantInputs as defendantChangeDetailsInputs} from '../../caseworker-events/change-contact-details/change-contact-details-content';
+import {
+  tabs,
+  dropdowns,
+  buttons,
+  containers,
+  getSuccessBannerText,
+  errorMessages,
+} from './case-details-content';
+import {
+  claimantInputs as claimantChangeDetailsInputs,
+  defendantInputs as defendantChangeDetailsInputs,
+} from '../../caseworker-events/change-contact-details/change-contact-details-1/change-contact-details-1-content';
 import CCDCaseData from '../../../../types/case-data/ccd-case-data';
 import { doc1Dropdowns } from '../../fragments/staff-documents/staff-documents-content';
 
@@ -12,7 +22,7 @@ const classKey = 'CaseDetailsPage';
 @AllMethodsStep()
 export default class CaseDetailsPage extends BasePage {
   async verifyContent(caseData: CCDCaseData): Promise<void> {
-    await super.retryReload(() =>[
+    await super.retryReload(() => [
       super.expectHeading(caseData.caseName),
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),
@@ -24,13 +34,22 @@ export default class CaseDetailsPage extends BasePage {
   @TruthyParams(classKey, 'caseId')
   async goToCaseDetails(caseId: number) {
     console.log(`Navigating to case with ccd case id: ${caseId}`);
-    await super.goTo(`${urls.manageCase}/cases/case-details/${caseId}`, {force: true});
+    await super.goTo(`${urls.manageCase}/cases/case-details/${caseId}`, {
+      force: true,
+    });
   }
 
   async retryChooseNextStep(event: ExuiEvents) {
     console.log(`Starting event: ${event}`);
     await super.selectFromDropdown(event, dropdowns.nextStep.selector);
-    await super.retryClickBySelector(buttons.go.selector, () => super.expectText(tabs.claimHistory.title, {timeout: 5000, visible: false}));
+    await super.retryClickBySelector(
+      buttons.go.selector,
+      () =>
+        super.expectNoText(tabs.claimHistory.title, {
+          timeout: 10_000,
+        }),
+      { retries: 3 },
+    );
   }
 
   async chooseNextStep(event: ExuiEvents) {
@@ -43,7 +62,9 @@ export default class CaseDetailsPage extends BasePage {
     console.log(`Verifying success banner and event history: ${event}`);
     await super.expectText(getSuccessBannerText(caseId, event));
     await super.clickByText(tabs.claimHistory.title);
-    await super.expectTableRowValue(event, containers.eventHistory.selector, {rowNum: 1});
+    await super.expectTableRowValue(event, containers.eventHistory.selector, {
+      rowNum: 1,
+    });
   }
 
   async verifyNewClaimantDetails() {
@@ -82,10 +103,14 @@ export default class CaseDetailsPage extends BasePage {
 
   async verifyFullReject() {
     await super.clickByText(tabs.claimHistory.title);
-    await super.expectTableRowValue('Disputed all', containers.eventHistory.selector, {rowNum: 1});
+    await super.expectTableRowValue('Disputed all', containers.eventHistory.selector, {
+      rowNum: 1,
+    });
   }
 
   async verifyBreathingSpaceError() {
-    await super.expectText(errorMessages.breathingSpace, {container: containers.errors.selector});
+    await super.expectText(errorMessages.breathingSpace, {
+      selector: containers.errors.selector,
+    });
   }
 }

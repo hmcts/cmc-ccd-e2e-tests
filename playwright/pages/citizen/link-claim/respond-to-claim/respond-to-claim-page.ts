@@ -5,8 +5,7 @@ import CitizenEvent from '../../citizen-event/citizen-event';
 import { buttons, heading, paragraphs, subHeadings } from './respond-to-claim-content';
 
 @AllMethodsStep()
-export default class RespondToClaimPage extends CitizenEvent(BasePage){
-
+export default class RespondToClaimPage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -26,5 +25,4 @@ export default class RespondToClaimPage extends CitizenEvent(BasePage){
   async start() {
     await super.clickBySelector(buttons.start.selector);
   }
-
 }

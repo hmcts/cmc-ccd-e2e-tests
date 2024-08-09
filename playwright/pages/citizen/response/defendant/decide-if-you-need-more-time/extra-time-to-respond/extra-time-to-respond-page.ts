@@ -4,7 +4,7 @@ import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, paragraphs } from './extra-time-to-respond-content';
 
 @AllMethodsStep()
-export default class ExtraTimeToRespondPage extends CitizenEvent(BasePage){
+export default class ExtraTimeToRespondPage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -12,5 +12,4 @@ export default class ExtraTimeToRespondPage extends CitizenEvent(BasePage){
       super.expectText(paragraphs.descriptionText2),
     ]);
   }
-
 }

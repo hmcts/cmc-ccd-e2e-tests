@@ -1,9 +1,10 @@
 import BasePage from '../../../../base/base-page';
+import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, inputs, paragraphs } from './enter-claim-number-content';
 
+@AllMethodsStep()
 export default class EnterClaimNumberPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -16,5 +17,4 @@ export default class EnterClaimNumberPage extends CitizenEvent(BasePage) {
     await super.inputText(claimNumber, inputs.claimNumber.selector);
     await super.clickContinue();
   }
-
 }

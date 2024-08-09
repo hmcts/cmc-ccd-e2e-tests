@@ -1,8 +1,6 @@
 import BasePageFactory from '../../../base/base-page-factory';
 import CardDetailsPage from './check-and-submit/card-details/card-details-page';
-import CheckYourAnswersPage from './check-and-submit/check-your-answers/check-your-answers-page';
 import ConfirmYourPaymentPage from './check-and-submit/confirm-your-payment/confirm-your-payment-page';
-import ConfirmationPage from './check-and-submit/confirmation/confirmation-page';
 import CreateClaimDashboardPage from './create-claim-dashboard/create-claim-dashboard-page';
 import ClaimAmountPage from './claim-amount-details/claim-amount/claim-amount-page';
 import ClaimInterestPage from './claim-amount-details/claim-interest/claim-interest-page';
@@ -14,9 +12,10 @@ import PartyTypePage from './defendant-details/party-type/party-type-page';
 import CreateClaimDraftPage from './testing-support/create-draft-claim/create-claim-draft-page';
 import TestingSupportPage from './testing-support/testing-support/testing-support-page';
 import TotalAmountPage from './claim-amount-details/total-amount/total-amount-page';
+import CreateClaimConfirmationPage from './check-and-submit/create-claim-confirmation/create-claim-confirmation-page';
+import CreateClaimCheckYourAnswersPage from './check-and-submit/create-claim-check-your-answers/create-claim-check-your-answers-page';
 
 export default class CreateClaimFactory extends BasePageFactory {
-  
   get testingSupportPage() {
     return new TestingSupportPage(this.page, this.axeBuilder);
   }
@@ -26,7 +25,7 @@ export default class CreateClaimFactory extends BasePageFactory {
   }
 
   get checkYourAnswersPage() {
-    return new CheckYourAnswersPage(this.page, this.axeBuilder);
+    return new CreateClaimCheckYourAnswersPage(this.page, this.axeBuilder);
   }
 
   get cardDetailsPage() {
@@ -37,8 +36,8 @@ export default class CreateClaimFactory extends BasePageFactory {
     return new ConfirmYourPaymentPage(this.page, this.axeBuilder);
   }
 
-  get confirmationPage() {
-    return new ConfirmationPage(this.page, this.axeBuilder);
+  get createClaimConfirmationPage() {
+    return new CreateClaimConfirmationPage(this.page, this.axeBuilder);
   }
 
   get createClaimDashboardPage() {

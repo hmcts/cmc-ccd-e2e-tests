@@ -1,5 +1,5 @@
 export default class DateHelper {
-  static addToToday({days = 0, months = 0, years = 0}): Date {
+  static addToToday({ days = 0, months = 0, years = 0 }): Date {
     const today = new Date();
     today.setDate(today.getDate() + days);
     today.setMonth(today.getMonth() + months);
@@ -8,7 +8,7 @@ export default class DateHelper {
     return today;
   }
 
-  static subtractFromToday({days = 0, months = 0, years = 0}): Date {
+  static subtractFromToday({ days = 0, months = 0, years = 0 }): Date {
     const today = new Date();
     today.setDate(today.getDate() - days);
     today.setMonth(today.getMonth() - months);
@@ -17,7 +17,10 @@ export default class DateHelper {
     return today;
   }
 
-  static getTwoDigitDay(date: Date): string { const day = date.getDate(); return day < 10 ? `0${day}` : `${day}`; }
+  static getTwoDigitDay(date: Date): string {
+    const day = date.getDate();
+    return day < 10 ? `0${day}` : `${day}`;
+  }
 
   static getTwoDigitMonth(date: Date): string {
     const month = date.getMonth() + 1;
@@ -30,7 +33,20 @@ export default class DateHelper {
   }
 
   static formatDate(inputDate: string, inputFormat = 'YYYY-MM-DD', outputFormat = 'DD Mon YYYY') {
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
 
     const [year, month, day] = inputDate.split('-');
 

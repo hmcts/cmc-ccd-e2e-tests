@@ -5,8 +5,7 @@ import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, subHeadings, inputs } from './confirm-your-details-content';
 
 @AllMethodsStep()
-export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){
-  
+export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage) {
   async verifyContent(caseData: ClaimStoreCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -16,11 +15,23 @@ export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){
       super.expectSubHeading(subHeadings.lastName),
       super.expectText(caseData.claim.defendants[0].lastName),
       super.expectSubHeading(subHeadings.address),
-      super.expectInputValue(inputs.addressLine1.selector, caseData.claim.defendants[0].address.line1),
-      super.expectInputValue(inputs.addressLine2.selector, caseData.claim.defendants[0].address.line2),
-      super.expectInputValue(inputs.addressLine3.selector, caseData.claim.defendants[0].address.line3),
+      super.expectInputValue(
+        inputs.addressLine1.selector,
+        caseData.claim.defendants[0].address.line1,
+      ),
+      super.expectInputValue(
+        inputs.addressLine2.selector,
+        caseData.claim.defendants[0].address.line2,
+      ),
+      super.expectInputValue(
+        inputs.addressLine3.selector,
+        caseData.claim.defendants[0].address.line3,
+      ),
       super.expectInputValue(inputs.city.selector, caseData.claim.defendants[0].address.city),
-      super.expectInputValue(inputs.postcode.selector, caseData.claim.defendants[0].address.postcode),
+      super.expectInputValue(
+        inputs.postcode.selector,
+        caseData.claim.defendants[0].address.postcode,
+      ),
       super.expectSubHeading(subHeadings.correspondenceAddress),
     ]);
   }
@@ -28,5 +39,4 @@ export default class ConfirmYourDetailsPage extends CitizenEvent(BasePage){
   async saveAndContinue() {
     await super.clickSaveAndContinue();
   }
-
 }

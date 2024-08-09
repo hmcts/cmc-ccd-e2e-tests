@@ -4,8 +4,7 @@ import CitizenEvent from '../../../../citizen-event/citizen-event';
 import { heading, paragraphs, inputs } from './phone-number-content';
 
 @AllMethodsStep()
-export default class PhoneNumberPage extends CitizenEvent(BasePage){
-
+export default class PhoneNumberPage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -18,5 +17,4 @@ export default class PhoneNumberPage extends CitizenEvent(BasePage){
     await super.inputText('02089258767', inputs.phoneNumber.selector);
     await super.clickSaveAndContinue();
   }
-
 }

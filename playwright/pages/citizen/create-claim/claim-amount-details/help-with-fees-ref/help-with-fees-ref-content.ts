@@ -1,7 +1,7 @@
 export const heading = 'Do you have a Help With Fees reference number?';
 
 export const inputs = {
-  helpWithFeesNumber:{
+  helpWithFeesNumber: {
     label: 'Enter your Help With Fees reference number',
     selector: '#helpWithFeesNumber',
     text: 'HWF-123-456',

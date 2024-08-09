@@ -5,7 +5,6 @@ import { heading, inputs, paragraphs, radioButtons } from './determination-witho
 
 @AllMethodsStep()
 export default class DeterminationWithoutHearingPage extends CitizenEvent(BasePage) {
-
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),

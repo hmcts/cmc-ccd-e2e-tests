@@ -1,7 +1,7 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Caseworker events', () => {
-  test('Claimant creates claim and then caseworker performs events', {tag: '@crossbrowser'}, async ({IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiCaseDataSteps, CaseworkerEventsSteps}) =>{
+  test('Claimant creates claim and then caseworker performs events', async ({ IdamSteps, ExuiDashboardSteps, CreateClaimSteps, ApiCaseDataSteps, CaseworkerEventsSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.CheckAndSubmit();

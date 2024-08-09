@@ -23,7 +23,7 @@ export const inputs = {
 export const buttons = {
   continue: {
     title: 'Continue',
-    selector: 'input[value=\'Continue\']',
+    selector: "input[value='Continue']",
   },
 };
 

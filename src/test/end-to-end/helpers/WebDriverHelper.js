@@ -1,5 +1,5 @@
 const Helper = codecept_helper;
-const testConfig = require("src/test/config.js");
+const testConfig = require('src/test/config.js');
 
 class WebDriverHelper extends Helper {
   async waitForNavigationToComplete(locator, webDriverWait = 3) {
@@ -22,7 +22,7 @@ class WebDriverHelper extends Helper {
   async isSafariBrowser() {
     const browserName = await this.helpers.WebDriver.config.browser;
 
-    return browserName === "safari";
+    return browserName === 'safari';
   }
 
   async clickTab(tabTitle) {
@@ -39,7 +39,7 @@ class WebDriverHelper extends Helper {
           parentElement || document,
           null,
           XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-          null
+          null,
         );
         for (let i = 0, l = x.snapshotLength; i < l; i++) {
           r.push(x.snapshotItem(i));
@@ -51,7 +51,7 @@ class WebDriverHelper extends Helper {
 
   async amOnCitizenAppPage(path) {
     await this.helpers.WebDriver.amOnPage(
-      `${testConfig.TestFrontEndUrl}${path}`
+      `${testConfig.TestFrontEndUrl}${path}`,
     );
   }
 }

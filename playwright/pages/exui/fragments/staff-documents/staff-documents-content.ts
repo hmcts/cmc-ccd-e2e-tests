@@ -5,7 +5,7 @@ export const subHeadings = {
 export const buttons = {
   addNewTop: {
     title: 'Add new',
-    selector: 'button[class=\'button write-collection-add-item__top\']',
+    selector: "button[class='button write-collection-add-item__top']",
   },
   addNewBottom: {
     title: 'Add new',
@@ -13,7 +13,7 @@ export const buttons = {
   },
 };
 
-const getInputs = (docIndex : number) => ({
+const getInputs = (docIndex: number) => ({
   docName: {
     label: 'Name',
     value: `Test Document ${docIndex + 1}`,
@@ -57,7 +57,7 @@ const getInputs = (docIndex : number) => ({
 export const doc1Inputs = getInputs(0);
 export const doc2Inputs = getInputs(1);
 
-const getDropdowns = (docIndex : number) => ({
+const getDropdowns = (docIndex: number) => ({
   docType: {
     label: 'Type',
     selector: `#staffUploadedDocuments_${docIndex}_documentType`,

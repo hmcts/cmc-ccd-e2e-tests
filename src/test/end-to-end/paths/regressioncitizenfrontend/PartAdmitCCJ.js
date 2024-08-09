@@ -11,101 +11,101 @@ let pinValue;
 let claim;
 
 Scenario('Defendant submit part admission and claimant raise CCJ', async ({I}) => {
-    //claimant steps
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
-    const claimRef = await I.createClaim();
-    await I.click('Sign out');
+  //claimant steps
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
+  const claimRef = await I.createClaim();
+  await I.click('Sign out');
 
+  claim = await apiRequest.retrieveByReferenceNumber(claimRef);
+  const caseId = claim.ccdCaseId;
+  const externalId = claim.externalId;
+
+  logger.info({message: 'Claimant created a case with id: ', caseId});
+
+  if (typeof claim.letterHolderId === 'undefined') {
+    await I.wait(5);
     claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    const caseId = claim.ccdCaseId;
-    const externalId = claim.externalId;
+  }
 
-    logger.info({message: 'Claimant created a case with id: ', caseId});
+  pinValue = await idamHelper.getPin(claim.letterHolderId);
 
-    if (typeof claim.letterHolderId === 'undefined') {
-        await I.wait(5);
-        claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    }
+  await I.linkDefendant(claimRef, pinValue);
 
-    pinValue = await idamHelper.getPin(claim.letterHolderId);
+  //Defendant steps
 
-    await I.linkDefendant(claimRef, pinValue);
+  await I.waitInUrl('first-contact/claim-summary');
+  await I.click('Respond to claim');
 
-    //Defendant steps
+  await I.wait(10);
+  await I.click('Sign in to your account.');
+  await I.wait(5);
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    await I.waitInUrl('first-contact/claim-summary');
-    await I.click('Respond to claim');
+  await I.waitInUrl('/dashboard');
+  await I.see(claimRef);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
+  await I.click('Respond to claim');
 
-    await I.wait(10);
-    await I.click('Sign in to your account.');
-    await I.wait(5);
-    await I.authenticateWithIdam(userType.CITIZEN, true);
+  //Prepare your response
+  await I.confirmDefendantDetails();
+  await I.defendantExtraTimeNeeded('no');
 
-    await I.waitInUrl('/dashboard');
-    await I.see(claimRef);
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
-    await I.click('Respond to claim');
+  //Respond to claim
+  await I.chooseDefendantResponse('PART_ADMISSION');
+  await I.moneyOweAndDisagreement('specificDate');
+  await I.shareDefendantFinancialDetails();
+  await I.selectMediationOptions('yes');
+  await I.hearingDetails();
 
-    //Prepare your response
-    await I.confirmDefendantDetails();
-    await I.defendantExtraTimeNeeded('no');
+  //Submit
+  await I.submitDefendantResponse('PART_ADMISSION');
+  await I.click('Sign out');
+  await I.wait(5);
 
-    //Respond to claim
-    await I.chooseDefendantResponse('PART_ADMISSION');
-    await I.moneyOweAndDisagreement('specificDate');
-    await I.shareDefendantFinancialDetails();
-    await I.selectMediationOptions('yes');
-    await I.hearingDetails();
+  await I.authenticateWithIdam(userType.CASEWORKER);
+  await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
+  await I.waitForText('Admitted Part');
+  await I.click('Sign out');
+  await I.wait(5);
 
-    //Submit
-    await I.submitDefendantResponse('PART_ADMISSION');
-    await I.click('Sign out');
-    await I.wait(5);
+  //Claimant response
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    await I.authenticateWithIdam(userType.CASEWORKER);
-    await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    await I.waitForText('Admitted Part');
-    await I.click('Sign out');
-    await I.wait(5);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
+  await I.click('View and respond');
 
-    //Claimant response
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
+  //How they responded
+  await I.viewDefendantResponse('PART_ADMISSION');
+  await I.acceptOrRejectResponse('ccj', 'PART_ADMISSION');
+  await I.requestCCJ();
 
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
-    await I.click('View and respond');
+  await I.checkAndSumbitResponse();
+  await I.waitInUrl('claimant-response/confirmation');
 
-    //How they responded
-    await I.viewDefendantResponse('PART_ADMISSION');
-    await I.acceptOrRejectResponse('ccj', 'PART_ADMISSION');
-    await I.requestCCJ();
+  //login as caseworker and verify created event
+  await I.authenticateWithIdam(userType.CASEWORKER);
+  await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
+  // await I.waitForText('Claimant accepted');
+  // await I.see('CCJ requested');
+  // await I.see('CCJ upload');
 
-    await I.checkAndSumbitResponse();
-    await I.waitInUrl('claimant-response/confirmation');
+  logger.info('Verifying court filter functionality for case : ', caseId);
+  await I.waitForText('Case list');
+  await I.wait(5);
+  await I.click('Case list');
+  await I.waitForText('Case type');
+  await I.retry(3).selectOption('#wb-case-type', 'Money Claim Case');
 
-    //login as caseworker and verify created event
-    await I.authenticateWithIdam(userType.CASEWORKER);
-    await I.amOnPage(`/case/${testConfig.definition.jurisdiction}/${testConfig.definition.caseType}/` + caseId);
-    // await I.waitForText('Claimant accepted');
-    // await I.see('CCJ requested');
-    // await I.see('CCJ upload');
-
-    logger.info('Verifying court filter functionality for case : ', caseId);
-    await I.waitForText('Case list');
-    await I.wait(5);
-    await I.click('Case list');
-    await I.waitForText('Case type');
-    await I.retry(3).selectOption('#wb-case-type', 'Money Claim Case');
-
-    await I.waitForText('Reset');
-    await I.waitForElement('#previousServiceCaseReference');
-    await I.wait(5);
-    await I.fillField('#previousServiceCaseReference', claimRef);
-    await I.retry(3).selectOption('#preferredDQPilotCourt', 'Central London County Court');
-    await I.click('Apply');
-    await I.wait(5);
-    await I.waitForText(caseId);
-    await I.click('Sign out');
+  await I.waitForText('Reset');
+  await I.waitForElement('#previousServiceCaseReference');
+  await I.wait(5);
+  await I.fillField('#previousServiceCaseReference', claimRef);
+  await I.retry(3).selectOption('#preferredDQPilotCourt', 'Central London County Court');
+  await I.click('Apply');
+  await I.wait(5);
+  await I.waitForText(caseId);
+  await I.click('Sign out');
 
 }).retry(testConfig.TestRetryScenarios);

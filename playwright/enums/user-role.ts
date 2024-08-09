@@ -1,6 +1,6 @@
 enum UserRole {
   CITIZEN = 'citizen',
-  CASEWORKER = 'caseworker'
+  CASEWORKER = 'caseworker',
 }
 
 export default UserRole;

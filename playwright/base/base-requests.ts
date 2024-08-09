@@ -1,11 +1,11 @@
 import { APIRequestContext, APIResponse } from 'playwright-core';
 import RequestOptions from '../types/request-options';
 import { expect } from '../playwright-fixtures';
-import { DetailedStep, Step } from '../decorators/test-steps';
+import { BoxedDetailedStep } from '../decorators/test-steps';
 
 const classKey = 'BaseRequests';
 export default abstract class BaseRequest {
-  private requestContext: APIRequestContext; 
+  private requestContext: APIRequestContext;
   private MAX_RETRY_TIMEOUT = 30000;
 
   constructor(requestContext: APIRequestContext) {
@@ -13,16 +13,19 @@ export default abstract class BaseRequest {
   }
 
   private sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   private expectResponseBodyToContainField(expectedBodyPath: string, body: any, url: string) {
     const keys = expectedBodyPath.split('.');
     const nestedKeyValue = keys.reduce((nestedBody, key) => nestedBody && nestedBody[key], body);
-    expect(nestedKeyValue, `Expected response body to contain path: ${keys.join(' => ')}, url: ${url}`).toBeDefined();
+    expect(
+      nestedKeyValue,
+      `Expected response body to contain path: ${keys.join(' => ')}, url: ${url}`,
+    ).toBeDefined();
   }
 
-  @DetailedStep(classKey, 'url')
+  @BoxedDetailedStep(classKey, 'url')
   protected async request(
     url: string,
     {
@@ -31,8 +34,8 @@ export default abstract class BaseRequest {
       method = 'GET',
       params,
     }: RequestOptions,
-    expectedStatus = 200, 
-    expectedBodyPaths: string[] = [], 
+    expectedStatus = 200,
+    expectedBodyPaths: string[] = [],
   ): Promise<APIResponse> {
     const response = await this.requestContext.fetch(url, {
       method,
@@ -40,9 +43,12 @@ export default abstract class BaseRequest {
       headers,
       params,
     });
-    expect(response.status(), `Expected status: ${expectedStatus}, actual status: ${response.status()}, ` +
-          `message: ${response.statusText()}, url: ${response.url()}`).toBe(expectedStatus);
-    for(const expectedBodyPath of expectedBodyPaths) {
+    expect(
+      response.status(),
+      `Expected status: ${expectedStatus}, actual status: ${response.status()}, ` +
+        `message: ${response.statusText()}, url: ${response.url()}`,
+    ).toBe(expectedStatus);
+    for (const expectedBodyPath of expectedBodyPaths) {
       const body = await response.json();
       this.expectResponseBodyToContainField(expectedBodyPath, body, response.url());
     }
@@ -52,7 +58,7 @@ export default abstract class BaseRequest {
   protected async retriedRequest(
     url: string,
     requestOptions: RequestOptions,
-    expectedStatus = 200, 
+    expectedStatus = 200,
     remainingRetries = 3,
     expectedBodyPaths: string[] = [],
     retryTimeInterval = 5000,
@@ -66,11 +72,12 @@ export default abstract class BaseRequest {
         const response = await this.request(url, requestOptions, expectedStatus, expectedBodyPaths);
         return response;
       } catch (error: any) {
-        if(!remainingRetries) throw error;
-        console.log(`${error.message.split('\n')[0]}, retrying in ${retryTimeInterval / 1000} seconds (Retries left: ${remainingRetries})`);
+        if (!remainingRetries) throw error;
+        console.log(
+          `${error.message.split('\n')[0]}, retrying in ${retryTimeInterval / 1000} seconds (Retries left: ${remainingRetries})`,
+        );
         await this.sleep(retryTimeInterval);
       }
     }
   }
 }
-

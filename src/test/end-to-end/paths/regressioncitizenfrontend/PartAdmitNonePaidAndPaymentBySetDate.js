@@ -11,76 +11,76 @@ let pinValue;
 let claim;
 
 Scenario('Part Admission Paid none will pay by set date', async ({I}) => {
-    //claimant steps
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
-    const claimRef = await I.createClaimDefendantAsLimitedCompany();
-    await I.click('Sign out');
+  //claimant steps
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
+  const claimRef = await I.createClaimDefendantAsLimitedCompany();
+  await I.click('Sign out');
 
+  claim = await apiRequest.retrieveByReferenceNumber(claimRef);
+  const caseId = claim.ccdCaseId;
+  const externalId = claim.externalId;
+
+  logger.info({message: 'Claimant created a case with id: ', caseId});
+
+  if (typeof claim.letterHolderId === 'undefined') {
+    await I.wait(5);
     claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    const caseId = claim.ccdCaseId;
-    const externalId = claim.externalId;
+  }
 
-    logger.info({message: 'Claimant created a case with id: ', caseId});
+  pinValue = await idamHelper.getPin(claim.letterHolderId);
 
-    if (typeof claim.letterHolderId === 'undefined') {
-        await I.wait(5);
-        claim = await apiRequest.retrieveByReferenceNumber(claimRef);
-    }
+  await I.linkDefendant(claimRef, pinValue);
 
-    pinValue = await idamHelper.getPin(claim.letterHolderId);
+  //Defendant steps
 
-    await I.linkDefendant(claimRef, pinValue);
+  await I.waitInUrl('first-contact/claim-summary');
+  await I.click('Respond to claim');
 
-    //Defendant steps
+  await I.wait(10);
+  await I.click('Sign in to your account.');
+  await I.wait(5);
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    await I.waitInUrl('first-contact/claim-summary');
-    await I.click('Respond to claim');
+  await I.waitInUrl('/dashboard');
+  await I.see(claimRef);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
+  await I.click('Respond to claim');
 
-    await I.wait(10);
-    await I.click('Sign in to your account.');
-    await I.wait(5);
-    await I.authenticateWithIdam(userType.CITIZEN, true);
+  //Prepare your response
+  await I.confirmDefendantDetails('LIMITED COMPANY');
+  await I.defendantExtraTimeNeeded('no');
 
-    await I.waitInUrl('/dashboard');
-    await I.see(claimRef);
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/defendant`);
-    await I.click('Respond to claim');
+  //Respond to claim
+  await I.chooseDefendantResponse('PART_ADMISSION');
+  await I.moneyOweAndDisagreement('specificDate');
+  await I.shareDefendantFinancialDetails('LIMITED COMPANY');
+  await I.selectMediationOptions('yes', 'LIMITED COMPANY');
+  await I.hearingDetails('LIMITED COMPANY');
 
-    //Prepare your response
-    await I.confirmDefendantDetails('LIMITED COMPANY');
-    await I.defendantExtraTimeNeeded('no');
+  //Submit
+  await I.submitDefendantResponse('PART_ADMISSION', 'LIMITED COMPANY');
+  await I.click('Sign out');
+  await I.wait(5);
 
-    //Respond to claim
-    await I.chooseDefendantResponse('PART_ADMISSION');
-    await I.moneyOweAndDisagreement('specificDate');
-    await I.shareDefendantFinancialDetails('LIMITED COMPANY');
-    await I.selectMediationOptions('yes', 'LIMITED COMPANY');
-    await I.hearingDetails('LIMITED COMPANY');
+  //Claimant response
+  await I.amOnCitizenAppPage('');
+  await I.authenticateWithIdam(userType.CITIZEN, true);
 
-    //Submit
-    await I.submitDefendantResponse('PART_ADMISSION', 'LIMITED COMPANY');
-    await I.click('Sign out');
-    await I.wait(5);
+  await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
+  await I.click('View and respond');
 
-    //Claimant response
-    await I.amOnCitizenAppPage('');
-    await I.authenticateWithIdam(userType.CITIZEN, true);
+  //How they responded
+  await I.viewDefendantResponse('PART_ADMISSION');
+  await I.acceptOrRejectResponse('', 'PART_ADMISSION', '', 'no', 'LIMITED COMPANY');
+  //await I.signAgreement();
 
-    await I.amOnCitizenAppPage(`dashboard/${externalId}/claimant`);
-    await I.click('View and respond');
-
-    //How they responded
-    await I.viewDefendantResponse('PART_ADMISSION');
-    await I.acceptOrRejectResponse('', 'PART_ADMISSION', '', 'no', 'LIMITED COMPANY');
-    //await I.signAgreement();
-
-    await I.checkAndSumbitResponse();
-    await I.waitInUrl('claimant-response/confirmation');
-    await I.see(claimRef);
-    await I.see('You’ve proposed a different repayment plan');
-    await I.see('You need to send the defendant’s financial details to the court.');
-    await I.click('My account');
-    await I.see(claimRef);
-    await I.see('You need to send the defendant’s financial details to the court.');
+  await I.checkAndSumbitResponse();
+  await I.waitInUrl('claimant-response/confirmation');
+  await I.see(claimRef);
+  await I.see('You’ve proposed a different repayment plan');
+  await I.see('You need to send the defendant’s financial details to the court.');
+  await I.click('My account');
+  await I.see(claimRef);
+  await I.see('You need to send the defendant’s financial details to the court.');
 }).retry(testConfig.TestRetryScenarios);

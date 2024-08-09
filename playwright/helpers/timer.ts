@@ -6,8 +6,8 @@ export default class Timer {
   }
 
   get remainingTime() {
-    const remainingTime = Math.round((this._endTime - Date.now())/1000);
-    if(remainingTime < 0) return 0;
+    const remainingTime = Math.round((this._endTime - Date.now()) / 1000);
+    if (remainingTime < 0) return 0;
     return remainingTime;
   }
 
