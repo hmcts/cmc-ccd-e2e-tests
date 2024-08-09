@@ -1,8 +1,6 @@
-import filePaths from '../config/file-paths';
 import urls from '../config/urls';
 import UserType from '../enums/user-type';
 import UserStateHelper from '../helpers/users-state-helper';
-import FileSystemHelper from '../helpers/file-system-helper';
 import config from '../config/config';
 import { request } from 'playwright-core';
 import AxeCacheHelper from '../helpers/axe-cache-helper';

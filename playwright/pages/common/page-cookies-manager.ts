@@ -6,8 +6,6 @@ import { acceptIdamCookies } from '../../fixtures/cookies/idam-cookies';
 import { generateAcceptExuiCookies } from '../../fixtures/cookies/exui-cookies';
 import { acceptCitizenCookies } from '../../fixtures/cookies/citizen-cookies';
 import PageError from '../../errors/page-error';
-import { test } from '../../playwright-fixtures/index';
-import Cookie from '../../types/cookie';
 import CookiesHelper from '../../helpers/cookies-helper';
 
 @AllMethodsStep()
