@@ -17,7 +17,7 @@ test.describe('Breathing Space', () => {
     // await CaseworkerEventsSteps.LiftBreathingSpace();
   });
 
-  test('Caseworker enters breathing space and lifts breathing space', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
+  test('Caseworker enters breathing space and lifts breathing space', { tag: '@debug' }, async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();

@@ -41,6 +41,6 @@ export default class EnterBreathingSpace2Page extends ExuiEvent(BasePage) {
   }
 
   async submit() {
-    await super.retryClickSubmit();
+    await super.retryClickSubmit(() => super.expectNoSelector(inputs.refNum.selector));
   }
 }
