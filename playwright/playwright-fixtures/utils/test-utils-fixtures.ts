@@ -17,18 +17,22 @@ type TestDataFixture = {
 export const test = base.extend<TestDataFixture>({
   page: async ({ page, request }, use, testInfo) => {
     await use(page);
-    if (testInfo.errors.length > 0) {
-      const allErrorsAxe = testInfo.errors.every((error) => error.value === 'accessibility');
-      if (allErrorsAxe) {
-        const failedScreenshotAttachment = testInfo.attachments.find(
-          (attachment) => attachment.name === 'screenshot',
-        );
-        FileSystemHelper.delete(failedScreenshotAttachment.path, { force: true });
-        FileSystemHelper.delete(await page.video().path(), { force: true });
-        test.fail();
-      }
-      testInfo.errors.reverse();
+    const screenshotAttachment = testInfo.attachments.find(
+      (attachment) => attachment.name === 'screenshot',
+    );
+    const allErrorsAxe =
+      testInfo.errors.length > 0
+        ? testInfo.errors.every((error) => error.value === 'accessibility')
+        : false;
+    if (allErrorsAxe) {
+      FileSystemHelper.delete(screenshotAttachment.path, { force: true });
+      FileSystemHelper.delete(await page.video().path(), { force: true });
+      test.fail();
+    } else {
+      await testInfo.attach('failed.png', { path: screenshotAttachment.path });
+      FileSystemHelper.delete(screenshotAttachment.path, { force: true });
     }
+    testInfo.errors.reverse();
   },
   _axeBuilder: async ({ page }, use) => {
     let axeBuilder: AxeBuilder | undefined;
