@@ -28,7 +28,7 @@ export const test = base.extend<TestDataFixture>({
       FileSystemHelper.delete(screenshotAttachment.path, { force: true });
       FileSystemHelper.delete(await page.video().path(), { force: true });
       test.fail();
-    } else {
+    } else if (testInfo.status === 'failed') {
       await testInfo.attach('failed.png', { path: screenshotAttachment.path });
       FileSystemHelper.delete(screenshotAttachment.path, { force: true });
     }
