@@ -24,11 +24,11 @@ export const test = base.extend<TestDataFixture>({
       testInfo.errors.length > 0
         ? testInfo.errors.every((error) => error.value === 'accessibility')
         : false;
-    if (allErrorsAxe) {
+    if (allErrorsAxe && screenshotAttachment && page.video()) {
       FileSystemHelper.delete(screenshotAttachment.path, { force: true });
       FileSystemHelper.delete(await page.video().path(), { force: true });
       test.fail();
-    } else {
+    } else if (screenshotAttachment) {
       await testInfo.attach('failed.png', { path: screenshotAttachment.path });
       FileSystemHelper.delete(screenshotAttachment.path, { force: true });
     }
