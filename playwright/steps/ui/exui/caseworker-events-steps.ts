@@ -283,6 +283,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
       this.ccdCaseData.id,
       CaseworkerEvents.REVIEW_OCON9X_RESP,
     );
+    await caseDetailsPage.wait(3000);
   }
 
   async PaperResponseAdmission() {

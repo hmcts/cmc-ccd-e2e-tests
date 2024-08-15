@@ -60,7 +60,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
           });
           if (expect) await expect();
         },
-        { timeout: 60_000 },
+        { timeout: 45_000 },
       );
     }
 
