@@ -6,7 +6,7 @@ test.describe('Caseworker events', () => {
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseData();
+    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
