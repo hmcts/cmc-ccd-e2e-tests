@@ -118,9 +118,9 @@ export default class FileSystemHelper {
       }
     } catch (error: any) {
       if (error.code === 'ENOENT') {
-        if (!quiet) console.log(error.message);
+        console.log(error.message);
       } else {
-        if (!quiet) console.log(error);
+        console.log(error);
       }
     }
   };
