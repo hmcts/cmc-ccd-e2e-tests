@@ -5,15 +5,18 @@ import IdamFactory from '../../../pages/idam/idam-factory';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 import { caseworker, claimants, defendants, judge, legalAdvisor } from '../../../config/users';
+import PageUtilsFactory from '../../../pages/utils/page-utils-factory';
 
 @AllMethodsStep({ methodNamesToIgnore: ['exuiLogin', 'citizenLogin'] })
 export default class IdamSteps extends BaseSteps {
   private isSetupTest: boolean;
   private isTeardown: boolean;
   private verifyCookiesBanner: boolean;
+  private pageUtilsFactory: PageUtilsFactory;
   private idamFactory: IdamFactory;
 
   constructor(
+    pageUtilsFactory: PageUtilsFactory,
     idamFactory: IdamFactory,
     isSetupTest: boolean,
     isTeardownTest: boolean,
@@ -24,6 +27,7 @@ export default class IdamSteps extends BaseSteps {
     this.isSetupTest = isSetupTest;
     this.isTeardown = isTeardownTest;
     this.verifyCookiesBanner = verifyCookiesBanner;
+    this.pageUtilsFactory = pageUtilsFactory;
     this.idamFactory = idamFactory;
   }
 
@@ -54,7 +58,7 @@ export default class IdamSteps extends BaseSteps {
   }
 
   private async exuiLogin(user: User) {
-    const { pageCookiesManager } = this.idamFactory;
+    const { pageCookiesManager } = this.pageUtilsFactory;
 
     if (config.skipAuthSetup || this.isSetupTest) {
       const { loginPage } = this.idamFactory;
@@ -79,7 +83,7 @@ export default class IdamSteps extends BaseSteps {
   }
 
   private async citizenLogin(user: User) {
-    const { pageCookiesManager } = this.idamFactory;
+    const { pageCookiesManager } = this.pageUtilsFactory;
 
     if (config.skipAuthSetup || this.isSetupTest) {
       const { loginPage } = this.idamFactory;

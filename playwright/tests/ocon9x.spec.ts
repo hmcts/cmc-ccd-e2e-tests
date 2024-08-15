@@ -9,7 +9,7 @@ test.describe('Ocon9x', async () => {
     await CreateClaimSteps.GetClaimReference();
     await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.IssuePaperDefenceForms();
     await CaseworkerEventsSteps.PaperResponseReviewed();
@@ -25,7 +25,7 @@ test.describe('Ocon9x', async () => {
     await CreateClaimSteps.GetClaimReference();
     await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.IssuePaperDefenceForms();
     await CaseworkerEventsSteps.PaperResponseReviewed();

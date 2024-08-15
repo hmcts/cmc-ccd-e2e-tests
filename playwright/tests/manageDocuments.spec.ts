@@ -9,7 +9,7 @@ test.describe('Manage Documents', async () => {
     await CreateClaimSteps.GetClaimReference();
     await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.ManageDocuments();
   });

@@ -18,7 +18,7 @@ test.describe('Full reject', async () => {
     await DefendantResponseSteps.FreeMediation();
     await DefendantResponseSteps.HearingDetails();
     await DefendantResponseSteps.CheckAndSubmit();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await ExuiDashboardSteps.GoToCaseDetails();
     await ExuiDashboardSteps.VerifyDefendantFullReject();

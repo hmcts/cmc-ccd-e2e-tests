@@ -10,8 +10,10 @@ import JudgeEventsFactory from '../../pages/exui/judge-events/judge-events-facto
 import LegalAdvisorEventsFactory from '../../pages/exui/legal-advisor-events/legal-advisor-events-factory';
 import IdamFactory from '../../pages/idam/idam-factory';
 import { test as base } from '../api/api-steps-fixtures';
+import PageUtilsFactory from '../../pages/utils/page-utils-factory';
 
 type PageFactoryFixtures = {
+  _pageUtilsFactory: PageUtilsFactory;
   _idamFactory: IdamFactory;
   _citizenDashboardFactory: CitizenDashboardFactory;
   _exuiDashboardFactory: ExuiDashboardFactory;
@@ -26,6 +28,9 @@ type PageFactoryFixtures = {
 };
 
 export const test = base.extend<PageFactoryFixtures>({
+  _pageUtilsFactory: async ({ page, _axeBuilder }, use) => {
+    await use(new PageUtilsFactory(page, _axeBuilder));
+  },
   _idamFactory: async ({ page, _axeBuilder }, use) => {
     await use(new IdamFactory(page, _axeBuilder));
   },

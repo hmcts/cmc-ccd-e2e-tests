@@ -23,18 +23,28 @@ type UiStepsFixtures = {
 
 export const test = base.extend<UiStepsFixtures>({
   IdamSteps: async (
-    { _idamFactory, _testData, _isSetupTest, _isTeardown, _verifyCookiesBanner },
+    { _pageUtilsFactory, _idamFactory, _testData, _isSetupTest, _isTeardown, _verifyCookiesBanner },
     use,
   ) => {
     await use(
-      new IdamSteps(_idamFactory, _isSetupTest, _isTeardown, _verifyCookiesBanner, _testData),
+      new IdamSteps(
+        _pageUtilsFactory,
+        _idamFactory,
+        _isSetupTest,
+        _isTeardown,
+        _verifyCookiesBanner,
+        _testData,
+      ),
     );
   },
-  CitizenDashboardSteps: async ({ _citizenDashboardFactory, _testData }, use) => {
-    await use(new CitizenDashboardSteps(_citizenDashboardFactory, _testData));
+  CitizenDashboardSteps: async (
+    { _pageUtilsFactory, _citizenDashboardFactory, _testData },
+    use,
+  ) => {
+    await use(new CitizenDashboardSteps(_pageUtilsFactory, _citizenDashboardFactory, _testData));
   },
-  ExuiDashboardSteps: async ({ _exuiDashboardFactory, _testData }, use) => {
-    await use(new ExuiDashboardSteps(_exuiDashboardFactory, _testData));
+  ExuiDashboardSteps: async ({ _pageUtilsFactory, _exuiDashboardFactory, _testData }, use) => {
+    await use(new ExuiDashboardSteps(_pageUtilsFactory, _exuiDashboardFactory, _testData));
   },
   CreateClaimSteps: async ({ _createClaimFactory, _citizenDashboardFactory, _testData }, use) => {
     await use(new CreateClaimSteps(_createClaimFactory, _citizenDashboardFactory, _testData));

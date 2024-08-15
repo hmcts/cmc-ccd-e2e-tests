@@ -2,7 +2,7 @@ import BasePage from '../../../base/base-page';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import CCDCaseData from '../../../types/case-data/ccd-case-data';
 import ExuiEvents from '../../../types/exui-events';
-import { eventInputs, buttons, components } from './exui-event-content';
+import { eventInputs, buttons, components, links } from './exui-event-content';
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(
   Base: TBase,
@@ -49,7 +49,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
     }
 
     protected async retryClickSubmit(expect?: () => Promise<void>) {
-      await super.retryClickBySelectorTimeout(
+      await super.retryClickBySelector(
         buttons.submit.selector,
         async () => {
           await super.waitForSelectorToDetach(components.loading.selector, {
@@ -60,7 +60,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
           });
           if (expect) await expect();
         },
-        { timeout: 60_000 },
+        { retries: 1 },
       );
     }
 

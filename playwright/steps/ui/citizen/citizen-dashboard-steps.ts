@@ -4,13 +4,20 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 import User from '../../../types/user';
 import FileSystemHelper from '../../../helpers/file-system-helper';
+import PageUtilsFactory from '../../../pages/utils/page-utils-factory';
 
 @AllMethodsStep()
 export default class CitizenDashboardSteps extends BaseSteps {
+  private pageUtilsFactory: PageUtilsFactory;
   private citizenDashboardFactory: CitizenDashboardFactory;
 
-  constructor(citizenDashboardFactory: CitizenDashboardFactory, testData: TestData) {
+  constructor(
+    pageUtilsFactory: PageUtilsFactory,
+    citizenDashboardFactory: CitizenDashboardFactory,
+    testData: TestData,
+  ) {
     super(testData);
+    this.pageUtilsFactory = pageUtilsFactory;
     this.citizenDashboardFactory = citizenDashboardFactory;
   }
 
@@ -22,7 +29,7 @@ export default class CitizenDashboardSteps extends BaseSteps {
 
   async SaveCookies(users: User[], workerIndex?: number) {
     const user: User = isNaN(workerIndex) ? users[this.workerIndex] : users[workerIndex];
-    const { pageCookiesManager } = this.citizenDashboardFactory;
+    const { pageCookiesManager } = this.pageUtilsFactory;
     await pageCookiesManager.saveCookies(user.cookiesPath);
   }
 
