@@ -23,7 +23,7 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
@@ -37,7 +37,7 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();

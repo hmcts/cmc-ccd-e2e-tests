@@ -7,7 +7,7 @@ test.describe('Ocon9x', async () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
@@ -23,7 +23,7 @@ test.describe('Ocon9x', async () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
