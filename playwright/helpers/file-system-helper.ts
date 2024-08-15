@@ -94,7 +94,10 @@ export default class FileSystemHelper {
     await fsAsync.writeFile(filePath, data);
   };
 
-  static delete = (path = '', { force }: { force?: boolean } = { force: false }) => {
+  static delete = (
+    path = '',
+    { force, quiet }: { force?: boolean; quiet?: boolean } = { force: false, quiet: false },
+  ) => {
     try {
       if (!force) {
         if (!path) {
@@ -108,16 +111,16 @@ export default class FileSystemHelper {
 
       if (stats.isDirectory()) {
         fs.rmSync(path, { recursive: true, force: true });
-        console.log(`Successfully deleted folder with path ${path}`);
+        if (!quiet) console.log(`Successfully deleted folder with path ${path}`);
       } else {
         fs.unlinkSync(path);
-        console.log(`Successfully deleted file with path ${path}`);
+        if (!quiet) console.log(`Successfully deleted file with path ${path}`);
       }
     } catch (error: any) {
       if (error.code === 'ENOENT') {
-        console.log(error.message);
+        if (!quiet) console.log(error.message);
       } else {
-        console.log(error);
+        if (!quiet) console.log(error);
       }
     }
   };
