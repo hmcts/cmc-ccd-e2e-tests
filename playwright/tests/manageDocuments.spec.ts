@@ -7,7 +7,7 @@ test.describe('Manage Documents', async () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseData();
+    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
