@@ -49,7 +49,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
     }
 
     protected async retryClickSubmit(expect?: () => Promise<void>) {
-      await super.retryClickBySelector(
+      await super.retryClickBySelectorTimeout(
         buttons.submit.selector,
         async () => {
           await super.waitForSelectorToDetach(components.loading.selector, {
@@ -60,7 +60,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
           });
           if (expect) await expect();
         },
-        { retries: 1 },
+        { timeout: 60_000 },
       );
     }
 
