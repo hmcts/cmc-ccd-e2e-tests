@@ -11,13 +11,13 @@ test.describe('Breathing Space', () => {
     await ApiCaseDataSteps.FetchCCDCaseData();
     await CitizenDashboardSteps.GoToClaimantClaimDetails();
     await ClaimantResponseSteps.EnterBreathingSpace();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     // await CaseworkerEventsSteps.VerifyBreathingSpace();
     // await CaseworkerEventsSteps.LiftBreathingSpace();
   });
 
-  test('Caseworker enters breathing space and lifts breathing space', { tag: '@debug' }, async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
+  test('Caseworker enters breathing space and lifts breathing space', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, ExuiDashboardSteps, CaseworkerEventsSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
@@ -25,7 +25,7 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.GetClaimReference();
     await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.EnterBreathingSpace();
     await CaseworkerEventsSteps.LiftBreathingSpace();
@@ -39,7 +39,7 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.GetClaimReference();
     await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.CaseHandedToCCBC();
     await CaseworkerEventsSteps.EnterBreathingSpaceError();

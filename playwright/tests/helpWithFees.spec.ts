@@ -8,7 +8,7 @@ test.describe('Help With Fees actions', async () => {
     await CreateClaimSteps.CheckAndSubmitHwf();
     await CreateClaimSteps.GetClaimReferenceHwf();
     await ApiCaseDataSteps.FetchCCDCaseData();
-    await IdamSteps.JudgeLogin();
+    await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
     await CaseworkerEventsSteps.UpdatedHwfNumber();
     await CaseworkerEventsSteps.InvalidHwfNumber();

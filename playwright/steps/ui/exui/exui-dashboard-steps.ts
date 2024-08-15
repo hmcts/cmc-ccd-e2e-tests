@@ -3,13 +3,20 @@ import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 import User from '../../../types/user';
+import PageUtilsFactory from '../../../pages/utils/page-utils-factory';
 
 @AllMethodsStep()
 export default class ExuiDashboardSteps extends BaseSteps {
+  private pageUtilsFactory: PageUtilsFactory;
   private exuiDashboardFactory: ExuiDashboardFactory;
 
-  constructor(exuiDashboardFactory: ExuiDashboardFactory, testData: TestData) {
+  constructor(
+    pageUtilsFactory: PageUtilsFactory,
+    exuiDashboardFactory: ExuiDashboardFactory,
+    testData: TestData,
+  ) {
     super(testData);
+    this.pageUtilsFactory = pageUtilsFactory;
     this.exuiDashboardFactory = exuiDashboardFactory;
   }
 
@@ -20,7 +27,7 @@ export default class ExuiDashboardSteps extends BaseSteps {
   }
 
   async SaveCookies({ cookiesPath }: User) {
-    const { pageCookiesManager } = this.exuiDashboardFactory;
+    const { pageCookiesManager } = this.pageUtilsFactory;
     await pageCookiesManager.saveCookies(cookiesPath);
   }
 
