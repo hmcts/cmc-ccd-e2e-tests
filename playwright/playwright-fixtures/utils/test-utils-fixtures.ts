@@ -30,7 +30,7 @@ export const test = base.extend<TestDataFixture>({
       test.fail();
     } else if (screenshotAttachment) {
       await testInfo.attach('failed.png', { path: screenshotAttachment.path });
-      FileSystemHelper.delete(screenshotAttachment.path, { force: true });
+      FileSystemHelper.delete(screenshotAttachment.path, { force: true, quiet: true });
     }
     testInfo.errors.reverse();
   },
