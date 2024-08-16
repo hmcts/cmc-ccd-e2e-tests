@@ -7,10 +7,10 @@ test.describe('Manage Documents', async () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
-    await ExuiDashboardSteps.GoToCaseDetails();
+    await ExuiDashboardSteps.GoToCaseDetailsAndWait();
     await CaseworkerEventsSteps.ManageDocuments();
   });
 });

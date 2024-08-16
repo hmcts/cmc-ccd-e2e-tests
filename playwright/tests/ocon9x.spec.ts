@@ -7,10 +7,10 @@ test.describe('Ocon9x', async () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
-    await ExuiDashboardSteps.GoToCaseDetails();
+    await ExuiDashboardSteps.GoToCaseDetailsAndWait();
     await CaseworkerEventsSteps.IssuePaperDefenceForms();
     await CaseworkerEventsSteps.PaperResponseReviewed();
     await CaseworkerEventsSteps.ReviewOcon9xPaperResponse();
@@ -23,10 +23,10 @@ test.describe('Ocon9x', async () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
-    await ExuiDashboardSteps.GoToCaseDetails();
+    await ExuiDashboardSteps.GoToCaseDetailsAndWait();
     await CaseworkerEventsSteps.IssuePaperDefenceForms();
     await CaseworkerEventsSteps.PaperResponseReviewed();
     await CaseworkerEventsSteps.ReviewOcon9xPaperResponse();

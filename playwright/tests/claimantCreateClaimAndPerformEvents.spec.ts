@@ -6,10 +6,10 @@ test.describe('Caseworker events', () => {
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
-    await ExuiDashboardSteps.GoToCaseDetails();
+    await ExuiDashboardSteps.GoToCaseDetailsAndWait();
     await CaseworkerEventsSteps.ClaimNotes();
     await CaseworkerEventsSteps.ChangeClaimantDetails();
     await CaseworkerEventsSteps.ChangeDefendantDetails();

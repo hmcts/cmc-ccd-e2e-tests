@@ -1,4 +1,5 @@
 import { test } from '../playwright-fixtures/index';
+import { allure } from 'allure-playwright';
 
 test.describe('Breathing Space', () => {
   test('Claimant enters breathing space and caseworker lifts breathing space', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, CitizenDashboardSteps, ClaimantResponseSteps, ExuiDashboardSteps }) => {
@@ -7,7 +8,7 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await CitizenDashboardSteps.GoToClaimantClaimDetails();
     await ClaimantResponseSteps.EnterBreathingSpace();
@@ -23,10 +24,10 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
-    await ExuiDashboardSteps.GoToCaseDetails();
+    await ExuiDashboardSteps.GoToCaseDetailsAndWait();
     await CaseworkerEventsSteps.EnterBreathingSpace();
     await CaseworkerEventsSteps.LiftBreathingSpace();
   });
@@ -37,10 +38,10 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
+    await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
-    await ExuiDashboardSteps.GoToCaseDetails();
+    await ExuiDashboardSteps.GoToCaseDetailsAndWait();
     await CaseworkerEventsSteps.CaseHandedToCCBC();
     await CaseworkerEventsSteps.EnterBreathingSpaceError();
   });
