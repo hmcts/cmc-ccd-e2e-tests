@@ -6,7 +6,7 @@ test.describe('Full reject', async () => {
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
-    await ApiCaseDataSteps.FetchClaimStoreCaseData();
+    await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
     await ApiCaseDataSteps.FetchClaimSecurityPin();
     await DefendantResponseSteps.LinkClaim();
     await CitizenDashboardSteps.GoToDefendantClaimDetails();
