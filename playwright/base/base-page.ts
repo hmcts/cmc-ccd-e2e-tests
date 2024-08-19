@@ -44,9 +44,15 @@ export default abstract class BasePage {
   @TruthyParams(classKey, 'name')
   protected async clickLink(
     name: string,
-    { index, timeout } = { index: 0, timeout: playwrightConfig.actionTimeout },
+    options: { index?: number; timeout?: number } = {
+      index: 0,
+      timeout: playwrightConfig.actionTimeout,
+    },
   ) {
-    await this.page.getByRole('link', { name }).nth(index).click({ timeout: timeout });
+    await this.page
+      .getByRole('link', { name })
+      .nth(options.index)
+      .click({ timeout: options.timeout });
   }
 
   @BoxedDetailedStep(classKey, 'selector')
