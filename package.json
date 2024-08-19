@@ -38,7 +38,7 @@
   "dependencies": {
     "@axe-core/playwright": "^4.9.0",
     "@types/uuid": "^10.0.0",
-    "axios": "^1.6.0",
+    "axios": "^1.7.4",
     "dependency-check": "^4.1.0",
     "dotenv": "^16.4.5",
     "html_codesniffer": "^2.5.1",
