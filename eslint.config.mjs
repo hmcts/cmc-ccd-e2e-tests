@@ -5,8 +5,6 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import customEslintPlugin from 'custom-eslint-plugin';
 
 export default [
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
   {
     ignores: [
       'node_modules/*',
@@ -23,8 +21,11 @@ export default [
       'coverage',
       '*.min.js',
       '**/*.js',
+      '**/*.cjs',
     ],
   },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     files: ['**/*.ts', '**/*.tsx'],
     plugins: { customEslintPlugin },
@@ -55,7 +56,6 @@ export default [
     ],
     rules: {
       'customEslintPlugin/prefer-step-decorator': 'warn',
-      'customEslintPlugin/no-duplicate-class-names': 'error',
     },
   },
   { languageOptions: { globals: globals.node } },

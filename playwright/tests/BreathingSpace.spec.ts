@@ -1,5 +1,4 @@
 import { test } from '../playwright-fixtures/index';
-import { allure } from 'allure-playwright';
 
 test.describe('Breathing Space', () => {
   test('Claimant enters breathing space and caseworker lifts breathing space', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, CitizenDashboardSteps, ClaimantResponseSteps, ExuiDashboardSteps }) => {

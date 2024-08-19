@@ -1,6 +1,7 @@
 import { Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import config from '../config/config';
+const playwrightConfig = config.playwright;
 import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
 import { pageExpect, test } from '../playwright-fixtures';
@@ -21,20 +22,31 @@ export default abstract class BasePage {
 
   @BoxedDetailedStep(classKey, 'selector')
   @TruthyParams(classKey, 'selector')
-  protected async clickBySelector(selector: string, options: { count?: number } = {}) {
-    await this.page.locator(selector).click({ clickCount: options.count });
+  protected async clickBySelector(
+    selector: string,
+    options: { count?: number; timeout?: number } = { timeout: playwrightConfig.actionTimeout },
+  ) {
+    await this.page
+      .locator(selector)
+      .click({ clickCount: options.count, timeout: options.timeout });
   }
 
   @BoxedDetailedStep(classKey, 'name')
   @TruthyParams(classKey, 'name')
-  protected async clickButtonByName(name: string) {
-    await this.page.getByRole('button', { name }).click();
+  protected async clickButtonByName(
+    name: string,
+    options: { timeout?: number } = { timeout: playwrightConfig.actionTimeout },
+  ) {
+    await this.page.getByRole('button', { name }).click(options);
   }
 
   @BoxedDetailedStep(classKey, 'name')
   @TruthyParams(classKey, 'name')
-  protected async clickLink(name: string, { index } = { index: 0 }) {
-    await this.page.getByRole('link', { name }).nth(index).click();
+  protected async clickLink(
+    name: string,
+    { index, timeout } = { index: 0, timeout: playwrightConfig.actionTimeout },
+  ) {
+    await this.page.getByRole('link', { name }).nth(index).click({ timeout: timeout });
   }
 
   @BoxedDetailedStep(classKey, 'selector')
@@ -69,8 +81,11 @@ export default abstract class BasePage {
 
   @BoxedDetailedStep(classKey, 'text')
   @TruthyParams(classKey, 'text')
-  protected async clickByText(text: string) {
-    await this.page.getByText(text).click();
+  protected async clickByText(
+    text: string,
+    { timeout } = { timeout: playwrightConfig.actionTimeout },
+  ) {
+    await this.page.getByText(text).click({ timeout });
   }
 
   @BoxedDetailedStep(classKey, 'input', 'selector')
@@ -78,7 +93,7 @@ export default abstract class BasePage {
   protected async inputText(
     input: string | number,
     selector: string,
-    options: { timeout?: number } = {},
+    options: { timeout?: number } = { timeout: playwrightConfig.actionTimeout },
   ) {
     await this.page.fill(selector, input.toString(), {
       timeout: options.timeout,
@@ -90,7 +105,7 @@ export default abstract class BasePage {
   protected async inputSensitiveText(
     input: string | number,
     selector: string,
-    options: { timeout?: number; hideInput?: boolean } = {},
+    options: { timeout?: number } = { timeout: playwrightConfig.actionTimeout },
   ) {
     await this.page.fill(selector, input.toString(), {
       timeout: options.timeout,
@@ -444,7 +459,7 @@ export default abstract class BasePage {
     message: string,
     {
       interval = 5_000,
-      timeout = config.playwright.toPassTimeout,
+      timeout = playwrightConfig.toPassTimeout,
       assertFirst = false,
     }: { interval?: number; timeout?: number; assertFirst?: boolean } = {},
   ) {

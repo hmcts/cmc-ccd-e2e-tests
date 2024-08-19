@@ -1,4 +1,3 @@
-import FileType from '../../enums/file-type';
 import BasePage from '../../base/base-page';
 import User from '../../types/user';
 import { AllMethodsStep } from '../../decorators/test-steps';

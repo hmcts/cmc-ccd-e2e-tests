@@ -59,6 +59,7 @@ export default class DefendantResponseSteps extends ResponseSteps {
 
   async GoToResponseDashboard() {
     const { defendantClaimDetailsPage } = this.citizenDashboardFactory;
+    await defendantClaimDetailsPage.verifyContent(this.claimStoreCaseData);
     await defendantClaimDetailsPage.respondToClaim();
 
     const { defendantResponseDashboardPage } = this.defendantResponseFactory;
