@@ -37,6 +37,7 @@ export default defineConfig({
     },
   },
   use: {
+    actionTimeout: config.playwright.actionTimeout,
     headless: !config.showBrowserWindow,
     video: { mode: 'retain-on-failure' },
     screenshot: { mode: 'only-on-failure', fullPage: true },

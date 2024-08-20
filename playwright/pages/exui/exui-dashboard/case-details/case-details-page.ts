@@ -22,7 +22,7 @@ const classKey = 'CaseDetailsPage';
 @AllMethodsStep()
 export default class CaseDetailsPage extends BasePage {
   async verifyContent(caseData: CCDCaseData): Promise<void> {
-    await super.retryReload(() => [
+    await super.retryReloadRunVerifications(() => [
       super.expectHeading(caseData.caseName),
       super.expectText(tabs.claimHistory.title),
       super.expectText(tabs.claimDetails.title),

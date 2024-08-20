@@ -74,9 +74,10 @@ export const expect = baseExpect
         actual: matcherResult?.actual,
       };
     },
+
     async toHaveNoAxeViolations(pageName: string, axeBuilder: AxeBuilder, page: Page) {
       const assertionName = 'toHaveNoAxeViolations';
-      const accessibilityViolationsName = `${pageName}-Accessibility-Violations.json`;
+      let violationsFileName: string;
       let pass = true;
       let matcherResult: any;
 
@@ -85,12 +86,34 @@ export const expect = baseExpect
 
       if (violations.length > 0) {
         pass = false;
-        await test.info().attach(accessibilityViolationsName, {
+        violationsFileName = `${pageName}-accessibility-violations`;
+        let screenshotFileName = `${pageName}-accessibility-failure`;
+        const violationsFilesLen = test
+          .info()
+          .attachments.filter((attachment) =>
+            attachment.name.startsWith(violationsFileName),
+          ).length;
+        const violationsScreenshotLen = test
+          .info()
+          .attachments.filter((attachment) =>
+            attachment.name.startsWith(violationsFileName),
+          ).length;
+
+        if (violationsFilesLen > 0 || violationsScreenshotLen > 0) {
+          const maxViolationNum = Math.max(violationsFilesLen, violationsScreenshotLen);
+          violationsFileName += `-(${maxViolationNum + 1})`;
+          screenshotFileName += `-(${maxViolationNum + 1})`;
+        }
+
+        violationsFileName += '.json';
+        screenshotFileName += '.png';
+
+        await test.info().attach(violationsFileName, {
           body: JSON.stringify(violations, null, 2),
           contentType: 'application/json',
         });
         const screenshot = await page.screenshot({ fullPage: true });
-        await test.info().attach(`${pageName}-Accessibility-Failure.png`, {
+        await test.info().attach(screenshotFileName, {
           body: screenshot,
           contentType: 'image/png',
         });
@@ -116,7 +139,7 @@ export const expect = baseExpect
             }) +
             '\n\n' +
             `Expected: ${pageName} to have 0 violation(s)\n` +
-            `Received: ${pageName} with ${violations.length} violation(s), please check attached file: ${accessibilityViolationsName}, for more details.`;
+            `Received: ${pageName} with ${violations.length} violation(s), please check attached file: ${violationsFileName}, for more details.`;
 
       return {
         message,

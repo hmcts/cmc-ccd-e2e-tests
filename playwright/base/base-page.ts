@@ -1,7 +1,6 @@
 import { Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import config from '../config/config';
-const playwrightConfig = config.playwright;
 import Cookie from '../types/cookie';
 import { TruthyParams } from '../decorators/truthy-params';
 import { pageExpect, test } from '../playwright-fixtures';
@@ -24,7 +23,7 @@ export default abstract class BasePage {
   @TruthyParams(classKey, 'selector')
   protected async clickBySelector(
     selector: string,
-    options: { count?: number; timeout?: number } = { timeout: playwrightConfig.actionTimeout },
+    options: { count?: number; timeout?: number } = {},
   ) {
     await this.page
       .locator(selector)
@@ -33,10 +32,7 @@ export default abstract class BasePage {
 
   @BoxedDetailedStep(classKey, 'name')
   @TruthyParams(classKey, 'name')
-  protected async clickButtonByName(
-    name: string,
-    options: { timeout?: number } = { timeout: playwrightConfig.actionTimeout },
-  ) {
+  protected async clickButtonByName(name: string, options: { timeout?: number } = {}) {
     await this.page.getByRole('button', { name }).click(options);
   }
 
@@ -46,7 +42,6 @@ export default abstract class BasePage {
     name: string,
     options: { index?: number; timeout?: number } = {
       index: 0,
-      timeout: playwrightConfig.actionTimeout,
     },
   ) {
     await this.page
@@ -87,11 +82,8 @@ export default abstract class BasePage {
 
   @BoxedDetailedStep(classKey, 'text')
   @TruthyParams(classKey, 'text')
-  protected async clickByText(
-    text: string,
-    { timeout } = { timeout: playwrightConfig.actionTimeout },
-  ) {
-    await this.page.getByText(text).click({ timeout });
+  protected async clickByText(text: string, options: { timeout?: number } = {}) {
+    await this.page.getByText(text).click({ timeout: options.timeout });
   }
 
   @BoxedDetailedStep(classKey, 'input', 'selector')
@@ -99,7 +91,7 @@ export default abstract class BasePage {
   protected async inputText(
     input: string | number,
     selector: string,
-    options: { timeout?: number } = { timeout: playwrightConfig.actionTimeout },
+    options: { timeout?: number } = {},
   ) {
     await this.page.fill(selector, input.toString(), {
       timeout: options.timeout,
@@ -111,7 +103,7 @@ export default abstract class BasePage {
   protected async inputSensitiveText(
     input: string | number,
     selector: string,
-    options: { timeout?: number } = { timeout: playwrightConfig.actionTimeout },
+    options: { timeout?: number } = {},
   ) {
     await this.page.fill(selector, input.toString(), {
       timeout: options.timeout,
@@ -201,6 +193,17 @@ export default abstract class BasePage {
     if (expects) {
       Array.isArray(expects) ? await Promise.all(expects) : await expects;
     }
+
+    if (config.runAxeTests && this.axeBuilder && axe) {
+      await this.expectAxeToPass(axeExclusions);
+    }
+  }
+
+  protected async retryReloadRunVerifications(
+    assertions: () => Promise<void>[] | Promise<void>,
+    { axe = true, axeExclusions = [], timeout = 12_000 } = {},
+  ) {
+    await this.retryReloadTimeout(assertions, { timeout, interval: 2000 });
 
     if (config.runAxeTests && this.axeBuilder && axe) {
       await this.expectAxeToPass(axeExclusions);
@@ -465,7 +468,7 @@ export default abstract class BasePage {
     message: string,
     {
       interval = 5_000,
-      timeout = playwrightConfig.toPassTimeout,
+      timeout = config.playwright.toPassTimeout,
       assertFirst = false,
     }: { interval?: number; timeout?: number; assertFirst?: boolean } = {},
   ) {
@@ -550,7 +553,7 @@ export default abstract class BasePage {
       () => this.reload(),
       assertions,
       'Assertion failed, reloading page and trying again',
-      { interval, timeout },
+      { interval, timeout, assertFirst: true },
     );
   }
 }
