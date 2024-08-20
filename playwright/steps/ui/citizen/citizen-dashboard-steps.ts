@@ -46,6 +46,7 @@ export default class CitizenDashboardSteps extends BaseSteps {
   async GoToClaimantClaimDetails() {
     const { dashboardPage } = this.citizenDashboardFactory;
     await dashboardPage.open();
+    await dashboardPage.verifyContentWithClaimNumber(this.claimStoreCaseData.referenceNumber);
     await dashboardPage.goToClaimDetails(this.claimStoreCaseData.referenceNumber);
 
     const { claimantClaimDetailsPage } = this.citizenDashboardFactory;
