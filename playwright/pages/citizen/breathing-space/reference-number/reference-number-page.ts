@@ -4,7 +4,7 @@ import CitizenEvent from '../../citizen-event/citizen-event';
 import { heading, inputs } from './reference-number-content';
 
 @AllMethodsStep()
-export default class ReferenceNumberPage extends CitizenEvent(BasePage) {
+export default class CheckAnswersPage extends CitizenEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),

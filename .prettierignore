@@ -8,6 +8,5 @@ allure-bootstrap-report/*
 allure-bootstrap-results/*
 allure-functional-report/*
 allure-functional-results/*
-src/*
 coverage
 *.min.js

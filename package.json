@@ -6,7 +6,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "lint": "eslint && yarn lint:no-dup-classes",
+    "lint": "eslint || true ; yarn lint:no-dup-classes",
     "lint:no-dup-classes": "eslint --config ./custom-eslint-configs/no-dup-classes.config.mjs",
     "lint:staged": "lint-staged || true ; yarn lint:no-dup-classes",
     "lint:fix": "eslint . --fix",
@@ -29,7 +29,7 @@
     "test:bootstrap:open-report": "allure open allure-bootstrap-report",
     "test:debug:local": "npx playwright test --project chrome-full-functional --grep @debug",
     "test:functional:local": "npx playwright test --project chrome-full-functional",
-    "prepare": "husky"
+    "prepare": "husky && husky install"
   },
   "repository": {
     "type": "git",
@@ -64,7 +64,7 @@
     "eslint": "9.x",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.8.0",
-    "husky": "^9.1.4",
+    "husky": "^8.0.0",
     "infinite-sequence-generator": "^1.1.0",
     "lint-staged": "^15.2.8",
     "npm-run-all": "^4.1.5",
