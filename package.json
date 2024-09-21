@@ -29,7 +29,7 @@
     "test:bootstrap:open-report": "allure open allure-bootstrap-report",
     "test:debug:local": "npx playwright test --project chrome-full-functional --grep @debug",
     "test:functional:local": "npx playwright test --project chrome-full-functional",
-    "prepare": "husky && husky install"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
