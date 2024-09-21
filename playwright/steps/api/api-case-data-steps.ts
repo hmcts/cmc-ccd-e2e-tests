@@ -6,8 +6,8 @@ import BaseApiSteps from '../../base/base-api-steps';
 
 @AllMethodsStep()
 export default class ApiCaseDataSteps extends BaseApiSteps {
-  constructor(requestsFactory: RequestsFactory, isSetupTest: boolean, testData: TestData) {
-    super(requestsFactory, isSetupTest, testData);
+  constructor(requestsFactory: RequestsFactory, testData: TestData) {
+    super(requestsFactory, testData);
   }
 
   async FetchClaimStoreCaseData() {

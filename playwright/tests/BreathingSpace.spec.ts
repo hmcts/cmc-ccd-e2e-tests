@@ -1,7 +1,7 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Breathing Space', () => {
-  test('Claimant enters breathing space and caseworker lifts breathing space', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, CitizenDashboardSteps, ClaimantResponseSteps, ExuiDashboardSteps }) => {
+  test('Claimant enters breathing space and caseworker lifts breathing space', async ({ IdamSteps, CreateClaimSteps, CitizenDashboardSteps, ApiCaseDataSteps, ClaimantResponseSteps, ExuiDashboardSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();

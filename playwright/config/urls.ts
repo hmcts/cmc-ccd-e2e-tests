@@ -1,5 +1,6 @@
 const urls = {
   citizenFrontEnd: process.env.CITIZEN_APP_URL,
+  cuiFrontEnd: process.env.CUI_APP_URL,
   manageCase: process.env.EXUI_URL,
   authProviderApi: process.env.SERVICE_AUTH_PROVIDER_API_BASE_URL,
   ccdDataStore: process.env.CCD_DATA_STORE_URL,

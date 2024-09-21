@@ -32,10 +32,8 @@ export default class CreateClaimSteps extends BaseSteps {
   }
 
   async ChangeDraftClaimDefAsOrg() {
-    const { navBar } = this.citizenDashboardFactory;
-    await navBar.clickMyAccount();
-
     const { dashboardPage } = this.citizenDashboardFactory;
+    await dashboardPage.open();
     await dashboardPage.continueClaim();
 
     const { createClaimDashboardPage } = this.createClaimFactory;
@@ -63,10 +61,8 @@ export default class CreateClaimSteps extends BaseSteps {
   }
 
   async ChangeDraftClaimToHwf() {
-    const { navBar } = this.citizenDashboardFactory;
-    await navBar.clickMyAccount();
-
     const { dashboardPage } = this.citizenDashboardFactory;
+    await dashboardPage.open();
     await dashboardPage.continueClaim();
 
     const { createClaimDashboardPage } = this.createClaimFactory;

@@ -139,6 +139,5 @@ export default class DefendantResponseSteps extends ResponseSteps {
 
     const { defendantResponseConfirmationPage } = this.defendantResponseFactory;
     await defendantResponseConfirmationPage.verifyContent();
-    await defendantResponseConfirmationPage.goToAccount();
   }
 }

@@ -9,17 +9,16 @@ import BaseApiSteps from '../../base/base-api-steps';
 import CaseDataHelper from '../../helpers/case-data-helper';
 import CCDCaseData from '../../types/case-data/ccd-case-data';
 
-@AllMethodsStep()
+@AllMethodsStep({ methodNamesToIgnore: ['createOpenCase'] })
 export default class ApiCaseEventSteps extends BaseApiSteps {
   private caseDataFactory: CaseDataFactory;
 
   constructor(
     requestsFactory: RequestsFactory,
     caseDataFactory: CaseDataFactory,
-    isSetupTest: boolean,
     testData: TestData,
   ) {
-    super(requestsFactory, isSetupTest, testData);
+    super(requestsFactory, testData);
     this.caseDataFactory = caseDataFactory;
   }
 

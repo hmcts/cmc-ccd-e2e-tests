@@ -1,7 +1,7 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import customEslintPlugin from 'custom-eslint-plugin';
 
 export default [
@@ -59,5 +59,5 @@ export default [
     },
   },
   { languageOptions: { globals: globals.node } },
-  eslintConfigPrettier,
+  eslintPluginPrettierRecommended,
 ];

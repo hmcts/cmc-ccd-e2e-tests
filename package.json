@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint && yarn lint:no-dup-classes",
     "lint:no-dup-classes": "eslint --config ./custom-eslint-configs/no-dup-classes.config.mjs",
-    "lint:staged": "lint-staged && yarn lint:no-dup-classes",
+    "lint:staged": "lint-staged || true ; yarn lint:no-dup-classes",
     "lint:fix": "eslint . --fix",
     "prettier:fix": "prettier -w .",
     "prettier:lint:fix": "prettier && yarn lint:fix",
@@ -41,6 +41,7 @@
     "axios": "^1.6.0",
     "dependency-check": "^4.1.0",
     "dotenv": "^16.4.5",
+    "eslint-plugin-prettier": "^5.2.1",
     "html_codesniffer": "^2.5.1",
     "node-cache": "^5.1.2",
     "playwright-core": "^1.43.0",

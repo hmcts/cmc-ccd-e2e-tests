@@ -28,9 +28,27 @@ export const judge: User = UserStateHelper.getUserFromState(UserType.JUDGE) ?? {
   cookiesPath: `${filePaths.userCookies}/judge.json`,
 };
 
+// export const claimants: User[] = UserStateHelper.getUsersFromState(UserType.CLAIMANT) ?? [
+//   {
+//     email: 'youonlytestonce1@gmail.com',
+//     password: 'Password12!',
+//     type: UserType.CLAIMANT,
+//     role: UserRole.CITIZEN,
+//   }
+// ];
+
 export const claimants: User[] =
   UserStateHelper.getUsersFromState(UserType.CLAIMANT) ??
   UserStateHelper.generateCitizenUsers(UserType.CLAIMANT);
+
+// export const defendants: User[] = UserStateHelper.getUsersFromState(UserType.DEFENDANT) ?? [
+//   {
+//     email: 'youonlytestonce@gmail.com',
+//     password: 'Password12!',
+//     type: UserType.DEFENDANT,
+//     role: UserRole.CITIZEN,
+//   }
+// ];
 
 export const defendants: User[] =
   UserStateHelper.getUsersFromState(UserType.DEFENDANT) ??

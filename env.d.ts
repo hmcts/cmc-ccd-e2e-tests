@@ -5,6 +5,7 @@ declare global {
       FUNCTIONAL: string;
       ENVIRONMENT: string;
       CITIZEN_APP_URL: string;
+      CUI_APP_URL: string;
       EXUI_URL: string;
       SERVICE_AUTH_PROVIDER_API_BASE_URL: string;
       CCD_DATA_STORE_URL: string;

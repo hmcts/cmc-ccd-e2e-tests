@@ -8,8 +8,8 @@ import FileError from '../../errors/file-error';
 
 @AllMethodsStep({ methodNamesToIgnore: ['setupUser'] })
 export default class ApiUsersSteps extends BaseApiSteps {
-  constructor(requestsFactory: RequestsFactory, isSetupTest: boolean, testData: TestData) {
-    super(requestsFactory, isSetupTest, testData);
+  constructor(requestsFactory: RequestsFactory, testData: TestData) {
+    super(requestsFactory, testData);
   }
 
   private async setupUser(user: User) {
