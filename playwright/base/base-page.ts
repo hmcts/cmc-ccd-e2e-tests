@@ -157,6 +157,7 @@ export default abstract class BasePage {
     const locator = this.page.locator(selector);
     try {
       await locator.waitFor({ state: 'attached', timeout: 500 });
+      // eslint-disable-next-line no-empty
     } catch (err) {}
     await locator.waitFor({ state: 'detached', ...options });
   }
