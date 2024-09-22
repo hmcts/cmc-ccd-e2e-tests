@@ -9,6 +9,7 @@ if (!config.skipAuthSetup) {
       await IdamSteps.JudgeLogin();
       await ExuiDashboardSteps.GoToCaseList();
       await ExuiDashboardSteps.SignOut();
+      throw new Error();
     });
   });
 }
