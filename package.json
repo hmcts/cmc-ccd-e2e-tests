@@ -6,9 +6,9 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "lint": "(eslint ; yarn lint:no-dup-classes) && exit 1",
+    "lint": "eslint & yarn lint:no-dup-classes",
     "lint:no-dup-classes": "eslint --config ./custom-eslint-configs/no-dup-classes.config.mjs",
-    "lint:staged": "(lint-staged ; yarn lint:no-dup-classes) && exit 1",
+    "lint:staged": "lint-staged & yarn lint:no-dup-classes",
     "lint:fix": "eslint . --fix",
     "eslint": "eslint",
     "prettier:fix": "prettier -w .",
