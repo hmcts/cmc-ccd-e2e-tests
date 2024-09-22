@@ -1,7 +1,7 @@
 import { AllMethodsStep } from '../../decorators/test-steps';
 import RequestsFactory from '../../requests/requests-factory';
 import TestData from '../../types/test-data';
-import { claimants, judge } from "../../config/users";
+import { claimants, judge } from '../../config/users';
 import BaseApiSteps from '../../base/base-api-steps';
 
 @AllMethodsStep()
