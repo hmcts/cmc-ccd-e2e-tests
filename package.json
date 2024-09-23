@@ -79,7 +79,7 @@
   },
   "lint-staged": {
     "*": [
-      "prettier -w .",
+      "prettier --write",
       "eslint"
     ]
   },
