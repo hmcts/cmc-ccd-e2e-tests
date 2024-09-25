@@ -74,6 +74,7 @@ void publishBootstrapReport() {
 withNightlyPipeline("nodejs", product, component) {
   env.EXUI_URL = params.ExUI_URL_TO_TEST
   env.CITIZEN_APP_URL = params.CMC_URL_TO_TEST
+  env.CUI_APP_URL = params.CUI_URL_TO_TEST
   env.DM_STORE_URL=params.DM_STORE_URL
   env.IDAM_API_URL=params.IDAM_API_URL
   env.IDAM_WEB_URL=params.IDAM_WEB_URL
