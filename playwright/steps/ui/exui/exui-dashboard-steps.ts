@@ -4,6 +4,7 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../types/test-data';
 import User from '../../../types/user';
 import PageUtilsFactory from '../../../pages/utils/page-utils-factory';
+import CookiesHelper from '../../../helpers/cookies-helper';
 
 @AllMethodsStep()
 export default class ExuiDashboardSteps extends BaseSteps {
@@ -28,7 +29,8 @@ export default class ExuiDashboardSteps extends BaseSteps {
 
   async SaveCookies({ cookiesPath }: User) {
     const { pageCookiesManager } = this.pageUtilsFactory;
-    await pageCookiesManager.saveCookies(cookiesPath);
+    const cookies = await pageCookiesManager.getCookies();
+    await CookiesHelper.writeCookies(cookies, cookiesPath);
   }
 
   async GoToCaseList() {

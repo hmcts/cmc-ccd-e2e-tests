@@ -18,5 +18,5 @@ export const test = base.extend<ApiStepsFixtures>({
   },
   ApiCaseEventsSteps: async ({ _testData, _requestsFactory, _caseDataFactory }, use) => {
     await use(new ApiCaseEventSteps(_requestsFactory, _caseDataFactory, _testData));
-  },
+  }
 });

@@ -1,7 +1,7 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Breathing Space', () => {
-  test('Claimant enters breathing space and caseworker lifts breathing space', async ({ IdamSteps, CreateClaimSteps, CitizenDashboardSteps, ApiCaseDataSteps, ClaimantResponseSteps, ExuiDashboardSteps }) => {
+  test('Claimant enters breathing space and caseworker lifts breathing space', async ({ IdamSteps, CreateClaimSteps, OcmcDashboardSteps, ApiCaseDataSteps, ClaimantResponseSteps, ExuiDashboardSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.ChangeDraftClaimDefAsOrg();
@@ -9,7 +9,7 @@ test.describe('Breathing Space', () => {
     await CreateClaimSteps.GetClaimReference();
     await ApiCaseDataSteps.FetchClaimStoreCaseData();
     await ApiCaseDataSteps.FetchCCDCaseData();
-    await CitizenDashboardSteps.GoToClaimantClaimDetails();
+    await OcmcDashboardSteps.GoToClaimantClaimDetails();
     await ClaimantResponseSteps.EnterBreathingSpace();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetails();

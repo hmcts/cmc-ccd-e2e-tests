@@ -5,10 +5,10 @@ if (!config.skipAuthSetup) {
   teardown.describe('Signing out citizen users and deleting cookies', () => {
     teardown.describe.configure({ mode: 'parallel' });
 
-    teardown('Worker 1: Claimant', async ({ IdamSteps, CitizenDashboardSteps }) => {
+    teardown('Worker 1: Claimant', async ({ IdamSteps, OcmcDashboardSteps }) => {
       await IdamSteps.ClaimantLogin(0);
-      await CitizenDashboardSteps.GoToDashboard();
-      await CitizenDashboardSteps.SignOut();
+      await OcmcDashboardSteps.GoToDashboard();
+      await OcmcDashboardSteps.SignOut();
     });
   });
 }

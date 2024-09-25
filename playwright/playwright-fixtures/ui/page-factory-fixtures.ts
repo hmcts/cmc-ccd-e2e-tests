@@ -1,9 +1,3 @@
-import BreathingSpaceFactory from '../../pages/citizen/breathing-space/breathing-space-factory';
-import CitizenDashboardFactory from '../../pages/citizen/citizen-dashboard/citizen-dashboard-factory';
-import CreateClaimFactory from '../../pages/citizen/create-claim/create-claim-factory';
-import LinkClaimFactory from '../../pages/citizen/link-claim/link-claim-factory';
-import ResponseFactory from '../../pages/citizen/response/response/response-factory';
-import DefendantResponseFactory from '../../pages/citizen/response/defendant/defendant-response-factory';
 import CaseworkerEventsFactory from '../../pages/exui/caseworker-events/caseworker-events-factory';
 import ExuiDashboardFactory from '../../pages/exui/exui-dashboard/exui-dashboard-factory';
 import JudgeEventsFactory from '../../pages/exui/judge-events/judge-events-factory';
@@ -11,15 +5,25 @@ import LegalAdvisorEventsFactory from '../../pages/exui/legal-advisor-events/leg
 import IdamFactory from '../../pages/idam/idam-factory';
 import { test as base } from '../api/api-steps-fixtures';
 import PageUtilsFactory from '../../pages/utils/page-utils-factory';
+import OcmcDashboardFactory from '../../pages/ocmc/dashboard/ocmc-dashboard-factory';
+import CreateClaimFactory from '../../pages/ocmc/create-claim/create-claim-factory';
+import OcmcLinkClaimFactory from '../../pages/ocmc/link-claim/ocmc-link-claim-factory';
+import ResponseFactory from '../../pages/ocmc/response/response/response-factory';
+import DefendantResponseFactory from '../../pages/ocmc/response/defendant/defendant-response-factory';
+import BreathingSpaceFactory from '../../pages/ocmc/breathing-space/breathing-space-factory';
+import CuiDashboardFactory from '../../pages/cui/dashboard/cui-dashboard-factory';
+import CuiLinkClaimFactory from '../../pages/cui/link-claim/cui-link-claim-factory';
 
 type PageFactoryFixtures = {
   _pageUtilsFactory: PageUtilsFactory;
   _idamFactory: IdamFactory;
-  _citizenDashboardFactory: CitizenDashboardFactory;
+  _ocmcDashboardFactory: OcmcDashboardFactory;
+  _cuiDashboardFactory: CuiDashboardFactory;
   _exuiDashboardFactory: ExuiDashboardFactory;
   _createClaimFactory: CreateClaimFactory;
   _caseworkerEventsFactory: CaseworkerEventsFactory;
-  _linkClaimFactory: LinkClaimFactory;
+  _ocmcLinkClaimFactory: OcmcLinkClaimFactory;
+  _cuiLinkClaimFactory: CuiLinkClaimFactory;
   _responseFactory: ResponseFactory;
   _defendantResponseFactory: DefendantResponseFactory;
   _judgeEventsFactory: JudgeEventsFactory;
@@ -34,8 +38,11 @@ export const test = base.extend<PageFactoryFixtures>({
   _idamFactory: async ({ page, _axeBuilder }, use) => {
     await use(new IdamFactory(page, _axeBuilder));
   },
-  _citizenDashboardFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new CitizenDashboardFactory(page, _axeBuilder));
+  _ocmcDashboardFactory: async ({ page, _axeBuilder }, use) => {
+    await use(new OcmcDashboardFactory(page, _axeBuilder));
+  },
+  _cuiDashboardFactory: async ({ page, _axeBuilder }, use) => {
+    await use(new CuiDashboardFactory(page, _axeBuilder));
   },
   _exuiDashboardFactory: async ({ page, _axeBuilder }, use) => {
     await use(new ExuiDashboardFactory(page, _axeBuilder));
@@ -46,8 +53,11 @@ export const test = base.extend<PageFactoryFixtures>({
   _caseworkerEventsFactory: async ({ page, _axeBuilder }, use) => {
     await use(new CaseworkerEventsFactory(page, _axeBuilder));
   },
-  _linkClaimFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new LinkClaimFactory(page, _axeBuilder));
+  _ocmcLinkClaimFactory: async ({ page, _axeBuilder }, use) => {
+    await use(new OcmcLinkClaimFactory(page, _axeBuilder));
+  },
+  _cuiLinkClaimFactory: async ({ page, _axeBuilder }, use) => {
+    await use(new CuiLinkClaimFactory(page, _axeBuilder));
   },
   _responseFactory: async ({ page, _axeBuilder }, use) => {
     await use(new ResponseFactory(page, _axeBuilder));
@@ -63,5 +73,5 @@ export const test = base.extend<PageFactoryFixtures>({
   },
   _breathingSpaceFactory: async ({ page, _axeBuilder }, use) => {
     await use(new BreathingSpaceFactory(page, _axeBuilder));
-  },
+  }
 });

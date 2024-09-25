@@ -4,7 +4,7 @@
   "trailingComma": "all",
   "overrides": [
     {
-      "files": "*.spec.ts",
+      "files": ["*.spec.ts","*.teardown.ts", "*.setup.ts", "playwright/playwright-fixtures/**/*.ts" ],
       "options": {
         "arrowParens": "always",
         "trailingComma": "none",

@@ -7,8 +7,8 @@ allure-report/
 allure-functional-report/
 allure-bootstrap-report/
 playwright-report/
-/playwright/playwright/.cache/
 /playwright/fixtures/.users/
+playwright/.cache/
 /playwright/fixtures/.user-cookies/
 
 

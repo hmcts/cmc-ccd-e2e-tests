@@ -1,15 +1,15 @@
 import { test } from '../playwright-fixtures/index';
 
 test.describe('Full reject', async () => {
-  test('Claimant creates claim, then defendant rejects and caseworker verifies defendant reject event', async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, CitizenDashboardSteps, DefendantResponseSteps, ExuiDashboardSteps }) => {
+  test('Claimant creates claim, then defendant rejects and caseworker verifies defendant reject event', { tag: '@debug' }, async ({ IdamSteps, CreateClaimSteps, ApiCaseDataSteps, OcmcDashboardSteps, DefendantResponseSteps, ExuiDashboardSteps }) => {
     await IdamSteps.ClaimantLogin();
     await CreateClaimSteps.CreateDraftClaim();
     await CreateClaimSteps.CheckAndSubmit();
     await CreateClaimSteps.GetClaimReference();
     await ApiCaseDataSteps.FetchClaimStoreCaseDataWithLetterId();
     await ApiCaseDataSteps.FetchClaimSecurityPin();
-    await DefendantResponseSteps.LinkClaim();
-    await CitizenDashboardSteps.GoToDefendantClaimDetails();
+    await DefendantResponseSteps.CuiLinkClaim();
+    await OcmcDashboardSteps.GoToDefendantClaimDetails();
     await DefendantResponseSteps.GoToResponseDashboard();
     await DefendantResponseSteps.ConfirmYourDetails();
     await DefendantResponseSteps.DecideIfYouNeedMoreTime();

@@ -3,9 +3,10 @@ import User from '../../types/user';
 import { AllMethodsStep } from '../../decorators/test-steps';
 import { acceptIdamCookies } from '../../fixtures/cookies/idam-cookies';
 import { generateAcceptExuiCookies } from '../../fixtures/cookies/exui-cookies';
-import { acceptCitizenCookies } from '../../fixtures/cookies/citizen-cookies';
+import { acceptOcmcCookies } from '../../fixtures/cookies/ocmc-cookies';
 import PageError from '../../errors/page-error';
 import CookiesHelper from '../../helpers/cookies-helper';
+import Cookie from '../../types/cookie';
 
 @AllMethodsStep()
 export default class PageCookiesManager extends BasePage {
@@ -13,16 +14,14 @@ export default class PageCookiesManager extends BasePage {
     throw new Error('Method not implemented.');
   }
 
-  async saveCookies(filePath = '') {
-    const cookies = await super.getCookies();
-    CookiesHelper.writeCookies(cookies, filePath);
+  async getCookies(): Promise<Cookie[]> {
+    return await super.getCookies();
   }
 
-  async cookiesLogin(user: User, isTeardown: boolean) {
+  async cookiesLogin(cookies: Cookie[], user: User) {
     console.log(
       `Authenticating ${user.type} with email ${user.email} by setting cookies stored in path: ${user.cookiesPath}`,
     );
-    const cookies = await CookiesHelper.getCookies(user.cookiesPath, isTeardown);
     await super.clearCookies();
     await super.addCookies(cookies);
   }
@@ -31,8 +30,8 @@ export default class PageCookiesManager extends BasePage {
     await super.addCookies(acceptIdamCookies);
   }
 
-  async addCitizenCookies() {
-    await super.addCookies(acceptCitizenCookies);
+  async addOcmcCookies() {
+    await super.addCookies(acceptOcmcCookies);
   }
 
   async addExuiCookies({ userId, email }: User) {

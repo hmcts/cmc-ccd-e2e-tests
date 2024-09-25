@@ -8,11 +8,10 @@ import { TruthyParams } from '../decorators/truthy-params';
 import CaseEvents from '../enums/events/case-events';
 import CCDCaseData from '../types/case-data/ccd-case-data';
 import User from '../types/user';
+import ServiceAuthProviderRequests from './service-auth-provider-requests';
 
 const classKey = 'CcdRequests';
-export default class CcdRequests extends BaseRequest {
-  private static s2sToken: string;
-
+export default class CcdRequests extends ServiceAuthProviderRequests(BaseRequest) {
   private getCcdDataStoreBaseUrl({ userId, role }: User) {
     return `${urls.ccdDataStore}/${role}s/${userId}/jurisdictions/${config.definition.jurisdiction}/case-types/${config.definition.caseType}`;
   }
@@ -24,24 +23,6 @@ export default class CcdRequests extends BaseRequest {
       Authorization: `Bearer ${accessToken}`,
       ServiceAuthorization: s2sToken,
     };
-  }
-
-  private async fetchS2sToken() {
-    if (!CcdRequests.s2sToken) {
-      console.log('Fetching s2s token...');
-      const url = `${urls.authProviderApi}/lease`;
-      const requestOptions: RequestOptions = {
-        method: 'POST',
-        body: {
-          microservice: config.s2s.microservice,
-          oneTimePassword: TOTP.generate(config.s2s.secret).otp,
-        },
-      };
-      const response = await super.retriedRequest(url, requestOptions);
-      console.log('s2s token fetched successfully');
-      CcdRequests.s2sToken = await response.text();
-    }
-    return CcdRequests.s2sToken;
   }
 
   @Step(classKey)

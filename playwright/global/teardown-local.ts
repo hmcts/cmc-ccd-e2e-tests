@@ -30,8 +30,8 @@ const deleteUsers = async (userType: UserType) => {
 
 const globalTeardownLocal = async () => {
   if (!config.skipCitizenSetup) {
-    await deleteUsers(UserType.CLAIMANT);
-    await deleteUsers(UserType.DEFENDANT);
+    if (UserStateHelper.userStateExists(UserType.CLAIMANT)) await deleteUsers(UserType.CLAIMANT);
+    if (UserStateHelper.userStateExists(UserType.DEFENDANT)) await deleteUsers(UserType.DEFENDANT);
   }
   UserStateHelper.deleteAllUsersState();
   CookiesHelper.deleteAllCookies();

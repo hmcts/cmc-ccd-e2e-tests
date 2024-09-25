@@ -21,15 +21,24 @@ export default class LoginPage extends BasePage {
     await super.clickBySelector(buttons.submit.selector);
   }
 
-  async openCitizenFrontEnd() {
-    await super.goTo(urls.citizenFrontEnd);
+  async openCuiFrontEnd() {
+    await super.goTo(urls.cuiFrontEnd);
+  }
+
+  async openOcmcFrontEnd() {
+    await super.goTo(urls.ocmcFrontEnd);
   }
 
   async openManageCase() {
     await super.goTo(urls.manageCase);
   }
 
-  async citizenLogin(user: User) {
+  async cuiLogin(user: User) {
+    await this.login(user);
+    await super.expectUrlEnd(['/dashboard', '/eligibility']);
+  }
+
+  async ocmcLogin(user: User) {
     await this.login(user);
     await super.expectUrlEnd(['/dashboard', '/eligibility']);
   }

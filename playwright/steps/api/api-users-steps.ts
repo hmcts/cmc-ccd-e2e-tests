@@ -5,6 +5,7 @@ import RequestsFactory from '../../requests/requests-factory';
 import TestData from '../../types/test-data';
 import UserStateHelper from '../../helpers/users-state-helper';
 import FileError from '../../errors/file-error';
+import { test } from '../../playwright-fixtures/index';
 
 @AllMethodsStep({ methodNamesToIgnore: ['setupUser'] })
 export default class ApiUsersSteps extends BaseApiSteps {
@@ -40,9 +41,13 @@ export default class ApiUsersSteps extends BaseApiSteps {
   }
 
   async DeleteCitizenUsers(users: User[]) {
-    const { idamRequests } = super.requestsFactory;
-    await Promise.all(users.map((user) => idamRequests.deleteUser(user)));
-    UserStateHelper.deleteUsersState(users[0].type);
+    if (UserStateHelper.userStateExists(users[0].type)) {
+      const { idamRequests } = super.requestsFactory;
+      await Promise.all(users.map((user) => idamRequests.deleteUser(user)));
+      UserStateHelper.deleteUsersState(users[0].type);
+    } else {
+      test.skip();
+    }
   }
 
   async SetupUsersData(users: User[]) {
