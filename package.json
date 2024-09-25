@@ -78,10 +78,8 @@
     "webdriverio": "^6.11.3"
   },
   "lint-staged": {
-    "*": [
-      "prettier --write",
-      "eslint"
-    ]
+    "playwright/**/*.{ts,tsx}": "prettier --write",
+    "**/*.{ts,tsx,js,mjs,cjs}": "eslint"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
