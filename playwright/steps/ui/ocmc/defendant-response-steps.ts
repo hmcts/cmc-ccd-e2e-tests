@@ -10,7 +10,7 @@ import TestData from '../../../types/test-data';
 import ResponseSteps from './response-steps';
 
 @AllMethodsStep()
-export default class OcmcDefendantResponseSteps extends ResponseSteps {
+export default class DefendantResponseSteps extends ResponseSteps {
   private ocmcLinkClaimFactory: OcmcLinkClaimFactory;
   private cuiLinkClaimFactory: CuiLinkClaimFactory;
   private idamFactory: IdamFactory;
