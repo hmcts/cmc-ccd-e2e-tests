@@ -32,46 +32,46 @@ type PageFactoryFixtures = {
 };
 
 export const test = base.extend<PageFactoryFixtures>({
-  _pageUtilsFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new PageUtilsFactory(page, _axeBuilder));
+  _pageUtilsFactory: async ({ page }, use) => {
+    await use(new PageUtilsFactory(page));
   },
-  _idamFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new IdamFactory(page, _axeBuilder));
+  _idamFactory: async ({ page }, use) => {
+    await use(new IdamFactory(page));
   },
-  _ocmcDashboardFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new OcmcDashboardFactory(page, _axeBuilder));
+  _ocmcDashboardFactory: async ({ page }, use) => {
+    await use(new OcmcDashboardFactory(page));
   },
-  _cuiDashboardFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new CuiDashboardFactory(page, _axeBuilder));
+  _cuiDashboardFactory: async ({ page }, use) => {
+    await use(new CuiDashboardFactory(page));
   },
-  _exuiDashboardFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new ExuiDashboardFactory(page, _axeBuilder));
+  _exuiDashboardFactory: async ({ page }, use) => {
+    await use(new ExuiDashboardFactory(page));
   },
-  _createClaimFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new CreateClaimFactory(page, _axeBuilder));
+  _createClaimFactory: async ({ page }, use) => {
+    await use(new CreateClaimFactory(page));
   },
-  _caseworkerEventsFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new CaseworkerEventsFactory(page, _axeBuilder));
+  _caseworkerEventsFactory: async ({ page }, use) => {
+    await use(new CaseworkerEventsFactory(page));
   },
-  _ocmcLinkClaimFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new OcmcLinkClaimFactory(page, _axeBuilder));
+  _ocmcLinkClaimFactory: async ({ page }, use) => {
+    await use(new OcmcLinkClaimFactory(page));
   },
-  _cuiLinkClaimFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new CuiLinkClaimFactory(page, _axeBuilder));
+  _cuiLinkClaimFactory: async ({ page }, use) => {
+    await use(new CuiLinkClaimFactory(page));
   },
-  _responseFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new ResponseFactory(page, _axeBuilder));
+  _responseFactory: async ({ page }, use) => {
+    await use(new ResponseFactory(page));
   },
-  _defendantResponseFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new DefendantResponseFactory(page, _axeBuilder));
+  _defendantResponseFactory: async ({ page }, use) => {
+    await use(new DefendantResponseFactory(page));
   },
-  _judgeEventsFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new JudgeEventsFactory(page, _axeBuilder));
+  _judgeEventsFactory: async ({ page }, use) => {
+    await use(new JudgeEventsFactory(page));
   },
-  _legalAdvisorEventsFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new LegalAdvisorEventsFactory(page, _axeBuilder));
+  _legalAdvisorEventsFactory: async ({ page }, use) => {
+    await use(new LegalAdvisorEventsFactory(page));
   },
-  _breathingSpaceFactory: async ({ page, _axeBuilder }, use) => {
-    await use(new BreathingSpaceFactory(page, _axeBuilder));
+  _breathingSpaceFactory: async ({ page }, use) => {
+    await use(new BreathingSpaceFactory(page));
   }
 });

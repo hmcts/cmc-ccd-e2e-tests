@@ -6,18 +6,18 @@ import ExuiNavBar from './exui-nav-bar/exui-nav-bar';
 
 export default class ExuiDashboardFactory extends BasePageFactory {
   get exuiCookiesBanner() {
-    return new ExuiCookiesBanner(this.page, this.axeBuilder);
+    return new ExuiCookiesBanner(this.page);
   }
 
   get navBar() {
-    return new ExuiNavBar(this.page, this.axeBuilder);
+    return new ExuiNavBar(this.page);
   }
 
   get caseListPage() {
-    return new CaseListPage(this.page, this.axeBuilder);
+    return new CaseListPage(this.page);
   }
 
   get caseDetailsPage() {
-    return new CaseDetailsPage(this.page, this.axeBuilder);
+    return new CaseDetailsPage(this.page);
   }
 }

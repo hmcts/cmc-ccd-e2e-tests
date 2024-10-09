@@ -17,62 +17,62 @@ import CreateClaimCheckYourAnswersPage from './check-and-submit/create-claim-che
 
 export default class CreateClaimFactory extends BasePageFactory {
   get testingSupportPage() {
-    return new TestingSupportPage(this.page, this.axeBuilder);
+    return new TestingSupportPage(this.page);
   }
 
   get createDraftClaimPage() {
-    return new CreateClaimDraftPage(this.page, this.axeBuilder);
+    return new CreateClaimDraftPage(this.page);
   }
 
   get checkYourAnswersPage() {
-    return new CreateClaimCheckYourAnswersPage(this.page, this.axeBuilder);
+    return new CreateClaimCheckYourAnswersPage(this.page);
   }
 
   get cardDetailsPage() {
-    return new CardDetailsPage(this.page, this.axeBuilder);
+    return new CardDetailsPage(this.page);
   }
 
   get confirmYourPaymentPage() {
-    return new ConfirmYourPaymentPage(this.page, this.axeBuilder);
+    return new ConfirmYourPaymentPage(this.page);
   }
 
   get createClaimConfirmationPage() {
-    return new CreateClaimConfirmationPage(this.page, this.axeBuilder);
+    return new CreateClaimConfirmationPage(this.page);
   }
 
   get createClaimDashboardPage() {
-    return new CreateClaimDashboardPage(this.page, this.axeBuilder);
+    return new CreateClaimDashboardPage(this.page);
   }
 
   get partyTypePage() {
-    return new PartyTypePage(this.page, this.axeBuilder);
+    return new PartyTypePage(this.page);
   }
 
   get organisationDetailPage() {
-    return new OrganisationDetailsPage(this.page, this.axeBuilder);
+    return new OrganisationDetailsPage(this.page);
   }
 
   get claimAmountPage() {
-    return new ClaimAmountPage(this.page, this.axeBuilder);
+    return new ClaimAmountPage(this.page);
   }
 
   get claimInterestPage() {
-    return new ClaimInterestPage(this.page, this.axeBuilder);
+    return new ClaimInterestPage(this.page);
   }
 
   get defendantEmailPage() {
-    return new DefendantEmailPage(this.page, this.axeBuilder);
+    return new DefendantEmailPage(this.page);
   }
 
   get defendantPhoneNumber() {
-    return new DefendantPhoneNumberPage(this.page, this.axeBuilder);
+    return new DefendantPhoneNumberPage(this.page);
   }
 
   get helpWithFeesRefPage() {
-    return new HelpWithFeesRefPage(this.page, this.axeBuilder);
+    return new HelpWithFeesRefPage(this.page);
   }
 
   get totalAmountPage() {
-    return new TotalAmountPage(this.page, this.axeBuilder);
+    return new TotalAmountPage(this.page);
   }
 }

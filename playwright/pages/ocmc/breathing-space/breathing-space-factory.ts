@@ -7,22 +7,22 @@ import RespiteTypePage from './respite-type/respite-type-page';
 
 export default class BreathingSpaceFactory extends BasePageFactory {
   get referenceNumberPage() {
-    return new ReferenceNumberPage(this.page, this.axeBuilder);
+    return new ReferenceNumberPage(this.page);
   }
 
   get respiteStartPage() {
-    return new RespiteStartPage(this.page, this.axeBuilder);
+    return new RespiteStartPage(this.page);
   }
 
   get respiteTypePage() {
-    return new RespiteTypePage(this.page, this.axeBuilder);
+    return new RespiteTypePage(this.page);
   }
 
   get respiteEndPage() {
-    return new RespiteEndPage(this.page, this.axeBuilder);
+    return new RespiteEndPage(this.page);
   }
 
   get checkAnswersPage() {
-    return new CheckAnswersPage(this.page, this.axeBuilder);
+    return new CheckAnswersPage(this.page);
   }
 }

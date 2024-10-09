@@ -5,14 +5,13 @@ import ExuiEvent from '../../../exui-event/exui-event';
 import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
 import DraftOrderFragment from '../../../fragments/draft-order/draft-order-fragment';
 import { Page } from 'playwright-core';
-import AxeBuilder from '@axe-core/playwright';
 
 @AllMethodsStep()
 export default class ReviewOrderPage extends ExuiEvent(BasePage) {
   private draftOrderFragment: DraftOrderFragment;
 
-  constructor(draftOrderFragment: DraftOrderFragment, page: Page, axeBuilder: AxeBuilder) {
-    super(page, axeBuilder);
+  constructor(draftOrderFragment: DraftOrderFragment, page: Page) {
+    super(page);
     this.draftOrderFragment = draftOrderFragment;
   }
 

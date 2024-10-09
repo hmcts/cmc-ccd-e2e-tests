@@ -12,11 +12,9 @@ import ClassMethodHelper from '../helpers/class-method-helper';
 const classKey = 'BasePage';
 export default abstract class BasePage {
   private page: Page;
-  private axeBuilder?: AxeBuilder;
 
-  constructor(page: Page, axeBuilder?: AxeBuilder) {
+  constructor(page: Page) {
     this.page = page;
-    this.axeBuilder = axeBuilder;
   }
 
   @BoxedDetailedStep(classKey, 'selector')
@@ -194,8 +192,29 @@ export default abstract class BasePage {
       Array.isArray(expects) ? await Promise.all(expects) : await expects;
     }
 
-    if (config.runAxeTests && this.axeBuilder && axe) {
+    if (config.runAxeTests && axe) {
       await this.expectAxeToPass(axeExclusions);
+    }
+  }
+
+  @BoxedDetailedStep(classKey)
+  private async expectAxeToPass(axeExclusions: string[]) {
+    let axeBuilder = new AxeBuilder({ page: this.page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa'])
+      .setLegacyMode(true);
+
+    for (const axeExclusion of axeExclusions) {
+      axeBuilder = axeBuilder.exclude(axeExclusion);
+    }
+
+    const pageName = ClassMethodHelper.formatClassName(this.constructor.name);
+
+    const errorsNumBefore = test.info().errors.length;
+    await pageExpect.soft(pageName).toHaveNoAxeViolationsCache(axeBuilder, this.page);
+    const errorsAfter = test.info().errors;
+
+    if (errorsAfter.length > errorsNumBefore) {
+      errorsAfter[errorsAfter.length - 1].value = 'accessibility';
     }
   }
 
@@ -205,25 +224,8 @@ export default abstract class BasePage {
   ) {
     await this.retryReloadTimeout(assertions, { timeout, interval: 2000 });
 
-    if (config.runAxeTests && this.axeBuilder && axe) {
+    if (config.runAxeTests && axe) {
       await this.expectAxeToPass(axeExclusions);
-    }
-  }
-
-  @BoxedDetailedStep(classKey)
-  private async expectAxeToPass(axeExclusions: string[]) {
-    let axeBuilder = this.axeBuilder;
-    for (const axeExclusion of axeExclusions) {
-      axeBuilder = axeBuilder.exclude(axeExclusion);
-    }
-    const pageName = ClassMethodHelper.formatClassName(this.constructor.name);
-
-    const errorsNumBefore = test.info().errors.length;
-    await pageExpect.soft(pageName).toHaveNoAxeViolationsCache(axeBuilder, this.page);
-    const errorsAfter = test.info().errors;
-
-    if (errorsAfter.length > errorsNumBefore) {
-      errorsAfter[errorsAfter.length - 1].value = 'accessibility';
     }
   }
 

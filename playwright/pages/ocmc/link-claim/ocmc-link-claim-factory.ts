@@ -6,18 +6,18 @@ import OcmcRespondToClaimPage from './respond-to-claim/ocmc-respond-to-claim-pag
 
 export default class OcmcLinkClaimFactory extends BasePageFactory {
   get ocmcRespondToClaimPage() {
-    return new OcmcRespondToClaimPage(this.page, this.axeBuilder);
+    return new OcmcRespondToClaimPage(this.page);
   }
 
   get ocmcEnterClaimNumberPage() {
-    return new OcmcEnterClaimNumberPage(this.page, this.axeBuilder);
+    return new OcmcEnterClaimNumberPage(this.page);
   }
 
   get ocmcEnterSecurityCodePage() {
-    return new OcmcEnterSecurityCodePage(this.page, this.axeBuilder);
+    return new OcmcEnterSecurityCodePage(this.page);
   }
 
   get ocmcClaimDetailsPage() {
-    return new OcmcClaimDetailsPage(this.page, this.axeBuilder);
+    return new OcmcClaimDetailsPage(this.page);
   }
 }

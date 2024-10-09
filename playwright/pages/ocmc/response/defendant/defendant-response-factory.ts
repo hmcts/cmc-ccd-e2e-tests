@@ -16,58 +16,58 @@ import YourDefencePage from './why-you-disagree/your-defence/your-defence-page';
 
 export default class DefendantResponseFactory extends BasePageFactory {
   get defendantResponseDashboardPage() {
-    return new DefendantResponseDashboardPage(this.page, this.axeBuilder);
+    return new DefendantResponseDashboardPage(this.page);
   }
 
   get confirmYourDetailsPage() {
-    return new ConfirmYourDetailsPage(this.page, this.axeBuilder);
+    return new ConfirmYourDetailsPage(this.page);
   }
 
   get dateOfBirthPage() {
-    return new DateOfBirthPage(this.page, this.axeBuilder);
+    return new DateOfBirthPage(this.page);
   }
 
   get phoneNumberPage() {
-    return new PhoneNumberPage(this.page, this.axeBuilder);
+    return new PhoneNumberPage(this.page);
   }
 
   get moreTimePage() {
-    return new MoreTimePage(this.page, this.axeBuilder);
+    return new MoreTimePage(this.page);
   }
 
   get extraTimeToRespondPage() {
-    return new ExtraTimeToRespondPage(this.page, this.axeBuilder);
+    return new ExtraTimeToRespondPage(this.page);
   }
 
   get howDoYouWantToRespondToClaimPage() {
-    return new HowDoYouRespondToClaimPage(this.page, this.axeBuilder);
+    return new HowDoYouRespondToClaimPage(this.page);
   }
 
   get whyYouDontOweMoneyPage() {
-    return new WhyYouDontOweMoneyPage(this.page, this.axeBuilder);
+    return new WhyYouDontOweMoneyPage(this.page);
   }
 
   get yourDefencePage() {
-    return new YourDefencePage(this.page, this.axeBuilder);
+    return new YourDefencePage(this.page);
   }
 
   get timelinePage() {
-    return new TimelinePage(this.page, this.axeBuilder);
+    return new TimelinePage(this.page);
   }
 
   get evidencePage() {
-    return new EvidencePage(this.page, this.axeBuilder);
+    return new EvidencePage(this.page);
   }
 
   get eligibilityAndDiversityPage() {
-    return new EligibilityAndDiversityPage(this.page, this.axeBuilder);
+    return new EligibilityAndDiversityPage(this.page);
   }
 
   get defendantResponseCheckYourAnswersPage() {
-    return new DefendantResponseCheckYourAnswersPage(this.page, this.axeBuilder);
+    return new DefendantResponseCheckYourAnswersPage(this.page);
   }
 
   get defendantResponseConfirmationPage() {
-    return new DefendantResponseConfirmationPage(this.page, this.axeBuilder);
+    return new DefendantResponseConfirmationPage(this.page);
   }
 }

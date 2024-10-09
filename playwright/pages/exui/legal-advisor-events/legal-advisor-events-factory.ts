@@ -12,39 +12,39 @@ import LaDrawDirectionsOrderPage from './la-draw-directions-order/la-draw-direct
 
 export default class LegalAdvisorEventsFactory extends BasePageFactory {
   get generateOrder1Page() {
-    const sdoFragment = new SdoFragment(this.page, this.axeBuilder);
-    return new GenerateOrder1Page(sdoFragment, this.page, this.axeBuilder);
+    const sdoFragment = new SdoFragment(this.page);
+    return new GenerateOrder1Page(sdoFragment, this.page);
   }
 
   get generateOrder2Page() {
-    const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
-    return new GenerateOrder2Page(draftOrderFragment, this.page, this.axeBuilder);
+    const draftOrderFragment = new DraftOrderFragment(this.page);
+    return new GenerateOrder2Page(draftOrderFragment, this.page);
   }
 
   get generateOrderSubmitPage() {
-    return new GenerateOrderSubmitPage(this.page, this.axeBuilder);
+    return new GenerateOrderSubmitPage(this.page);
   }
 
   get actionReviewComments1Page() {
-    const sdoFragment = new SdoFragment(this.page, this.axeBuilder);
-    return new ActionReviewComments1Page(sdoFragment, this.page, this.axeBuilder);
+    const sdoFragment = new SdoFragment(this.page);
+    return new ActionReviewComments1Page(sdoFragment, this.page);
   }
 
   get actionReviewComments2Page() {
-    const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
-    return new ActionReviewComments2Page(draftOrderFragment, this.page, this.axeBuilder);
+    const draftOrderFragment = new DraftOrderFragment(this.page);
+    return new ActionReviewComments2Page(draftOrderFragment, this.page);
   }
 
   get actionReviewCommentsSubmitPage() {
-    return new ActionReviewCommentsSubmitPage(this.page, this.axeBuilder);
+    return new ActionReviewCommentsSubmitPage(this.page);
   }
 
   get drawDirectionsOrderPage() {
-    const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
-    return new LaDrawDirectionsOrderPage(draftOrderFragment, this.page, this.axeBuilder);
+    const draftOrderFragment = new DraftOrderFragment(this.page);
+    return new LaDrawDirectionsOrderPage(draftOrderFragment, this.page);
   }
 
   get drawDirectionsOrderSubmitPage() {
-    return new LaDrawDirectionsOrderSubmitPage(this.page, this.axeBuilder);
+    return new LaDrawDirectionsOrderSubmitPage(this.page);
   }
 }

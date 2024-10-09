@@ -1,4 +1,3 @@
-import AxeBuilder from '@axe-core/playwright';
 import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
@@ -11,8 +10,8 @@ import { Page } from 'playwright-core';
 export default class JudgeDrawDirectionsOrder2Page extends ExuiEvent(BasePage) {
   private sdoFragment: SdoFragment;
 
-  constructor(sdoFragment: SdoFragment, page: Page, axeBuilder: AxeBuilder) {
-    super(page, axeBuilder);
+  constructor(sdoFragment: SdoFragment, page: Page) {
+    super(page);
     this.sdoFragment = sdoFragment;
   }
 

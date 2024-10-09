@@ -7,22 +7,22 @@ import OcmcNavBar from './nav-bar/ocmc-nav-bar';
 
 export default class OcmcDashboardFactory extends BasePageFactory {
   get ocmcCookiesBanner() {
-    return new OcmcCookiesBanner(this.page, this.axeBuilder);
+    return new OcmcCookiesBanner(this.page);
   }
 
   get ocmcNavBar() {
-    return new OcmcNavBar(this.page, this.axeBuilder);
+    return new OcmcNavBar(this.page);
   }
 
   get ocmcDashboardPage() {
-    return new OcmcDashboardPage(this.page, this.axeBuilder);
+    return new OcmcDashboardPage(this.page);
   }
 
   get ocmcDefendantClaimDetailsPage() {
-    return new OcmcDefendantClaimDetailsPage(this.page, this.axeBuilder);
+    return new OcmcDefendantClaimDetailsPage(this.page);
   }
 
   get ocmcClaimantClaimDetailsPage() {
-    return new OcmcClaimantClaimDetailsPage(this.page, this.axeBuilder);
+    return new OcmcClaimantClaimDetailsPage(this.page);
   }
 }

@@ -1,8 +1,9 @@
 import test, { expect as baseExpect, Page } from '@playwright/test';
 import config from '../../config/config';
-import AxeBuilder from '@axe-core/playwright';
+
 import AxeCacheHelper from '../../helpers/axe-cache-helper';
 import { PageResult } from '../../types/axe-results';
+import AxeBuilder from '@axe-core/playwright';
 
 export const expect = baseExpect
   .extend({
@@ -18,11 +19,13 @@ export const expect = baseExpect
         let pass = true;
         let screenshot: Buffer;
         const results = await axeBuilder.analyze();
-        const violations = results.violations;
+        const violations = violationFingerprints(results);
+
         if (violations.length > 0) {
           pass = false;
           screenshot = await page.screenshot({ fullPage: true });
         }
+
         pageResults = await AxeCacheHelper.writeAxePageResult(testInfo.project.name, pageName, testInfo.title, pass, violations, screenshot);
       }
 
@@ -75,7 +78,7 @@ export const expect = baseExpect
       let matcherResult: any;
 
       const results = await axeBuilder.analyze();
-      const violations = results.violations;
+      const violations = violationFingerprints(results.violations);
 
       if (violations.length > 0) {
         pass = false;
@@ -136,3 +139,13 @@ export const expect = baseExpect
     }
   })
   .configure({ soft: config.playwright.softExpect });
+
+function violationFingerprints(accessibilityScanResults: any) {
+  const violationFingerprints = accessibilityScanResults.violations.map((violation: any) => ({
+    rule: violation.id,
+    // These are CSS selectors which uniquely identify each element with
+    // a violation of the rule in question.
+    targets: violation.nodes.map((node: any) => node.target)
+  }));
+  return violationFingerprints;
+}

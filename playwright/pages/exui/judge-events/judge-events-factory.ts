@@ -13,42 +13,42 @@ import ReviewOrderPage from './review-order/review-order/review-order-page';
 
 export default class JudgeEventsFactory extends BasePageFactory {
   get judgeDrawDirectionsOrder1Page() {
-    return new JudgeDrawDirectionsOrder1Page(this.page, this.axeBuilder);
+    return new JudgeDrawDirectionsOrder1Page(this.page);
   }
 
   get judgeDrawDirectionsOrder2Page() {
-    const sdoFragment = new SdoFragment(this.page, this.axeBuilder);
-    return new JudgeDrawDirectionsOrder2Page(sdoFragment, this.page, this.axeBuilder);
+    const sdoFragment = new SdoFragment(this.page);
+    return new JudgeDrawDirectionsOrder2Page(sdoFragment, this.page);
   }
 
   get judgeDrawDirectionsOrder3Page() {
-    const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
-    return new JudgeDrawDirectionsOrder3Page(draftOrderFragment, this.page, this.axeBuilder);
+    const draftOrderFragment = new DraftOrderFragment(this.page);
+    return new JudgeDrawDirectionsOrder3Page(draftOrderFragment, this.page);
   }
 
   get judgeDrawDirectionsOrderSubmitPage() {
-    return new JudgeDrawDirectionsOrderSubmitPage(this.page, this.axeBuilder);
+    return new JudgeDrawDirectionsOrderSubmitPage(this.page);
   }
 
   get provideDirectionsSubmitPage() {
-    return new ProvideDirectionsSubmitPage(this.page, this.axeBuilder);
+    return new ProvideDirectionsSubmitPage(this.page);
   }
 
   get reviewOrderPage() {
-    const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
-    return new ReviewOrderPage(draftOrderFragment, this.page, this.axeBuilder);
+    const draftOrderFragment = new DraftOrderFragment(this.page);
+    return new ReviewOrderPage(draftOrderFragment, this.page);
   }
 
   get reviewOrderSubmitPage() {
-    return new ReviewOrderSubmitPage(this.page, this.axeBuilder);
+    return new ReviewOrderSubmitPage(this.page);
   }
 
   get approveDirectionsOrderPage() {
-    const draftOrderFragment = new DraftOrderFragment(this.page, this.axeBuilder);
-    return new ApproveDirectionsOrderPage(draftOrderFragment, this.page, this.axeBuilder);
+    const draftOrderFragment = new DraftOrderFragment(this.page);
+    return new ApproveDirectionsOrderPage(draftOrderFragment, this.page);
   }
 
   get approveDirectionsOrdeSubmitPage() {
-    return new ApproveDirectionsOrderSubmitPage(this.page, this.axeBuilder);
+    return new ApproveDirectionsOrderSubmitPage(this.page);
   }
 }

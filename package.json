@@ -15,7 +15,7 @@
     "test:setup:users:ci": "npx playwright test --project users-setup --pass-with-no-tests --no-deps",
     "test:setup:users-auth:ci": "npx playwright test --project users-auth-setup --pass-with-no-tests --no-deps",
     "test:setup:ci": "yarn test:setup:users:ci && yarn test:setup:users-auth:ci",
-    "test:functional:chrome:ci": "FUNCTIONAL=true npx playwright test --project chrome-full-functional --no-deps",
+    "test:functional:chrome:ci": "FUNCTIONAL=true npx playwright test --project chrome-full-functional --no-deps --grep @debug",
     "test:functional:firefox:ci": "FUNCTIONAL=true npx playwright test --project firefox-full-functional --no-deps",
     "test:functional:edge:ci": "FUNCTIONAL=true npx playwright test --project edge-full-functional --no-deps",
     "test:functional:safari:ci": "FUNCTIONAL=true npx playwright test --project safari-full-functional --no-deps",

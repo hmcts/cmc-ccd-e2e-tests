@@ -43,164 +43,164 @@ import PaperResponseDefenceSubmitPage from './paper-response-defence/paper-respo
 
 export default class CaseworkerEventsFactory extends BasePageFactory {
   get transferCasePage() {
-    return new TransferCasePage(this.page, this.axeBuilder);
+    return new TransferCasePage(this.page);
   }
 
   get transferCaseSubmitPage() {
-    return new TransferCaseSubmitPage(this.page, this.axeBuilder);
+    return new TransferCaseSubmitPage(this.page);
   }
 
   get supportUpdateSubmitPage() {
-    return new SupportUpdateSubmitPage(this.page, this.axeBuilder);
+    return new SupportUpdateSubmitPage(this.page);
   }
 
   get attachViaBulkScanSubmitPage() {
-    return new AttachViaBulkScanSubmitPage(this.page, this.axeBuilder);
+    return new AttachViaBulkScanSubmitPage(this.page);
   }
 
   get linkLetterHolderSubmitPage() {
-    return new LinkLetterHolderSubmitPage(this.page, this.axeBuilder);
+    return new LinkLetterHolderSubmitPage(this.page);
   }
 
   get waitingToBeTransferredSubmitPage() {
-    return new WaitingToBeTransferredSubmitPage(this.page, this.axeBuilder);
+    return new WaitingToBeTransferredSubmitPage(this.page);
   }
 
   get resetPinSubmitPage() {
-    return new ResetPinSubmitPage(this.page, this.axeBuilder);
+    return new ResetPinSubmitPage(this.page);
   }
 
   get resendRpaPage() {
-    return new ResendRpaPage(this.page, this.axeBuilder);
+    return new ResendRpaPage(this.page);
   }
 
   get resendRpaSubmitPage() {
-    return new ResendRpaSubmitPage(this.page, this.axeBuilder);
+    return new ResendRpaSubmitPage(this.page);
   }
 
   get claimNotesSubmitPage() {
-    return new ClaimNotesSubmitPage(this.page, this.axeBuilder);
+    return new ClaimNotesSubmitPage(this.page);
   }
 
   get changeContactDetails1Page() {
-    return new ChangeContactDetails1Page(this.page, this.axeBuilder);
+    return new ChangeContactDetails1Page(this.page);
   }
 
   get changeContactDetails2Page() {
-    return new ChangeContactDetails2Page(this.page, this.axeBuilder);
+    return new ChangeContactDetails2Page(this.page);
   }
 
   get changeContactDetailsSubmitPage() {
-    return new ChangeContactDetailsSubmitPage(this.page, this.axeBuilder);
+    return new ChangeContactDetailsSubmitPage(this.page);
   }
 
   get manageDocumentsPage() {
-    const staffDocumentsFragment = new StaffDocumentsFragment(this.page, this.axeBuilder);
-    return new ManageDocumentsPage(staffDocumentsFragment, this.page, this.axeBuilder);
+    const staffDocumentsFragment = new StaffDocumentsFragment(this.page);
+    return new ManageDocumentsPage(staffDocumentsFragment, this.page);
   }
 
   get manageDocumentsSubmitPage() {
-    return new ManageDocumentsSubmitPage(this.page, this.axeBuilder);
+    return new ManageDocumentsSubmitPage(this.page);
   }
 
   get issuePaperDefenceFormsSubmitPage() {
-    return new IssuePaperDefenceFormsSubmitPage(this.page, this.axeBuilder);
+    return new IssuePaperDefenceFormsSubmitPage(this.page);
   }
 
   get paperResponseReviewed1Page() {
-    return new PaperResponseReviewed1Page(this.page, this.axeBuilder);
+    return new PaperResponseReviewed1Page(this.page);
   }
 
   get paperResponseReviewed2Page() {
-    return new PaperResponseReviewed2Page(this.page, this.axeBuilder);
+    return new PaperResponseReviewed2Page(this.page);
   }
 
   get paperResponseReviewedSubmitPage() {
-    return new PaperResponseReviewedSubmitPage(this.page, this.axeBuilder);
+    return new PaperResponseReviewedSubmitPage(this.page);
   }
 
   get reveiwOcon9xPaperResponsePage() {
-    return new ReviewOcon9xPaperResponsePage(this.page, this.axeBuilder);
+    return new ReviewOcon9xPaperResponsePage(this.page);
   }
 
   get reveiwOcon9xPaperResponseSubmitPage() {
-    return new ReviewOcon9xPaperResponseSubmitPage(this.page, this.axeBuilder);
+    return new ReviewOcon9xPaperResponseSubmitPage(this.page);
   }
 
   get paperResponseAdmissionPage() {
-    return new PaperResponseAdmissionPage(this.page, this.axeBuilder);
+    return new PaperResponseAdmissionPage(this.page);
   }
 
   get paperResponseAdmissionSubmitPage() {
-    return new PaperResponseAdmissionSubmitPage(this.page, this.axeBuilder);
+    return new PaperResponseAdmissionSubmitPage(this.page);
   }
 
   get paperResponseDefencePage() {
-    return new PaperResponseDefencePage(this.page, this.axeBuilder);
+    return new PaperResponseDefencePage(this.page);
   }
 
   get paperResponseDefenceSubmitPage() {
-    return new PaperResponseDefenceSubmitPage(this.page, this.axeBuilder);
+    return new PaperResponseDefenceSubmitPage(this.page);
   }
 
   get mediationPendingSubmitPage() {
-    return new MediationPendingSubmitPage(this.page, this.axeBuilder);
+    return new MediationPendingSubmitPage(this.page);
   }
 
   get mediationSuccessful1Page() {
-    return new MediationSuccessful1Page(this.page, this.axeBuilder);
+    return new MediationSuccessful1Page(this.page);
   }
 
   get mediationSuccessful2Page() {
-    const staffDocumentsFragment = new StaffDocumentsFragment(this.page, this.axeBuilder);
-    return new MediationSuccessful2Page(staffDocumentsFragment, this.page, this.axeBuilder);
+    const staffDocumentsFragment = new StaffDocumentsFragment(this.page);
+    return new MediationSuccessful2Page(staffDocumentsFragment, this.page);
   }
 
   get mediationSuccessfulSubmitPage() {
-    return new MediationSuccessfulSubmitPage(this.page, this.axeBuilder);
+    return new MediationSuccessfulSubmitPage(this.page);
   }
 
   get mediationUnsuccessfulPage() {
-    return new MediationUnsuccessfulPage(this.page, this.axeBuilder);
+    return new MediationUnsuccessfulPage(this.page);
   }
 
   get mediationUnsuccessfulSubmitPage() {
-    return new MediationUnsuccessfulSubmitPage(this.page, this.axeBuilder);
+    return new MediationUnsuccessfulSubmitPage(this.page);
   }
 
   get invalidHwfNumberPage() {
-    return new InvalidHwfNumberPage(this.page, this.axeBuilder);
+    return new InvalidHwfNumberPage(this.page);
   }
 
   get invalidHwfNumberSubmitPage() {
-    return new InvalidHwfNumberSubmitPage(this.page, this.axeBuilder);
+    return new InvalidHwfNumberSubmitPage(this.page);
   }
 
   get updatedHwfNumberPage() {
-    return new UpdatedHwfNumberPage(this.page, this.axeBuilder);
+    return new UpdatedHwfNumberPage(this.page);
   }
 
   get updatedHwfNumberSubmitPage() {
-    return new UpdatedHwfNumberSubmitPage(this.page, this.axeBuilder);
+    return new UpdatedHwfNumberSubmitPage(this.page);
   }
 
   get enterBreathingSpace1Page() {
-    return new EnterBreathingSpace1Page(this.page, this.axeBuilder);
+    return new EnterBreathingSpace1Page(this.page);
   }
 
   get enterBreathingSpace2Page() {
-    return new EnterBreathingSpace2Page(this.page, this.axeBuilder);
+    return new EnterBreathingSpace2Page(this.page);
   }
 
   get enterBreathingSpaceSubmitPage() {
-    return new EnterBreathingSpaceSubmitPage(this.page, this.axeBuilder);
+    return new EnterBreathingSpaceSubmitPage(this.page);
   }
 
   get liftBreathingSpacePage() {
-    return new LiftBreathingSpacePage(this.page, this.axeBuilder);
+    return new LiftBreathingSpacePage(this.page);
   }
 
   get caseHandedToCCBCSubmitPage() {
-    return new CaseHandedToCCBCSubmitPage(this.page, this.axeBuilder);
+    return new CaseHandedToCCBCSubmitPage(this.page);
   }
 }

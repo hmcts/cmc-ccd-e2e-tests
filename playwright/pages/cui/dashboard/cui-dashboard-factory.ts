@@ -5,14 +5,14 @@ import CuiNavBar from './nav-bar/cui-nav-bar';
 
 export default class CuiDashboardFactory extends BasePageFactory {
   get cuiCookiesBanner() {
-    return new CuiCookiesBanner(this.page, this.axeBuilder);
+    return new CuiCookiesBanner(this.page);
   }
 
   get cuiNavBar() {
-    return new CuiNavBar(this.page, this.axeBuilder);
+    return new CuiNavBar(this.page);
   }
 
   get cuiDashboardPage() {
-    return new CuiDashboardPage(this.page, this.axeBuilder);
+    return new CuiDashboardPage(this.page);
   }
 }

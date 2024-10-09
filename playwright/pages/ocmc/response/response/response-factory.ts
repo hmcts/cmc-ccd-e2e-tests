@@ -14,50 +14,50 @@ import ResponseDashboardPage from './response-dashboard/response-dashboard-page'
 
 export default class ResponseFactory extends BasePageFactory {
   get responseDashboardPage() {
-    return new ResponseDashboardPage(this.page, this.axeBuilder);
+    return new ResponseDashboardPage(this.page);
   }
 
   get freeTelephoneMediationPage() {
-    return new FreeTelephoneMediationPage(this.page, this.axeBuilder);
+    return new FreeTelephoneMediationPage(this.page);
   }
 
   get mediationPhoneNumberPage() {
-    return new MediationPhoneNumberPage(this.page, this.axeBuilder);
+    return new MediationPhoneNumberPage(this.page);
   }
 
   get confirmYourNumberPage() {
-    return new ConfirmYourNumberPage(this.page, this.axeBuilder);
+    return new ConfirmYourNumberPage(this.page);
   }
 
   get determinationWithoutHearingPage() {
-    return new DeterminationWithoutHearingPage(this.page, this.axeBuilder);
+    return new DeterminationWithoutHearingPage(this.page);
   }
 
   get supportRequiredPage() {
-    return new SupportRequiredPage(this.page, this.axeBuilder);
+    return new SupportRequiredPage(this.page);
   }
 
   get hearingLocationPage() {
-    return new HearingLocationPage(this.page, this.axeBuilder);
+    return new HearingLocationPage(this.page);
   }
 
   get expertPage() {
-    return new ExpertPage(this.page, this.axeBuilder);
+    return new ExpertPage(this.page);
   }
 
   get selfWitnessPage() {
-    return new SelfWitnessPage(this.page, this.axeBuilder);
+    return new SelfWitnessPage(this.page);
   }
 
   get witnessesPage() {
-    return new WitnessesPage(this.page, this.axeBuilder);
+    return new WitnessesPage(this.page);
   }
 
   get vulnerabilityQuestionsPage() {
-    return new VulnerabilityQuestionsPage(this.page, this.axeBuilder);
+    return new VulnerabilityQuestionsPage(this.page);
   }
 
   get hearingDatePage() {
-    return new HearingDatesPage(this.page, this.axeBuilder);
+    return new HearingDatesPage(this.page);
   }
 }

@@ -6,18 +6,18 @@ import CuiRespondToClaimPage from './respond-to-claim/cui-respond-to-claim-page'
 
 export default class CuiLinkClaimFactory extends BasePageFactory {
   get cuiRespondToClaimPage() {
-    return new CuiRespondToClaimPage(this.page, this.axeBuilder);
+    return new CuiRespondToClaimPage(this.page);
   }
 
   get cuiEnterClaimNumberPage() {
-    return new CuiEnterClaimNumberPage(this.page, this.axeBuilder);
+    return new CuiEnterClaimNumberPage(this.page);
   }
 
   get cuiEnterSecurityCodePage() {
-    return new CuiEnterSecurityCodePage(this.page, this.axeBuilder);
+    return new CuiEnterSecurityCodePage(this.page);
   }
 
   get cuiClaimDetailsPage() {
-    return new CuiClaimDetailsPage(this.page, this.axeBuilder);
+    return new CuiClaimDetailsPage(this.page);
   }
 }
