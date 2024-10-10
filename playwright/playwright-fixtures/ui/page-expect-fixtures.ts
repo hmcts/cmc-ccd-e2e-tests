@@ -1,6 +1,5 @@
 import test, { expect as baseExpect, Page } from '@playwright/test';
 import config from '../../config/config';
-
 import AxeCacheHelper from '../../helpers/axe-cache-helper';
 import { PageResult } from '../../types/axe-results';
 import AxeBuilder from '@axe-core/playwright';
@@ -31,15 +30,15 @@ export const expect = baseExpect
 
       if (!pageResults.pass) {
         if (pageResults.violationsInfo) {
-          const violationsExist = testInfo.attachments.some((attachment) => attachment.name === pageResults.violationsInfo.fileName);
-          if (!violationsExist)
+          const violationsAttachmentExist = testInfo.attachments.some((attachment) => attachment.name === pageResults.violationsInfo.fileName);
+          if (!violationsAttachmentExist)
             await testInfo.attach(pageResults.violationsInfo.fileName, {
               path: pageResults.violationsInfo.filePath
             });
         }
         if (pageResults.screenshotInfo) {
-          const screenshotExists = testInfo.attachments.some((attachment) => attachment.name === pageResults.screenshotInfo.fileName);
-          if (!screenshotExists)
+          const screenshotAttachmentExists = testInfo.attachments.some((attachment) => attachment.name === pageResults.screenshotInfo.fileName);
+          if (!screenshotAttachmentExists)
             await testInfo.attach(pageResults.screenshotInfo.fileName, {
               path: pageResults.screenshotInfo.filePath
             });
