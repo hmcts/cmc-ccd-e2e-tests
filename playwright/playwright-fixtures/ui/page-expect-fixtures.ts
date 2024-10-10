@@ -30,14 +30,20 @@ export const expect = baseExpect
       }
 
       if (!pageResults.pass) {
-        if (pageResults.violationsInfo)
-          await testInfo.attach(pageResults.violationsInfo.fileName, {
-            path: pageResults.violationsInfo.filePath
-          });
-        if (pageResults.screenshotInfo)
-          await testInfo.attach(pageResults.screenshotInfo.fileName, {
-            path: pageResults.screenshotInfo.filePath
-          });
+        if (pageResults.violationsInfo) {
+          const violationsExist = testInfo.attachments.some((attachment) => attachment.name === pageResults.violationsInfo.fileName);
+          if (!violationsExist)
+            await testInfo.attach(pageResults.violationsInfo.fileName, {
+              path: pageResults.violationsInfo.filePath
+            });
+        }
+        if (pageResults.screenshotInfo) {
+          const screenshotExists = testInfo.attachments.some((attachment) => attachment.name === pageResults.screenshotInfo.fileName);
+          if (!screenshotExists)
+            await testInfo.attach(pageResults.screenshotInfo.fileName, {
+              path: pageResults.screenshotInfo.filePath
+            });
+        }
       }
 
       try {
@@ -85,7 +91,7 @@ export const expect = baseExpect
         violationsFileName = `${pageName}-accessibility-violations`;
         let screenshotFileName = `${pageName}-accessibility-failure`;
         const violationsFilesLen = test.info().attachments.filter((attachment) => attachment.name.startsWith(violationsFileName)).length;
-        const violationsScreenshotLen = test.info().attachments.filter((attachment) => attachment.name.startsWith(violationsFileName)).length;
+        const violationsScreenshotLen = test.info().attachments.filter((attachment) => attachment.name.startsWith(screenshotFileName)).length;
 
         if (violationsFilesLen > 0 || violationsScreenshotLen > 0) {
           const maxViolationNum = Math.max(violationsFilesLen, violationsScreenshotLen);
