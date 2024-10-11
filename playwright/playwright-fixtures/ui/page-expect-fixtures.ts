@@ -83,7 +83,7 @@ export const expect = baseExpect
       let matcherResult: any;
 
       const results = await axeBuilder.analyze();
-      const violations = violationFingerprints(results.violations);
+      const violations = violationFingerprints(results);
 
       if (violations.length > 0) {
         pass = false;
@@ -94,8 +94,8 @@ export const expect = baseExpect
 
         if (violationsFilesLen > 0 || violationsScreenshotLen > 0) {
           const maxViolationNum = Math.max(violationsFilesLen, violationsScreenshotLen);
-          violationsFileName += `-(${maxViolationNum + 1})`;
-          screenshotFileName += `-(${maxViolationNum + 1})`;
+          violationsFileName += `-(${maxViolationNum})`;
+          screenshotFileName += `-(${maxViolationNum})`;
         }
 
         violationsFileName += '.json';
