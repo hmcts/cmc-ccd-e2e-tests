@@ -81,7 +81,7 @@ withNightlyPipeline("nodejs", product, component) {
   env.SERVICE_AUTH_PROVIDER_API_BASE_URL = params.SERVICE_AUTH_PROVIDER_API_BASE_URL
   env.CCD_DATA_STORE_URL = params.CCD_DATA_STORE_URL
   env.CLAIM_STORE_URL = params.CLAIM_STORE_URL
-  env.TEST_ENV = params.ENVIRONMENT
+  env.ENVIRONMENT = params.ENVIRONMENT
   env.WORKERS = params.WORKERS
   env.SKIP_AUTH_SETUP = params.SKIP_AUTH_SETUP
   loadVaultSecrets(secrets)

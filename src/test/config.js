@@ -50,7 +50,7 @@ module.exports = {
       breathingSpace: 'breathing-space',
     },
   },
-  env: process.env.TEST_ENV || 'local',
+  env: process.env.ENVIRONMENT || 'local',
   runFullSuite: process.env.RUN_FULL_REGRESSION_SUITE || 'NO',
   proxy: '',
 };
