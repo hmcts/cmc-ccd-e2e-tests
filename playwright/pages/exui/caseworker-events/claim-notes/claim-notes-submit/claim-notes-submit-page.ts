@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import ExuiEvent from '../../../exui-event/exui-event';
 import CaseworkerEvents from '../../../../../enums/events/caseworker-events';
-import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
+import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 
 @AllMethodsStep()
 export default class ClaimNotesSubmitPage extends ExuiEvent(BasePage) {

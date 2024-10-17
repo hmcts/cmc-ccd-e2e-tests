@@ -1,9 +1,9 @@
 import FileSystemHelper from '../helpers/file-system-helper';
-import User from '../types/user';
+import User from '../models/user';
 import FileType from '../enums/file-type';
 import { AllMethodsStep } from '../decorators/test-steps';
 import UserRole from '../enums/user-role';
-import Cookie from '../types/cookie';
+import Cookie from '../models/cookie';
 
 @AllMethodsStep()
 export default class RequestsCookiesManager {

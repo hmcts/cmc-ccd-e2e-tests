@@ -1,6 +1,6 @@
-import CCDCaseData from '../types/case-data/ccd-case-data';
-import ClaimStoreCaseData from '../types/case-data/claim-store-case-data';
-import TestData from '../types/test-data';
+import CCDCaseData from '../models/case-data/ccd-case-data';
+import ClaimStoreCaseData from '../models/case-data/claim-store-case-data';
+import TestData from '../models/test-data';
 
 export default abstract class BaseSteps {
   private _testData: TestData;

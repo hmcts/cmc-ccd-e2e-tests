@@ -2,7 +2,7 @@ import BaseRequest from '../base/base-request';
 import { TOTP } from 'totp-generator';
 import { AllMethodsStep } from '../decorators/test-steps';
 import config from '../config/config';
-import RequestOptions from '../types/request-options';
+import RequestOptions from '../models/api/request-options';
 import urls from '../config/urls';
 
 export default function ServiceAuthProviderRequests<
@@ -23,9 +23,9 @@ export default function ServiceAuthProviderRequests<
             oneTimePassword: TOTP.generate(config.s2s.secret).otp,
           },
         };
-        const response = await super.retriedRequest(url, requestOptions);
+        const responseText = await super.retryRequestText(url, requestOptions);
         console.log('s2s token fetched successfully');
-        ServiceAuthProviderRequests.s2sToken = await response.text();
+        ServiceAuthProviderRequests.s2sToken = responseText;
       }
       return ServiceAuthProviderRequests.s2sToken;
     }

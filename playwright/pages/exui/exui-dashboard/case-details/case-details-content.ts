@@ -1,5 +1,5 @@
-import ClaimStoreCaseData from '../../../../types/case-data/claim-store-case-data';
-import ExuiEvents from '../../../../types/exui-events';
+import ClaimStoreCaseData from '../../../../models/case-data/claim-store-case-data';
+import ExuiEvents from '../../../../models/exui-events';
 
 export const getHeading = (caseData: ClaimStoreCaseData) =>
   `${caseData.referenceNumber} ${caseData.claim.claimants[0].name} Vs ${caseData.claim.defendants[0].name}`;

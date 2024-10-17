@@ -1,4 +1,4 @@
-import User from '../types/user';
+import User from '../models/user';
 import UserRole from '../enums/user-role';
 import UserType from '../enums/user-type';
 import filePaths from './file-paths';

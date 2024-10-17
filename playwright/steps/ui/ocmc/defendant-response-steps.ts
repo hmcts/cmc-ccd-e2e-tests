@@ -6,7 +6,7 @@ import OcmcDashboardFactory from '../../../pages/ocmc/dashboard/ocmc-dashboard-f
 import OcmcLinkClaimFactory from '../../../pages/ocmc/link-claim/ocmc-link-claim-factory';
 import DefendantResponseFactory from '../../../pages/ocmc/response/defendant/defendant-response-factory';
 import ResponseFactory from '../../../pages/ocmc/response/response/response-factory';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 import ResponseSteps from './response-steps';
 
 @AllMethodsStep()

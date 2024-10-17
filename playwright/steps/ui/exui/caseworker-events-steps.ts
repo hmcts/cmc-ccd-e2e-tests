@@ -1,5 +1,5 @@
 import BaseSteps from '../../../base/base-steps';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import CaseworkerEventsFactory from '../../../pages/exui/caseworker-events/caseworker-events-factory';
 import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
@@ -182,7 +182,10 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     await linkLetterHolderSubmitPage.verifyContent(this.ccdCaseData);
     await linkLetterHolderSubmitPage.submit();
 
-    // await caseDetailsPage.verifySuccessEvent(this.ccdCaseData.id, CaseworkerEvents.LINK_LETTER_HOLDER_ID);
+    // await caseDetailsPage.verifySuccessEvent(
+    //   this.ccdCaseData.id,
+    //   CaseworkerEvents.LINK_LETTER_HOLDER_ID,
+    // );
   }
 
   async AttachViaBulkScan() {

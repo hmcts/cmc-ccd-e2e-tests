@@ -1,7 +1,7 @@
 import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import DateHelper from '../../../../../helpers/date-helper';
-import ClaimStoreCaseData from '../../../../../types/case-data/claim-store-case-data';
+import ClaimStoreCaseData from '../../../../../models/case-data/claim-store-case-data';
 import { heading, links, subHeadings } from './defendant-response-dashboard-content';
 
 @AllMethodsStep()

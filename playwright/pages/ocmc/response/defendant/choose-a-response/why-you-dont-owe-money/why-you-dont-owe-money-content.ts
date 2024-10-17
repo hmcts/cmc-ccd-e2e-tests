@@ -1,4 +1,4 @@
-import ClaimStoreCaseData from '../../../../../../types/case-data/claim-store-case-data';
+import ClaimStoreCaseData from '../../../../../../models/case-data/claim-store-case-data';
 
 export const getHeading = (caseData: ClaimStoreCaseData) =>
   `Why do you believe you don’t owe ${caseData.claim.claimants[0].name} any money`;

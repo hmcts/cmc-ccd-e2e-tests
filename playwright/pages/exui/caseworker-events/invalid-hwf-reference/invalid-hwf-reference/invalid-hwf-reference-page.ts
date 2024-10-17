@@ -1,7 +1,7 @@
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import { heading } from './invalid-hwf-reference-content';
-import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
+import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 import ExuiEvent from '../../../exui-event/exui-event';
 
 @AllMethodsStep()

@@ -1,7 +1,7 @@
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import ResponseFactory from '../../../pages/ocmc/response/response/response-factory';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 
 @AllMethodsStep()
 export default abstract class ResponseSteps extends BaseSteps {

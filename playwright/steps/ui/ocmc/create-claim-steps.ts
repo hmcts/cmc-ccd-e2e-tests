@@ -1,6 +1,6 @@
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 import { claimants, defendants } from '../../../config/users';
 import CreateClaimFactory from '../../../pages/ocmc/create-claim/create-claim-factory';
 import OcmcDashboardFactory from '../../../pages/ocmc/dashboard/ocmc-dashboard-factory';

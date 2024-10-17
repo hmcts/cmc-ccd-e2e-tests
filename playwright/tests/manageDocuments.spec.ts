@@ -11,6 +11,7 @@ test.describe('Manage Documents', async () => {
     await ApiCaseDataSteps.FetchCCDCaseData();
     await IdamSteps.CaseworkerLogin();
     await ExuiDashboardSteps.GoToCaseDetailsAndWait();
+    await CaseworkerEventsSteps.MediationPending();
     await CaseworkerEventsSteps.ManageDocuments();
   });
 });

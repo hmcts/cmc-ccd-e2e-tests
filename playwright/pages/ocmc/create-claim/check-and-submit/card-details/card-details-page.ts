@@ -2,7 +2,7 @@ import DateHelper from '../../../../../helpers/date-helper';
 import BasePage from '../../../../../base/base-page';
 import { heading, subHeadings, inputs, dropdowns, buttons } from './card-details-content';
 import { Step } from '../../../../../decorators/test-steps';
-import User from '../../../../../types/user';
+import User from '../../../../../models/user';
 
 const classKey = 'CardDetailsPage';
 

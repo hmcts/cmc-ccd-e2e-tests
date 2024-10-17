@@ -2,7 +2,7 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import BreathingSpaceFactory from '../../../pages/ocmc/breathing-space/breathing-space-factory';
 import OcmcDashboardFactory from '../../../pages/ocmc/dashboard/ocmc-dashboard-factory';
 import ResponseFactory from '../../../pages/ocmc/response/response/response-factory';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 import ResponseSteps from './response-steps';
 
 @AllMethodsStep()

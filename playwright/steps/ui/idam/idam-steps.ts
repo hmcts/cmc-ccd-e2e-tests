@@ -1,9 +1,9 @@
 import BaseSteps from '../../../base/base-steps';
-import User from '../../../types/user';
+import User from '../../../models/user';
 import config from '../../../config/config';
 import IdamFactory from '../../../pages/idam/idam-factory';
 import { AllMethodsStep } from '../../../decorators/test-steps';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 import { caseworker, claimants, defendants, judge, legalAdvisor } from '../../../config/users';
 import PageUtilsFactory from '../../../pages/utils/page-utils-factory';
 import CookiesHelper from '../../../helpers/cookies-helper';

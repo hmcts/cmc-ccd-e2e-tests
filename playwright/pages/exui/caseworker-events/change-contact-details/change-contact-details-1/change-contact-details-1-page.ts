@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CCDCaseData, {
   ApplicantValue,
   RespondentValue,
-} from '../../../../../types/case-data/ccd-case-data';
+} from '../../../../../models/case-data/ccd-case-data';
 import ExuiEvent from '../../../exui-event/exui-event';
 import {
   heading,

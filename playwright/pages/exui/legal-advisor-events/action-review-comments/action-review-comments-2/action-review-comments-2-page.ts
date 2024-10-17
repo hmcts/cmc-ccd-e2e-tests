@@ -1,6 +1,6 @@
 import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
-import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
+import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 import ExuiEvent from '../../../exui-event/exui-event';
 import { heading } from './action-review-comment-2-content';
 import DraftOrderFragment from '../../../fragments/draft-order/draft-order-fragment';

@@ -2,7 +2,7 @@ import BasePage from '../../../../base/base-page';
 import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import { TruthyParams } from '../../../../decorators/truthy-params';
-import ExuiEvents from '../../../../types/exui-events';
+import ExuiEvents from '../../../../models/exui-events';
 import {
   tabs,
   dropdowns,
@@ -15,7 +15,7 @@ import {
   claimantInputs as claimantChangeDetailsInputs,
   defendantInputs as defendantChangeDetailsInputs,
 } from '../../caseworker-events/change-contact-details/change-contact-details-1/change-contact-details-1-content';
-import CCDCaseData from '../../../../types/case-data/ccd-case-data';
+import CCDCaseData from '../../../../models/case-data/ccd-case-data';
 import { doc1Dropdowns } from '../../fragments/staff-documents/staff-documents-content';
 
 const classKey = 'CaseDetailsPage';

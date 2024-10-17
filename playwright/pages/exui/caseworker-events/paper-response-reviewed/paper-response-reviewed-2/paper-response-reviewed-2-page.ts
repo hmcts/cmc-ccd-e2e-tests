@@ -2,7 +2,7 @@ import { heading, radioButtons } from './paper-response-reviewed-2-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import ExuiEvent from '../../../exui-event/exui-event';
-import CCDCaseData from '../../../../../types/case-data/ccd-case-data';
+import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 
 @AllMethodsStep()
 export default class PaperResponseReviewed2Page extends ExuiEvent(BasePage) {

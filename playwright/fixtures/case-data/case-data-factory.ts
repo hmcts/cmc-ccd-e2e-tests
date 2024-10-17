@@ -1,7 +1,7 @@
 import FileSystemHelper from '../../helpers/file-system-helper';
 import caseDataPaths from '../../config/case-data-paths';
 import FileType from '../../enums/file-type';
-import CCDCaseData from '../../types/case-data/ccd-case-data';
+import CCDCaseData from '../../models/case-data/ccd-case-data';
 
 export default class CaseDataFactory {
   get generateOrderDisputeAllBothRejectMediation(): CCDCaseData {

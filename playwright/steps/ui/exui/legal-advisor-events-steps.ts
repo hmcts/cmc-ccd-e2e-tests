@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import LegalAdvisorEvents from '../../../enums/events/legal-advisor-events';
 import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
 import LegalAdvisorEventsFactory from '../../../pages/exui/legal-advisor-events/legal-advisor-events-factory';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 
 @AllMethodsStep()
 export default class LegalAdvisorEventsSteps extends BaseSteps {

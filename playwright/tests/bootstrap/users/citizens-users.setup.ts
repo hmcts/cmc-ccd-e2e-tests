@@ -5,11 +5,11 @@ import { test as setup } from '../../../playwright-fixtures/index';
 if (!config.skipCitizenSetup) {
   setup.describe(`Creating citizen users for ${config.playwright.workers} worker(s)`, () => {
     setup.describe.configure({ mode: 'parallel' });
-    setup('Claimant(s)', async ({ ApiUsersSteps: ApiCitizenUsersSteps }) => {
-      await ApiCitizenUsersSteps.CreateCitizenUsers(claimants);
+    setup('Claimant(s)', async ({ ApiUsersSteps }) => {
+      await ApiUsersSteps.CreateCitizenUsers(claimants);
     });
-    setup('Defendant(s)', async ({ ApiUsersSteps: ApiCitizenUsersSteps }) => {
-      await ApiCitizenUsersSteps.CreateCitizenUsers(defendants);
+    setup('Defendant(s)', async ({ ApiUsersSteps }) => {
+      await ApiUsersSteps.CreateCitizenUsers(defendants);
     });
   });
 } else {

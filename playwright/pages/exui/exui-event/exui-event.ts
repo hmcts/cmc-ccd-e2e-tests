@@ -1,7 +1,7 @@
 import BasePage from '../../../base/base-page';
 import { AllMethodsStep } from '../../../decorators/test-steps';
-import CCDCaseData from '../../../types/case-data/ccd-case-data';
-import ExuiEvents from '../../../types/exui-events';
+import CCDCaseData from '../../../models/case-data/ccd-case-data';
+import ExuiEvents from '../../../models/exui-events';
 import { eventInputs, buttons, components, links } from './exui-event-content';
 
 export default function ExuiEvent<TBase extends abstract new (...args: any[]) => BasePage>(

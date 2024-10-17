@@ -1,13 +1,13 @@
 import { AllMethodsStep } from '../../decorators/test-steps';
 import RequestsFactory from '../../requests/requests-factory';
-import TestData from '../../types/test-data';
+import TestData from '../../models/test-data';
 import CaseDataFactory from '../../fixtures/case-data/case-data-factory';
 import CaseEvents from '../../enums/events/case-events';
 import { uuid } from 'uuidv4';
 import { claimants } from '../../config/users';
 import BaseApiSteps from '../../base/base-api-steps';
 import CaseDataHelper from '../../helpers/case-data-helper';
-import CCDCaseData from '../../types/case-data/ccd-case-data';
+import CCDCaseData from '../../models/case-data/ccd-case-data';
 
 @AllMethodsStep({ methodNamesToIgnore: ['createOpenCase'] })
 export default class ApiCaseEventSteps extends BaseApiSteps {

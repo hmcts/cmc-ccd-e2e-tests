@@ -3,7 +3,7 @@ import { AllMethodsStep } from '../../../decorators/test-steps';
 import JudgeEvents from '../../../enums/events/judge-events';
 import ExuiDashboardFactory from '../../../pages/exui/exui-dashboard/exui-dashboard-factory';
 import JudgeEventsFactory from '../../../pages/exui/judge-events/judge-events-factory';
-import TestData from '../../../types/test-data';
+import TestData from '../../../models/test-data';
 
 @AllMethodsStep()
 export default class JudgeEventsSteps extends BaseSteps {

@@ -1,9 +1,11 @@
+import { APIResponse } from 'playwright-core';
 import BaseRequest from '../base/base-request';
 import urls from '../config/urls';
 import { AllMethodsStep } from '../decorators/test-steps';
 import { TruthyParams } from '../decorators/truthy-params';
-import RequestOptions from '../types/request-options';
-import User from '../types/user';
+import RequestOptions from '../models/api/request-options';
+import User from '../models/user';
+import { Serializable } from 'playwright-core/types/structs';
 
 const classKey = 'ClaimStoreRequests';
 @AllMethodsStep({ methodNamesToIgnore: ['getRequestHeaders'] })
@@ -23,8 +25,7 @@ export default class ClaimStoreRequests extends BaseRequest {
       headers: this.getRequestHeaders(accessToken),
       method: 'GET',
     };
-    const response = await super.retriedRequest(url, requestOptions);
-    const caseData = await response.json();
+    const caseData = await super.retryRequestJson(url, requestOptions);
     console.log('Claim store case data fetched successfully');
     return caseData;
   }
@@ -37,8 +38,11 @@ export default class ClaimStoreRequests extends BaseRequest {
       headers: this.getRequestHeaders(accessToken),
       method: 'GET',
     };
-    const response = await super.retriedRequest(url, requestOptions, 200, 5, ['letterHolderId']);
-    const caseData = await response.json();
+    const caseData = await super.retryRequestJson(url, requestOptions, {
+      verifyResponse: async (responseJson) => {
+        await super.expectResponseJsonToHaveProperty('letterHolderId', responseJson);
+      },
+    });
     console.log('Claim store case data with letter id fetched successfully');
     return caseData;
   }

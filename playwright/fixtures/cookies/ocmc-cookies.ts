@@ -1,4 +1,4 @@
-import Cookie from '../../types/cookie';
+import Cookie from '../../models/cookie';
 import urls, { getDomain } from '../../config/urls';
 
 export const acceptOcmcCookies: Cookie[] = [
