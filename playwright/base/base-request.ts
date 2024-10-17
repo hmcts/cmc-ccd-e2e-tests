@@ -223,8 +223,8 @@ export default abstract class BaseRequest {
 
   @BoxedDetailedStep(classKey, 'text', 'responseText')
   protected async expectTextResponseToEqual(
-    text: Record<string, unknown> | Array<unknown>,
-    responseText: Record<string, unknown>,
+    text: string,
+    responseText: string,
     options: { message?: string } = {},
   ) {
     expect(text, options.message).toEqual(responseText);
