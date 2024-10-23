@@ -2,7 +2,7 @@ import 'dotenv/config';
 import Environment from '../enums/environment';
 
 const config = {
-  environment: Environment[process.env.ENVIRONMENT] as Environment,
+  environment: process.env.ENVIRONMENT as Environment,
   idamStudEnabled: process.env.IDAM_STUB_ENABLED === 'true',
   skipAuthSetup: process.env.SKIP_AUTH_SETUP === 'true',
   skipCitizenSetup: process.env.SKIP_CITIZEN_SETUP === 'true',
