@@ -1,6 +1,6 @@
 export const heading = 'Review OCON9x paper response';
 
-export const subHeadings = {
+export const subheadings = {
   scannedDocs: 'Bulk scanned documents',
 };
 

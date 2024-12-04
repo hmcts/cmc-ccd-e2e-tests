@@ -1,4 +1,4 @@
-export const subHeadings = {
+export const subheadings = {
   staffUploadedDocs: 'Staff uploaded documents',
 };
 

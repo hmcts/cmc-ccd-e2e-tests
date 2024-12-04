@@ -1,6 +1,6 @@
 export const heading = 'Free telephone mediation';
 
-export const subHeadings = {
+export const subheadings = {
   howMediationWorks: 'How free mediation works',
   settlement: 'Reaching a settlement',
 };

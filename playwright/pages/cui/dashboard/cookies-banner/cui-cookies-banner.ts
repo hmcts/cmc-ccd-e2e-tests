@@ -6,7 +6,7 @@ import { buttons, heading, paragraphs } from './cui-cookies-banner-content';
 export default class CuiCookiesBanner extends BasePage {
   async verifyContent(): Promise<void> {
     await super.runVerifications([
-      super.expectSubHeading(heading),
+      super.expectSubheading(heading),
       super.expectText(paragraphs.cookiesDescription1),
       super.expectText(paragraphs.cookiesDescription2),
     ]);

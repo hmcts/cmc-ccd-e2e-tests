@@ -8,7 +8,7 @@ import {
   buttons,
   dropdowns,
   inputs,
-  subHeadings,
+  subheadings,
 } from './sdo-content';
 
 @AllMethodsStep()
@@ -20,7 +20,7 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
         super.expectOptionChecked(checkboxes.sendWitness.selector),
         super.expectOptionChecked(radioButtons.docsBothParties.selector),
         super.expectOptionChecked(radioButtons.witnessesBothParties.selector),
-        super.expectSubHeading(subHeadings.addExtraDoc),
+        super.expectSubheading(subheadings.addExtraDoc),
         super.expectText(legends.directions),
         super.expectText(legends.docUploadParty),
         super.expectText(legends.docsDeadline),
@@ -64,7 +64,7 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
       dropdowns.extraDirection.selector,
     );
     await super.expectLabel(dropdowns.directionParty.label);
-    // await super.expectSubHeading(subHeadings.sendDocsInstructions);
+    // await super.expectSubheading(subheadings.sendDocsInstructions);
     await super.selectFromDropdown(
       dropdowns.directionParty.options[2],
       dropdowns.directionParty.selector,

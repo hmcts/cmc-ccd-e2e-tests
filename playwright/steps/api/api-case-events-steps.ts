@@ -24,6 +24,7 @@ export default class ApiCaseEventSteps extends BaseApiSteps {
 
   private async createOpenCase(testCaseData: CCDCaseData) {
     const claimant = claimants[this.workerIndex];
+    console.log(claimant);
 
     const { initiateClaimPaymentCitizen } = this.caseDataFactory;
     initiateClaimPaymentCitizen.externalId = uuid();

@@ -1,6 +1,6 @@
 export const heading = 'Confirm your details';
 
-export const subHeadings = {
+export const subheadings = {
   title: 'Title',
   firstName: 'First Name',
   lastName: 'Last Name',

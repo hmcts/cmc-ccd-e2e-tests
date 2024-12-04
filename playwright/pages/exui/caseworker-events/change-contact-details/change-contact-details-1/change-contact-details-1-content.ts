@@ -13,7 +13,7 @@ export const radioButtons = {
   },
 };
 
-export const subHeadings = {
+export const subheadings = {
   claimants: 'Claimants',
   claimantDetails: 'Claimant details',
   defendants: 'Defendants',

@@ -1,6 +1,6 @@
 import DateHelper from '../../../../../helpers/date-helper';
 import BasePage from '../../../../../base/base-page';
-import { heading, subHeadings, inputs, dropdowns, buttons } from './card-details-content';
+import { heading, subheadings, inputs, dropdowns, buttons } from './card-details-content';
 import { Step } from '../../../../../decorators/test-steps';
 import User from '../../../../../models/user';
 
@@ -19,7 +19,7 @@ export default class CardDetailsPage extends BasePage {
 
   private async verifyPaymentSummaryContent() {
     await Promise.all([
-      // super.expectSubHeadingToBeVisible(subHeadings.paymentSummary),
+      // super.expectSubheadingToBeVisible(subheadings.paymentSummary),
       super.expectLabel(inputs.cardNumber.label),
       super.expectLabel(inputs.expiryMonth.label),
       super.expectLabel(inputs.expiryYear.label),
@@ -30,7 +30,7 @@ export default class CardDetailsPage extends BasePage {
 
   private async verifyBillingAddressContent() {
     await Promise.all([
-      super.expectSubHeading(subHeadings.billingAddress),
+      super.expectSubheading(subheadings.billingAddress),
       super.expectLabel(inputs.addressLine1.label),
       super.expectLabel(inputs.addressLine2.label),
       super.expectLabel(inputs.city.label),
@@ -40,7 +40,7 @@ export default class CardDetailsPage extends BasePage {
   }
 
   private async verifyContactDetails() {
-    await super.expectSubHeading(subHeadings.contactDetails);
+    await super.expectSubheading(subheadings.contactDetails);
   }
 
   @Step(classKey)

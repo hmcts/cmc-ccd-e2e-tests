@@ -1,6 +1,6 @@
 export const heading = 'Respond to a money claim';
 
-export const subHeadings = {
+export const subheadings = {
   dontRespond: 'If you don’t respond',
   email: 'Email',
   telephone: 'Telephone',

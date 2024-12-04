@@ -1,19 +1,19 @@
 import BasePage from '../../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import OcmcEvent from '../../../../ocmc-event/ocmc-event';
-import { checkBoxes, heading, subHeadings } from './defendant-response-check-your-answers-content';
+import { checkBoxes, heading, subheadings } from './defendant-response-check-your-answers-content';
 
 @AllMethodsStep()
 export default class DefendantResponseCheckYourAnswersPage extends OcmcEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.yourDetails),
-      super.expectSubHeading(subHeadings.yourResponse),
-      super.expectSubHeading(subHeadings.responseDetails),
-      super.expectSubHeading(subHeadings.mediation),
-      super.expectSubHeading(subHeadings.hearingRequirements),
-      super.expectSubHeading(subHeadings.statementOfTruth),
+      super.expectSubheading(subheadings.yourDetails),
+      super.expectSubheading(subheadings.yourResponse),
+      super.expectSubheading(subheadings.responseDetails),
+      super.expectSubheading(subheadings.mediation),
+      super.expectSubheading(subheadings.hearingRequirements),
+      super.expectSubheading(subheadings.statementOfTruth),
     ]);
   }
 

@@ -1,6 +1,6 @@
 export const heading = 'Respond to a money claim';
 
-export const subHeadings = {
+export const subheadings = {
   applicationIncomplete: 'Application incomplete',
   prepareYourResponse: 'Prepare your response',
   respondToClaim: 'Respond to claim',

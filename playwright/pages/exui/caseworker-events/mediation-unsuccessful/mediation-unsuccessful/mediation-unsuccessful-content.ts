@@ -1,6 +1,6 @@
 export const heading = 'Mediation unsuccessful';
 
-export const subHeadings = {
+export const subheadings = {
   defendants: 'Defendants',
 };
 

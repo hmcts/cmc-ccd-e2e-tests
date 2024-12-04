@@ -257,7 +257,7 @@ export default abstract class BasePage {
   }
 
   @BoxedDetailedStep(classKey, 'text')
-  protected async expectSubHeading(text: string, options?: { timeout?: number }) {
+  protected async expectSubheading(text: string, options?: { timeout?: number }) {
     await pageExpect(this.page.locator('h2', { hasText: text })).toBeVisible(options);
   }
 

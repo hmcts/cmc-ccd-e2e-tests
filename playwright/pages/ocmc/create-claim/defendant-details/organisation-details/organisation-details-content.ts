@@ -1,6 +1,6 @@
 export const heading = 'Enter organisation details';
 
-export const subHeadings = {
+export const subheadings = {
   address: 'Organisation address',
 };
 

@@ -1,6 +1,6 @@
 export const heading = 'Add your timeline of events';
 
-export const subHeadings = {
+export const subheadings = {
   theirTimeline: 'Their timeline',
   addTimeline: 'Add your timeline of events (optional)',
 };

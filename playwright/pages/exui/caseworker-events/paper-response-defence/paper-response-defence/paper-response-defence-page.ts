@@ -2,7 +2,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import ExuiEvent from '../../../exui-event/exui-event';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
-import { heading, inputs, radioButtons, subHeadings } from './paper-response-defence-content';
+import { heading, inputs, radioButtons, subheadings } from './paper-response-defence-content';
 
 @AllMethodsStep()
 export default class PaperResponseDefencePage extends ExuiEvent(BasePage) {
@@ -11,10 +11,10 @@ export default class PaperResponseDefencePage extends ExuiEvent(BasePage) {
     await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
-      super.expectSubHeading(subHeadings.defendantDetails),
-      super.expectSubHeading(subHeadings.address),
-      super.expectSubHeading(subHeadings.correspondenceAddress),
-      // super.expectSubHeading(subHeadings.contactDetails),
+      super.expectSubheading(subheadings.defendantDetails),
+      super.expectSubheading(subheadings.address),
+      super.expectSubheading(subheadings.correspondenceAddress),
+      // super.expectSubheading(subheadings.contactDetails),
       super.expectLabel(radioButtons.dispute.label),
       super.expectLabel(radioButtons.alreadyPaid.label),
       super.expectInputValue(inputs.addressLine1.selector, respondentAddress.AddressLine1),

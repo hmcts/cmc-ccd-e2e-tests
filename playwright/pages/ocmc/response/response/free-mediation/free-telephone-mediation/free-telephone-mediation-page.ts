@@ -1,15 +1,15 @@
 import BasePage from '../../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import OcmcEvent from '../../../../ocmc-event/ocmc-event';
-import { buttons, heading, links, subHeadings } from './free-telephone-mediation-content';
+import { buttons, heading, links, subheadings } from './free-telephone-mediation-content';
 
 @AllMethodsStep()
 export default class FreeTelephoneMediationPage extends OcmcEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.howMediationWorks),
-      super.expectSubHeading(subHeadings.settlement),
+      super.expectSubheading(subheadings.howMediationWorks),
+      super.expectSubheading(subheadings.settlement),
     ]);
   }
 

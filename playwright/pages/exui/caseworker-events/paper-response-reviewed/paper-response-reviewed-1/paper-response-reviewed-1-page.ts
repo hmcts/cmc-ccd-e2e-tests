@@ -3,7 +3,7 @@ import {
   dropdowns,
   heading,
   inputs,
-  subHeadings,
+  subheadings,
 } from './paper-response-reviewed-1-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
@@ -22,7 +22,7 @@ export default class PaperResponseReviewed1Page extends ExuiEvent(BasePage) {
       dropdowns.responseType.options[0],
       dropdowns.responseType.selector,
     );
-    await super.expectSubHeading(subHeadings.bulkScanOrEmail);
+    await super.expectSubheading(subheadings.bulkScanOrEmail);
   }
 
   async enterOcon9xDocDetails() {

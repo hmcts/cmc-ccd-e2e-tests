@@ -1,15 +1,15 @@
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
-import { heading, links, subHeadings } from './create-claim-dashboard-content';
+import { heading, links, subheadings } from './create-claim-dashboard-content';
 
 @AllMethodsStep()
 export default class CreateClaimDashboardPage extends BasePage {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.otherOptions),
-      super.expectSubHeading(subHeadings.prepareClaim),
-      super.expectSubHeading(subHeadings.submit),
+      super.expectSubheading(subheadings.otherOptions),
+      super.expectSubheading(subheadings.prepareClaim),
+      super.expectSubheading(subheadings.submit),
     ]);
   }
 

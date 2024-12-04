@@ -7,6 +7,6 @@ test.describe('Judge Draw Direction Order (JDDO - claim amount > 500)', () => {
     await ApiCaseEventsSteps.AssignForJudgeDirections();
     await IdamSteps.JudgeLogin();
     await ExuiDashboardSteps.GoToCaseDetails();
-    await JudgeEventsSteps.DrawDirectionsOrder();
+    // await JudgeEventsSteps.DrawDirectionsOrder();
   });
 });

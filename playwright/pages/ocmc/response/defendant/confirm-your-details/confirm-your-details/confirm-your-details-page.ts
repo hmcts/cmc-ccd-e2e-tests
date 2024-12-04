@@ -2,19 +2,19 @@ import BasePage from '../../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import ClaimStoreCaseData from '../../../../../../models/case-data/claim-store-case-data';
 import OcmcEvent from '../../../../ocmc-event/ocmc-event';
-import { heading, subHeadings, inputs } from './confirm-your-details-content';
+import { heading, subheadings, inputs } from './confirm-your-details-content';
 
 @AllMethodsStep()
 export default class ConfirmYourDetailsPage extends OcmcEvent(BasePage) {
   async verifyContent(caseData: ClaimStoreCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.title),
-      super.expectSubHeading(subHeadings.firstName),
+      super.expectSubheading(subheadings.title),
+      super.expectSubheading(subheadings.firstName),
       super.expectText(caseData.claim.defendants[0].firstName),
-      super.expectSubHeading(subHeadings.lastName),
+      super.expectSubheading(subheadings.lastName),
       super.expectText(caseData.claim.defendants[0].lastName),
-      super.expectSubHeading(subHeadings.address),
+      super.expectSubheading(subheadings.address),
       super.expectInputValue(
         inputs.addressLine1.selector,
         caseData.claim.defendants[0].address.line1,
@@ -32,7 +32,7 @@ export default class ConfirmYourDetailsPage extends OcmcEvent(BasePage) {
         inputs.postcode.selector,
         caseData.claim.defendants[0].address.postcode,
       ),
-      super.expectSubHeading(subHeadings.correspondenceAddress),
+      super.expectSubheading(subheadings.correspondenceAddress),
     ]);
   }
 

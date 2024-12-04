@@ -1,6 +1,6 @@
 export const heading = 'You’ve submitted your response';
 
-export const subHeadings = {
+export const subheadings = {
   happensNext: 'What happens next',
   settleOutCourt: 'Settle out of court',
   email: 'Email',

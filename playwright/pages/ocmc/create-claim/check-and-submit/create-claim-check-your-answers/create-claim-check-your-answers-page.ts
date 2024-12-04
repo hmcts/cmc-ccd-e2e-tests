@@ -1,7 +1,7 @@
 import BasePage from '../../../../../base/base-page';
 import { Step } from '../../../../../decorators/test-steps';
 import OcmcEvent from '../../../ocmc-event/ocmc-event';
-import { heading, subHeadings, checkboxes } from './create-claim-check-your-answers-content';
+import { heading, subheadings, checkboxes } from './create-claim-check-your-answers-content';
 
 const classKey = 'CreateClaimCheckYourAnswersPage';
 
@@ -20,32 +20,32 @@ export default class CreateClaimCheckYourAnswersPage extends OcmcEvent(BasePage)
   }
 
   private async verifyYourDetails() {
-    await super.expectSubHeading(subHeadings.yourDetails);
+    await super.expectSubheading(subheadings.yourDetails);
     //verify the rest of content
   }
 
   private async verifyTheirDetails() {
-    await super.expectSubHeading(subHeadings.theirDetails);
+    await super.expectSubheading(subheadings.theirDetails);
     //verify the rest of content
   }
 
   private async verifyClaimAmount() {
-    await super.expectSubHeading(subHeadings.claimAmount);
+    await super.expectSubheading(subheadings.claimAmount);
     //verify the rest of content
   }
 
   private async verifyTotalAmount() {
-    await super.expectSubHeading(subHeadings.totalAmount);
+    await super.expectSubheading(subheadings.totalAmount);
     //verify the rest of content
   }
 
   private async verifyClaimDetails() {
-    await super.expectSubHeading(subHeadings.claimDetails);
+    await super.expectSubheading(subheadings.claimDetails);
     //verify the rest of content
   }
 
   private async verifyStatementOfTruth() {
-    await super.expectSubHeading(subHeadings.statementOfTruth);
+    await super.expectSubheading(subheadings.statementOfTruth);
     //verify the rest of content
   }
 

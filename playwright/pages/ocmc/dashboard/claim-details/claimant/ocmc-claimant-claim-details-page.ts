@@ -7,7 +7,7 @@ import { getSubHeading, links, tabs } from './ocmc-claimant-claim-details-conten
 export default class OcmcClaimantClaimDetailsPage extends BasePage {
   async verifyContent(caseData: ClaimStoreCaseData) {
     await super.runVerifications([
-      super.expectSubHeading(getSubHeading(caseData)),
+      super.expectSubheading(getSubHeading(caseData)),
       super.expectText(caseData.referenceNumber),
       super.expectText(tabs.latestUpdate),
       super.expectText(tabs.documents, { exact: true }),

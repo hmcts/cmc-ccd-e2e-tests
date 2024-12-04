@@ -1,14 +1,14 @@
 import BasePage from '../../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import OcmcEvent from '../../../../ocmc-event/ocmc-event';
-import { dropdowns, heading, inputs, paragraphs, subHeadings } from './evidence-content';
+import { dropdowns, heading, inputs, paragraphs, subheadings } from './evidence-content';
 
 @AllMethodsStep()
 export default class EvidencePage extends OcmcEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.listYourEvidence),
+      super.expectSubheading(subheadings.listYourEvidence),
       super.expectText(paragraphs.yourEvidence),
     ]);
   }

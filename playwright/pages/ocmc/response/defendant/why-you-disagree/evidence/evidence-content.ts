@@ -1,6 +1,6 @@
 export const heading = 'List your evidence';
 
-export const subHeadings = {
+export const subheadings = {
   listYourEvidence: 'List your evidence (optional)',
 };
 

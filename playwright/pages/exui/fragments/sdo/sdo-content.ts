@@ -1,4 +1,4 @@
-export const subHeadings = {
+export const subheadings = {
   addExtraDoc: 'Add an instruction for sending documents (Optional)',
   sendDocsInstructions: 'Add an instruction for sending documents (Optional)',
 };

@@ -1,6 +1,6 @@
 export const heading = 'Paper response reviewed';
 
-export const subHeadings = {
+export const subheadings = {
   bulkScanOrEmail: 'Bulk scanned or emailed documents',
 };
 

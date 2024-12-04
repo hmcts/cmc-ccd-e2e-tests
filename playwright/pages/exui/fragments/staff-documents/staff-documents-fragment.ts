@@ -6,7 +6,7 @@ import {
   doc1Inputs,
   doc2Dropdowns,
   doc2Inputs,
-  subHeadings,
+  subheadings,
   buttons,
 } from './staff-documents-content';
 import ExuiEvent from '../../exui-event/exui-event';
@@ -15,7 +15,7 @@ import { AllMethodsStep } from '../../../../decorators/test-steps';
 @AllMethodsStep()
 export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
   async verifyContent() {
-    await super.runVerifications([super.expectSubHeading(subHeadings.staffUploadedDocs)], {
+    await super.runVerifications([super.expectSubheading(subheadings.staffUploadedDocs)], {
       axe: false,
     });
   }

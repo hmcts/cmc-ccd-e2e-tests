@@ -2,7 +2,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import ExuiEvent from '../../../exui-event/exui-event';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
-import { dropdowns, heading, subHeadings } from './mediation-unsuccessful-content';
+import { dropdowns, heading, subheadings } from './mediation-unsuccessful-content';
 
 @AllMethodsStep()
 export default class MediationUnsuccessfulPage extends ExuiEvent(BasePage) {
@@ -10,7 +10,7 @@ export default class MediationUnsuccessfulPage extends ExuiEvent(BasePage) {
     await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
-      super.expectSubHeading(subHeadings.defendants),
+      super.expectSubheading(subheadings.defendants),
       super.expectText(caseData.respondents[0].value.claimantProvidedPartyName, { exact: true }),
     ]);
   }

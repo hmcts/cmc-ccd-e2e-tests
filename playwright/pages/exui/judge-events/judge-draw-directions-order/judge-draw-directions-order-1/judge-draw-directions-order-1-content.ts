@@ -4,7 +4,7 @@ export const paragraphs = {
   descriptionText: 'What kind of directions order do you want to draw?',
 };
 
-export const subHeadings = {
+export const subheadings = {
   addExtraDoc: 'Add an instruction for sending documents (Optional)',
 };
 

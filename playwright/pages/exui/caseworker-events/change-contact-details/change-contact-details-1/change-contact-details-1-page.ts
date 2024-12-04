@@ -8,7 +8,7 @@ import ExuiEvent from '../../../exui-event/exui-event';
 import {
   heading,
   radioButtons,
-  subHeadings,
+  subheadings,
   claimantInputs,
   defendantInputs,
   links,
@@ -31,7 +31,7 @@ export default class ChangeContactDetails1Page extends ExuiEvent(BasePage) {
 
   async verifyClaimantContent(claimantDetails: ApplicantValue) {
     await super.runVerifications([
-      super.expectSubHeading(subHeadings.claimants),
+      super.expectSubheading(subheadings.claimants),
       // super.expectTextToBeVisible(claimantDetails.partyName),
       super.expectInputValue(
         claimantInputs.email.selector,
@@ -67,7 +67,7 @@ export default class ChangeContactDetails1Page extends ExuiEvent(BasePage) {
 
   async verifyDefendantContent(defendantDetails: RespondentValue) {
     await super.runVerifications([
-      super.expectSubHeading(subHeadings.defendants),
+      super.expectSubheading(subheadings.defendants),
       // super.expectTextToBeVisible(claimantDetails.partyName),
       super.expectInputValue(
         defendantInputs.email.selector,

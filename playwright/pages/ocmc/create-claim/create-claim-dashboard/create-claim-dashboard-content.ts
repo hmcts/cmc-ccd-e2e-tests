@@ -1,6 +1,6 @@
 export const heading = 'Make a money claim';
 
-export const subHeadings = {
+export const subheadings = {
   otherOptions: 'Consider other options',
   prepareClaim: 'Prepare your claim',
   submit: 'Submit',

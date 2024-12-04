@@ -9,7 +9,7 @@ export const headings = {
   },
 };
 
-export const subHeadings = {
+export const subheadings = {
   whatHappensNext: 'What happens next',
   defendantPaysYou: 'If the defendant pays you',
 };

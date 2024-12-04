@@ -2,14 +2,14 @@ import BasePage from '../../../../base/base-page';
 import urls from '../../../../config/urls';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 import CuiEvent from '../../cui-event/cui-event';
-import { buttons, heading, paragraphs, subHeadings } from './cui-respond-to-claim-content';
+import { buttons, heading, paragraphs, subheadings } from './cui-respond-to-claim-content';
 
 @AllMethodsStep()
 export default class CuiRespondToClaimPage extends CuiEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.dontRespond),
+      super.expectSubheading(subheadings.dontRespond),
       super.expectText(paragraphs.descriptionText1),
       super.expectText(paragraphs.descriptionText2),
       super.expectText(paragraphs.descriptionText3),

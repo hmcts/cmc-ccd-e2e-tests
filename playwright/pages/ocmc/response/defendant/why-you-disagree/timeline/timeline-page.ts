@@ -1,15 +1,15 @@
 import BasePage from '../../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../../decorators/test-steps';
 import OcmcEvent from '../../../../ocmc-event/ocmc-event';
-import { heading, subHeadings, inputs } from './timeline-content';
+import { heading, subheadings, inputs } from './timeline-content';
 
 @AllMethodsStep()
 export default class TimelinePage extends OcmcEvent(BasePage) {
   async verifyContent() {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.addTimeline),
-      // super.expectSubHeading(subHeadings.theirTimeline),
+      super.expectSubheading(subheadings.addTimeline),
+      // super.expectSubheading(subheadings.theirTimeline),
       // super.expectLabel(inputs.date1.label),
       // super.expectLabel(inputs.date2.label),
     ]);

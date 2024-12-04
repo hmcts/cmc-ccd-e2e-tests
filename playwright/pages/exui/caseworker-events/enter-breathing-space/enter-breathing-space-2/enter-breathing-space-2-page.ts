@@ -23,8 +23,11 @@ export default class EnterBreathingSpace2Page extends ExuiEvent(BasePage) {
     await super.inputText('Ref-1234', inputs.refNum.selector);
 
     const startDate = DateHelper.subtractFromToday({ days: 1 });
-    await super.inputText(startDate.getDate(), inputs.respiteStart.day.selector);
-    await super.inputText(startDate.getMonth(), inputs.respiteStart.month.selector);
+    await super.inputText(DateHelper.getTwoDigitDay(startDate), inputs.respiteStart.day.selector);
+    await super.inputText(
+      DateHelper.getTwoDigitMonth(startDate),
+      inputs.respiteStart.month.selector,
+    );
     await super.inputText(startDate.getFullYear(), inputs.respiteStart.year.selector);
 
     await super.retryClickBySelectorTimeout(
@@ -35,8 +38,8 @@ export default class EnterBreathingSpace2Page extends ExuiEvent(BasePage) {
     );
 
     const endDate = DateHelper.addToToday({ months: 1 });
-    await super.inputText(endDate.getDate(), inputs.respiteEnd.day.selector);
-    await super.inputText(endDate.getMonth(), inputs.respiteEnd.month.selector);
+    await super.inputText(DateHelper.getTwoDigitDay(endDate), inputs.respiteEnd.day.selector);
+    await super.inputText(DateHelper.getTwoDigitMonth(endDate), inputs.respiteEnd.month.selector);
     await super.inputText(endDate.getFullYear(), inputs.respiteEnd.year.selector);
   }
 

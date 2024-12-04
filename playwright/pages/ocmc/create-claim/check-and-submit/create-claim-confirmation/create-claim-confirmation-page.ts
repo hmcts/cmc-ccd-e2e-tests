@@ -1,14 +1,14 @@
 import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
-import { headings, subHeadings, links } from './create-claim-confirmation-content';
+import { headings, subheadings, links } from './create-claim-confirmation-content';
 
 @AllMethodsStep()
 export default class CreateClaimConfirmationPage extends BasePage {
   async verifyContent(): Promise<void> {
     await super.runVerifications([
       super.expectText(headings.claimSubmitted.title),
-      super.expectSubHeading(subHeadings.whatHappensNext),
-      super.expectSubHeading(subHeadings.defendantPaysYou),
+      super.expectSubheading(subheadings.whatHappensNext),
+      super.expectSubheading(subheadings.defendantPaysYou),
     ]);
   }
 

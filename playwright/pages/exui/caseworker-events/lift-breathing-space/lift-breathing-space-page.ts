@@ -18,8 +18,8 @@ export default class LiftBreathingSpacePage extends ExuiEvent(BasePage) {
 
   async enterBreathingSpaceDetails() {
     const endDate = DateHelper.addToToday({ months: 1 });
-    await super.inputText(endDate.getDate(), inputs.respiteEnd.day.selector);
-    await super.inputText(endDate.getMonth(), inputs.respiteEnd.month.selector);
+    await super.inputText(DateHelper.getTwoDigitDay(endDate), inputs.respiteEnd.day.selector);
+    await super.inputText(DateHelper.getTwoDigitMonth(endDate), inputs.respiteEnd.month.selector);
     await super.inputText(endDate.getFullYear(), inputs.respiteEnd.year.selector);
   }
 

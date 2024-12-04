@@ -18,8 +18,8 @@ export default class RespiteStartPage extends OcmcEvent(BasePage) {
 
   async enterRespiteStartDate() {
     const date = DateHelper.subtractFromToday({ days: 1 });
-    await super.inputText(date.getDate(), inputs.day.selector);
-    await super.inputText(date.getMonth(), inputs.month.selector);
+    await super.inputText(DateHelper.getTwoDigitDay(date), inputs.day.selector);
+    await super.inputText(DateHelper.getTwoDigitMonth(date), inputs.month.selector);
     await super.inputText(date.getFullYear(), inputs.year.selector);
     await super.clickSaveAndContinue();
   }

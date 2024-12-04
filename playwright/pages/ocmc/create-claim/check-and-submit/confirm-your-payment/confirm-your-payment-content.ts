@@ -1,6 +1,6 @@
 export const heading = 'Confirm your payment';
 
-export const subHeadings = {
+export const subheadings = {
   paymentSummary: 'Payment summary',
 };
 

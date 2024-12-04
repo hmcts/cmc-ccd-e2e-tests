@@ -2,17 +2,17 @@ import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import DateHelper from '../../../../../helpers/date-helper';
 import ClaimStoreCaseData from '../../../../../models/case-data/claim-store-case-data';
-import { heading, links, subHeadings } from './defendant-response-dashboard-content';
+import { heading, links, subheadings } from './defendant-response-dashboard-content';
 
 @AllMethodsStep()
 export default class DefendantResponseDashboardPage extends BasePage {
   async verifyContent(caseData: ClaimStoreCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),
-      super.expectSubHeading(subHeadings.applicationIncomplete),
-      super.expectSubHeading(subHeadings.prepareYourResponse),
-      super.expectSubHeading(subHeadings.respondToClaim),
-      super.expectSubHeading(subHeadings.submit),
+      super.expectSubheading(subheadings.applicationIncomplete),
+      super.expectSubheading(subheadings.prepareYourResponse),
+      super.expectSubheading(subheadings.respondToClaim),
+      super.expectSubheading(subheadings.submit),
       super.expectText(caseData.referenceNumber),
       super.expectText(DateHelper.formatDate(caseData.responseDeadline)),
       super.expectText(parseInt(caseData.totalAmountTillToday.toString())),
@@ -21,8 +21,8 @@ export default class DefendantResponseDashboardPage extends BasePage {
 
   async verifyContentAfterDisputeAll() {
     await super.runVerifications([
-      super.expectSubHeading(subHeadings.resolveClaim),
-      super.expectSubHeading(subHeadings.hearingDetails),
+      super.expectSubheading(subheadings.resolveClaim),
+      super.expectSubheading(subheadings.hearingDetails),
     ]);
   }
 

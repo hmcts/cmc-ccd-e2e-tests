@@ -2,7 +2,7 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import ExuiEvent from '../../../exui-event/exui-event';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
-import { dropdowns, heading, subHeadings } from './review-ocon9x-paper-response-content';
+import { dropdowns, heading, subheadings } from './review-ocon9x-paper-response-content';
 
 @AllMethodsStep()
 export default class ReviewOcon9xPaperResponsePage extends ExuiEvent(BasePage) {
@@ -10,7 +10,7 @@ export default class ReviewOcon9xPaperResponsePage extends ExuiEvent(BasePage) {
     await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
-      super.expectSubHeading(subHeadings.scannedDocs),
+      super.expectSubheading(subheadings.scannedDocs),
     ]);
   }
 

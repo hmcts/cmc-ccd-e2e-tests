@@ -1,6 +1,6 @@
 export const heading = 'Enter card details';
 
-export const subHeadings = {
+export const subheadings = {
   paymentSummary: 'Payment summary',
   billingAddress: 'Billing address',
   contactDetails: 'Contact details',

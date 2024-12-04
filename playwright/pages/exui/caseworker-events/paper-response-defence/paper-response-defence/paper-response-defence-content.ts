@@ -1,6 +1,6 @@
 export const heading = 'Paper Response - Defence';
 
-export const subHeadings = {
+export const subheadings = {
   defendantDetails: 'Defendant details - Latest',
   address: 'Primary address (Optional)',
   correspondenceAddress: 'Correspondence address (Optional)',
