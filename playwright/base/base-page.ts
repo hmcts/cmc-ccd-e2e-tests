@@ -8,6 +8,7 @@ import Timer from '../helpers/timer';
 import { getDomain } from '../config/urls';
 import { BoxedDetailedStep, Step } from '../decorators/test-steps';
 import ClassMethodHelper from '../helpers/class-method-helper';
+import ExpectError from '../errors/expect-error';
 
 const classKey = 'BasePage';
 export default abstract class BasePage {
@@ -261,31 +262,88 @@ export default abstract class BasePage {
     await pageExpect(this.page.locator('h2', { hasText: text })).toBeVisible(options);
   }
 
-  @BoxedDetailedStep(classKey, 'selector')
-  protected async expectSelector(selector: string, options: { timeout?: number } = {}) {
-    await pageExpect(this.page.locator(selector)).toBeVisible(options);
+  private getSelectorLocator(
+    selector: string,
+    containerSelector?: string,
+    index?: number,
+    first?: boolean,
+  ) {
+    const locator = containerSelector
+      ? this.page.locator(containerSelector).locator(selector)
+      : this.page.locator(selector);
+    return first ? locator.nth(0) : index ? locator.nth(index) : locator;
   }
 
   @BoxedDetailedStep(classKey, 'selector')
-  protected async expectNoSelector(selector: string, options: { timeout?: number } = {}) {
-    const locator = this.page.locator(selector);
+  protected async expectSelector(
+    selector: string,
+    options: {
+      containerSelector?: string;
+      index?: number;
+      first?: boolean;
+      message?: string;
+      timeout?: number;
+    } = {},
+  ) {
+    if (options.first && options.index !== undefined) {
+      throw new ExpectError("Cannot use 'first' and 'index' options at the same time");
+    }
+    const locator = this.getSelectorLocator(
+      selector,
+      options.containerSelector,
+      options.index,
+      options.first,
+    );
+    await pageExpect(locator, { message: options.message }).toBeVisible(options);
+  }
+
+  @BoxedDetailedStep(classKey, 'selector')
+  protected async expectNoSelector(
+    selector: string,
+    options: {
+      containerSelector?: string;
+      all?: boolean;
+      index?: number;
+      first?: boolean;
+      message?: string;
+      timeout?: number;
+    } = {},
+  ) {
+    if (options.first && options.index !== undefined) {
+      throw new ExpectError("Cannot use 'first' and 'index' options at the same time");
+    }
+    const locator = this.getSelectorLocator(
+      selector,
+      options.containerSelector,
+      options.index,
+      options.first,
+    );
     try {
       await locator.waitFor({ state: 'visible', timeout: 500 });
       // eslint-disable-next-line no-empty
     } catch (err) {}
-    await pageExpect(locator).toBeHidden(options);
+    if (options.all) {
+      await pageExpect(locator, { message: options.message }).allToBeHidden({
+        timeout: options.timeout,
+      });
+    } else {
+      await pageExpect(locator, { message: options.message }).toBeHidden({
+        timeout: options.timeout,
+      });
+    }
   }
 
   private getTextLocator(
     text: string | number,
     exact?: boolean,
-    selector?: string,
+    containerSelector?: string,
+    index?: number,
     first?: boolean,
   ) {
-    const locator = selector
-      ? this.page.locator(selector).getByText(text.toString())
-      : this.page.getByText(text.toString(), { exact: exact });
-    return first ? locator.first() : locator;
+    const locator = containerSelector
+      ? this.page.locator(containerSelector).getByText(text.toString(), { exact })
+      : this.page.getByText(text.toString(), { exact });
+    return first ? locator.nth(0) : index ? locator.nth(index) : locator;
   }
 
   @BoxedDetailedStep(classKey, 'text')
@@ -293,16 +351,49 @@ export default abstract class BasePage {
   protected async expectText(
     text: string | number,
     options: {
+      message?: string;
       exact?: boolean;
-      selector?: string;
+      containerSelector?: string;
+      index?: number;
       first?: boolean;
+      ignoreDuplicates?: boolean;
+      count?: number | null;
       timeout?: number;
     } = {},
   ) {
-    const locator = this.getTextLocator(text, options.exact, options.selector, options.first);
-    await pageExpect(locator).toBeVisible({
-      timeout: options.timeout,
-    });
+    if (options.ignoreDuplicates && options.count !== undefined) {
+      throw new ExpectError("Cannot use 'ignoreDuplicates' and 'count' options at the same time");
+    }
+
+    if (options.first && options.index !== undefined) {
+      throw new ExpectError("Cannot use 'first' and 'index' options at the same time");
+    }
+
+    if (options.count && options.count === 0) {
+      throw new ExpectError("'count' cannot be set to 0");
+    }
+
+    const locator = this.getTextLocator(
+      text,
+      options.exact,
+      options.containerSelector,
+      options.index,
+      options.first,
+    );
+
+    if (options.ignoreDuplicates) {
+      await pageExpect(locator, { message: options.message }).atLeastOneToBeVisible({
+        timeout: options.timeout,
+      });
+    } else if (options.count !== undefined) {
+      await pageExpect(locator, { message: options.message }).someToBeVisible(options.count, {
+        timeout: options.timeout,
+      });
+    } else {
+      await pageExpect(locator, { message: options.message }).toBeVisible({
+        timeout: options.timeout,
+      });
+    }
   }
 
   @BoxedDetailedStep(classKey, 'text')
@@ -310,18 +401,35 @@ export default abstract class BasePage {
   protected async expectNoText(
     text: string | number,
     options: {
+      message?: string;
       exact?: boolean;
-      selector?: string;
+      containerSelector?: string;
+      all?: boolean;
+      index?: number;
       first?: boolean;
       timeout?: number;
     } = {},
   ) {
-    const locator = this.getTextLocator(text, options.exact, options.selector, options.first);
+    const locator = this.getTextLocator(
+      text,
+      options.exact,
+      options.containerSelector,
+      options.index,
+      options.first,
+    );
     try {
       await locator.waitFor({ state: 'visible', timeout: 500 });
       // eslint-disable-next-line no-empty
     } catch (err) {}
-    await pageExpect(locator).toBeHidden(options);
+    if (options.all) {
+      await pageExpect(locator, { message: options.message }).allToBeHidden({
+        timeout: options.timeout,
+      });
+    } else {
+      await pageExpect(locator, { message: options.message }).toBeHidden({
+        timeout: options.timeout,
+      });
+    }
   }
 
   @BoxedDetailedStep(classKey, 'label')

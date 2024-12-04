@@ -56,6 +56,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
             timeout: 30_000,
           });
           await super.expectNoSelector(components.error.selector, {
+            all: true,
             timeout: 500,
           });
           if (expect) await expect();
