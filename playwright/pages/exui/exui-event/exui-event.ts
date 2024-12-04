@@ -56,6 +56,7 @@ export default function ExuiEvent<TBase extends abstract new (...args: any[]) =>
             timeout: 30_000,
           });
           await super.expectNoSelector(components.error.selector, {
+            message: 'Callback error on UI',
             all: true,
             timeout: 500,
           });
