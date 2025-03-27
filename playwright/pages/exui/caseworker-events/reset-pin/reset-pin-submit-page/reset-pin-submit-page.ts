@@ -1,12 +1,12 @@
 import { heading } from './reset-pin-submit-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import CaseworkerEvents from '../../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 
 @AllMethodsStep()
-export default class ResetPinSubmitPage extends ExuiEvent(BasePage) {
+export default class ResetPinSubmitPage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),

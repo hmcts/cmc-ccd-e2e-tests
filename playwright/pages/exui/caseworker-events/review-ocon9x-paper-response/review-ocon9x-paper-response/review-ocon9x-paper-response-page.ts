@@ -1,11 +1,11 @@
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 import { dropdowns, heading, subheadings } from './review-ocon9x-paper-response-content';
 
 @AllMethodsStep()
-export default class ReviewOcon9xPaperResponsePage extends ExuiEvent(BasePage) {
+export default class ReviewOcon9xPaperResponsePage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),

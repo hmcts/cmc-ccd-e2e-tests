@@ -17,10 +17,12 @@ import {
 } from '../../caseworker-events/change-contact-details/change-contact-details-1/change-contact-details-1-content';
 import CCDCaseData from '../../../../models/case-data/ccd-case-data';
 import { doc1Dropdowns } from '../../fragments/staff-documents/staff-documents-content';
+import ExuiPage from '../../exui-page/exui-page';
+import config from '../../../../config/config';
 
 const classKey = 'CaseDetailsPage';
 @AllMethodsStep()
-export default class CaseDetailsPage extends BasePage {
+export default class CaseDetailsPage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData): Promise<void> {
     await super.retryReloadRunVerifications(() => [
       super.expectHeading(caseData.caseName),
@@ -41,14 +43,28 @@ export default class CaseDetailsPage extends BasePage {
 
   async retryChooseNextStep(event: ExuiEvents) {
     console.log(`Starting event: ${event}`);
-    await super.selectFromDropdown(event, dropdowns.nextStep.selector);
-    await super.retryClickBySelector(
-      buttons.go.selector,
-      () =>
-        super.expectNoText(tabs.claimHistory.title, {
-          timeout: 10_000,
-        }),
-      { retries: 3 },
+    await super.retryAction(
+      async () => {
+        await super.retryReload(
+          async () => {
+            await super.expectSelector(dropdowns.nextStep.selector);
+            await super.selectFromDropdown(event, dropdowns.nextStep.selector, {
+              timeout: 5_000,
+            });
+          },
+          undefined,
+          { retries: 1 },
+        );
+        await super.clickBySelector(buttons.go.selector);
+      },
+      async () => {
+        await super.waitForPageToLoad();
+        await super.expectNoSelector(tabs.claimHistory.selector, {
+          timeout: config.exui.pageSubmitTimeout,
+        });
+      },
+      () => super.reload(),
+      { retries: 3, message: `Starting event: ${event} failed, trying again` },
     );
   }
 
@@ -112,5 +128,9 @@ export default class CaseDetailsPage extends BasePage {
     await super.expectText(errorMessages.breathingSpace, {
       containerSelector: containers.errors.selector,
     });
+  }
+
+  async submit() {
+    throw new Error('Method not implemented.');
   }
 }

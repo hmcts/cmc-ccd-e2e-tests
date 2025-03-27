@@ -1,12 +1,12 @@
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import CaseworkerEvents from '../../../../../enums/events/caseworker-events';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 import { heading } from './manage-documents-submit-content';
 
 @AllMethodsStep()
-export default class ManageDocumentsSubmitPage extends ExuiEvent(BasePage) {
+export default class ManageDocumentsSubmitPage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),

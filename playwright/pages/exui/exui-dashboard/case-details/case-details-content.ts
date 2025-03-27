@@ -7,18 +7,23 @@ export const getHeading = (caseData: ClaimStoreCaseData) =>
 export const tabs = {
   claimHistory: {
     title: 'Claim Event History',
+    selector: "div[role='tab'] >> 'Claim Event History'",
   },
   claimDetails: {
     title: 'Claim Details',
+    selector: "div[role='tab'] >> 'Claim Details'",
   },
   claimantDetails: {
     title: 'Claimant Details',
+    selector: "div[role='tab'] >> 'Claimant Details'",
   },
   defendantDetails: {
     title: 'Defendant Details',
+    selector: "div[role='tab'] >> 'Defendant Details'",
   },
   claimDocs: {
     title: 'Claim Documents',
+    selector: "div[role='tab'] >> 'Claim Documents'",
   },
 };
 

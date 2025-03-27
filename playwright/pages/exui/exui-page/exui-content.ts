@@ -25,6 +25,12 @@ export const components = {
   error: {
     selector: 'div.error-summary.ng-star-inserted',
   },
+  fieldError: {
+    selector: "div[data-module='govuk-error-summary']",
+  },
+  uploadDocError: {
+    selector: 'span.error-message',
+  },
 };
 
 export const links = {

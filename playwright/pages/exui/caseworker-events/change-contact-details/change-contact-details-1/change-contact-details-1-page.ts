@@ -4,7 +4,7 @@ import CCDCaseData, {
   ApplicantValue,
   RespondentValue,
 } from '../../../../../models/case-data/ccd-case-data';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import {
   heading,
   radioButtons,
@@ -15,7 +15,7 @@ import {
 } from './change-contact-details-1-content';
 
 @AllMethodsStep()
-export default class ChangeContactDetails1Page extends ExuiEvent(BasePage) {
+export default class ChangeContactDetails1Page extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),

@@ -9,14 +9,14 @@ import {
   subheadings,
   buttons,
 } from './staff-documents-content';
-import ExuiEvent from '../../exui-event/exui-event';
+import ExuiPage from '../../exui-page/exui-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
 
 @AllMethodsStep()
-export default class StaffDocumentsFragment extends ExuiEvent(BasePage) {
+export default class StaffDocumentsFragment extends ExuiPage(BasePage) {
   async verifyContent() {
     await super.runVerifications([super.expectSubheading(subheadings.staffUploadedDocs)], {
-      axe: false,
+      runAxe: false,
     });
   }
 

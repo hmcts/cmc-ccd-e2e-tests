@@ -1,6 +1,6 @@
 import BasePage from '../../../../base/base-page';
 import { AllMethodsStep } from '../../../../decorators/test-steps';
-import ExuiEvent from '../../exui-event/exui-event';
+import ExuiPage from '../../exui-page/exui-page';
 import {
   legends,
   checkboxes,
@@ -12,7 +12,7 @@ import {
 } from './sdo-content';
 
 @AllMethodsStep()
-export default class SdoFragment extends ExuiEvent(BasePage) {
+export default class SdoFragment extends ExuiPage(BasePage) {
   async verifyContent() {
     await super.runVerifications(
       [
@@ -27,7 +27,7 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
         super.expectText(legends.experts),
         super.expectText(legends.witnessesDeadline),
       ],
-      { axe: false },
+      { runAxe: false },
     );
   }
 
@@ -49,7 +49,7 @@ export default class SdoFragment extends ExuiEvent(BasePage) {
         // super.expectDropdownOption(dropdowns.hearingCourt.selector, dropdowns.hearingCourt.options[0]),
         // super.expectDropdownOption(dropdowns.hearingDuration.selector, dropdowns.hearingDuration.options[0])
       ],
-      { axe: false },
+      { runAxe: false },
     );
   }
 

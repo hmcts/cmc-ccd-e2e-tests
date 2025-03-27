@@ -1,13 +1,13 @@
 import BasePage from '../../../../../base/base-page';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import SdoFragment from '../../../fragments/sdo/sdo-fragment';
 import { Page } from 'playwright-core';
 import { heading } from './action-review-comments-1-content';
 
 @AllMethodsStep()
-export default class ActionReviewComments1Page extends ExuiEvent(BasePage) {
+export default class ActionReviewComments1Page extends ExuiPage(BasePage) {
   private sdoFragment: SdoFragment;
 
   constructor(sdoFragment: SdoFragment, page: Page) {

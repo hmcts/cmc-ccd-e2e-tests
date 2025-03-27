@@ -1,12 +1,12 @@
 import BasePage from '../../../../../base/base-page';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 import { heading, inputs, subheadings } from './mediation-successful-1-content';
 import DateHelper from '../../../../../helpers/date-helper';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 
 @AllMethodsStep()
-export default class MediationSuccessful1Page extends ExuiEvent(BasePage) {
+export default class MediationSuccessful1Page extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),

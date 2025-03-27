@@ -22,6 +22,7 @@ export default class EvidencePage extends OcmcEvent(BasePage) {
           timeout: 500,
         });
       },
+      undefined,
       { interval: 2000, timeout: 10_000 },
     );
   }
@@ -35,6 +36,7 @@ export default class EvidencePage extends OcmcEvent(BasePage) {
           timeout: 500,
         });
       },
+      undefined,
       { interval: 2000 },
     );
   }

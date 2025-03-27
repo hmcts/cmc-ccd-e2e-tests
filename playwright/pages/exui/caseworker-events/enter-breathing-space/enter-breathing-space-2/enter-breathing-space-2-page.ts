@@ -1,12 +1,12 @@
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import { heading, inputs, radioButtons } from './enter-breathing-space-2-content';
 import DateHelper from '../../../../../helpers/date-helper';
 
 @AllMethodsStep()
-export default class EnterBreathingSpace2Page extends ExuiEvent(BasePage) {
+export default class EnterBreathingSpace2Page extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([
       super.expectHeading(heading),
@@ -30,11 +30,8 @@ export default class EnterBreathingSpace2Page extends ExuiEvent(BasePage) {
     );
     await super.inputText(startDate.getFullYear(), inputs.respiteStart.year.selector);
 
-    await super.retryClickBySelectorTimeout(
-      radioButtons.standardBreathingSpace.selector,
-      () =>
-        super.expectOptionChecked(radioButtons.standardBreathingSpace.selector, { timeout: 500 }),
-      { interval: 1000 },
+    await super.retryClickBySelectorTimeout(radioButtons.standardBreathingSpace.selector, () =>
+      super.expectOptionChecked(radioButtons.standardBreathingSpace.selector, { timeout: 500 }),
     );
 
     const endDate = DateHelper.addToToday({ months: 1 });

@@ -7,12 +7,12 @@ import {
 } from './paper-response-reviewed-1-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 import filePaths from '../../../../../config/file-paths';
 
 @AllMethodsStep()
-export default class PaperResponseReviewed1Page extends ExuiEvent(BasePage) {
+export default class PaperResponseReviewed1Page extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)]);
   }

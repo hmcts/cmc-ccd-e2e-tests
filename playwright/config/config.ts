@@ -22,6 +22,9 @@ const config = {
     workers: parseInt(process.env.WORKERS),
     actionTimeout: 25_000,
   },
+  exui: {
+    pageSubmitTimeout: 20_000,
+  },
 };
 
 export default config;

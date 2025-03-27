@@ -1,14 +1,14 @@
 import { heading, inputs, links, radioButtons } from './transfer-case-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
 
 @AllMethodsStep()
-export default class TransferCasePage extends ExuiEvent(BasePage) {
+export default class TransferCasePage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)], {
-      axe: false,
+      runAxe: false,
     });
   }
 

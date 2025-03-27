@@ -2,10 +2,10 @@ import { AllMethodsStep } from '../../../../../decorators/test-steps';
 import BasePage from '../../../../../base/base-page';
 import { heading, inputs } from './hwf-number-updated-content';
 import CCDCaseData from '../../../../../models/case-data/ccd-case-data';
-import ExuiEvent from '../../../exui-event/exui-event';
+import ExuiPage from '../../../exui-page/exui-page';
 
 @AllMethodsStep()
-export default class UpdatedHwfNumberPage extends ExuiEvent(BasePage) {
+export default class UpdatedHwfNumberPage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)]);
   }
