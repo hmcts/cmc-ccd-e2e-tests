@@ -4,9 +4,9 @@ properties([
         pipelineTriggers([cron('8 08 * * 1-5')]),
         parameters([
                 choice(name: 'ENVIRONMENT', choices: ['aat', 'demo', 'preview'], description: 'Environment to test'),
-                choice(name: 'WORKERS', defaultValue: '5', description: 'Number of workers'),
-                booleanParam(name: 'RUN_ACCESSIBILITY_TESTS', defaultValue: false, description: 'Runs accessibility tests during test execution'),
-                booleanParam(name: 'SKIP_AUTH_SETUP', defaultValue: false, description: 'Skip users authentication setup'),
+                string(name: 'WORKERS', defaultValue: '5', description: 'Number of workers'),
+                choice(name: 'RUN_ACCESSIBILITY_TESTS', choice: ['false', 'true'], description: 'Runs accessibility tests during test execution'),
+                choice(name: 'SKIP_AUTH_SETUP', choice: ['false', 'true'], description: 'Skip users authentication setup'),
                 string(name: 'ExUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net', description: 'The exui URL you want to run cmc end to end tests against'),
                 choice(name: 'CMC_URL_TO_TEST', choices: ['https://moneyclaims.aat.platform.hmcts.net', 'https://moneyclaims1.demo.platform.hmcts.net'], description: 'The cmc citizen frontend URL you want to run cmc end to end tests against'),
                 choice(name: 'CUI_URL_TO_TEST', choices: ['https://civil-citizen-ui.aat.platform.hmcts.net', 'https://moneyclaims.demo.platform.hmcts.net'], description: 'The cui citizen frontend URL you want to run cmc end to end tests against'),
