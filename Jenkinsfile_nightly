@@ -8,7 +8,16 @@ properties([
                 string(name: 'WORKERS', defaultValue: '5', description: 'Number of workers'),
                 choice(name: 'RUN_ACCESSIBILITY_TESTS', choices: ['false', 'true'], description: 'Runs accessibility tests during test execution'),
                 choice(name: 'SKIP_AUTH_SETUP', choices: ['false', 'true'], description: 'Skip users authentication setup'),
-                string(name: 'ExUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net', description: 'The exui URL you want to run cmc end to end tests against'),
+                choice(name: 'ExUI_URL_TO_TEST', 
+                  choices: [
+                    'https://manage-case.aat.platform.hmcts.net', 
+                    'https://manage-case.demo.platform.hmcts.net', 
+                    'https://manage-case-int1.demo.platform.hmcts.net', 
+                    'https://manage-case-int2.demo.platform.hmcts.net',
+                    'https://manage-case-wa-int.demo.platform.hmcts.net',
+                    'https://manage-case-caa-assigned-case-view.demo.platform.hmcts.net'
+                  ], 
+                description: 'The exui URL you want to run cmc end to end tests against'),
                 choice(name: 'CMC_URL_TO_TEST', choices: ['https://moneyclaims.aat.platform.hmcts.net', 'https://moneyclaims1.demo.platform.hmcts.net'], description: 'The cmc citizen frontend URL you want to run cmc end to end tests against'),
                 choice(name: 'CUI_URL_TO_TEST', choices: ['https://civil-citizen-ui.aat.platform.hmcts.net', 'https://moneyclaims.demo.platform.hmcts.net'], description: 'The cui citizen frontend URL you want to run cmc end to end tests against'),
                 choice(name: 'IDAM_WEB_URL', choices: ['https://idam-web.aat.platform.hmcts.net', 'https://idam-web.demo.platform.hmcts.net'], description: 'The URL of idam web'),
