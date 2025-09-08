@@ -14,8 +14,8 @@ properties([
                 choice(name: 'IDAM_API_URL', choices: ['https://idam-api.aat.platform.hmcts.net', 'https://idam-api.demo.platform.hmcts.net'], description: 'The URL of idam api'),
                 choice(name: 'DM_STORE_URL', choices: ['http://dm-store-aat.service.core-compute-aat.internal', 'http://dm-store-demo.service.core-compute-demo.internal'], description: 'The URL of dm store'),
                 choice(name: 'SERVICE_AUTH_PROVIDER_API_BASE_URL', choices: ['http://rpe-service-auth-provider-aat.service.core-compute-aat.internal', 'http://rpe-service-auth-provider-demo.service.core-compute-demo.internal'], description: 'The URL of service auth provider'),
-                choice(name: 'CCD_DATA_STORE_URL', defaultValue: ['http://ccd-data-store-api-aat.service.core-compute-aat.internal', 'http://ccd-data-store-api-demo.service.core-compute-demo.internal'], description: 'The URL of ccd data store'),
-                choice(name: 'CLAIM_STORE_URL', defaultValue: ['http://cmc-claim-store-aat.service.core-compute-aat.internal', 'http://cmc-claim-store-demo.service.core-compute-demo.internal'], description: 'Claim store url'),
+                choice(name: 'CCD_DATA_STORE_URL', choices: ['http://ccd-data-store-api-aat.service.core-compute-aat.internal', 'http://ccd-data-store-api-demo.service.core-compute-demo.internal'], description: 'The URL of ccd data store'),
+                choice(name: 'CLAIM_STORE_URL', choices: ['http://cmc-claim-store-aat.service.core-compute-aat.internal', 'http://cmc-claim-store-demo.service.core-compute-demo.internal'], description: 'Claim store url'),
         ])
 ])
 
