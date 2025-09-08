@@ -3,7 +3,7 @@
 properties([
         pipelineTriggers([cron('8 08 * * 1-5')]),
         parameters([
-                choice(name: 'FORCE_GREEN_BUILD', defaultValue: ['false', 'true'], description: 'Should force pipeline to go green by not running any functional tests'),
+                choice(name: 'FORCE_GREEN_BUILD', choices: ['false', 'true'], description: 'Should force pipeline to go green by not running any functional tests'),
                 choice(name: 'ENVIRONMENT', choices: ['aat', 'demo', 'preview'], description: 'Environment to test'),
                 string(name: 'WORKERS', defaultValue: '5', description: 'Number of workers'),
                 choice(name: 'RUN_ACCESSIBILITY_TESTS', choices: ['false', 'true'], description: 'Runs accessibility tests during test execution'),
