@@ -9,7 +9,7 @@ export default class DraftOrderFragment extends ExuiPage(BasePage) {
   async verifyContent(ccdCaseData: CCDCaseData) {
     await super.runVerifications(
       [
-        super.expectLink(ccdCaseData.previousServiceCaseReference),
+        super.expectButton(ccdCaseData.previousServiceCaseReference),
         super.expectText(legends.draftOrder),
       ],
       { runAxe: false },
