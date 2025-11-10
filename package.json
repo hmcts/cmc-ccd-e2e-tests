@@ -56,7 +56,7 @@
     "@typescript-eslint/eslint-plugin-tslint": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "allure-commandline": "^2.29.0",
-    "allure-playwright": "2.4.0",
+    "allure-playwright": "2.15.1",
     "codeceptjs": "^3.3.7",
     "custom-eslint-plugin": "file:plugins/custom-eslint-plugins",
     "eslint": "9.x",
