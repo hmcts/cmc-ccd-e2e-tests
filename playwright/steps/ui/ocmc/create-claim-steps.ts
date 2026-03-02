@@ -93,16 +93,18 @@ export default class CreateClaimSteps extends BaseSteps {
     await checkYourAnswersPage.verifyContent();
     await checkYourAnswersPage.checkAndSubmit();
 
-    const { cardDetailsPage } = this.createClaimFactory;
+    //Commenting this Code as the Card Details Page has been by passed for the purposes of testing
+    /*const { cardDetailsPage } = this.createClaimFactory;
     await cardDetailsPage.verifyContent();
     await cardDetailsPage.fillCardDetails();
     await cardDetailsPage.fillBillingAddressDetails();
     await cardDetailsPage.fillContactDetails(claimants[this.workerIndex]);
-    await cardDetailsPage.continue();
+    await cardDetailsPage.continue();*/
 
-    const { confirmYourPaymentPage } = this.createClaimFactory;
+    //Commenting this Code as the Card Details Page has been by passed for the purposes of testing
+    /*const { confirmYourPaymentPage } = this.createClaimFactory;
     await confirmYourPaymentPage.verifyContent();
-    await confirmYourPaymentPage.confirm();
+    await confirmYourPaymentPage.confirm();*/
   }
 
   async CheckAndSubmitHwf() {
