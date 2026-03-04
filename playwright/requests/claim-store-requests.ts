@@ -25,7 +25,10 @@ export default class ClaimStoreRequests extends BaseRequest {
       headers: this.getRequestHeaders(accessToken),
       method: 'GET',
     };
-    const caseData = await super.retryRequestJson(url, requestOptions);
+    const caseData = await super.retryRequestJson(url, requestOptions, {
+      remainingRetries: 12,
+      retryTimeInterval: 5000,
+    });
     console.log('Claim store case data fetched successfully');
     return caseData;
   }
@@ -39,6 +42,8 @@ export default class ClaimStoreRequests extends BaseRequest {
       method: 'GET',
     };
     const caseData = await super.retryRequestJson(url, requestOptions, {
+      remainingRetries: 12,
+      retryTimeInterval: 5000,
       verifyResponse: async (responseJson) => {
         await super.expectResponseJsonToHaveProperty('letterHolderId', responseJson);
       },
