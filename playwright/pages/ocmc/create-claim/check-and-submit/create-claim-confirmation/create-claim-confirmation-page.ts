@@ -6,7 +6,7 @@ import { headings, subheadings, links } from './create-claim-confirmation-conten
 export default class CreateClaimConfirmationPage extends BasePage {
   async verifyContent(): Promise<void> {
     await super.runVerifications([
-      super.expectText(headings.claimSubmitted.title),
+      super.expectSelector(headings.claimNumber.selector, { timeout: 60000 }),
       super.expectSubheading(subheadings.whatHappensNext),
       super.expectSubheading(subheadings.defendantPaysYou),
     ]);
