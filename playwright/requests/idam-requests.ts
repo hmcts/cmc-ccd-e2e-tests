@@ -25,12 +25,23 @@ export default class IdamRequests extends BaseRequest {
     return await responseJson;
   }
 
-  async deleteUser({ email }: User): Promise<void> {
+  async deleteUser({ email }: User, options: { ignoreNotFound?: boolean } = {}): Promise<void> {
     console.log(`Delete user: ${email}`);
     const url = `${urls.idamApi}/testing-support/accounts/${email}`;
     const requestOptions: RequestOptions = {
       method: 'DELETE',
     };
+    if (options.ignoreNotFound) {
+      const response = await super.rawRequest(url, requestOptions);
+      if (response.status() === 204) {
+        console.log(`User: ${email} successfully deleted`);
+        return;
+      }
+      if (response.status() === 404) {
+        console.log(`User: ${email} already deleted`);
+        return;
+      }
+    }
     try {
       await this.request(url, requestOptions, { expectedStatus: 204 });
       console.log(`User: ${email} successfully deleted`);

@@ -105,6 +105,23 @@ export default abstract class BaseRequest {
     )) as APIResponse;
   }
 
+  protected async rawRequest(
+    url: string,
+    {
+      headers = { 'Content-Type': 'application/json' },
+      body,
+      method = 'GET',
+      params,
+    }: RequestOptions,
+  ): Promise<APIResponse> {
+    return await this.requestContext.fetch(url, {
+      method,
+      data: body ? JSON.stringify(body) : undefined,
+      headers,
+      params,
+    });
+  }
+
   @BoxedDetailedStep(classKey, 'url')
   async retryRequest(
     url: string,
