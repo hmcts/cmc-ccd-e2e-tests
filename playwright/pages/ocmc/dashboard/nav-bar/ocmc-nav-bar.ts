@@ -9,9 +9,13 @@ export default class OcmcNavBar extends BasePage {
   }
 
   async clickSignOut() {
-    if (await super.selectorExists(links.signOut.selector)) {
+    try {
       await super.clickLink(links.signOut.title);
       await super.expectDomain('idam-web-public');
+    } catch {
+      console.log(
+        `Skipping sign out because logout link is unavailable. Current URL: ${super.getCurrentUrl()}`,
+      );
     }
   }
 

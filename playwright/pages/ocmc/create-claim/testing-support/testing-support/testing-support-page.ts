@@ -1,6 +1,6 @@
 import urls from '../../../../../config/urls';
 import BasePage from '../../../../../base/base-page';
-import { heading, links } from './testing-support-content';
+import { links } from './testing-support-content';
 import { AllMethodsStep } from '../../../../../decorators/test-steps';
 
 @AllMethodsStep()
@@ -10,7 +10,9 @@ export default class TestingSupportPage extends BasePage {
   }
 
   async verifyContent(): Promise<void> {
-    await super.runVerifications(super.expectHeading(heading));
+    await super.runVerifications(
+      super.expectLink(links.createClaimDraft, { timeout: 60000 }),
+    );
   }
 
   async clickCreateClaimDraft() {

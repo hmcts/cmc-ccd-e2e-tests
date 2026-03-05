@@ -5,9 +5,16 @@ import { headings, links } from './create-claim-confirmation-content';
 @AllMethodsStep()
 export default class CreateClaimConfirmationPage extends BasePage {
   async verifyContent(): Promise<void> {
-    await super.runVerifications(
-      super.expectSelector(headings.claimNumber.selector, { timeout: 60000 }),
-    );
+    try {
+      await super.runVerifications(
+        super.expectSelector(headings.claimNumber.selector, { timeout: 60000 }),
+      );
+    } catch (error) {
+      console.log(
+        `Claim confirmation page did not expose claim reference. Current URL: ${super.getCurrentUrl()}`,
+      );
+      throw error;
+    }
   }
 
   async goToAccount() {

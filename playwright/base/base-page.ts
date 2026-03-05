@@ -295,6 +295,10 @@ export default abstract class BasePage {
     await this.page.waitForTimeout(time);
   }
 
+  protected getCurrentUrl(): string {
+    return this.page.url();
+  }
+
   abstract verifyContent(...args: any[]): Promise<void>;
 
   protected async runVerifications(
