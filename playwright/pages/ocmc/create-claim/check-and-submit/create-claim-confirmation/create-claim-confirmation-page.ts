@@ -6,8 +6,12 @@ import { headings, links } from './create-claim-confirmation-content';
 export default class CreateClaimConfirmationPage extends BasePage {
   async verifyContent(): Promise<void> {
     try {
-      await super.runVerifications(
-        super.expectSelector(headings.claimNumber.selector, { timeout: 60000 }),
+      await super.retryReloadRunVerifications(
+        () => super.expectSelector(headings.claimNumber.selector, { timeout: 60000 }),
+        {
+          retries: 3,
+          message: 'Claim reference not visible yet, reloading confirmation page and retrying',
+        },
       );
     } catch (error) {
       console.log(
