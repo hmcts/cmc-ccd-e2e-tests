@@ -10,9 +10,7 @@ export default class TestingSupportPage extends BasePage {
   }
 
   async verifyContent(): Promise<void> {
-    await super.runVerifications(
-      super.expectLink(links.createClaimDraft, { timeout: 60000 }),
-    );
+    await super.runVerifications(super.expectLink(links.createClaimDraft, { timeout: 60000 }));
   }
 
   async clickCreateClaimDraft() {
