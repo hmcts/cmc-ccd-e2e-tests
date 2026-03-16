@@ -37,4 +37,7 @@ export default class ApiCaseDataSteps extends BaseApiSteps {
     const { ccdRequests } = this.requestsFactory;
     this.setCcdCaseData = await ccdRequests.fetchCcdCaseData(this.claimStoreCaseData.id, judge);
   }
+
+  const
+  delay = ms => new Promise(res => setTimeout(res, ms));
 }
