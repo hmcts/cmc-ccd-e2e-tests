@@ -1,7 +1,7 @@
 import { AllMethodsStep } from '../../decorators/test-steps';
 import RequestsFactory from '../../requests/requests-factory';
 import TestData from '../../models/test-data';
-import { claimants, judge } from '../../config/users';
+import { judge } from '../../config/users';
 import BaseApiSteps from '../../base/base-api-steps';
 
 @AllMethodsStep()
@@ -18,19 +18,19 @@ export default class ApiCaseDataSteps extends BaseApiSteps {
 
   async FetchClaimStoreCaseData() {
     await this.delay(ApiCaseDataSteps.CLAIM_STORE_INITIAL_WAIT_MS);
-    const { claimsStoreRequests } = this.requestsFactory;
-    this.setClaimStoreCaseData = await claimsStoreRequests.fetchClaimStoreCaseData(
+    const { ccdRequests } = this.requestsFactory;
+    this.setClaimStoreCaseData = await ccdRequests.searchCaseByReference(
       this.claimStoreCaseData.referenceNumber,
-      claimants[this.workerIndex],
+      judge,
     );
   }
 
   async FetchClaimStoreCaseDataWithLetterId() {
     await this.delay(ApiCaseDataSteps.CLAIM_STORE_INITIAL_WAIT_MS);
-    const { claimsStoreRequests } = super.requestsFactory;
-    this.setClaimStoreCaseData = await claimsStoreRequests.fetchClaimStoreCaseDataWithLetterId(
+    const { ccdRequests } = this.requestsFactory;
+    this.setClaimStoreCaseData = await ccdRequests.searchCaseByReferenceWithLetterId(
       this.claimStoreCaseData.referenceNumber,
-      claimants[this.workerIndex],
+      judge,
     );
   }
 
