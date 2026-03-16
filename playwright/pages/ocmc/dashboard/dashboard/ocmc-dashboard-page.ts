@@ -12,7 +12,7 @@ export default class OcmcDashboardPage extends BasePage {
   async verifyContentWithClaimNumber(claimNumber: string) {
     await super.retryReloadRunVerifications(() => [
       super.expectHeading(heading),
-      super.expectText(claimNumber, { timeout: 500 }),
+      super.expectText(claimNumber, { timeout: 500, first: true }),
     ]);
   }
 
@@ -20,8 +20,8 @@ export default class OcmcDashboardPage extends BasePage {
     await super.goTo(`${urls.ocmcFrontEnd}/dashboard`);
   }
 
-  async goToClaimDetails(claimRef: string) {
-    await super.clickLink(claimRef);
+  async goToClaimDetails(claimRef: string, options?: { index?: number }) {
+    await super.clickLink(claimRef, { index: options?.index ?? 0 });
   }
 
   async continueClaim() {

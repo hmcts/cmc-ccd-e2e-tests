@@ -19,6 +19,8 @@ export default class ApiCaseDataSteps extends BaseApiSteps {
     const applicant = ccdCaseData.applicants?.[0]?.value;
     const respondent = ccdCaseData.respondents?.[0]?.value;
     const respondentDetail = respondent?.claimantProvidedDetail;
+    this.claimStoreCaseData.responseDeadline = respondent?.responseDeadline;
+    this.claimStoreCaseData.totalAmountTillToday = parseFloat(ccdCaseData.totalAmount) / 100 || 0;
     this.claimStoreCaseData.claim = {
       externalId: ccdCaseData.externalId,
       claimants: [

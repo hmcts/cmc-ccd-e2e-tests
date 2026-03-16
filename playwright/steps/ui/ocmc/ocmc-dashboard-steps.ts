@@ -59,7 +59,7 @@ export default class OcmcDashboardSteps extends BaseSteps {
     const { ocmcDashboardPage } = this.ocmcDashboardFactory;
     await ocmcDashboardPage.open();
     await ocmcDashboardPage.verifyContentWithClaimNumber(this.claimStoreCaseData.referenceNumber);
-    await ocmcDashboardPage.goToClaimDetails(this.claimStoreCaseData.referenceNumber);
+    await ocmcDashboardPage.goToClaimDetails(this.claimStoreCaseData.referenceNumber, { index: 1 });
 
     const { ocmcDefendantClaimDetailsPage } = this.ocmcDashboardFactory;
     await ocmcDefendantClaimDetailsPage.verifyContent(this.claimStoreCaseData);
