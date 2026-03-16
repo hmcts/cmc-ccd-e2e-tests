@@ -25,7 +25,9 @@ export default class OcmcDashboardPage extends BasePage {
   }
 
   async goToDefendantClaimDetails(claimRef: string) {
-    const defendantLink = this.page.getByLabel(`${claimRef} (Claim number) Claims made against you`);
+    const defendantLink = this.page.getByLabel(
+      `${claimRef} (Claim number) Claims made against you`,
+    );
     if (await defendantLink.isVisible({ timeout: 5000 }).catch(() => false)) {
       await defendantLink.click();
     } else {
