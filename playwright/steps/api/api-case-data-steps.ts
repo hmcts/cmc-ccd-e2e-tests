@@ -15,7 +15,7 @@ export default class ApiCaseDataSteps extends BaseApiSteps {
     await new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  private populateClaimFromCcdData(ccdCaseData: CCDCaseData) {
+  private async populateClaimFromCcdData(ccdCaseData: CCDCaseData) {
     const applicant = ccdCaseData.applicants?.[0]?.value;
     const respondent = ccdCaseData.respondents?.[0]?.value;
     const respondentDetail = respondent?.claimantProvidedDetail;
@@ -64,7 +64,7 @@ export default class ApiCaseDataSteps extends BaseApiSteps {
   async FetchClaimStoreCaseData() {
     const { ccdRequests } = this.requestsFactory;
     const ccdCaseData = await ccdRequests.fetchCcdCaseData(this.claimStoreCaseData.id, judge);
-    this.populateClaimFromCcdData(ccdCaseData);
+    await this.populateClaimFromCcdData(ccdCaseData);
     this.setCcdCaseData = ccdCaseData;
     console.log('Claim store case data fetched successfully');
   }
@@ -76,7 +76,7 @@ export default class ApiCaseDataSteps extends BaseApiSteps {
       judge,
     );
     const ccdCaseData = await ccdRequests.fetchCcdCaseData(this.claimStoreCaseData.id, judge);
-    this.populateClaimFromCcdData(ccdCaseData);
+    await this.populateClaimFromCcdData(ccdCaseData);
     this.setCcdCaseData = ccdCaseData;
     console.log('Claim store case data with letter id fetched successfully');
   }
