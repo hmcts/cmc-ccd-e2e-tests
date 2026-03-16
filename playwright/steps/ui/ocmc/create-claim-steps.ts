@@ -1,7 +1,7 @@
 import BaseSteps from '../../../base/base-steps';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 import TestData from '../../../models/test-data';
-import { claimants, defendants } from '../../../config/users';
+import { defendants } from '../../../config/users';
 import CreateClaimFactory from '../../../pages/ocmc/create-claim/create-claim-factory';
 import OcmcDashboardFactory from '../../../pages/ocmc/dashboard/ocmc-dashboard-factory';
 
@@ -117,6 +117,7 @@ export default class CreateClaimSteps extends BaseSteps {
     const { createClaimConfirmationPage } = this.createClaimFactory;
     await createClaimConfirmationPage.verifyContent();
     this.claimStoreCaseData.referenceNumber = await createClaimConfirmationPage.getClaimRefNumber();
+    this.claimStoreCaseData.id = await createClaimConfirmationPage.getCcdCaseId();
   }
 
   async GetClaimReferenceHwf() {

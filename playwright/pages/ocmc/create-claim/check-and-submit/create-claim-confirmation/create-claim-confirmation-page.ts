@@ -31,6 +31,12 @@ export default class CreateClaimConfirmationPage extends BasePage {
     return claimRefNumber;
   }
 
+  async getCcdCaseId() {
+    const ccdCaseId = await super.getText(headings.ccdCaseId.selector);
+    console.log(`CCD case id: ${ccdCaseId}`);
+    return parseInt(ccdCaseId);
+  }
+
   async getHwfClaimRefNumber() {
     const claimRefNumberWithHyphens = (await super.getText(headings.claimNumber.selector)).trim();
     const claimRefNumber = claimRefNumberWithHyphens.replace(/-/g, '');

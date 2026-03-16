@@ -6,14 +6,12 @@ import RequestOptions from '../models/api/request-options';
 import { TruthyParams } from '../decorators/truthy-params';
 import CaseEvents from '../enums/events/case-events';
 import CCDCaseData from '../models/case-data/ccd-case-data';
-import ClaimStoreCaseData from '../models/case-data/claim-store-case-data';
 import User from '../models/user';
 import ServiceAuthProviderRequests from './service-auth-provider-requests';
-import { expect } from '../playwright-fixtures';
 
 const classKey = 'CcdRequests';
-const CCD_SEARCH_RETRY_ATTEMPTS = 24;
-const CCD_SEARCH_RETRY_INTERVAL_MS = 5000;
+const CCD_LETTER_HOLDER_RETRY_ATTEMPTS = 24;
+const CCD_LETTER_HOLDER_RETRY_INTERVAL_MS = 5000;
 
 export default class CcdRequests extends ServiceAuthProviderRequests(BaseRequest) {
   private getCcdDataStoreBaseUrl({ userId, role }: User) {
@@ -95,90 +93,37 @@ export default class CcdRequests extends ServiceAuthProviderRequests(BaseRequest
   }
 
   @Step(classKey)
-  @TruthyParams(classKey, 'claimRef')
-  async searchCaseByReference(claimRef: string, user: User): Promise<ClaimStoreCaseData> {
-    console.log(`Searching CCD for case by reference: ${claimRef}...`);
-    const url = `${urls.ccdDataStore}/searchCases?ctid=${config.definition.caseType}`;
+  @TruthyParams(classKey, 'caseId')
+  async fetchLetterHolderId(caseId: number, user: User): Promise<string> {
+    console.log(`Fetching letterHolderId for case ${caseId}...`);
+    const url = `${this.getCcdDataStoreBaseUrl(user)}/cases/${caseId}`;
     const requestOptions: RequestOptions = {
       headers: await this.getRequestHeaders(user),
-      method: 'POST',
-      body: {
-        query: {
-          match: { 'data.previousServiceCaseReference': claimRef },
-        },
-      },
     };
     const startedAt = Date.now();
     try {
       const response = await super.retryRequestJson(url, requestOptions, {
-        remainingRetries: CCD_SEARCH_RETRY_ATTEMPTS,
-        retryTimeInterval: CCD_SEARCH_RETRY_INTERVAL_MS,
+        remainingRetries: CCD_LETTER_HOLDER_RETRY_ATTEMPTS,
+        retryTimeInterval: CCD_LETTER_HOLDER_RETRY_INTERVAL_MS,
         verifyResponse: async (responseJson) => {
-          expect(
-            responseJson.cases?.length,
-            `Expected CCD search to return results for claimRef '${claimRef}'`,
-          ).toBeGreaterThan(0);
+          await super.expectResponseJsonToHaveProperty('case_data.respondents', responseJson, {
+            message: `Expected respondents to be present for case ${caseId}`,
+          });
+          const respondents = responseJson.case_data.respondents;
+          await super.expectResponseJsonToHaveProperty('letterHolderId', respondents[0].value, {
+            message: `Expected letterHolderId to be present for case ${caseId}`,
+          });
         },
       });
-      const ccdCase = response.cases[0];
-      const letterHolderId = ccdCase.case_data?.respondents?.[0]?.value?.letterHolderId;
-      console.log(`CCD case found with id: ${ccdCase.id}`);
-      return { id: ccdCase.id, referenceNumber: claimRef, letterHolderId };
+      const letterHolderId = response.case_data.respondents[0].value.letterHolderId;
+      console.log(`letterHolderId fetched successfully: ${letterHolderId}`);
+      return letterHolderId;
     } catch (error: any) {
       const elapsedSeconds = ((Date.now() - startedAt) / 1000).toFixed(1);
       const reason = error?.message?.split('\n')[0] ?? String(error);
       throw new Error(
-        `CCD search failed for claimRef '${claimRef}' after ${elapsedSeconds}s ` +
-          `(${CCD_SEARCH_RETRY_ATTEMPTS} attempts): ${reason}`,
-      );
-    }
-  }
-
-  @Step(classKey)
-  @TruthyParams(classKey, 'claimRef')
-  async searchCaseByReferenceWithLetterId(
-    claimRef: string,
-    user: User,
-  ): Promise<ClaimStoreCaseData> {
-    console.log(`Searching CCD for case with letterHolderId by reference: ${claimRef}...`);
-    const url = `${urls.ccdDataStore}/searchCases?ctid=${config.definition.caseType}`;
-    const requestOptions: RequestOptions = {
-      headers: await this.getRequestHeaders(user),
-      method: 'POST',
-      body: {
-        query: {
-          match: { 'data.previousServiceCaseReference': claimRef },
-        },
-      },
-    };
-    const startedAt = Date.now();
-    try {
-      const response = await super.retryRequestJson(url, requestOptions, {
-        remainingRetries: CCD_SEARCH_RETRY_ATTEMPTS,
-        retryTimeInterval: CCD_SEARCH_RETRY_INTERVAL_MS,
-        verifyResponse: async (responseJson) => {
-          expect(
-            responseJson.cases?.length,
-            `Expected CCD search to return results for claimRef '${claimRef}'`,
-          ).toBeGreaterThan(0);
-          const letterHolderId =
-            responseJson.cases[0].case_data?.respondents?.[0]?.value?.letterHolderId;
-          expect(
-            letterHolderId,
-            `Expected letterHolderId to be present for claimRef '${claimRef}'`,
-          ).toBeTruthy();
-        },
-      });
-      const ccdCase = response.cases[0];
-      const letterHolderId = ccdCase.case_data.respondents[0].value.letterHolderId;
-      console.log(`CCD case found with id: ${ccdCase.id}, letterHolderId: ${letterHolderId}`);
-      return { id: ccdCase.id, referenceNumber: claimRef, letterHolderId };
-    } catch (error: any) {
-      const elapsedSeconds = ((Date.now() - startedAt) / 1000).toFixed(1);
-      const reason = error?.message?.split('\n')[0] ?? String(error);
-      throw new Error(
-        `CCD search (with letterHolderId) failed for claimRef '${claimRef}' after ${elapsedSeconds}s ` +
-          `(${CCD_SEARCH_RETRY_ATTEMPTS} attempts): ${reason}`,
+        `Failed to fetch letterHolderId for case ${caseId} after ${elapsedSeconds}s ` +
+          `(${CCD_LETTER_HOLDER_RETRY_ATTEMPTS} attempts): ${reason}`,
       );
     }
   }
