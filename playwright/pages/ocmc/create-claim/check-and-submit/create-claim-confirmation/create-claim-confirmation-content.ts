@@ -7,6 +7,9 @@ export const headings = {
     title: '',
     selector: "div[class='reference-number'] h1[class='bold-large']",
   },
+  ccdCaseId: {
+    selector: 'span.ccd-case-id',
+  },
 };
 
 export const subheadings = {
