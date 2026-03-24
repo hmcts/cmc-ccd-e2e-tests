@@ -1,5 +1,7 @@
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
 import Environment from '../enums/environment';
+
+dotenv.config({ path: '.env.tests.local' });
 
 const config = {
   environment: process.env.ENVIRONMENT as Environment,
