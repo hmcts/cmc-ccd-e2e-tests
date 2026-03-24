@@ -28,10 +28,28 @@ export const judge: User = UserStateHelper.getUserFromState(UserType.JUDGE) ?? {
   cookiesPath: `${filePaths.userCookies}/judge.json`,
 };
 
-export const claimants: User[] =
-  UserStateHelper.getUsersFromState(UserType.CLAIMANT) ??
-  UserStateHelper.generateCitizenUsers(UserType.CLAIMANT);
+export const claimants: User[] = process.env.CLAIMANT_CITIZEN_EMAIL
+  ? [
+      {
+        email: process.env.CLAIMANT_CITIZEN_EMAIL,
+        password: process.env.SMOKE_TEST_USER_PASSWORD,
+        role: UserRole.CITIZEN,
+        type: UserType.CLAIMANT,
+        cookiesPath: `${filePaths.userCookies}/${UserType.CLAIMANT}-1.json`,
+      },
+    ]
+  : (UserStateHelper.getUsersFromState(UserType.CLAIMANT) ??
+    UserStateHelper.generateCitizenUsers(UserType.CLAIMANT));
 
-export const defendants: User[] =
-  UserStateHelper.getUsersFromState(UserType.DEFENDANT) ??
-  UserStateHelper.generateCitizenUsers(UserType.DEFENDANT);
+export const defendants: User[] = process.env.DEFENDANT_CITIZEN_EMAIL
+  ? [
+      {
+        email: process.env.DEFENDANT_CITIZEN_EMAIL,
+        password: process.env.SMOKE_TEST_USER_PASSWORD,
+        role: UserRole.CITIZEN,
+        type: UserType.CLAIMANT,
+        cookiesPath: `${filePaths.userCookies}/${UserType.DEFENDANT}-1.json`,
+      },
+    ]
+  : (UserStateHelper.getUsersFromState(UserType.DEFENDANT) ??
+    UserStateHelper.generateCitizenUsers(UserType.DEFENDANT));

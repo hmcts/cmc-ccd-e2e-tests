@@ -22,6 +22,8 @@ declare global {
       JUDGE_USER_EMAIL: string;
       JUDGE_USER_ID: string;
       JUDGE_USER_PASSWORD: string;
+      CLAIMANT_CITIZEN_EMAIL: string;
+      DEFENDANT_CITIZEN_EMAIL: string;
       SMOKE_TEST_USER_PASSWORD: string;
       SHOW_BROWSER_WINDOW: string;
       WORKERS: string;
