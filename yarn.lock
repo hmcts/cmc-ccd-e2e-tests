@@ -2817,22 +2817,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"allure-js-commons@npm:2.4.0":
-  version: 2.4.0
-  resolution: "allure-js-commons@npm:2.4.0"
+"allure-js-commons@npm:2.15.1":
+  version: 2.15.1
+  resolution: "allure-js-commons@npm:2.15.1"
   dependencies:
+    md5: ^2.3.0
     properties: ^1.2.1
-    uuid: ^8.3.0
-  checksum: 7c1f957ff1f01ade50001d740fe70d4df379a687fb81ef6642a64ca7f75ca06dd3695beb3e2b9e2b3f1293798141aae2c7ba8497c1623505c8869e1432f05c0a
+    strip-ansi: ^5.2.0
+  checksum: 4eb41d06e055c587772cdc9ccbd2b991adac8394f5467707f0ff12488db0ab90b3917234d6035558033cb04ab0c99f64094e18db8d5295cdb2c2078e2a1247d9
   languageName: node
   linkType: hard
 
-"allure-playwright@npm:2.4.0":
-  version: 2.4.0
-  resolution: "allure-playwright@npm:2.4.0"
+"allure-playwright@npm:2.15.1":
+  version: 2.15.1
+  resolution: "allure-playwright@npm:2.15.1"
   dependencies:
-    allure-js-commons: 2.4.0
-  checksum: e7587ccf24b036bafc9154eafa596daeed87add1eaf3a2d3d97f86e66aa75183753f8a23e0535cec732c37a3cf00549ba3900a0fec57be98e58afcf2b5560fac
+    allure-js-commons: 2.15.1
+  checksum: de3cebffa057cc8122f34950a4c98f03db0da4ee16efd75ddaa1f1e365f3a44f12e060c2441e4c1eb61cc5fdc637eb900f848c02e94a3ec475922c613e4e490d
   languageName: node
   linkType: hard
 
@@ -3759,6 +3760,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"charenc@npm:0.0.2":
+  version: 0.0.2
+  resolution: "charenc@npm:0.0.2"
+  checksum: 81dcadbe57e861d527faf6dd3855dc857395a1c4d6781f4847288ab23cffb7b3ee80d57c15bba7252ffe3e5e8019db767757ee7975663ad2ca0939bb8fcaf2e5
+  languageName: node
+  linkType: hard
+
 "check-error@npm:^2.1.1":
   version: 2.1.1
   resolution: "check-error@npm:2.1.1"
@@ -4069,7 +4077,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin-tslint": ^5.50.0
     "@typescript-eslint/parser": ^5.50.0
     allure-commandline: ^2.29.0
-    allure-playwright: 2.4.0
+    allure-playwright: 2.15.1
     codeceptjs: ^3.3.7
     custom-eslint-plugin: "file:plugins/custom-eslint-plugins"
     dependency-check: ^4.1.0
@@ -4455,6 +4463,13 @@ __metadata:
     lru-cache: ^4.0.1
     which: ^1.2.9
   checksum: 8ce57b3e11c5c798542a21ddfdc1edef33ab6fe001958b31f3340a6ff684e3334a8baad2751efa78b6200aad442cf12b939396d758b0dd5c42c9b782c28fe06e
+  languageName: node
+  linkType: hard
+
+"crypt@npm:0.0.2":
+  version: 0.0.2
+  resolution: "crypt@npm:0.0.2"
+  checksum: baf4c7bbe05df656ec230018af8cf7dbe8c14b36b98726939cef008d473f6fe7a4fad906cfea4062c93af516f1550a3f43ceb4d6615329612c6511378ed9fe34
   languageName: node
   linkType: hard
 
@@ -6672,6 +6687,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-buffer@npm:~1.1.6":
+  version: 1.1.6
+  resolution: "is-buffer@npm:1.1.6"
+  checksum: 4a186d995d8bbf9153b4bd9ff9fd04ae75068fe695d29025d25e592d9488911eeece84eefbd8fa41b8ddcc0711058a71d4c466dcf6f1f6e1d83830052d8ca707
+  languageName: node
+  linkType: hard
+
 "is-core-module@npm:^2.13.0":
   version: 2.14.0
   resolution: "is-core-module@npm:2.14.0"
@@ -7897,6 +7919,17 @@ __metadata:
   dependencies:
     "@arr/every": ^1.0.0
   checksum: 14617343d9f77a5f2a2e9e5213b1d6c1c7b3efda10758d1502e632edf63bf77f260e3f1aa2afdc97dd7e259fae7845a1b07719cd4680d2f1d23b2aa45a393934
+  languageName: node
+  linkType: hard
+
+"md5@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "md5@npm:2.3.0"
+  dependencies:
+    charenc: 0.0.2
+    crypt: 0.0.2
+    is-buffer: ~1.1.6
+  checksum: a63cacf4018dc9dee08c36e6f924a64ced735b37826116c905717c41cebeb41a522f7a526ba6ad578f9c80f02cb365033ccd67fe186ffbcc1a1faeb75daa9b6e
   languageName: node
   linkType: hard
 
@@ -11689,7 +11722,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:8.3.2, uuid@npm:^8.0.0, uuid@npm:^8.3.0, uuid@npm:^8.3.2":
+"uuid@npm:8.3.2, uuid@npm:^8.0.0, uuid@npm:^8.3.2":
   version: 8.3.2
   resolution: "uuid@npm:8.3.2"
   bin:
