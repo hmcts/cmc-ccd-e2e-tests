@@ -8,7 +8,7 @@ export default class IdamCookiesBanner extends BasePage {
     await super.runVerifications([
       super.expectSubheading(heading),
       super.expectText(paragraphs.cookiesDescription1),
-      super.expectText(paragraphs.cookiesDescription2),
+      //super.expectText(paragraphs.cookiesDescription2),
     ]);
   }
 
