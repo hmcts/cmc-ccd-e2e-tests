@@ -68,8 +68,8 @@ export default class IdamSteps extends BaseSteps {
       if (this.isSetupTest && this.verifyCookiesBanner) {
         const { idamsCookiesBanner } = this.idamFactory;
         await loginPage.openManageCase();
-        await idamsCookiesBanner.verifyContent();
-        await idamsCookiesBanner.acceptCookies();
+        await idamsCookiesBanner.verifyExuiContent();
+        await idamsCookiesBanner.acceptExuiCookies();
       } else {
         await pageCookiesManager.addIdamCookies();
         await pageCookiesManager.addExuiCookies(user);
