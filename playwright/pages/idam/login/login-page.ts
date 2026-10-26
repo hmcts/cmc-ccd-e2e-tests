@@ -1,17 +1,31 @@
 import urls from '../../../config/urls';
 import User from '../../../models/user';
 import BasePage from '../../../base/base-page';
-import { inputs, buttons } from './login-page-content';
+import { inputs, buttons, heading, inputsForExUI } from './login-page-content';
 import { AllMethodsStep } from '../../../decorators/test-steps';
 
 @AllMethodsStep({ methodNamesToIgnore: ['login'] })
 export default class LoginPage extends BasePage {
   async verifyContent() {
     await super.runVerifications([
-      // super.expectText(heading),
+      super.expectText(heading),
       super.expectLabel(inputs.email.label),
       super.expectLabel(inputs.password.label),
     ]);
+  }
+
+  async verifyExUILoginPageContent() {
+    await super.runVerifications([
+      super.expectText('Enter your email address'),
+    ]);
+  }
+
+  private async loginForExUI({ email, password }) {
+    console.log(`Authenticating user with email ${email} by Idam`);
+    await super.inputText(email, inputsForExUI.email.selector);
+    await super.clickBySelector(inputsForExUI.continue.selector);
+    await super.inputSensitiveText(password, inputs.password.selector);
+    await super.clickBySelector(inputsForExUI.continue.selector);
   }
 
   private async login({ email, password }) {
@@ -44,7 +58,7 @@ export default class LoginPage extends BasePage {
   }
 
   async caseworkerLogin(user: User) {
-    await this.login(user);
+    await this.loginForExUI(user);
     await super.expectUrlEnd('/cases');
   }
 }

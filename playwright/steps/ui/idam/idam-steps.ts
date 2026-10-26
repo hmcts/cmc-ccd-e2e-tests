@@ -76,7 +76,7 @@ export default class IdamSteps extends BaseSteps {
         await loginPage.openManageCase();
       }
 
-      await loginPage.verifyContent();
+      await loginPage.verifyExUILoginPageContent();
       await loginPage.caseworkerLogin(user);
     } else {
       const cookies = await CookiesHelper.getCookies(user.cookiesPath, this.isTeardown);

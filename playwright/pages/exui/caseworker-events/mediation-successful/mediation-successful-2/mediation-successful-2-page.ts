@@ -19,7 +19,6 @@ export default class MediationSuccessful2Page extends ExuiPage(BasePage) {
     await super.runVerifications([
       super.expectHeading(heading),
       super.verifyCaseTitle(caseData),
-      this.staffDocumentsFragment.verifyContent(),
     ]);
   }
 

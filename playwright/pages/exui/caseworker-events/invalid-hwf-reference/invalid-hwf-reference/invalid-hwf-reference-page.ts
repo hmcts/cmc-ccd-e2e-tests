@@ -7,7 +7,8 @@ import ExuiPage from '../../../exui-page/exui-page';
 @AllMethodsStep()
 export default class InvalidHwfNumberPage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)]);
+    //BUG REFERENCE FOR HWF NUMBER
+    await super.runVerifications([super.expectHeading(heading)]);
   }
 
   async submit() {

@@ -341,7 +341,7 @@ export default class CaseworkerEventsSteps extends BaseSteps {
     );
   }
 
-  async MediationSuccessful() {
+  async   MediationSuccessful() {
     const { caseDetailsPage } = this.exuiDashboardFactory;
     await caseDetailsPage.retryChooseNextStep(CaseworkerEvents.MEDIATION_SUCCESSFUL);
 
