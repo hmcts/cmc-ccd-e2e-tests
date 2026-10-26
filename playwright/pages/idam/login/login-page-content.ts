@@ -3,11 +3,11 @@ export const heading = 'Sign in or create an account';
 export const inputsForExUI = {
   email: {
     label: 'Email Address',
-    selector: '//input[@id=\'email\']',
+    selector: "//input[@id='email']",
   },
   continue: {
     label: 'Continue',
-    selector: '//button[normalize-space()=\'Continue\']',
+    selector: "//button[normalize-space()='Continue']",
   },
   password: {
     label: 'Password',

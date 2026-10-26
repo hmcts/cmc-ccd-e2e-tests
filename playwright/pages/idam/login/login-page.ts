@@ -15,9 +15,7 @@ export default class LoginPage extends BasePage {
   }
 
   async verifyExUILoginPageContent() {
-    await super.runVerifications([
-      super.expectText('Enter your email address'),
-    ]);
+    await super.runVerifications([super.expectText('Enter your email address')]);
   }
 
   private async loginForExUI({ email, password }) {

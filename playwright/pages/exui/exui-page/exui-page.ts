@@ -22,7 +22,7 @@ export default function ExuiPage<TBase extends abstract new (...args: any[]) => 
     }
 
     protected async verifyCaseTitle(caseData: CCDCaseData) {
-      await super.expectH2Heading(caseData.previousServiceCaseReference + ' '+ caseData.caseName);
+      await super.expectH2Heading(caseData.previousServiceCaseReference + ' ' + caseData.caseName);
     }
 
     protected async waitForPageToLoad() {

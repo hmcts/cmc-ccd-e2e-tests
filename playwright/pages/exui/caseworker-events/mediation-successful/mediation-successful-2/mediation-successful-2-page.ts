@@ -16,10 +16,7 @@ export default class MediationSuccessful2Page extends ExuiPage(BasePage) {
   }
 
   async verifyContent(caseData: CCDCaseData) {
-    await super.runVerifications([
-      super.expectHeading(heading),
-      super.verifyCaseTitle(caseData),
-    ]);
+    await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)]);
   }
 
   async enterDocumentDetails() {
