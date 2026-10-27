@@ -26,4 +26,7 @@ export default class MediationSuccessful1Page extends ExuiPage(BasePage) {
   async submit() {
     await super.retryClickSubmit();
   }
+  async clickContinue() {
+    await super.clickButtonByName('Continue')
+  }
 }
