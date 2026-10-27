@@ -5,7 +5,7 @@ export const subheadings = {
 export const buttons = {
   addNewTop: {
     title: 'Add new',
-    selector: "button[class='button write-collection-add-item__top']",
+    selector: "//button[normalize-space()='Add new'][1]",
   },
   addNewBottom: {
     title: 'Add new',
