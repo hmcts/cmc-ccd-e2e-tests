@@ -1,1 +1,1 @@
-export const heading = 'Mediation successful';
+export const heading = 'Upload mediation agreement';
