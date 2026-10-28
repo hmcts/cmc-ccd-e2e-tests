@@ -435,6 +435,25 @@ export default abstract class BasePage {
   }
 
   @BoxedDetailedStep(classKey, 'text')
+  protected async expectH2Heading(
+    text: string | number,
+    options: {
+      message?: string;
+      exact?: boolean;
+      timeout?: number;
+    } = {},
+  ) {
+    await pageExpect(
+      this.page.getByRole('heading', {
+        name: text.toString(),
+        exact: true,
+      }),
+      options.message,
+    ).toBeVisible({
+      timeout: options.timeout,
+    });
+  }
+  @BoxedDetailedStep(classKey, 'text')
   @TruthyParams(classKey, 'text')
   protected async expectNoHeading(
     text: string | number,

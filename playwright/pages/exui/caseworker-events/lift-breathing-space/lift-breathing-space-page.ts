@@ -10,9 +10,7 @@ import { heading, inputs } from './lift-breathing-space-content';
 export default class LiftBreathingSpacePage extends ExuiPage(BasePage) {
   async verifyContent(caseData: CCDCaseData) {
     await super.runVerifications([super.expectHeading(heading), super.verifyCaseTitle(caseData)]);
-
     await super.retryClickSubmit();
-
     await super.runVerifications([super.expectText(inputs.respiteEnd.label)]);
   }
 

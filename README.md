@@ -22,7 +22,7 @@ $ yarn install
 
 ### Running the tests
 
-The tests will need to be given valid credentials taken from key vault
+The tests will need to be given valid credentials taken from key vault.
 
 ```bash
 $ yarn test:fullfunctional

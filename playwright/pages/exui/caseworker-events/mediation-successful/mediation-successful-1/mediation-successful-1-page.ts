@@ -24,6 +24,6 @@ export default class MediationSuccessful1Page extends ExuiPage(BasePage) {
   }
 
   async submit() {
-    await super.retryClickSubmit();
+    await super.retryClickSubmit(() => super.expectNoSelector(inputs.mediationDay.selector));
   }
 }

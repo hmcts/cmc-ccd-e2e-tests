@@ -14,7 +14,7 @@ export default class PaperResponseDefencePage extends ExuiPage(BasePage) {
       super.expectSubheading(subheadings.defendantDetails),
       super.expectSubheading(subheadings.address),
       super.expectSubheading(subheadings.correspondenceAddress),
-      // super.expectSubheading(subheadings.contactDetails),
+      //super.expectSubheading(subheadings.contactDetails),
       super.expectLabel(radioButtons.dispute.label),
       super.expectLabel(radioButtons.alreadyPaid.label),
       super.expectInputValue(inputs.addressLine1.selector, respondentAddress.AddressLine1),

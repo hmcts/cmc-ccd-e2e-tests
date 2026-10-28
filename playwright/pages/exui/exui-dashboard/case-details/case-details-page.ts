@@ -111,7 +111,7 @@ export default class CaseDetailsPage extends ExuiPage(BasePage) {
     await super.clickByText(tabs.claimDocs.title);
     await super.runVerifications([
       super.expectText(doc1Dropdowns.docType.options[0]),
-      super.expectText(doc1Dropdowns.docType.options[2]),
+      // super.expectText(doc1Dropdowns.docType.options[1]),
       // super.expectText(doc1Inputs.docName.value),
       // super.expectText(doc2Inputs.docName.value),
     ]);

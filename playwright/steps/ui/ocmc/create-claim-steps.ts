@@ -84,7 +84,6 @@ export default class CreateClaimSteps extends BaseSteps {
     const { totalAmountPage } = this.createClaimFactory;
     await totalAmountPage.verifyContent();
     await totalAmountPage.saveAndContinue();
-
     await createClaimDashboardPage.checkAndSubmit();
   }
 
