@@ -1,5 +1,6 @@
 #!groovy
 
+
 properties([
         parameters([
                 choice(name: 'FORCE_GREEN_BUILD', choices: ['false', 'true'], description: 'Should force pipeline to go green by not running any functional tests'),
