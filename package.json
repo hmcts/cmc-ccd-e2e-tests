@@ -88,7 +88,7 @@
     "url": "https://github.com/hmcts/cmc-ccd-e2e-tests/issues"
   },
   "homepage": "https://github.com/hmcts/cmc-ccd-e2e-tests#readme",
-  "packageManager": "yarn@3.8.5",
+  "packageManager": "yarn@3.8.7",
   "main": "index.ts",
   "author": ""
 }
